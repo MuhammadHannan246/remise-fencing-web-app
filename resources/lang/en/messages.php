@@ -3019,10 +3019,9 @@
   'Special Offers' => 'Special Offers',
   'Shop_name' => 'Shop name',
   'Shop_Address' => 'Shop Address',
-<<<<<<< HEAD
+
   'Search Product ...' => 'Search Product ...',
-=======
+
   'push_notification_update' => 'Push notification update',
   'Announcement_Setup' => 'Announcement Setup',
->>>>>>> d80dcb325da3a838edf1233f46eefcf8961f36e0
 );

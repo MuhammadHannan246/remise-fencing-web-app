@@ -185,33 +185,6 @@ color: #FFF;
     .searchBTN {
         right: 75px !important;
     }
-    @media (max-width: 820px){
-        .innerArea7 .img22{
-            width: 757px;
-        }
-        .innerArea7 .img22 .innText{
-            margin-left: 30px;
-        }
-        .searchBTN {
-            right:25px !important;
-        }
-        .leftDiscount{
-            flex-direction: column;
-            align-items: initial;
-        }
-        .navCart{
-            font-size: 12px;
-        }
-        .navAccount{
-            font-size: 12px;
-        }
-.saleLocation {
-    width: 58%;
-}
-.searchCate{
-            padding: 1.45rem 1rem !important;
-        }
-    }
     
     @media (min-width: 768px) {
         .navbar-stuck-menu {
@@ -256,6 +229,31 @@ color: #FFF;
         }
         .navCart{
             font-size: 12px;
+        }
+        .innerArea7 .img22{
+            width: 757px;
+        }
+        .innerArea7 .img22 .innText{
+            margin-left: 30px;
+        }
+        .searchBTN {
+            right:25px !important;
+        }
+        .leftDiscount{
+            flex-direction: column;
+            align-items: initial;
+        }
+        .navCart{
+            font-size: 12px;
+        }
+        .navAccount{
+            font-size: 12px;
+        }
+.saleLocation {
+    width: 58%;
+}
+.searchCate{
+            padding: 1.45rem 1rem !important;
         }
 .saleLocation {
     width: 58%;
@@ -736,7 +734,7 @@ color: #FFF;
                     <ul class="navbar-nav nav_float" style="{{Session::get('direction') === "rtl" ?  'padding-right: 0px ' : ''}}">
                         <li class="nav-item dropdown {{request()->is('/')?'active':''}}">
                             <a class="nav-link navLink" href="{{route('home')}}">{{ \App\CPU\translate('Home')}}</a>
-                            <a class="nav-link" href="{{route('home')}}">{{ \App\CPU\translate('Home')}}</a>
+                            {{-- <a class="nav-link" href="{{route('home')}}">{{ \App\CPU\translate('Home')}}</a> --}}
                         </li>
 
                         @if(\App\Model\BusinessSetting::where(['type'=>'product_brand'])->first()->value)

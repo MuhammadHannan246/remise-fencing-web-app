@@ -16,7 +16,7 @@ letter-spacing: 0.02em;
 }
 .searchBTN{
     background: #FF061E !important;
-    right: 110px !important;
+    right: 85px !important;
 
 }
 .input-group-text{
@@ -182,9 +182,9 @@ color: #FFF;
         fill: #FF061E !important;
 
     }
-    .searchBTN {
+    /* .searchBTN {
         right: 75px !important;
-    }
+    } */
     
     @media (min-width: 768px) {
         .navbar-stuck-menu {
@@ -382,7 +382,7 @@ color: #FFF;
                          alt="{{$web_config['name']->value}}"/>
                 </a>
                 <!-- Search-->
-                <div class="input-group-overlay d-none d-md-block mx-4"
+                <div class="input-group-overlay d-none d-md-block mx-4 mt-4"
                      style="text-align: -webkit-center;">
                     <form action="{{route('products')}}" type="submit" class="search_form searchBar">
                         <input class="form-control appended-form-control search-bar-input" type="text"
@@ -411,7 +411,7 @@ color: #FFF;
                     </form>
                 </div>
                 <!-- Toolbar-->
-                <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center">
+                <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center mt-3">
                     <a class="navbar-tool navbar-stuck-toggler" href="#">
                         <span class="navbar-tool-tooltip">{{\App\CPU\translate('Expand Menu')}}</span>
                         <div class="navbar-tool-icon-box">

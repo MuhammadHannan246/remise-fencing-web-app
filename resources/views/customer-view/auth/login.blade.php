@@ -31,95 +31,27 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="/stript.js"></script>
 
+
+
+    <style>
+        .btnSIGN{
+            height: 60px !important;
+        }
+    </style>
+
 </head>
 
 <body>
 @section('content')
 
-    <!-- <div class="innerArea">
-        <div class="cont1">
-            <label class="lblTel" for="telNum"><i class="fa-sharp fa-solid fa-phone"></i>+01234567890</label>
-
-            <label class="discRight" for="disc">Get 50% Off on Selected items</label>
-        </div>
-        <label for="" class="Mid">|</label>
-        <div class="cont2">
-
-            <label class="shopNow" for="shopNow"><a href="#">Shop Now</a></label>
-            <div class="rightSell">
-                <label class="sellOn" for="sellOn">Sell On Remise</label>
-                <label class="location" for="location">Location<i class="fa-solid fa-caret-down"></i></label>
-
-            </div>
-        </div>
-
-    </div> -->
-
-    <!---- New Section starts here-->
+ 
 
 
-
-    <!-- <div class=" innerArea2">
-        <div class="logo">
-            <img src="{{asset("storage/app/public/company")."/".$web_config['web_logo']->value}}"
-            onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-            alt="{{$web_config['name']->value}}" class="logoImg">
-        </div>
-        <div class="searchBar">
-            <div class="row">
-                <div class="col-xl-6 col-lg-8 col-md-8 col-sm-12  ">
-
-                    <form class="example">
-                        <div class="row">
-                            <div class="col-12 col-sm-6">
-
-
-                                <input type="text" placeholder="Search Product.." name="search">
-                            </div>
-
-                            <div class="col-12 col-sm-4 getStartedBTN">
-
-                                <div class="dropdown">
-                                    <button class="btn btn-primary dropdown-toggle categoryy" type="button"
-                                        data-toggle="dropdown">All Categories
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">HTML</a></li>
-                                        <li><a href="#">CSS</a></li>
-                                        <li><a href="#">JavaScript</a></li>
-                                    </ul>
-                                </div>
-
-                            </div>
-
-
-                            <div class="col-12 col-sm-2 getStartedBTN">
-
-
-                                <button type="submit"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
-
-                            </div>
-                        </div>
-
-                    </form>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="rightCart">
-            <a class="account" href="#">
-                <i class="fa-regular fa-circle-user icon11"></i>Account
-            </a>
-            <a class="account" href="#">
-                <i class="fa-solid fa-cart-shopping icon11"></i>Cart
-            </a>
-        </div>
-    </div> -->
 
 
     <!---- New Section starts here-->
 
+    <br><br><br>
 
     <div class="container-fluid my-3 pb-5 innerArea_new register">
         <div class="col-12 logo text-center">
@@ -164,44 +96,15 @@
                                         required>
                                         <label for="si-password" class = "emailLbl" >{{\App\CPU\translate('password')}}</label>
                                 <label class="password-toggle-btn">
-                                    <input class="custom-control-input" type="checkbox"><i
-                                        class="czi-eye password-toggle-indicator"></i><span
+                                    <input class="custom-control-input" type="checkbox">
+                                    <i class="fa-solid fa-eye fa-flip-horizontal fa-sm" style="color: #00000099;
+                                    ;"></i>
+                                    <span
                                         class="sr-only">{{\App\CPU\translate('Show')}} {{\App\CPU\translate('password')}} </span>
                                 </label>
                             </div>
                         <br> <br>
-                        {{-- <div class="form-group d-flex flex-wrap justify-content-between">
 
-                            <div class="form-group">
-                                <input type="checkbox"
-                                        class="{{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}"
-                                        name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                <label class="" for="remember">{{\App\CPU\translate('remember_me')}}</label>
-                            </div>
-                            <a class="font-size-sm" href="{{route('customer.auth.recover-password')}}">
-                                {{\App\CPU\translate('forgot_password')}}?
-                            </a>
-                        </div> --}}
-                        {{-- recaptcha --}}
-                        {{-- @php($recaptcha = \App\CPU\Helpers::get_business_settings('recaptcha'))
-                        @if(isset($recaptcha) && $recaptcha['status'] == 1)
-                            <div id="recaptcha_element" class="w-100" data-type="image"></div>
-                            <br/>
-                        @else
-                            <div class="row py-2">
-                                <div class="col-6 pr-2">
-                                    <input type="text" class="form-control border __h-40" name="default_captcha_value" value=""
-                                        placeholder="{{\App\CPU\translate('Enter captcha value')}}" autocomplete="off">
-                                </div>
-                                <div class="col-6 input-icons mb-2 w-100 rounded bg-white">
-                                    <a onclick="javascript:re_captcha();" class="d-flex align-items-center align-items-center">
-                                        <img src="{{ URL('/customer/auth/code/captcha/1') }}" class="input-field rounded __h-40" id="default_recaptcha_id">
-                                        <i class="tio-refresh icon cursor-pointer p-2"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        @endif --}}
                         <button class="button form__button btnSIGN"
                                 type="submit">{{\App\CPU\translate('sign_in')}}</button>
                     </form>
@@ -213,6 +116,7 @@
         </div>
 
     </div>
+</div>
 
 <!-- Footer -->
 

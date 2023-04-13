@@ -3019,9 +3019,8 @@
   'Special Offers' => 'Special Offers',
   'Shop_name' => 'Shop name',
   'Shop_Address' => 'Shop Address',
-
   'Search Product ...' => 'Search Product ...',
-
   'push_notification_update' => 'Push notification update',
   'Announcement_Setup' => 'Announcement Setup',
+  'Ecommerce' => 'Ecommerce',
 );

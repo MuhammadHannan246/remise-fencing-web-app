@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
 
 
-
+//this is new added
+Route::get('/home', 'WebController@home');
 
 //for maintenance mode
 Route::get('maintenance-mode', 'Web\WebController@maintenance_mode')->name('maintenance-mode');

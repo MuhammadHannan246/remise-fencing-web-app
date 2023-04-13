@@ -74,7 +74,7 @@
                             method="post" id="form-id">
                         @csrf
                         <div class="form-group emailINP">
-                          
+
                             <input class="form-control ship-control " type="text" name="user_id" id="si-email"
                                     style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};"
                                     value="{{old('user_id')}}"
@@ -84,7 +84,7 @@
                                 / {{\App\CPU\translate('phone')}}</label>
                             <div
                                 class="invalid-feedback">{{\App\CPU\translate('please_provide_valid_email_or_phone_number')}}
-                                
+
                             </div>
                         </div>
                         <br> <br>
@@ -120,7 +120,7 @@
 
 <!-- Footer -->
 
-    
+
 
     <body>
 

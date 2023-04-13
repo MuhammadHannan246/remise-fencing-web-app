@@ -1,54 +1,56 @@
 @extends('layouts.front-end.app')
 
-@section('title', $web_config['name']->value.' '.\App\CPU\translate('Online Shopping').' | '.$web_config['name']->value.' '.\App\CPU\translate(' Ecommerce'))
+@section('title', $web_config['name']->value . ' ' . \App\CPU\translate('Online Shopping') . ' | ' .
+    $web_config['name']->value . ' ' . \App\CPU\translate(' Ecommerce'))
 
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Remise</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Remise</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
-      <link rel="stylesheet" href="style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
-        crossorigin="anonymous"></script>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+            integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+            integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous">
+        </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/brands.min.css"
-        integrity="sha512-9YHSK59/rjvhtDcY/b+4rdnl0V4LPDWdkKceBl8ZLF5TB6745ml1AfluEU6dFWqwDw9lPvnauxFgpKvJqp7jiQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-<body>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/brands.min.css"
+            integrity="sha512-9YHSK59/rjvhtDcY/b+4rdnl0V4LPDWdkKceBl8ZLF5TB6745ml1AfluEU6dFWqwDw9lPvnauxFgpKvJqp7jiQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
 
-@section('content')
+    <body>
+        @php($decimal_point_settings = !empty(\App\CPU\Helpers::get_business_settings('decimal_point_settings')) ? \App\CPU\Helpers::get_business_settings('decimal_point_settings') : 0)
+
+    @section('content')
+
+        <div class="container-fluid">
 
 
-<div class="container-fluid">
+            <div class="row rowDiv">
 
-
-    <div class="row rowDiv">
-
-    <div class="col col-lg-3 hideMobe"></div>
+                <div class="col col-lg-3 hideMobe"></div>
 
 
                 <div class="col col-lg-6 col-md-12 col-sm-12">
@@ -57,30 +59,47 @@
 
                         <div class="row">
                             <div class="col col-lg-7 col-md-12 col-sm-12 col-12">
-                                <div class="img1">
+                                @php($main_banner = \App\Model\Banner::where('banner_type', 'Main Banner')->where('published', 1)->orderBy('id', 'desc')->get())
+                                @foreach ($main_banner as $banner)
+                                    <div class="">
+                                        <img class="img1"
+                                            onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
+                                            src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}"
+                                            alt="">
+                                        <div class="innerBody">
+                                            <div class="heading">
+                                                <h1>Forem ipsum dolor sit</h1>
+                                            </div>
+                                            <div class="innerText">
 
-                                    <div class="innerBody">
+                                            </div>
+                                            <div class="btnBody">
+                                                <button class="btnShop">Shop Now</button>
 
-                                        <div class="heading">
-                                            <h1>Forem ipsum dolor sit</h1>
-                                        </div>
-                                        <div class="innerText">
-                                            <p>Vorem ipsum dolor sit amet, consectetur adipiscing elit Nunc
-                                                vulputate libero et.</p>
-                                        </div>
-                                        <div class="btnBody">
-                                            <button class="btnShop">Shop Now</button>
-
+                                            </div>
                                         </div>
                                     </div>
-
-                                </div>
-
+                                @endforeach
                             </div>
 
                             <div class="col col-lg-5 col-md-12 col-sm-12 col-12">
                                 <div class="rightSide">
-                                    <div class="img2">
+                                    <div class="">
+                                        <img class="img2" {{-- onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" --}}
+                                            src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}"
+                                            alt="">
+                                        <div class="innerBody">
+                                            <div class="heading">
+                                                <h1>Forem ipsum dolor sit</h1>
+                                            </div>
+                                            <div class="innerText">
+
+                                            </div>
+                                            <div class="btnBody">
+                                                <button class="btnShop">Shop Now</button>
+
+                                            </div>
+                                        </div>
                                         <div class="innerBody2">
 
                                             <div class="heading2">
@@ -96,9 +115,11 @@
                                         </div>
 
                                     </div>
-                                    <div class="img3">
+                                    <div class="">
                                         <div class="innerBody3">
-
+                                            <img class="img3" {{-- onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" --}}
+                                                src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}"
+                                                alt="">
                                             <div class="heading3">
                                                 <h1>Horem ipsum</h1>
                                             </div>
@@ -128,201 +149,458 @@
         </div>
 
 
-    </div>
-
-    <br><br>
-
-
-    <div class="row">
-
-        <div class="col-9">
-            <h1 class="shopHeading">Shop Our Top Categories</h1>
         </div>
-        <div class="col-3">
-            <div class="innea5">
-                <a class=" viewBtn" href="#">View All ></i></a>
+
+        <br><br>
+
+
+        <div class="row">
+
+            <div class="col-9">
+                <h1 class="shopHeading">Shop Our Top Categories</h1>
+            </div>
+            <div class="col-3">
+                <div class="innea5">
+                    <a class=" viewBtn" href="#">View All ></i></a>
+
+                </div>
 
             </div>
 
         </div>
 
-    </div>
+        <br><br>
+        <div class="cardsContainer d-flex justify-content-center ">
+            <div class="row">
 
-<br><br>
-    <div class="cardsContainer d-flex justify-content-center ">
+                <div class="col-12">
+                    <div class="innerArea6">
+                        <div class="inner1 cardOne">
+                            @foreach ($categories as $key => $category)
+                                @if ($key < 6)
+                                    <div class="">
+                                        <a
+                                            href="{{ route('products', ['id' => $category['id'], 'data_from' => 'category', 'page' => 1]) }}">
+                                            <div class="inner2">
+                                                <div class="">
+                                                    <img onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
+                                                        src="{{ asset("storage/app/public/category/$category->icon") }}"
+                                                        alt="{{ $category->name }}">
+                                                    <h2 class="cardText1">{{ Str::limit($category->name, 12) }}</h2>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+        <br><br><br>
         <div class="row">
-
             <div class="col-12">
+                <h1 class="shopHeading">Flash Sales</h1>
                 <div class="innerArea6">
                     <div class="inner1 cardOne">
-                        @foreach($categories as $key=>$category)
-                        @if ($key<6)
-                            <div class="">
-                                <a href="{{route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])}}">
-                                    <div class="inner2">
-                                        <div class="">
-                                            <img
-                                            onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-                                            src="{{asset("storage/app/public/category/$category->icon")}}"
-                                            alt="{{$category->name}}">
-                                            <h2 class="cardText1">{{Str::limit($category->name, 12)}}</h2>
+                        @foreach ($latest_products as $key => $product)
+                            @if ($key < 6)
+                                <div class="">
+                                    <a href="">
+                                        <div class="inner2">
+                                            <div class="">
+                                                @if(isset($product))
+                                                @php($overallRating = \App\CPU\ProductManager::get_overall_rating($product->reviews))
+                                                <div class="flash_deal_product rtl" onclick="location.href='{{route('product',$product->slug)}}'">
+                                                    @if($product->discount > 0)
+                                                    <span class="for-discoutn-value p-1 pl-2 pr-2">
+                                                        @if ($product->discount_type == 'percent')
+                                                            {{round($product->discount,(!empty($decimal_point_settings) ? $decimal_point_settings: 0))}}%
+                                                        @elseif($product->discount_type =='flat')
+                                                            {{\App\CPU\Helpers::currency_converter($product->discount)}}
+                                                        @endif {{\App\CPU\translate('off')}}
+                                                    </span>
+                                                    @endif
+                                                    <div class=" d-flex">
+                                                        <div class="d-flex align-items-center justify-content-center"
+                                                             style="padding-{{Session::get('direction') === "rtl" ?'right:12px':'left:12px'}};padding-top:12px;">
+                                                            <div class="flash-deals-background-image">
+                                                                <img class="__img-125px"
+                                                                 src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail']}}"
+                                                                 onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="flash_deal_product_details pl-3 pr-3 pr-1 d-flex align-items-center">
+                                                            <div>
+                                                                <div>
+                                                                    <span class="flash-product-title">
+                                                                        {{$product['name']}}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="flash-product-review">
+                                                                    @for($inc=0;$inc<5;$inc++)
+                                                                        @if($inc<$overallRating[0])
+                                                                            <i class="sr-star czi-star-filled active"></i>
+                                                                        @else
+                                                                            <i class="sr-star czi-star" style="color:#fea569 !important"></i>
+                                                                        @endif
+                                                                    @endfor
+                                                                    <label class="badge-style2">
+                                                                        ( {{$product->reviews->count()}} )
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                    @if($product->discount > 0)
+                                                                        <strike
+                                                                            style="font-size: 12px!important;color: #E96A6A!important;">
+                                                                            {{\App\CPU\Helpers::currency_converter($product->unit_price)}}
+                                                                        </strike>
+                                                                    @endif
+                                                                </div>
+                                                                <div class="flash-product-price">
+                                                                    {{\App\CPU\Helpers::currency_converter($product->unit_price-\App\CPU\Helpers::get_product_discount($product,$product->unit_price))}}
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
-                            </div>
-                        @endif
-                    @endforeach
+                                    </a>
+                                </div>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
 
             </div>
 
-
         </div>
 
 
-    </div>
+        <br><br>
 
-    <br><br><br>
-    <div class="row">
-        <div class="col-12">
-            <h1 class="shopHeading">Flash Sales</h1>
-
-
-        </div>
-     
-    </div>
-
-
-    <br><br>
-
-    <div class="row">
-        <div class="col-12">
-            <div class="innerArea7">
-
-
-                <div class="img22">
-                    <div class="innText">
-                        <p class="redText">Lorem Ipsum</p>
-                        <h1 class="whiteHeading">Sorem ipsum dolor sit amet elit.</h1>
-                        <p class="whiteText">Dorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <button class="shop">Shop Now</button>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12">
-            <div class="innerArea5">
-                <h1 class="shopHeading">Trending Products</h1>
-            </div>
-
-        </div>
-    </div>
-    <br><br><br>
-
-    <div class="row">
-        <div class="col-12">
-            <div class="innerArea5">
-                <h1 class="shopHeading">Today’s Deals</h1>
-            </div>
-        </div>
-    </div>
-
-    <br>
-<div class="innerArea6">
-    <div class="inner1">
         <div class="row">
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                <div class="leftImg">
-                    <img src="image2.jpg" alt="">
-                </div>
-            </div>
-    
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                <div class="middleArea mx-5 my-5">
-                    <label class="dealOfTheDay" for="dealOfTheDay" style="color:#fff;">Deal Of Day</label>
-                    <h1 class="middleHeading">Vorem ipsum dolor
-                        sit amet, consectetur</h1>
-                    <label class="price1" for="price1">$999.99</label>
-                    <h2 class="price2">$599</h2>
-                    <p class="middleText">
-                        Korem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis
-                        tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus
-                        elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu
-                        ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent auctor purus luctus enim
-                        egestas, ac scelerisque ante pulvinar. Donec ut rhoncus ex. Suspendisse ac rhoncus nisl, eu tempor urna.
-                        Curabitur vel bibendum lorem. Morbi convallis convallis diam sit amet lacinia. Aliquam in elementum
-                        tellus.
-    
-                    </p>
-                </div>
-    
-            </div>
-    
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                <div class="topImg">
-                    <h2 class="imageText">Vorem ipsum dolor
-                        sit amet, consectetur</h2>
-    
-                </div>
-                <div class="bottomImg">
-                    <h2 class="imageText">Vorem ipsum dolor
-                        sit amet, consectetur</h2>
-    
+            <div class="col-12">
+                <div class="innerArea7">
+
+                    @php(
+    $main_section_banner = \App\Model\Banner::where('banner_type', 'Main Section Banner')->where('published', 1)->orderBy('id', 'desc')->latest()->first()
+)
+                    @if (isset($main_section_banner))
+                        <div class="img22">
+                            <img class="d-block"
+                                src="{{ asset('storage/app/public/banner') }}/{{ $main_section_banner['photo'] }}">
+                            <div class="innText">
+                                <p class="redText">Lorem Ipsum</p>
+                                <h1 class="whiteHeading">Sorem ipsum dolor sit amet elit.</h1>
+                                <p class="whiteText">Dorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <button class="shop">Shop Now</button>
+
+                            </div>
+
+                        </div>
+                    @endif
+
+
                 </div>
             </div>
         </div>
-    </div>
-    
-</div>
+
+        <div class="row">
+            <div class="col-12">
+                <h1 class="shopHeading">Trending Products</h1>
+                <div class="innerArea6">
+                    <div class="inner1 cardOne">
+                        @foreach ($latest_products as $key => $product)
+                            @if ($key < 6)
+                                <div class="">
+                                    <a href="">
+                                        <div class="inner2">
+                                            <div class="">
+                                                @if (isset($product))
+                                                    @php($overallRating = \App\CPU\ProductManager::get_overall_rating($product->reviews))
+                                                    <div class="flash_deal_product rtl"
+                                                        onclick="location.href='{{ route('product', $product->slug) }}'">
+                                                        @if ($product->discount > 0)
+                                                            <span class="for-discoutn-value p-1 pl-2 pr-2">
+                                                                @if ($product->discount_type == 'percent')
+                                                                    {{ round($product->discount, !empty($decimal_point_settings) ? $decimal_point_settings : 0) }}%
+                                                                @elseif($product->discount_type == 'flat')
+                                                                    {{ \App\CPU\Helpers::currency_converter($product->discount) }}
+                                                                @endif {{ \App\CPU\translate('off') }}
+                                                            </span>
+                                                        @endif
+                                                        <div class=" d-flex">
+                                                            <div class="d-flex align-items-center justify-content-center"
+                                                                style="padding-{{ Session::get('direction') === 'rtl' ? 'right:12px' : 'left:12px' }};padding-top:12px;">
+                                                                <div class="flash-deals-background-image">
+                                                                    <img class="__img-125px"
+                                                                        src="{{ \App\CPU\ProductManager::product_image_path('thumbnail') }}/{{ $product['thumbnail'] }}"
+                                                                        onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" />
+                                                                </div>
+                                                            </div>
+                                                            <div
+                                                                class="flash_deal_product_details pl-3 pr-3 pr-1 d-flex align-items-center">
+                                                                <div>
+                                                                    <div>
+                                                                        <span class="flash-product-title">
+                                                                            {{ $product['name'] }}
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="flash-product-review">
+                                                                        @for ($inc = 0; $inc < 5; $inc++)
+                                                                            @if ($inc < $overallRating[0])
+                                                                                <i
+                                                                                    class="sr-star czi-star-filled active"></i>
+                                                                            @else
+                                                                                <i class="sr-star czi-star"
+                                                                                    style="color:#fea569 !important"></i>
+                                                                            @endif
+                                                                        @endfor
+                                                                        <label class="badge-style2">
+                                                                            ( {{ $product->reviews->count() }} )
+                                                                        </label>
+                                                                    </div>
+                                                                    <div>
+                                                                        @if ($product->discount > 0)
+                                                                            <strike
+                                                                                style="font-size: 12px!important;color: #E96A6A!important;">
+                                                                                {{ \App\CPU\Helpers::currency_converter($product->unit_price) }}
+                                                                            </strike>
+                                                                        @endif
+                                                                    </div>
+                                                                    <div class="flash-product-price">
+                                                                        {{ \App\CPU\Helpers::currency_converter($product->unit_price - \App\CPU\Helpers::get_product_discount($product, $product->unit_price)) }}
+
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
+
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+
+            </div>
 
 
-<br><br>
-    <div class="row">
-        <div class="col-12">
-            <div class="innerArea5">
+        </div>
+        </div>
+        <br><br><br>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="innerArea5">
+                    <h1 class="shopHeading">Today’s Deals</h1>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <div class="innerArea6">
+            <div class="inner1">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                        <div class="">
+
+                            @foreach (\App\Model\Banner::where('banner_type', 'Footer Banner')->where('published', 1)->orderBy('id', 'desc')->take(3)->get() as $banner)
+                                <div class="leftImg">
+                                    <a href="{{ $banner->url }}" class="d-block">
+                                        <img class="footer_banner_img"
+                                            src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}">
+                                    </a>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                        <div class="middleArea mx-5 my-5">
+                            <label class="dealOfTheDay" for="dealOfTheDay" style="color:#fff;">Deal Of Day</label>
+                            <h1 class="middleHeading">Vorem ipsum dolor
+                                sit amet, consectetur</h1>
+                            <label class="price1" for="price1">$999.99</label>
+                            <h2 class="price2">$599</h2>
+                            <p class="middleText">
+                                Korem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum
+                                est a, mattis
+                                tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut
+                                interdum tellus
+                                elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent
+                                taciti sociosqu
+                                ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent auctor purus luctus
+                                enim
+                                egestas, ac scelerisque ante pulvinar. Donec ut rhoncus ex. Suspendisse ac rhoncus nisl, eu
+                                tempor urna.
+                                Curabitur vel bibendum lorem. Morbi convallis convallis diam sit amet lacinia. Aliquam in
+                                elementum
+                                tellus.
+
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                        <div class="topImg">
+                            <img class="footer_banner_img"
+                                src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}">
+                            <h2 class="imageText">Vorem ipsum dolor
+                                sit amet, consectetur</h2>
+
+                        </div>
+                        <div class="bottomImg">
+                            <img class="footer_banner_img"
+                                src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}">
+                            <h2 class="imageText">Vorem ipsum dolor
+                                sit amet, consectetur</h2>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <br><br>
+        <div class="row">
+            <div class="col-12">
                 <h1 class="shopHeading">For You</h1>
+                <div class="innerArea6">
+                    <div class="inner1 cardOne">
+                        @foreach ($latest_products as $key => $product)
+                            @if ($key < 6)
+                                <div class="">
+                                    <a href="">
+                                        <div class="inner2">
+                                            <div class="">
+                                                @if (isset($product))
+                                                    @php($overallRating = \App\CPU\ProductManager::get_overall_rating($product->reviews))
+                                                    <div class="flash_deal_product rtl"
+                                                        onclick="location.href='{{ route('product', $product->slug) }}'">
+                                                        @if ($product->discount > 0)
+                                                            <span class="for-discoutn-value p-1 pl-2 pr-2">
+                                                                @if ($product->discount_type == 'percent')
+                                                                    {{ round($product->discount, !empty($decimal_point_settings) ? $decimal_point_settings : 0) }}%
+                                                                @elseif($product->discount_type == 'flat')
+                                                                    {{ \App\CPU\Helpers::currency_converter($product->discount) }}
+                                                                @endif {{ \App\CPU\translate('off') }}
+                                                            </span>
+                                                        @endif
+                                                        <div class=" d-flex">
+                                                            <div class="d-flex align-items-center justify-content-center"
+                                                                style="padding-{{ Session::get('direction') === 'rtl' ? 'right:12px' : 'left:12px' }};padding-top:12px;">
+                                                                <div class="flash-deals-background-image">
+                                                                    <img class="__img-125px"
+                                                                        src="{{ \App\CPU\ProductManager::product_image_path('thumbnail') }}/{{ $product['thumbnail'] }}"
+                                                                        onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" />
+                                                                </div>
+                                                            </div>
+                                                            <div
+                                                                class="flash_deal_product_details pl-3 pr-3 pr-1 d-flex align-items-center">
+                                                                <div>
+                                                                    <div>
+                                                                        <span class="flash-product-title">
+                                                                            {{ $product['name'] }}
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="flash-product-review">
+                                                                        @for ($inc = 0; $inc < 5; $inc++)
+                                                                            @if ($inc < $overallRating[0])
+                                                                                <i
+                                                                                    class="sr-star czi-star-filled active"></i>
+                                                                            @else
+                                                                                <i class="sr-star czi-star"
+                                                                                    style="color:#fea569 !important"></i>
+                                                                            @endif
+                                                                        @endfor
+                                                                        <label class="badge-style2">
+                                                                            ( {{ $product->reviews->count() }} )
+                                                                        </label>
+                                                                    </div>
+                                                                    <div>
+                                                                        @if ($product->discount > 0)
+                                                                            <strike
+                                                                                style="font-size: 12px!important;color: #E96A6A!important;">
+                                                                                {{ \App\CPU\Helpers::currency_converter($product->unit_price) }}
+                                                                            </strike>
+                                                                        @endif
+                                                                    </div>
+                                                                    <div class="flash-product-price">
+                                                                        {{ \App\CPU\Helpers::currency_converter($product->unit_price - \App\CPU\Helpers::get_product_discount($product, $product->unit_price)) }}
+
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
+
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+
             </div>
         </div>
-    </div>
 
-    <br><br>
+        <br><br>
 
-    <div class="row">
-        <div class="col-12">
-            <div class="innerArea9">
-                <button class="loadMore">
-                    Load More
-                </button>
+        <div class="row">
+            <div class="col-12">
+                <div class="innerArea9">
+                    <button class="loadMore">
+                        Load More
+                    </button>
+                </div>
+
             </div>
-
         </div>
-    </div>
 
-    <br><br>
-</div>
-
+        <br><br>
+        </div>
 
 
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-        crossorigin="anonymous"></script>
-@endsection
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+        </script>
+    @endsection
 </body>
 
 </html>
 
 <style>
-
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
     .innerArea {
         background: #000;
@@ -729,8 +1007,8 @@
         background-image:
             linear-gradient(to left, rgba(245, 246, 252, 0.52), rgba(0, 0, 0, 0.5)),
             url('pg11.jpg');
-        width: 565px ;
-        height: 438px ;
+        width: 565px;
+        height: 438px;
         margin-left: 35px;
         background-size: cover;
         background-repeat: no-repeat;
@@ -910,14 +1188,14 @@
 
 
     .innerArea6 .inner1 .cardText1 {
-    color: #fff;
-    position: absolute;
-    margin-top: -45px;
-    text-align: center;
-    margin-left: 40px;
-    
-    font-size: 20px !important;
-}
+        color: #fff;
+        position: absolute;
+        margin-top: -45px;
+        text-align: center;
+        margin-left: 40px;
+
+        font-size: 20px !important;
+    }
 
     .innerArea6 .inner1 .card2 {
         background: linear-gradient(to bottom, rgba(245, 246, 252, 0.048), rgba(0, 0, 0, 0.5)), url('image2.jpg');
@@ -987,16 +1265,17 @@
         overflow: hidden;
         border-radius: 15px;
         width: 174px;
-    vertical-align: middle;
-    margin: 5px 10px;
-    position: relative;
-    
+        vertical-align: middle;
+        margin: 5px 10px;
+        position: relative;
+
 
 
 
     }
-    .innerArea6 .inner1 .inner2::before{
-        
+
+    .innerArea6 .inner1 .inner2::before {
+
         content: "";
         position: absolute;
         top: 0;
@@ -1004,9 +1283,9 @@
         right: 0;
         bottom: 0;
         background-color: rgba(0, 0, 0, 0.5);
-      
-      
-          }
+
+
+    }
 
     .innerArea6 .inner1 .inner2 img {
         /* overflow: hidden; */
@@ -1099,6 +1378,7 @@
     .innerArea8 .inn2 .rightArea {
         margin-top: 0px;
     }
+
     .topImg {
         background: linear-gradient(to bottom, rgb(42 42 42 / 52%), rgba(0, 0, 0, 0.5)), url('img3.jpg');
         width: 430px;
@@ -1108,6 +1388,7 @@
         border-radius: 15px;
         margin-bottom: 20px;
     }
+
     .bottomImg {
         background: linear-gradient(to bottom, rgb(42 42 42 / 52%), rgba(0, 0, 0, 0.5)), url('img4.jpg');
         width: 430px;
@@ -1117,6 +1398,7 @@
         border-radius: 15px;
         margin-top: 20px;
     }
+
     .middleArea {
         margin-bottom: 150px;
     }
@@ -1156,6 +1438,7 @@
         margin-top: 55px;
         font-size: 18px;
     }
+
     .imageText {
         color: #fff;
         position: absolute;
@@ -2081,28 +2364,32 @@
         color: black;
         text-decoration: underline;
     }
-    .offer{
+
+    .offer {
         position: relative;
     }
-    .offer .offerEndIn{
+
+    .offer .offerEndIn {
         position: absolute;
         top: 40px;
     }
 
-    .cardTwo{
+    .cardTwo {
         /* margin-right: 80px; */
         margin-right: 26px;
     }
-    .cardThree{
+
+    .cardThree {
         /* margin-right: 150px; */
         margin-right: 50px;
     }
-    .rowDiv{
+
+    .rowDiv {
         margin-left: 0 !important;
         margin-right: 0 !important;
     }
 
-    .leftImg img{
+    .leftImg img {
         width: 450px;
         height: 850px;
         object-fit: cover;
@@ -2111,38 +2398,46 @@
 
 
     /* HOME CSS 1025px Screen */
-    @media screen and (max-width: 1025px){
-        .hideMobe{
-            display: none ;
+    @media screen and (max-width: 1025px) {
+        .hideMobe {
+            display: none;
 
         }
-        .img1{
-            width:570px !important;
+
+        .img1 {
+            width: 570px !important;
         }
-        .innea5 .viewBtn{
+
+        .innea5 .viewBtn {
             top: 30px;
             left: 130px;
 
         }
-        .innerArea6 .inner1{
+
+        .innerArea6 .inner1 {
             flex-wrap: wrap;
         }
-        .topImg{
+
+        .topImg {
             width: 335px;
         }
-        .bottomImg{
+
+        .bottomImg {
             width: 335px;
         }
-        .imageText{
+
+        .imageText {
             margin-top: 210px;
         }
     }
+
     /* Tablet CSS HOME */
 
     @media screen and (max-width: 825px) {
-        .innerr{
+        .innerr {
             display: none;
         }
+
         .rightSide {
             display: flex;
             /* margin-left: 0; */
@@ -2156,10 +2451,12 @@
             margin: 2px 7px;
 
         }
-        .cardTwo{
+
+        .cardTwo {
             margin-right: 0px;
         }
-        .cardThree{
+
+        .cardThree {
             margin-right: 0px;
         }
 
@@ -2182,37 +2479,46 @@
         .shopHeading {
             font-size: 30px;
         }
-        .offer .offerEndIn{
+
+        .offer .offerEndIn {
             top: 30px;
         }
+
         .leftImg img {
             width: 335px;
             height: 740px;
         }
+
         .middleArea .middleHeading {
             font-size: 25px;
         }
+
         .middleArea .price2 {
             font-size: 35px;
         }
+
         .middleArea .middleText {
             margin-top: 46px;
             font-size: 12px;
         }
-        .topImg{
+
+        .topImg {
             width: 250px;
-        height: 360px;
+            height: 360px;
         }
-        .bottomImg{
+
+        .bottomImg {
             width: 250px;
-        height: 360px;
+            height: 360px;
         }
-        .imageText{
+
+        .imageText {
             margin-top: 115px;
             font-size: 28px;
 
         }
-        .innerArea4 .img1{
+
+        .innerArea4 .img1 {
             margin-left: 0px;
         }
     }
@@ -2223,13 +2529,15 @@
     /* Mobile CSS HOME */
     @media screen and (max-width: 425px) {
 
-        .side1{
-            display:none;
+        .side1 {
+            display: none;
         }
-        .innerr{
+
+        .innerr {
             display: none;
 
         }
+
         .rightSide {
             display: flex;
             /* margin-left: 0; */
@@ -2239,20 +2547,22 @@
         }
 
         .img1 {
-            width: 336px   !important;
+            width: 336px !important;
             height: 213px !important;
             margin: 2px 0px;
         }
-        .innerArea4 .img1{
+
+        .innerArea4 .img1 {
             margin-left: 0;
         }
+
         .innerArea4 .img1 .innerBody {
 
             margin: 0px 10px;
         }
 
         .innerArea4 .img2 {
-            width: 336px  !important;
+            width: 336px !important;
             margin: 2px 0px;
         }
 
@@ -2267,9 +2577,10 @@
         }
 
 
-        .innerArea4 .img2 .innerBody2{
+        .innerArea4 .img2 .innerBody2 {
             margin: 50px 15px;
         }
+
         .innerArea4 .img2 .innerBody2 .heading2 h1 {
             font-size: 25px;
         }
@@ -2281,6 +2592,7 @@
         .innerArea4 .img2 .innerBody2 .priceBody2 p span {
             font-size: 16px;
         }
+
         .innerArea4 .img3 .innerBody3 .heading3 h1 {
             font-size: 25px;
         }
@@ -2310,74 +2622,87 @@
         .innerArea6 .inner1 {
             display: flex;
             flex-direction: column;
-            align-items:center;
+            align-items: center;
         }
-        .innerArea6 .inner1 .cardText1 {
-    margin-top: -35px;
-    margin-left: 39px;
 
-}
-        .offer .offerEndIn{
+        .innerArea6 .inner1 .cardText1 {
+            margin-top: -35px;
+            margin-left: 39px;
+
+        }
+
+        .offer .offerEndIn {
             top: 20px;
         }
 
-        .innerArea7 .img22{
+        .innerArea7 .img22 {
             height: 200px;
-            }
+        }
 
-            .innerArea7 .img22 .innText {
-                margin-top: 50px  !important;
-                margin-left: 25px;
+        .innerArea7 .img22 .innText {
+            margin-top: 50px !important;
+            margin-left: 25px;
 
-            }
-            .innerArea7 .img22 .innText .redText{
+        }
+
+        .innerArea7 .img22 .innText .redText {
 
             font-size: 12px;
-            }
-            .innerArea7 .img22 .innText .whiteHeading{
-            font-size:16px;
+        }
 
-            }
-            .innerArea7 .img22 .innText .whiteText{
+        .innerArea7 .img22 .innText .whiteHeading {
+            font-size: 16px;
+
+        }
+
+        .innerArea7 .img22 .innText .whiteText {
 
             font-size: 9px;
 
-            }
-            .innerArea7 .img22 .innText .shop{
+        }
+
+        .innerArea7 .img22 .innText .shop {
             padding: 6px 20px;
-            }
-            .leftImg img {
-                width: 348px;
-                height: 400px;
+        }
 
-            }
-            .middleArea .middleHeading {
-                font-size: 25px;
-            }
-            .middleArea .middleText{
-                font-size: 9px;
+        .leftImg img {
+            width: 348px;
+            height: 400px;
 
-            }
-            .topImg{
-                width: 348px;
-                height: 250px;
-            }
-            .bottomImg{
-                width: 348px;
-                height: 250px;
-            }
-            .imageText{
-                margin-top: 0;
+        }
 
-            }
-            .hideMobe{
-                display: none;
-            }
+        .middleArea .middleHeading {
+            font-size: 25px;
+        }
+
+        .middleArea .middleText {
+            font-size: 9px;
+
+        }
+
+        .topImg {
+            width: 348px;
+            height: 250px;
+        }
+
+        .bottomImg {
+            width: 348px;
+            height: 250px;
+        }
+
+        .imageText {
+            margin-top: 0;
+
+        }
+
+        .hideMobe {
+            display: none;
+        }
     }
 </style>
 @push('script')
     {{-- Owl Carousel --}}
-    <script src="{{asset('public/assets/front-end')}}/js/owl.carousel.min.js"></script>
+    <script src="{{ asset('public/assets/front-end') }}/js/owl.carousel.min.js"></script>
 
     <script>
         $('#flash-deal-slider').owlCarousel({
@@ -2388,7 +2713,7 @@
             navText: ["<i class='czi-arrow-left'></i>", "<i class='czi-arrow-right'></i>"],
             dots: false,
             autoplayHoverPause: true,
-            '{{session('direction')}}': false,
+            '{{ session('direction') }}': false,
             // center: true,
             responsive: {
                 //X-Small
@@ -2435,7 +2760,7 @@
             //navText: ["<i class='czi-arrow-left'></i>", "<i class='czi-arrow-right'></i>"],
             dots: false,
             autoplayHoverPause: true,
-            '{{session('direction')}}': true,
+            '{{ session('direction') }}': true,
             // center: true,
             responsive: {
                 //X-Small
@@ -2479,10 +2804,12 @@
             autoplay: false,
             margin: 20,
             nav: true,
-            navText: ["<i class='czi-arrow-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}'></i>", "<i class='czi-arrow-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}'></i>"],
+            navText: ["<i class='czi-arrow-{{ Session::get('direction') === 'rtl' ? 'right' : 'left' }}'></i>",
+                "<i class='czi-arrow-{{ Session::get('direction') === 'rtl' ? 'left' : 'right' }}'></i>"
+            ],
             dots: false,
             autoplayHoverPause: true,
-            '{{session('direction')}}': true,
+            '{{ session('direction') }}': true,
             // center: true,
             responsive: {
                 //X-Small
@@ -2530,7 +2857,7 @@
             navText: ["<i class='czi-arrow-left'></i>", "<i class='czi-arrow-right'></i>"],
             dots: false,
             autoplayHoverPause: true,
-            '{{session('direction')}}': false,
+            '{{ session('direction') }}': false,
             // center: true,
             responsive: {
                 //X-Small
@@ -2575,7 +2902,7 @@
             autoplay: false,
             margin: 10,
             nav: false,
-            '{{session('direction')}}': true,
+            '{{ session('direction') }}': true,
             dots: true,
             autoplayHoverPause: true,
             // center: true,
@@ -2626,7 +2953,7 @@
             // navText: ["<i class='czi-arrow-left'></i>","<i class='czi-arrow-right'></i>"],
             dots: true,
             autoplayHoverPause: true,
-            '{{session('direction')}}': true,
+            '{{ session('direction') }}': true,
             // center: true,
             responsive: {
                 //X-Small

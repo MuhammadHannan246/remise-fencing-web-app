@@ -204,6 +204,8 @@
         float: left;
         width: 80%;
         background: transparent;
+        color: #fff;
+    font-weight: 200;
         "
                             type="email" name="subscription_email" class="form-control subscribe-border"
                             placeholder="{{ \App\CPU\translate('Your Email Address') }}" required

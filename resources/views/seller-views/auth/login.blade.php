@@ -35,89 +35,12 @@
 
 <body>
 
+    @section('content')
 
-    <div class="innerArea">
-        <div class="cont1">
-            <label class="lblTel" for="telNum"><i class="fa-sharp fa-solid fa-phone"></i>+01234567890</label>
-
-            <label class="discRight" for="disc">Get 50% Off on Selected items</label>
-        </div>
-        <label for="" class="Mid">|</label>
-        <div class="cont2">
-
-            <label class="shopNow" for="shopNow"><a href="#">Shop Now</a></label>
-            <div class="rightSell">
-                <label class="sellOn" for="sellOn">Sell On Remise</label>
-                <label class="location" for="location">Location<i class="fa-solid fa-caret-down"></i></label>
-
-            </div>
-        </div>
-
-    </div>
-
-    <!---- New Section starts here-->
+  
 
 
-
-    <div class=" innerArea2">
-        <div class="logo">
-            <img src="{{asset("storage/app/public/company")."/".$web_config['web_logo']->value}}"
-            onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-            alt="{{$web_config['name']->value}}" class="logoImg">
-        </div>
-        <div class="searchBar">
-            <div class="row">
-                <div class="col-xl-6 col-lg-8 col-md-8 col-sm-12  ">
-
-                    <form class="example">
-                        <div class="row">
-                            <div class="col-12 col-sm-6">
-
-
-                                <input type="text" placeholder="Search Product.." name="search">
-                            </div>
-
-                            <div class="col-12 col-sm-4 getStartedBTN">
-
-                                <div class="dropdown">
-                                    <button class="btn btn-primary dropdown-toggle categoryy" type="button"
-                                        data-toggle="dropdown">All Categories
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">HTML</a></li>
-                                        <li><a href="#">CSS</a></li>
-                                        <li><a href="#">JavaScript</a></li>
-                                    </ul>
-                                </div>
-
-                            </div>
-
-
-                            <div class="col-12 col-sm-2 getStartedBTN">
-
-
-                                <button type="submit"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
-
-                            </div>
-                        </div>
-
-                    </form>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="rightCart">
-            <a class="account" href="#">
-                <i class="fa-regular fa-circle-user icon11"></i>Account
-            </a>
-            <a class="account" href="#">
-                <i class="fa-solid fa-cart-shopping icon11"></i>Cart
-            </a>
-        </div>
-    </div>
-
-
+    <br><br><br>
     <!---- New Section starts here-->
 
 
@@ -129,7 +52,10 @@
             <div class="col-12 text_area1">
                 <h2 class="top-text">Welcome To Remise</h2>
                 <span class="span_text"> <small> SignIn as a Seller /
-                    <a href="{{route('customer.auth.login')}}" style="font-size:15px">SignIn As a Customer</a></small></span><br>
+                    <a href="{{route('customer.auth.login')}}" style="font-size: 15px;
+                    color: #000;
+                    text-decoration: none;
+                    font-weight:500;">SignIn As a Customer</a></small></span><br>
 
             </div>
 
@@ -140,24 +66,28 @@
         <div class="Ship-Ser-form">
             <form  id="form-id"  action="{{route('seller.auth.login')}}" method="post">
                         @csrf
-                        <div class="form-group">
+                        <div class="form-group INPSeller">
 
 
-                                    <label class="input-label" for="signinSrEmail">{{\App\CPU\translate('your_email')}}</label>
 
                                     <input type="email" class="form-control ship-control form-control-lg" name="email" id="signinSrEmail"
                                            tabindex="1" placeholder="email@address.com" aria-label="email@address.com"
                                            required data-msg="Please enter a valid email address.">
+                                    <label class="input-label LblSeller" for="signinSrEmail">{{\App\CPU\translate('your_email')}}</label>
+
                         </div>
-                        <div class="form-group">
-                            <label for="si-password" >{{\App\CPU\translate('password')}}</label>
+                        <div class="form-group INPSeller">
                             <div class="password-toggle">
                                 <input class="form-control ship-control" name="password" type="password" id="si-password"
                                         style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};"
                                         required>
+                            <label for="si-password" class="LblSeller" >{{\App\CPU\translate('password')}}</label>
+
                                 <label class="password-toggle-btn">
-                                    <input class="custom-control-input" type="checkbox"><i
-                                        class="czi-eye password-toggle-indicator"></i><span
+                                    <input class="custom-control-input" type="checkbox">
+                                    <i class="fa-solid fa-eye fa-flip-horizontal fa-sm" style="color: #00000099;
+                                    "></i>
+                                        <span
                                         class="sr-only">{{\App\CPU\translate('Show')}} {{\App\CPU\translate('password')}} </span>
                                 </label>
                             </div>
@@ -197,7 +127,7 @@
                         <button class="button form__button"
                                 type="submit">{{\App\CPU\translate('sign_in')}}</button>
                     </form>
-            <p class="text-center pt-5 already-acc">Do you have an Account ? <a class="btn btn-outline-primary" href="{{route('shop.apply')}}">
+            <p class="text-center pt-5 already-acc">Do you have an Account ? <a class="btn btn-outline-primary regBtn" href="{{route('shop.apply')}}">
                  {{\App\CPU\translate('Register')}}
             </a></p>
 
@@ -208,135 +138,7 @@
 
 <!-- Footer -->
 
-    <div class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-6">
-                    <h2 class="headingFoot">Join Our News Letter</h2>
-                    <p class="textFoot">Norem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-                <div class="col-6">
-                    <form style="width: 100%;
-    border: 1px solid #97A3AE;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: row; ; font-family:poppins;
-    padding:2px;
-    height:65px" class="example" action="action_page.php">
-                        <input style="padding: 10px;
-        font-size: 17px;
-        font-family:poppins;
-        border: none;
-        border-radius: 20px;
-        float: left;
-        width: 80%;
-        background: transparent;
-        " type="text" placeholder="Enter Your Email" name="search">
-                        <button style="  float: left;
-        width: 40%;
-        font-family:poppins;
-        padding: 12px 20px;
-        background: red;
-        color: white;
-        font-size: 17px;
-        border: 1px solid red;
-        border-radius: 10px;
-        margin: 2px;
-        cursor: pointer;
-        font-family: 'poppins';" type="submit">Subscribe</button>
-                    </form>
-                </div>
-            </div>
-            <hr><br><br>
-            <div class="row">
-                <div class="col-3 logFooter">
-                    <img class="footLogo" src="remiseFooter.png" alt="">
-                    <br><br>
-                    <p class="footText2">Torem ipsum dolor sit amet, consectetur ddda adipiscing elit. Etiam eu turpis
-                        molestie, dictum est a,
-                        mattis tellus. Sed dignissim, metus nec s fringilla accumsan, risus sem sollicitudin lacus, ut
-                        interdum tellus elit.
-                    </p>
-
-                </div>
-                <!-- <div class="col-1">
-
-            </div> -->
-                <br><br>
-
-                <div class="col-9 footRight">
-                    <div class="company comp4">
-                        <h4 class="companyName">Company</h4>
-                        <ul class="menuList">
-                            <li class="menuItem">About Us</li>
-                            <li class="menuItem">Careers</li>
-                            <li class="menuItem">Contact Us</li>
-                            <li class="menuItem">Help Center</li>
-                            <li class="menuItem">Support</li>
-                        </ul>
-
-                    </div>
-
-                    <div class="company comp3">
-                        <h4 class="companyName">Socials</h4>
-                        <ul class="menuList">
-                            <li class="menuItem">Twitter</li>
-                            <li class="menuItem">Facebook</li>
-                            <li class="menuItem">Instagram</li>
-                            <li class="menuItem">Linkdin</li>
-                            <li class="menuItem">Pinterest</li>
-                        </ul>
-
-                    </div>
-
-
-                    <div class="company comp2">
-                        <h4 class="companyName">Legal</h4>
-                        <ul class="menuList">
-                            <li class="menuItem">Terms</li>
-                            <li class="menuItem">Conditions</li>
-                            <li class="menuItem">Privacy</li>
-                            <li class="menuItem">Policy</li>
-                        </ul>
-
-                    </div>
-
-                    <div class="company comp1">
-                        <h4 class="companyName">Offices</h4>
-                        <ul class="menuList">
-                            <li class="menuItem">Branch Office: 85256 Jacobi Green,
-                                East Jeffrystad, Tennessee, USA, 42553</li>
-                            <li class="menuItem">Head Office: 999 Tyra Extension,
-                                Haagmouth, Georgia, USA, 42553</li>
-
-                        </ul>
-
-                    </div>
-                </div>
-
-
-            </div>
-            <br><br><br>
-
-            <hr>
-
-            <div class="row">
-                <div class="col-6">
-                    <p class="searchMarketing">© 2023. All Rights Reserved By Search Marketing Services</p>
-                </div>
-                <div class="col-6">
-                    <i class="fab fa-pinterest iconSocial"></i>
-                    <i class="fab fa-linkedin-in iconSocial"></i>
-                    <i class="fab fa-twitter iconSocial"></i>
-                    <i class="fab fa-instagram iconSocial"></i>
-                    <i class="fab fa-facebook-f iconSocial"></i>
-
-
-                </div>
-            </div>
-        </div>
-    </div>
-
+ 
     <body>
 
 
@@ -345,6 +147,7 @@
             crossorigin="anonymous"></script>
     </body>
 
+    @endsection
 </html>
 
 <style>
@@ -370,6 +173,29 @@
 
     }
 
+    .INPSeller{
+        position: relative;
+    }
+
+    .LblSeller{
+        position: absolute;
+    top: -15px;
+    left: 25px;
+    background: #fff;
+    padding: 5px 10px;
+    font-size: 12px;
+    }
+    .regBtn{
+        border: none !important;
+    background: rgba(0,0,0,0) !important;
+    padding: 0 !important;
+    color: #000 !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    }
+    .regBtn:hover{
+        filter: brightness(0.05) !important;
+    }
     .cont1 .lblTel {
         margin: 8px 10px;
     }

@@ -61,7 +61,7 @@
             <div class="col-12 text_area1">
                 <h2 class="top-text">Welcome To Remise</h2>
                 <span class="span_text"> <small> SignIn as a Customer /
-                    <a  href="{{route('seller.auth.login')}}" style="font-size:15px; color: #000; text-decoration: none;">SignIn As a Seller</a></small></span><br>
+                    <a  href="{{route('seller.auth.login')}}" style="font-size:15px; color: #000; text-decoration: none; font-weight:500;">SignIn As a Seller</a></small></span><br>
 
             </div>
 

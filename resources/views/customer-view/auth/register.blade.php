@@ -22,8 +22,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
-        crossorigin="anonymous"></script>
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous">
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -31,188 +31,239 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="/stript.js"></script>
 
+
+    <style>
+        .lblClr {
+            color: #1E1E1EB2 !important;
+
+        }
+
+        .lblClr .phoneTxt {
+            font-size: 10px !important;
+            color: #1E1E1EB2 !important;
+        }
+
+        .register .btnPass {
+            position: absolute;
+            top: 36px;
+            width: 20px;
+            background: transparent;
+            left: 615px !important;
+        }
+
+        @media screen and (max-width: 480px) {
+            .lblClr .phoneTxt {
+                font-size: 7px !important;
+            }
+
+            .register .btnPass {
+                left: 280 !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
-@section('content')
+    @section('content')
 
 
 
-    <!---- New Section starts here-->
+        <!---- New Section starts here-->
 
 
 
- 
 
 
-    <!---- New Section starts here-->
+
+        <!---- New Section starts here-->
 
 
-    <div class="container-fluid my-3 pb-5 innerArea_new register">
-        <div class="col-12 logo text-center">
-            <img src="{{asset("storage/app/public/company")."/".$web_config['web_logo']->value}}"
-            onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-            alt="{{$web_config['name']->value}}" class=" logoImg1" width="10%">
-            <div class="col-12 text_area1">
-                <h2 class="top-text">Welcome To Remise</h2>
-                <span class="span_text"> <small> Register to create your first account /
-                    <a href="{{route('shop.apply')}}" style="font-size:15px">SignUp As a Seller</a></small></span><br>
+        <div class="container-fluid my-3 pb-5 innerArea_new register">
+            <br><br><br>
+            <div class="col-12 logo text-center">
+                <img src="{{ asset('storage/app/public/company') . '/' . $web_config['web_logo']->value }}"
+                    onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
+                    alt="{{ $web_config['name']->value }}" class=" logoImg1" width="10%">
+                <div class="col-12 text_area1">
+                    <h2 class="top-text">Welcome To Remise</h2>
+                    <span class="span_text"> <small> Register to create your first account /
+                            <a href="{{ route('shop.apply') }}"
+                                style="font-size:15px; color:#000; text-decoration:none; font-weight:500;">SignUp As a
+                                Seller</a></small></span><br>
+
+                </div>
+
 
             </div>
+            <br>
 
+            <div class="Ship-Ser-form">
+                <form class="needs-validation_" id="form-id" action="{{ route('customer.auth.sign-up') }}" method="post"
+                    id="sign-up-form">
+                    @csrf
+                    <div class="form-group ship-form">
+                        <label class="lblClr" for="reg-fn">{{ \App\CPU\translate('first_name') }}</label>
+                        <input class="form-control ship-control" value="{{ old('f_name') }}" type="text" name="f_name"
+                            style="text-align: {{ Session::get('direction') === 'rtl' ? 'right' : 'left' }};" required>
+                    </div>
 
-        </div>
-        <br>
+                    <div class="form-group ship-form">
+                        <label class="lblClr" for="reg-ln">{{ \App\CPU\translate('last_name') }}</label>
+                        <input class="form-control ship-control" type="text" value="{{ old('l_name') }}" name="l_name"
+                            style="text-align: {{ Session::get('direction') === 'rtl' ? 'right' : 'left' }};">
+                        <div class="invalid-feedback">{{ \App\CPU\translate('Please enter your last name') }}!</div>
+                    </div>
 
-        <div class="Ship-Ser-form">
-                            <form class="needs-validation_" id="form-id" action="{{route('customer.auth.sign-up')}}"
-                              method="post" id="sign-up-form">
-                            @csrf
-                            <div class="form-group ship-form">
-                                <label for="reg-fn">{{\App\CPU\translate('first_name')}}</label>
-                                        <input class="form-control ship-control" value="{{old('f_name')}}" type="text" name="f_name"
-                                               style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};"
-                                               required>
-                            </div>
+                    <div class="form-group ship-form">
+                        <label class="lblClr" for="reg-email">{{ \App\CPU\translate('email_address') }}</label>
+                        <input class="form-control ship-control" type="email" value="{{ old('email') }}" name="email"
+                            style="text-align: {{ Session::get('direction') === 'rtl' ? 'right' : 'left' }};" required>
+                        <div class="invalid-feedback">{{ \App\CPU\translate('Please enter valid email address') }}!</div>
+                    </div>
 
-                            <div class="form-group ship-form">
-                                <label for="reg-ln">{{\App\CPU\translate('last_name')}}</label>
-                                        <input class="form-control ship-control" type="text" value="{{old('l_name')}}" name="l_name"
-                                               style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
-                                        <div class="invalid-feedback">{{\App\CPU\translate('Please enter your last name')}}!</div>
-                            </div>
+                    <div class="form-group ship-form">
+                        <label class="lblClr" for="reg-phone">{{ \App\CPU\translate('phone_number') }}
+                            <small class="text-primary phoneTxt" style="color: #1E1E1EB2 !important">( *
+                                {{ \App\CPU\translate('country_code_is_must') }}
+                                {{ \App\CPU\translate('like_for_BD_880') }} )</small></label>
+                        <input class="form-control ship-control" type="text" value="{{ old('phone') }}" name="phone"
+                            style="text-align: {{ Session::get('direction') === 'rtl' ? 'right' : 'left' }}; " required>
+                        <div class="invalid-feedback">{{ \App\CPU\translate('Please enter your phone number') }}!</div>
+                    </div>
 
-                            <div class="form-group ship-form">
-                                <label for="reg-email">{{\App\CPU\translate('email_address')}}</label>
-                                        <input class="form-control ship-control" type="email" value="{{old('email')}}"  name="email"
-                                               style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};" required>
-                                        <div class="invalid-feedback">{{\App\CPU\translate('Please enter valid email address')}}!</div>
-                            </div>
-
-                            <div class="form-group ship-form">
-                                <label for="reg-phone">{{\App\CPU\translate('phone_number')}}
-                                    <small class="text-primary">( * {{\App\CPU\translate('country_code_is_must')}} {{\App\CPU\translate('like_for_BD_880')}} )</small></label>
-                                <input class="form-control ship-control" type="number"  value="{{old('phone')}}"  name="phone"
-                                       style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};"
-                                       required>
-                                <div class="invalid-feedback">{{\App\CPU\translate('Please enter your phone number')}}!</div>
-                            </div>
-
-                            <div class="form-group ship-form" style="position: relative;">
-                                <label for="si-password">{{\App\CPU\translate('password')}}</label>
-                                        <div class="password-toggle">
-                                            <input class="form-control ship-control" name="password" type="password" id="si-password"
-                                                   style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};"
-                                                   placeholder="{{\App\CPU\translate('minimum_8_characters_long')}}"
-                                                   required>
-                                            <label class="password-toggle-btn"style="position: absolute;
+                    <div class="form-group ship-form" style="position: relative;">
+                        <label class="lblClr" for="si-password">{{ \App\CPU\translate('password') }}</label>
+                        <div class="password-toggle">
+                            <input class="form-control ship-control" name="password" type="password" id="si-password"
+                                style="text-align: {{ Session::get('direction') === 'rtl' ? 'right' : 'left' }};"
+                                placeholder="{{ \App\CPU\translate('minimum_8_characters_long') }}" required>
+                            <label
+                                class="password-toggle-btn btnPass"style="position: absolute;
                                             top: 36px;
                                             width: 20px;
                                             background: transparent;
-                                            left: 730px;">
-                                                <input class="custom-control-input" type="checkbox"><i
-                                                    class="czi-eye password-toggle-indicator"></i><span
-                                                    class="sr-only">{{\App\CPU\translate('Show')}} {{\App\CPU\translate('password')}} </span>
-                                            </label>
-                                        </div>
-                            </div>
+                                            left: 615px !important;">
+                                <input class="custom-control-input" type="checkbox">
+                                <i class="fa-solid fa-eye fa-flip-horizontal fa-sm"
+                                    style="color: #00000099;
+                                                font-size: 16px;"></i>
+                                <span class="sr-only">{{ \App\CPU\translate('Show') }}
+                                    {{ \App\CPU\translate('password') }} </span>
+                            </label>
+                        </div>
+                    </div>
 
-                            <div class="form-group ship-form" style="position: relative;">
-                                <label for="si-password">{{\App\CPU\translate('confirm_password')}}</label>
-                                        <div class="password-toggle">
-                                            <input class="form-control ship-control" name="con_password" type="password"
-                                                   style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};"
-                                                   placeholder="{{\App\CPU\translate('minimum_8_characters_long')}}"
-                                                   id="si-password"
-                                                   required>
-                                            <label class="password-toggle-btn" style="position: absolute;
+                    <div class="form-group ship-form" style="position: relative;">
+                        <label class="lblClr" for="si-password">{{ \App\CPU\translate('confirm_password') }}</label>
+                        <div class="password-toggle">
+                            <input class="form-control ship-control" name="con_password" type="password"
+                                style="text-align: {{ Session::get('direction') === 'rtl' ? 'right' : 'left' }};"
+                                placeholder="{{ \App\CPU\translate('minimum_8_characters_long') }}" id="si-password"
+                                required>
+                            <label class="password-toggle-btn btnPass"
+                                style="position: absolute;
                                             top: 36px;
                                             width: 20px;
                                             background: transparent;
-                                            left: 730px;">
-                                                <input class="custom-control-input" type="checkbox"
-                                                       style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};"><i
-                                                    class="czi-eye password-toggle-indicator"></i><span
-                                                    class="sr-only">{{\App\CPU\translate('Show')}} {{\App\CPU\translate('password')}} </span>
-                                            </label>
-                                        </div>
+                                            left: 615px !important;">
+                                <input class="custom-control-input" type="checkbox"
+                                    style="text-align: {{ Session::get('direction') === 'rtl' ? 'right' : 'left' }};">
+                                <i class="fa-solid fa-eye fa-flip-horizontal fa-sm"
+                                    style="color: #00000099;
+                                                       font-size: 16px;"></i>
+
+                                <span class="sr-only">{{ \App\CPU\translate('Show') }}
+                                    {{ \App\CPU\translate('password') }} </span>
+                            </label>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group ship-form">
+                        <div class="form-group d-flex flex-wrap justify-content-between">
+
+                            <label class="form-group mb-1 d-flex align-items-center">
+                                <strong>
+                                    <input type="checkbox" class="mr-1" name="remember" id="inputCheckd">
+                                </strong>
+                                <span class=" d-block w-0 flex-grow pl-1">
+                                    <span>{{ \App\CPU\translate('i_agree_to_Your') }}</span> <a class="font-size-sm"
+                                        target="_blank" href="{{ route('terms') }}" style="font-size:13px !important;">
+                                        {{ \App\CPU\translate('terms_and_condition') }}
+                                    </a></span>
+                            </label>
+
+                        </div>
+                    </div>
+
+                    <div class="flex-between row form-group ship-form"
+                        style="direction: {{ Session::get('direction') }} ">
+                        <div class="" style="padding: 0 !important; ">
+                            <div class="text-right">
+                                <button class="btn ship-sub-btn" id="sign-up" type="submit" disabled>
+                                    <i
+                                        class="czi-user {{ Session::get('direction') === 'rtl' ? 'ml-2 mr-n1' : 'mr-2 ml-n1' }}"></i>
+                                    {{ \App\CPU\translate('sign_up') }}
+                                </button>
                             </div>
-
-
-
-                            <div class="form-group ship-form">
-                                <div class="form-group d-flex flex-wrap justify-content-between">
-
-                                    <label class="form-group mb-1 d-flex align-items-center">
-                                        <strong>
-                                            <input type="checkbox" class="mr-1"
-                                                   name="remember" id="inputCheckd">
-                                        </strong>
-                                        <span class="mb-4px d-block w-0 flex-grow pl-1" > <span>{{\App\CPU\translate('i_agree_to_Your')}}</span> <a
-                                                class="font-size-sm" target="_blank" href="{{route('terms')}}">
-                                                {{\App\CPU\translate('terms_and_condition')}}
-                                            </a></span>
-                                    </label>
-
-                                </div>
-                            </div>
-
-                            <div class="flex-between row" style="direction: {{ Session::get('direction') }}">
-                                <div class="mx-1">
-                                    <div class="text-right">
-                                        <button class="btn ship-sub-btn" id="sign-up" type="submit" disabled>
-                                            <i class="czi-user {{Session::get('direction') === "rtl" ? 'ml-2 mr-n1' : 'mr-2 ml-n1'}}"></i>
-                                            {{\App\CPU\translate('sign_up')}}
-                                        </button>
-                                    </div>
-                                </div>
-                                {{-- <div class="mx-1">
+                        </div>
+                        {{-- <div class="mx-1">
                                     <a class="btn btn-outline-primary" href="{{route('customer.auth.login')}}">
                                         <i class="fa fa-sign-in"></i> {{\App\CPU\translate('sign_in')}}
                                     </a>
                                 </div> --}}
-                                <div class="col-12 mt-3">
-                                    <div class="row">
-                                        @foreach (\App\CPU\Helpers::get_business_settings('social_login') as $socialLoginService)
-                                            @if (isset($socialLoginService) && $socialLoginService['status']==true)
-                                                <div class="col-sm-6 text-center mt-1">
-                                                    <a class="btn btn-outline-primary w-100" href="{{route('customer.auth.service-login', $socialLoginService['login_medium'])}}">
-                                                        <i class="czi-{{ $socialLoginService['login_medium'] }} {{Session::get('direction') === "rtl" ? 'ml-2 mr-n1' : 'mr-2 ml-n1'}}"></i>
-                                                        {{\App\CPU\translate('sign_up_with_'.$socialLoginService['login_medium'])}}
-                                                    </a>
-                                                </div>
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                </div>
+                        <div class="form-group ship-form">
+                            <div class="row">
+                                @foreach (\App\CPU\Helpers::get_business_settings('social_login') as $socialLoginService)
+                                    @if (isset($socialLoginService) && $socialLoginService['status'] == true)
+                                        <div class="col-sm-6 text-center mt-1">
+                                            <a class="btn btn-outline-primary w-100"
+                                                href="{{ route('customer.auth.service-login', $socialLoginService['login_medium']) }}">
+                                                <i
+                                                    class="czi-{{ $socialLoginService['login_medium'] }} {{ Session::get('direction') === 'rtl' ? 'ml-2 mr-n1' : 'mr-2 ml-n1' }}"></i>
+                                                {{ \App\CPU\translate('sign_up_with_' . $socialLoginService['login_medium']) }}
+                                            </a>
+                                        </div>
+                                    @endif
+                                @endforeach
                             </div>
-                        </form>
-            <p class="text-center pt-5 already-acc">Already have an Account ? <a class="btn btn-outline-primary" href="{{route('customer.auth.login')}}">
-                 {{\App\CPU\translate('Log_In')}}
-            </a></p>
+                        </div>
+                        <br>
+                    </div>
+                </form>
 
+                <p class="text-center pt-10 already-acc ">Already have an Account ? <a class=""
+                        style="color: #000;
+                text-decoration: none;
+                font-size: 14px;"
+                        href="{{ route('customer.auth.login') }}">
+                        {{ \App\CPU\translate('Log_In') }}
+                    </a></p>
+
+
+            </div>
 
         </div>
 
-    </div>
-
-<!-- Footer -->
-
-    
-
-    <body>
+        <!-- Footer -->
 
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-            crossorigin="anonymous"></script>
-    </body>
+
+        <body>
+
+
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+            </script>
+        </body>
 
     @endsection
+
 </html>
 
 <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
     .innerArea {
         background: #000;
@@ -2727,7 +2778,7 @@
         border-color: #ced4da !important;
     }
 
-    .register .Ship-Ser-form{
+    .register .Ship-Ser-form {
         width: 50%;
     }
 
@@ -3055,13 +3106,13 @@
 
     }
 
-    .already-acc{
+    .already-acc {
         font-family: Poppins;
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 18px;
-    letter-spacing: 0em;
-    text-align: left;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 18px;
+        letter-spacing: 0em;
+        text-align: left;
 
     }
 
@@ -3069,37 +3120,37 @@
         color: #BC0012;
     }
 
-    .register .input-group-addon{
+    .register .input-group-addon {
         background: transparent;
         border: none;
     }
 
-    .register .input-group-addon a{
+    .register .input-group-addon a {
         position: relative;
         left: -50px;
         top: 22px;
         z-index: 9;
     }
 
-    .register .left{
+    .register .left {
         margin-left: 5px;
         margin-right: 5px;
     }
 
-    .register .right{
+    .register .right {
         margin-left: 5px;
         margin-right: 0px;
     }
 
-    .register .pass-icon{
+    .register .pass-icon {
         display: block;
     }
 
-    .register .Ship-col{
+    .register .Ship-col {
         width: 50%;
     }
 
-    .register .pass-icon i{
+    .register .pass-icon i {
         color: #636262;
     }
 
@@ -3294,7 +3345,7 @@
             margin: 0px !important;
         }
 
-        .register .Ship-Ser-form{
+        .register .Ship-Ser-form {
             width: 100% !important;
         }
 
@@ -3443,11 +3494,11 @@
             padding-left: 0px !important;
         }
 
-        .top-text{
+        .top-text {
             font-size: 36px !important;
         }
 
-        .register .radio-div{
+        .register .radio-div {
             display: block;
         }
     }
@@ -3602,7 +3653,7 @@
             padding: 8px 45px 8px 5px;
         }
 
-        .register .Ship-Ser-form{
+        .register .Ship-Ser-form {
             width: 80%;
         }
 
@@ -3610,17 +3661,17 @@
 </style>
 
 <script>
-        $(document).ready(function() {
+    $(document).ready(function() {
         $("#show_hide_password a").on('click', function(event) {
             event.preventDefault();
-            if($('#show_hide_password input').attr("type") == "text"){
+            if ($('#show_hide_password input').attr("type") == "text") {
                 $('#show_hide_password input').attr('type', 'password');
-                $('#show_hide_password i').addClass( "fa-eye-slash" );
-                $('#show_hide_password i').removeClass( "fa-eye" );
-            }else if($('#show_hide_password input').attr("type") == "password"){
+                $('#show_hide_password i').addClass("fa-eye-slash");
+                $('#show_hide_password i').removeClass("fa-eye");
+            } else if ($('#show_hide_password input').attr("type") == "password") {
                 $('#show_hide_password input').attr('type', 'text');
-                $('#show_hide_password i').removeClass( "fa-eye-slash" );
-                $('#show_hide_password i').addClass( "fa-eye" );
+                $('#show_hide_password i').removeClass("fa-eye-slash");
+                $('#show_hide_password i').addClass("fa-eye");
             }
         });
     });
@@ -3628,21 +3679,21 @@
     $(document).ready(function() {
         $("#show_hide_password2 a").on('click', function(event) {
             event.preventDefault();
-            if($('#show_hide_password2 input').attr("type") == "text"){
+            if ($('#show_hide_password2 input').attr("type") == "text") {
                 $('#show_hide_password2 input').attr('type', 'password');
-                $('#show_hide_password2 i').addClass( "fa-eye-slash" );
-                $('#show_hide_password2 i').removeClass( "fa-eye" );
-            }else if($('#show_hide_password2 input').attr("type") == "password"){
+                $('#show_hide_password2 i').addClass("fa-eye-slash");
+                $('#show_hide_password2 i').removeClass("fa-eye");
+            } else if ($('#show_hide_password2 input').attr("type") == "password") {
                 $('#show_hide_password2 input').attr('type', 'text');
-                $('#show_hide_password2 i').removeClass( "fa-eye-slash" );
-                $('#show_hide_password2 i').addClass( "fa-eye" );
+                $('#show_hide_password2 i').removeClass("fa-eye-slash");
+                $('#show_hide_password2 i').addClass("fa-eye");
             }
         });
     });
 </script>
 @push('script')
     <script>
-        $('#inputCheckd').change(function () {
+        $('#inputCheckd').change(function() {
             // console.log('jell');
             if ($(this).is(':checked')) {
                 $('#sign-up').removeAttr('disabled');
@@ -3651,27 +3702,25 @@
             }
 
         });
-
     </script>
 
     {{-- recaptcha scripts start --}}
-    @if(isset($recaptcha) && $recaptcha['status'] == 1)
+    @if (isset($recaptcha) && $recaptcha['status'] == 1)
         <script type="text/javascript">
-            var onloadCallback = function () {
+            var onloadCallback = function() {
                 grecaptcha.render('recaptcha_element', {
                     'sitekey': '{{ \App\CPU\Helpers::get_business_settings('recaptcha')['site_key'] }}'
                 });
             };
         </script>
-        <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async
-                defer></script>
+        <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
         <script>
-            $("#form-id").on('submit', function (e) {
+            $("#form-id").on('submit', function(e) {
                 var response = grecaptcha.getResponse();
 
                 if (response.length === 0) {
                     e.preventDefault();
-                    toastr.error("{{\App\CPU\translate('Please check the recaptcha')}}");
+                    toastr.error("{{ \App\CPU\translate('Please check the recaptcha') }}");
                 }
             });
         </script>
@@ -3681,7 +3730,7 @@
                 $url = "{{ URL('/customer/auth/code/captcha') }}";
                 $url = $url + "/" + Math.random();
                 document.getElementById('default_recaptcha_id').src = $url;
-                console.log('url: '+ $url);
+                console.log('url: ' + $url);
             }
         </script>
     @endif

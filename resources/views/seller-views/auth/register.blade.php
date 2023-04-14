@@ -31,97 +31,45 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="/stript.js"></script>
 
+    <style>
+        .lblClr{
+            color: #1E1E1EB2 !important;
+        }
+        .browseImg{
+            color: #000 !important;
+            font-size: 12px;
+            border: none !important;
+            text-align: initial;
+        }
+        .browseImg::after{
+            content: "Browse" !important;
+    background: #000 !important;
+    color: #fff !important;
+    width: 150px;
+    text-align: center;
+        }
+        .lblClr .phoneTxt{
+            font-size:10px !important; 
+            color:#1E1E1EB2 !important;
+        }
+        @media screen and (max-width: 480px){
+            .lblClr .phoneTxt{
+            font-size: 7px !important;    
+        }   
+        }
+    </style>
 </head>
 
 <body>
 
 
-    <div class="innerArea">
-        <div class="cont1">
-            <label class="lblTel" for="telNum"><i class="fa-sharp fa-solid fa-phone"></i>+01234567890</label>
-
-            <label class="discRight" for="disc">Get 50% Off on Selected items</label>
-        </div>
-        <label for="" class="Mid">|</label>
-        <div class="cont2">
-
-            <label class="shopNow" for="shopNow"><a href="#">Shop Now</a></label>
-            <div class="rightSell">
-                <label class="sellOn" for="sellOn">Sell On Remise</label>
-                <label class="location" for="location">Location<i class="fa-solid fa-caret-down"></i></label>
-
-            </div>
-        </div>
-
-    </div>
-
-    <!---- New Section starts here-->
-
-
-
-    <div class=" innerArea2">
-        <div class="logo">
-            <img src="{{asset("storage/app/public/company")."/".$web_config['web_logo']->value}}"
-            onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-            alt="{{$web_config['name']->value}}" class="logoImg">
-        </div>
-        <div class="searchBar">
-            <div class="row">
-                <div class="col-xl-6 col-lg-8 col-md-8 col-sm-12  ">
-
-                    <form class="example">
-                        <div class="row">
-                            <div class="col-12 col-sm-6">
-
-
-                                <input type="text" placeholder="Search Product.." name="search">
-                            </div>
-
-                            <div class="col-12 col-sm-4 getStartedBTN">
-
-                                <div class="dropdown">
-                                    <button class="btn btn-primary dropdown-toggle categoryy" type="button"
-                                        data-toggle="dropdown">All Categories
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">HTML</a></li>
-                                        <li><a href="#">CSS</a></li>
-                                        <li><a href="#">JavaScript</a></li>
-                                    </ul>
-                                </div>
-
-                            </div>
-
-
-                            <div class="col-12 col-sm-2 getStartedBTN">
-
-
-                                <button type="submit"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
-
-                            </div>
-                        </div>
-
-                    </form>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="rightCart">
-            <a class="account" href="#">
-                <i class="fa-regular fa-circle-user icon11"></i>Account
-            </a>
-            <a class="account" href="#">
-                <i class="fa-solid fa-cart-shopping icon11"></i>Cart
-            </a>
-        </div>
-    </div>
-
+@section('content')
 
     <!---- New Section starts here-->
 
 
     <div class="container-fluid my-3 pb-5 innerArea_new register">
+        <br><br><br>
         <div class="col-12 logo text-center">
             <img src="{{asset("storage/app/public/company")."/".$web_config['web_logo']->value}}"
             onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
@@ -129,7 +77,10 @@
             <div class="col-12 text_area1">
                 <h2 class="top-text">Welcome To Remise</h2>
                 <span class="span_text"> <small> Register to create your Seller Account /
-                    <a href="{{route('customer.auth.sign-up')}}" style="font-size:15px">SignUp As a Customer</a></small></span><br>
+                    <a href="{{route('customer.auth.sign-up')}}" style="    font-size: 15px;
+                    color: #000;
+                    text-decoration: none;
+                    font-weight:500;">SignUp As a Customer</a></small></span><br>
 
             </div>
 
@@ -149,45 +100,45 @@
                             @csrf
                             {{-- {{\App\CPU\translate('Seller')}} {{\App\CPU\translate('Info')}} --}}
                             <div class="form-group ship-form">
-                                <label for="reg-fn">{{\App\CPU\translate('first_name')}}</label>
+                                <label class="lblClr" for="reg-fn">{{\App\CPU\translate('first_name')}}</label>
                                 <input type="text" class="form-control ship-control form-control-user" id="exampleFirstName" name="f_name" value="{{old('f_name')}}" required>
                             </div>
 
                             <div class="form-group ship-form">
-                                <label for="reg-ln">{{\App\CPU\translate('last_name')}}</label>
+                                <label class="lblClr" for="reg-ln">{{\App\CPU\translate('last_name')}}</label>
                                 <input type="text" class="form-control ship-control form-control-user" id="exampleLastName" name="l_name" value="{{old('l_name')}}"  required>
                             </div>
 
                             <div class="form-group ship-form">
-                                <label for="reg-email">{{\App\CPU\translate('email_address')}}</label>
+                                <label class="lblClr" for="reg-email">{{\App\CPU\translate('email_address')}}</label>
                                 <input type="email" class="form-control ship-control form-control-user" id="exampleInputEmail" name="email" value="{{old('email')}}" required>
                             </div>
 
                             <div class="form-group ship-form">
-                                <label for="reg-phone">{{\App\CPU\translate('phone_number')}}
-                                    <small class="text-primary">( * {{\App\CPU\translate('country_code_is_must')}} {{\App\CPU\translate('like_for_BD_880')}} )</small></label>
+                                <label class="lblClr" for="reg-phone">{{\App\CPU\translate('phone_number')}}
+                                    <small class="text-primary phoneTxt" >( * {{\App\CPU\translate('country_code_is_must')}} {{\App\CPU\translate('like_for_BD_880')}} )</small></label>
                                     <input type="number" class="form-control ship-control form-control-user" id="exampleInputPhone" name="phone" value="{{old('phone')}}"  required>
                                 <div class="invalid-feedback">{{\App\CPU\translate('Please enter your phone number')}}!</div>
                             </div>
 
                             <div class="form-group ship-form" style="position: relative;">
-                                <label for="si-password">{{\App\CPU\translate('password')}}</label>
+                                <label class="lblClr" for="si-password">{{\App\CPU\translate('password')}}</label>
                                         <div class="password-toggle">
                                             <input type="password" class="form-control ship-control form-control-user" minlength="6" id="exampleInputPassword" name="password" required>
                                             <label class="password-toggle-btn"style="position: absolute;
                                             top: 36px;
                                             width: 20px;
                                             background: transparent;
-                                            left: 730px;">
-                                                <input class="custom-control-input" type="checkbox"><i
-                                                    class="czi-eye password-toggle-indicator"></i><span
+                                            left: 615px;">
+                                                <input class="custom-control-input" type="checkbox"> <i class="fa-solid fa-eye fa-flip-horizontal fa-sm" style="color: #00000099;
+                                                font-size: 16px;"></i><span
                                                     class="sr-only">{{\App\CPU\translate('Show')}} {{\App\CPU\translate('password')}} </span>
                                             </label>
                                         </div>
                             </div>
 
                             <div class="form-group ship-form" style="position: relative;">
-                                <label for="si-password">{{\App\CPU\translate('confirm_password')}}</label>
+                                <label class="lblClr" for="si-password">{{\App\CPU\translate('confirm_password')}}</label>
                                         <div class="password-toggle">
                                             <input type="password" class="form-control ship-control form-control-user" minlength="6" id="exampleRepeatPassword"  required>
                                           <div class="pass invalid-feedback">{{\App\CPU\translate('Repeat')}}  {{\App\CPU\translate('password')}} {{\App\CPU\translate('not match')}} .</div>
@@ -196,10 +147,10 @@
                                             top: 36px;
                                             width: 20px;
                                             background: transparent;
-                                            left: 730px;">
+                                            left: 615px;">
                                                 <input class="custom-control-input" type="checkbox"
-                                                       style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};"><i
-                                                    class="czi-eye password-toggle-indicator"></i><span
+                                                       style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};"> <i class="fa-solid fa-eye fa-flip-horizontal fa-sm" style="color: #00000099;
+                                                       font-size: 16px;"></i><span
                                                     class="sr-only">{{\App\CPU\translate('Show')}} {{\App\CPU\translate('password')}} </span>
                                             </label>
                                           </div>
@@ -215,7 +166,7 @@
                                             <div class="custom-file mt-3 ">
                                                 <input type="file" name="image" id="customFileUpload" class="custom-file-input "
                                                     accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*">
-                                                <label class="custom-file-label  " for="customFileUpload">{{\App\CPU\translate('Upload')}} {{\App\CPU\translate('image')}}</label>
+                                                <label class="custom-file-label  browseImg" for="customFileUpload">{{\App\CPU\translate('Upload')}} {{\App\CPU\translate('image')}}</label>
                                             </div>
                                             <br><br>
                                         </div>
@@ -228,12 +179,12 @@
                                         </div>
 
                                         <div class="form-group ship-form">
-                                            <label for="reg-fn">{{\App\CPU\translate('Shop_name')}}</label>
+                                            <label class="lblClr" for="reg-fn">{{\App\CPU\translate('Shop_name')}}</label>
                                             <input type="text" class="form-control ship-control form-control-user" id="shop_name" name="shop_name"  value="{{old('shop_name')}}"required>
                                         </div>
 
                                         <div class="form-group ship-form">
-                                            <label for="reg-ln">{{\App\CPU\translate('Shop_Address')}}</label>
+                                            <label class="lblClr" for="reg-ln">{{\App\CPU\translate('Shop_Address')}}</label>
                                             <input name="shop_address" class="form-control ship-control" id="shop_address"rows="1" >{{old('shop_address')}}</div>
 
                                         <div class="col-sm-6" text-center>
@@ -249,7 +200,7 @@
                                                 <div class="custom-file">
                                                     <input type="file" name="logo" id="LogoUpload" class="custom-file-input"
                                                         accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*">
-                                                    <label class="custom-file-label" for="LogoUpload">{{\App\CPU\translate('Upload')}} {{\App\CPU\translate('logo')}}</label>
+                                                    <label class="custom-file-label browseImg" for="LogoUpload">{{\App\CPU\translate('Upload')}} {{\App\CPU\translate('logo')}}</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -265,7 +216,7 @@
                                             <div class="form-group">
                                                 <div class="custom-file">
                                                     <input type="file" name="banner" id="BannerUpload" class="custom-file-input overflow-hidden __p-2p" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*">
-                                                    <label class="custom-file-label" for="BannerUpload">{{\App\CPU\translate('Upload')}} {{\App\CPU\translate('Banner')}}</label>
+                                                    <label class="custom-file-label browseImg" for="BannerUpload">{{\App\CPU\translate('Upload')}} {{\App\CPU\translate('Banner')}}</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -283,7 +234,7 @@
                                 <input type="text" class="form-control __h-40" name="default_captcha_value" value=""
                                        placeholder="{{\App\CPU\translate('Enter captcha value')}}" class="border-0" autocomplete="off">
                             </div>
-                            <div class="col-6 input-icons mb-2 w-100 rounded bg-white">
+                            <div class="col-6 input-icons mb-2 w-100 rounded bg-white mt-5">
                                 <a onclick="javascript:re_captcha();"  class="d-flex align-items-center align-items-center">
                                     <img src="{{ URL('/seller/auth/code/captcha/1') }}" class="rounded __h-40" id="default_recaptcha_id">
                                     <i class="tio-refresh position-relative cursor-pointer p-2"></i>
@@ -297,9 +248,9 @@
                                 <strong>
                                     <input type="checkbox" class="mr-1" name="remember" id="inputCheckd">
                                 </strong>
-                                <span class="mb-4px d-block w-0 flex-grow pl-1">
-                                    <span>{{\App\CPU\translate('i_agree_to_Your_terms')}}</span>
-                                    <a class="font-size-sm" target="_blank" href="{{route('terms')}}">
+                                <span class="d-block w-0 flex-grow pl-1">
+                                    <span style="font-size: 14px;">{{\App\CPU\translate('i_agree_to_Your_terms')}}</span>
+                                    <a class="font-size-sm" style="font-size: 14px !important;" target="_blank" href="{{route('terms')}}">
                                         {{\App\CPU\translate('terms_and_condition')}}
                                     </a>
                                 </span>
@@ -307,11 +258,13 @@
                         </div>
                         <input type="hidden" name="from_submit" value="seller">
                         <button type="submit" class="btn ship-sub-btn btn-user btn-block" id="apply" disabled>{{\App\CPU\translate('Apply')}} {{\App\CPU\translate('Shop')}} </button>
-                        <br><br><br>
+                        <br>
                     </div>
 
                         </form>
-            <p class="text-center pt-5 already-acc">Already have an Account ? <a class="btn btn-outline-primary" href="{{route('customer.auth.login')}}">
+            <p class="text-center pt-5 already-acc">Already have an Account ? <a class="" style="    color: #000;
+                font-size: 14px;
+                text-decoration: none;" href="{{route('customer.auth.login')}}">
                  {{\App\CPU\translate('Log_In')}}
             </a></p>
 
@@ -323,135 +276,6 @@
 
 <!-- Footer -->
 
-    <div class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-6">
-                    <h2 class="headingFoot">Join Our News Letter</h2>
-                    <p class="textFoot">Norem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-                <div class="col-6">
-                    <form style="width: 100%;
-    border: 1px solid #97A3AE;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: row; ; font-family:poppins;
-    padding:2px;
-    height:65px" class="example" action="action_page.php">
-                        <input style="padding: 10px;
-        font-size: 17px;
-        font-family:poppins;
-        border: none;
-        border-radius: 20px;
-        float: left;
-        width: 80%;
-        background: transparent;
-        " type="text" placeholder="Enter Your Email" name="search">
-                        <button style="  float: left;
-        width: 40%;
-        font-family:poppins;
-        padding: 12px 20px;
-        background: red;
-        color: white;
-        font-size: 17px;
-        border: 1px solid red;
-        border-radius: 10px;
-        margin: 2px;
-        cursor: pointer;
-        font-family: 'poppins';" type="submit">Subscribe</button>
-                    </form>
-                </div>
-            </div>
-            <hr><br><br>
-            <div class="row">
-                <div class="col-3 logFooter">
-                    <img class="footLogo" src="remiseFooter.png" alt="">
-                    <br><br>
-                    <p class="footText2">Torem ipsum dolor sit amet, consectetur ddda adipiscing elit. Etiam eu turpis
-                        molestie, dictum est a,
-                        mattis tellus. Sed dignissim, metus nec s fringilla accumsan, risus sem sollicitudin lacus, ut
-                        interdum tellus elit.
-                    </p>
-
-                </div>
-                <!-- <div class="col-1">
-
-            </div> -->
-                <br><br>
-
-                <div class="col-9 footRight">
-                    <div class="company comp4">
-                        <h4 class="companyName">Company</h4>
-                        <ul class="menuList">
-                            <li class="menuItem">About Us</li>
-                            <li class="menuItem">Careers</li>
-                            <li class="menuItem">Contact Us</li>
-                            <li class="menuItem">Help Center</li>
-                            <li class="menuItem">Support</li>
-                        </ul>
-
-                    </div>
-
-                    <div class="company comp3">
-                        <h4 class="companyName">Socials</h4>
-                        <ul class="menuList">
-                            <li class="menuItem">Twitter</li>
-                            <li class="menuItem">Facebook</li>
-                            <li class="menuItem">Instagram</li>
-                            <li class="menuItem">Linkdin</li>
-                            <li class="menuItem">Pinterest</li>
-                        </ul>
-
-                    </div>
-
-
-                    <div class="company comp2">
-                        <h4 class="companyName">Legal</h4>
-                        <ul class="menuList">
-                            <li class="menuItem">Terms</li>
-                            <li class="menuItem">Conditions</li>
-                            <li class="menuItem">Privacy</li>
-                            <li class="menuItem">Policy</li>
-                        </ul>
-
-                    </div>
-
-                    <div class="company comp1">
-                        <h4 class="companyName">Offices</h4>
-                        <ul class="menuList">
-                            <li class="menuItem">Branch Office: 85256 Jacobi Green,
-                                East Jeffrystad, Tennessee, USA, 42553</li>
-                            <li class="menuItem">Head Office: 999 Tyra Extension,
-                                Haagmouth, Georgia, USA, 42553</li>
-
-                        </ul>
-
-                    </div>
-                </div>
-
-
-            </div>
-            <br><br><br>
-
-            <hr>
-
-            <div class="row">
-                <div class="col-6">
-                    <p class="searchMarketing">© 2023. All Rights Reserved By Search Marketing Services</p>
-                </div>
-                <div class="col-6">
-                    <i class="fab fa-pinterest iconSocial"></i>
-                    <i class="fab fa-linkedin-in iconSocial"></i>
-                    <i class="fab fa-twitter iconSocial"></i>
-                    <i class="fab fa-instagram iconSocial"></i>
-                    <i class="fab fa-facebook-f iconSocial"></i>
-
-
-                </div>
-            </div>
-        </div>
-    </div>
-
     <body>
 
 
@@ -460,6 +284,7 @@
             crossorigin="anonymous"></script>
     </body>
 
+    @endsection
 </html>
 
 <style>

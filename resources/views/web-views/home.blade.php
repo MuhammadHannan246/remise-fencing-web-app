@@ -2351,7 +2351,7 @@
         background-image:
             linear-gradient(to left, rgba(245, 246, 252, 0.048), rgba(0, 0, 0, 0.5)),
             url('img2.png');
-        width: 355px;
+        width: 330px;
         height: 185px;
         background-size: cover;
         background-repeat: no-repeat;
@@ -2364,7 +2364,7 @@
         background-image:
             linear-gradient(to left, rgba(245, 246, 252, 0.48), rgba(0, 0, 0, 0.5)),
             url('img1.png');
-        width: 355px;
+        width: 330px;
         height: 185px;
         background-size: cover;
         background-repeat: no-repeat;

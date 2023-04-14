@@ -45,7 +45,8 @@
 
     @section('content')
 
-        <div class="container-fluid">
+    
+        <div class="container">
 
 
             <div class="row rowDiv">
@@ -53,16 +54,16 @@
                 <div class="col col-lg-3 hideMobe"></div>
 
 
-                <div class="col col-lg-6 col-md-12 col-sm-12">
+                <div class="col col-lg-9 col-md-12 col-sm-12">
                     <!-- <div class="innArea"> -->
                     <div class="innerArea4">
 
-                        <div class="row">
-                            <div class="col col-lg-7 col-md-12 col-sm-12 col-12">
+                        <div class="row mx-auto">
+                            <div class="col col-lg-7 col-md-12 col-sm-12 col-12 bann1">
                                 @php(
-    $main_banner = \App\Model\Banner::where('banner_type', 'Main Banner')->where('published', 1)->orderBy('id', 'desc')->get())
+                                        $main_banner = \App\Model\Banner::where('banner_type', 'Main Banner')->where('published', 1)->orderBy('id', 'desc')->get())
                                 @foreach ($main_banner as $banner)
-                                    <div class="">
+                                    <div class="" style="position:relative;">
                                         <img class="img1"
                                             onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
                                             src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}"
@@ -72,6 +73,8 @@
                                                 <h1>Forem ipsum dolor sit</h1>
                                             </div>
                                             <div class="innerText">
+                                                <p>Vorem ipsum dolor sit amet, consectetur adipiscing
+                                                    elit Nunc vulputate libero et.</p>
 
                                             </div>
                                             <div class="btnBody">
@@ -84,25 +87,13 @@
                                 @endforeach
                             </div>
 
-                            <div class="col col-lg-5 col-md-12 col-sm-12 col-12">
+                            <div class="col col-lg-5 col-md-12 col-sm-12 col-12 bann1">
                                 <div class="rightSide">
-                                    <div class="">
+                                    <div class="" style="position: relative;">
                                         <img class="img2" {{-- onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" --}}
                                             src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}"
                                             alt="">
-                                        <div class="innerBody">
-                                            <div class="heading">
-                                                <h1>Forem ipsum dolor sit</h1>
-                                            </div>
-                                            <div class="innerText">
-
-                                            </div>
-                                            <div class="btnBody">
-                                                <a href="{{ route('products', ['data_from' => 'latest']) }}"><button
-                                                        class="btnShop">Shop Now</button></a>
-
-                                            </div>
-                                        </div>
+                                       
                                         <div class="innerBody2">
 
                                             <div class="heading2">
@@ -118,12 +109,13 @@
                                         </div>
 
                                     </div>
-                                    <div class="">
-                                        <div class="innerBody3">
+                                    <div class="" style="position: relative;">
                                             <img class="img3" {{-- onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" --}}
                                                 src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}"
                                                 alt="">
-                                            <div class="heading3">
+                                                <div class="innerBody3">
+
+                                                <div class="heading3">
                                                 <h1>Horem ipsum</h1>
                                             </div>
                                             <div class="innerText3">
@@ -156,40 +148,139 @@
 
         <br><br>
 
+<div class="container px-auto">
+    <div class="row mx-auto">
 
-        <div class="row">
-
-            <div class="col-9">
-                <h1 class="shopHeading">Shop Our Top Categories</h1>
-            </div>
-            <div class="col-3">
-                <div class="innea5">
-                    <a class=" viewBtn" href="#">View All ></i></a>
-
-                </div>
+        <div class="col-9 px-0">
+            <h1 class="shopHeading">Shop Our Top Categories</h1>
+        </div>
+        <div class="col-3 px-0">
+            <div class="innea5">
+                <a class=" viewBtn" href="#">View All ></i></a>
 
             </div>
 
         </div>
 
-        <br><br>
-        <div class="cardsContainer d-flex justify-content-center ">
-            <div class="row">
+    </div>
+</div>
+    
 
+        <br><br>
+        <div class="container">
+            <div class="cardsContainer d-flex justify-content-center ">
+                <div class="row">
+    
+                    <div class="col-12">
+                        <div class="innerArea6">
+                            <div class="inner1 cardOne">
+                                @foreach ($categories as $key => $category)
+                                    @if ($key < 6)
+                                        <div class="">
+                                            <a
+                                                href="{{ route('products', ['id' => $category['id'], 'data_from' => 'category', 'page' => 1]) }}">
+                                                <div class="inner2">
+                                                    <div class="">
+                                                        <img onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
+                                                            src="{{ asset("storage/app/public/category/$category->icon") }}"
+                                                            alt="{{ $category->name }}">
+                                                        <h2 class="cardText1">{{ Str::limit($category->name, 12) }}</h2>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+    
+                    </div>
+    
+    
+                </div>
+    
+    
+            </div>
+        </div>
+        
+
+        <br><br><br>
+
+        <div class="container px-auto">
+            <div class="row mx-auto">
                 <div class="col-12">
+                    <h1 class="shopHeading">Flash Sales</h1>
                     <div class="innerArea6">
                         <div class="inner1 cardOne">
-                            @foreach ($categories as $key => $category)
+                            @foreach ($latest_products as $key => $product)
                                 @if ($key < 6)
                                     <div class="">
-                                        <a
-                                            href="{{ route('products', ['id' => $category['id'], 'data_from' => 'category', 'page' => 1]) }}">
+                                        <a href="">
                                             <div class="inner2">
                                                 <div class="">
-                                                    <img onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
-                                                        src="{{ asset("storage/app/public/category/$category->icon") }}"
-                                                        alt="{{ $category->name }}">
-                                                    <h2 class="cardText1">{{ Str::limit($category->name, 12) }}</h2>
+                                                    @if (isset($product))
+                                                        @php($overallRating = \App\CPU\ProductManager::get_overall_rating($product->reviews))
+                                                        <div class="flash_deal_product rtl"
+                                                            onclick="location.href='{{ route('product', $product->slug) }}'">
+                                                            @if ($product->discount > 0)
+                                                                <span class="for-discoutn-value p-1 pl-2 pr-2">
+                                                                    @if ($product->discount_type == 'percent')
+                                                                        {{ round($product->discount, !empty($decimal_point_settings) ? $decimal_point_settings : 0) }}%
+                                                                    @elseif($product->discount_type == 'flat')
+                                                                        {{ \App\CPU\Helpers::currency_converter($product->discount) }}
+                                                                    @endif {{ \App\CPU\translate('off') }}
+                                                                </span>
+                                                            @endif
+                                                            <div class=" d-flex">
+                                                                <div class="d-flex align-items-center justify-content-center"
+                                                                    style="padding-{{ Session::get('direction') === 'rtl' ? 'right:12px' : 'left:12px' }};padding-top:12px;">
+                                                                    <div class="flash-deals-background-image">
+                                                                        <img class="__img-125px"
+                                                                            src="{{ \App\CPU\ProductManager::product_image_path('thumbnail') }}/{{ $product['thumbnail'] }}"
+                                                                            onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" />
+                                                                    </div>
+                                                                </div>
+                                                                <div
+                                                                    class="flash_deal_product_details pl-3 pr-3 pr-1 d-flex align-items-center">
+                                                                    <div>
+                                                                        <div>
+                                                                            <span class="flash-product-title">
+                                                                                {{ $product['name'] }}
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="flash-product-review">
+                                                                            @for ($inc = 0; $inc < 5; $inc++)
+                                                                                @if ($inc < $overallRating[0])
+                                                                                    <i
+                                                                                        class="sr-star czi-star-filled active"></i>
+                                                                                @else
+                                                                                    <i class="sr-star czi-star"
+                                                                                        style="color:#fea569 !important"></i>
+                                                                                @endif
+                                                                            @endfor
+                                                                            <label class="badge-style2">
+                                                                                ( {{ $product->reviews->count() }} )
+                                                                            </label>
+                                                                        </div>
+                                                                        <div>
+                                                                            @if ($product->discount > 0)
+                                                                                <strike
+                                                                                    style="font-size: 12px!important;color: #E96A6A!important;">
+                                                                                    {{ \App\CPU\Helpers::currency_converter($product->unit_price) }}
+                                                                                </strike>
+                                                                            @endif
+                                                                        </div>
+                                                                        <div class="flash-product-price">
+                                                                            {{ \App\CPU\Helpers::currency_converter($product->unit_price - \App\CPU\Helpers::get_product_discount($product, $product->unit_price)) }}
+    
+                                                                        </div>
+    
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+    
                                                 </div>
                                             </div>
                                         </a>
@@ -198,375 +289,310 @@
                             @endforeach
                         </div>
                     </div>
-
+    
                 </div>
-
-
+    
             </div>
-
-
+           
         </div>
-
-        <br><br><br>
-        <div class="row">
-            <div class="col-12">
-                <h1 class="shopHeading">Flash Sales</h1>
-                <div class="innerArea6">
-                    <div class="inner1 cardOne">
-                        @foreach ($latest_products as $key => $product)
-                            @if ($key < 6)
-                                <div class="">
-                                    <a href="">
-                                        <div class="inner2">
-                                            <div class="">
-                                                @if (isset($product))
-                                                    @php($overallRating = \App\CPU\ProductManager::get_overall_rating($product->reviews))
-                                                    <div class="flash_deal_product rtl"
-                                                        onclick="location.href='{{ route('product', $product->slug) }}'">
-                                                        @if ($product->discount > 0)
-                                                            <span class="for-discoutn-value p-1 pl-2 pr-2">
-                                                                @if ($product->discount_type == 'percent')
-                                                                    {{ round($product->discount, !empty($decimal_point_settings) ? $decimal_point_settings : 0) }}%
-                                                                @elseif($product->discount_type == 'flat')
-                                                                    {{ \App\CPU\Helpers::currency_converter($product->discount) }}
-                                                                @endif {{ \App\CPU\translate('off') }}
-                                                            </span>
-                                                        @endif
-                                                        <div class=" d-flex">
-                                                            <div class="d-flex align-items-center justify-content-center"
-                                                                style="padding-{{ Session::get('direction') === 'rtl' ? 'right:12px' : 'left:12px' }};padding-top:12px;">
-                                                                <div class="flash-deals-background-image">
-                                                                    <img class="__img-125px"
-                                                                        src="{{ \App\CPU\ProductManager::product_image_path('thumbnail') }}/{{ $product['thumbnail'] }}"
-                                                                        onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" />
-                                                                </div>
-                                                            </div>
-                                                            <div
-                                                                class="flash_deal_product_details pl-3 pr-3 pr-1 d-flex align-items-center">
-                                                                <div>
-                                                                    <div>
-                                                                        <span class="flash-product-title">
-                                                                            {{ $product['name'] }}
-                                                                        </span>
-                                                                    </div>
-                                                                    <div class="flash-product-review">
-                                                                        @for ($inc = 0; $inc < 5; $inc++)
-                                                                            @if ($inc < $overallRating[0])
-                                                                                <i
-                                                                                    class="sr-star czi-star-filled active"></i>
-                                                                            @else
-                                                                                <i class="sr-star czi-star"
-                                                                                    style="color:#fea569 !important"></i>
-                                                                            @endif
-                                                                        @endfor
-                                                                        <label class="badge-style2">
-                                                                            ( {{ $product->reviews->count() }} )
-                                                                        </label>
-                                                                    </div>
-                                                                    <div>
-                                                                        @if ($product->discount > 0)
-                                                                            <strike
-                                                                                style="font-size: 12px!important;color: #E96A6A!important;">
-                                                                                {{ \App\CPU\Helpers::currency_converter($product->unit_price) }}
-                                                                            </strike>
-                                                                        @endif
-                                                                    </div>
-                                                                    <div class="flash-product-price">
-                                                                        {{ \App\CPU\Helpers::currency_converter($product->unit_price - \App\CPU\Helpers::get_product_discount($product, $product->unit_price)) }}
-
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @endif
-
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            @endif
-                        @endforeach
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
+         
         <br><br>
-        <div class="row">
-            <div class="col-12">
-                <div class="innerArea7">
-
-                    @php(
-    $main_section_banner = \App\Model\Banner::where('banner_type', 'Main Section Banner')->where('published', 1)->orderBy('id', 'desc')->latest()->first()
-)
-                    @if (isset($main_section_banner))
-                        <div class="img22">
-                            <img class="d-block"
-                                src="{{ asset('storage/app/public/banner') }}/{{ $main_section_banner['photo'] }}">
-                            <div class="innText">
-                                <p class="redText">Lorem Ipsum</p>
-                                <h1 class="whiteHeading">Sorem ipsum dolor sit amet elit.</h1>
-                                <p class="whiteText">Dorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                <button class="shop">Shop Now</button>
-                            </div>
-                        </div>
-                    @endif
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <h1 class="shopHeading">Trending Products</h1>
-                <div class="innerArea6">
-                    <div class="inner1 cardOne">
-                        @foreach ($latest_products as $key => $product)
-                            @if ($key < 6)
-                                <div class="">
-                                    <a href="">
-                                        <div class="inner2">
-                                            <div class="">
-                                                @if (isset($product))
-                                                    @php($overallRating = \App\CPU\ProductManager::get_overall_rating($product->reviews))
-                                                    <div class="flash_deal_product rtl"
-                                                        onclick="location.href='{{ route('product', $product->slug) }}'">
-                                                        @if ($product->discount > 0)
-                                                            <span class="for-discoutn-value p-1 pl-2 pr-2">
-                                                                @if ($product->discount_type == 'percent')
-                                                                    {{ round($product->discount, !empty($decimal_point_settings) ? $decimal_point_settings : 0) }}%
-                                                                @elseif($product->discount_type == 'flat')
-                                                                    {{ \App\CPU\Helpers::currency_converter($product->discount) }}
-                                                                @endif {{ \App\CPU\translate('off') }}
-                                                            </span>
-                                                        @endif
-                                                        <div class=" d-flex">
-                                                            <div class="d-flex align-items-center justify-content-center"
-                                                                style="padding-{{ Session::get('direction') === 'rtl' ? 'right:12px' : 'left:12px' }};padding-top:12px;">
-                                                                <div class="flash-deals-background-image">
-                                                                    <img class="__img-125px"
-                                                                        src="{{ \App\CPU\ProductManager::product_image_path('thumbnail') }}/{{ $product['thumbnail'] }}"
-                                                                        onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" />
-                                                                </div>
-                                                            </div>
-                                                            <div
-                                                                class="flash_deal_product_details pl-3 pr-3 pr-1 d-flex align-items-center">
-                                                                <div>
-                                                                    <div>
-                                                                        <span class="flash-product-title">
-                                                                            {{ $product['name'] }}
-                                                                        </span>
-                                                                    </div>
-                                                                    <div class="flash-product-review">
-                                                                        @for ($inc = 0; $inc < 5; $inc++)
-                                                                            @if ($inc < $overallRating[0])
-                                                                                <i
-                                                                                    class="sr-star czi-star-filled active"></i>
-                                                                            @else
-                                                                                <i class="sr-star czi-star"
-                                                                                    style="color:#fea569 !important"></i>
-                                                                            @endif
-                                                                        @endfor
-                                                                        <label class="badge-style2">
-                                                                            ( {{ $product->reviews->count() }} )
-                                                                        </label>
-                                                                    </div>
-                                                                    <div>
-                                                                        @if ($product->discount > 0)
-                                                                            <strike
-                                                                                style="font-size: 12px!important;color: #E96A6A!important;">
-                                                                                {{ \App\CPU\Helpers::currency_converter($product->unit_price) }}
-                                                                            </strike>
-                                                                        @endif
-                                                                    </div>
-                                                                    <div class="flash-product-price">
-                                                                        {{ \App\CPU\Helpers::currency_converter($product->unit_price - \App\CPU\Helpers::get_product_discount($product, $product->unit_price)) }}
-
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </a>
+        <div class="container px-auto">
+            <div class="row mx-auto">
+                <div class="col-12">
+                    <div class="innerArea7">
+    
+                        @php($main_section_banner = \App\Model\Banner::where('banner_type', 'Main Section Banner')->where('published', 1)->orderBy('id', 'desc')->latest()->first())
+                        @if (isset($main_section_banner))
+                            <div class="img22">
+                                <img class="d-block"
+                                    src="{{ asset('storage/app/public/banner') }}/{{ $main_section_banner['photo'] }}">
+                                <div class="innText">
+                                    <p class="redText">Lorem Ipsum</p>
+                                    <h1 class="whiteHeading">Sorem ipsum dolor sit amet elit.</h1>
+                                    <p class="whiteText">Dorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    <button class="shop">Shop Now</button>
                                 </div>
-                            @endif
-                        @endforeach
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
-        </div>
-        <br><br><br>
-        <div class="row">
-            <div class="col-12">
-                <div class="innerArea5">
-                    <h1 class="shopHeading">Today’s Deals</h1>
+
+
+<div class="container px-auto">
+    <div class="row mx-auto">
+        <div class="col-12">
+            <h1 class="shopHeading">Trending Products</h1>
+            <div class="innerArea6">
+                <div class="inner1 cardOne">
+                    @foreach ($latest_products as $key => $product)
+                        @if ($key < 6)
+                            <div class="">
+                                <a href="">
+                                    <div class="inner2">
+                                        <div class="">
+                                            @if (isset($product))
+                                                @php($overallRating = \App\CPU\ProductManager::get_overall_rating($product->reviews))
+                                                <div class="flash_deal_product rtl"
+                                                    onclick="location.href='{{ route('product', $product->slug) }}'">
+                                                    @if ($product->discount > 0)
+                                                        <span class="for-discoutn-value p-1 pl-2 pr-2">
+                                                            @if ($product->discount_type == 'percent')
+                                                                {{ round($product->discount, !empty($decimal_point_settings) ? $decimal_point_settings : 0) }}%
+                                                            @elseif($product->discount_type == 'flat')
+                                                                {{ \App\CPU\Helpers::currency_converter($product->discount) }}
+                                                            @endif {{ \App\CPU\translate('off') }}
+                                                        </span>
+                                                    @endif
+                                                    <div class=" d-flex">
+                                                        <div class="d-flex align-items-center justify-content-center"
+                                                            style="padding-{{ Session::get('direction') === 'rtl' ? 'right:12px' : 'left:12px' }};padding-top:12px;">
+                                                            <div class="flash-deals-background-image">
+                                                                <img class="__img-125px"
+                                                                    src="{{ \App\CPU\ProductManager::product_image_path('thumbnail') }}/{{ $product['thumbnail'] }}"
+                                                                    onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" />
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="flash_deal_product_details pl-3 pr-3 pr-1 d-flex align-items-center">
+                                                            <div>
+                                                                <div>
+                                                                    <span class="flash-product-title">
+                                                                        {{ $product['name'] }}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="flash-product-review">
+                                                                    @for ($inc = 0; $inc < 5; $inc++)
+                                                                        @if ($inc < $overallRating[0])
+                                                                            <i
+                                                                                class="sr-star czi-star-filled active"></i>
+                                                                        @else
+                                                                            <i class="sr-star czi-star"
+                                                                                style="color:#fea569 !important"></i>
+                                                                        @endif
+                                                                    @endfor
+                                                                    <label class="badge-style2">
+                                                                        ( {{ $product->reviews->count() }} )
+                                                                    </label>
+                                                                </div>
+                                                                <div>
+                                                                    @if ($product->discount > 0)
+                                                                        <strike
+                                                                            style="font-size: 12px!important;color: #E96A6A!important;">
+                                                                            {{ \App\CPU\Helpers::currency_converter($product->unit_price) }}
+                                                                        </strike>
+                                                                    @endif
+                                                                </div>
+                                                                <div class="flash-product-price">
+                                                                    {{ \App\CPU\Helpers::currency_converter($product->unit_price - \App\CPU\Helpers::get_product_discount($product, $product->unit_price)) }}
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        @endif
+                    @endforeach
                 </div>
             </div>
         </div>
-        <br>
-        <div class="innerArea6">
-            <div class="inner1">
-                <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                        <div class="">
+    </div>
+</div>
+    
 
-                            @foreach (\App\Model\Banner::where('banner_type', 'Footer Banner')->where('published', 1)->orderBy('id', 'desc')->take(3)->get() as $banner)
-                                <div class="leftImg">
-                                    <a href="{{ $banner->url }}" class="d-block">
-                                        <img class="footer_banner_img"
-                                            src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}">
-                                    </a>
-                                </div>
+        </div>
+        <br><br><br>
+
+        <div class="container px-auto">
+            <div class="row">
+                <div class="col-12">
+                    <div class="innerArea5">
+                        <h1 class="shopHeading">Today’s Deals</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <br>
+<div class="container px-auto">
+    <div class="innerArea6">
+        <div class="inner1">
+            <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 px-0">
+                    <div class="">
+
+                        @foreach (\App\Model\Banner::where('banner_type', 'Footer Banner')->where('published', 1)->orderBy('id', 'desc')->take(3)->get() as $banner)
+                            <div class="leftImg">
+                                <a href="{{ $banner->url }}" class="d-block">
+                                    <img class="footer_banner_img"
+                                        src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}">
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 px-0">
+                    <div class="middleArea mx-4 my-10">
+                        <label class="dealOfTheDay" for="dealOfTheDay" style="color:#fff;">Deal Of Day</label>
+                        <h1 class="middleHeading">Vorem ipsum dolor
+                            sit amet, consectetur</h1>
+                        <label class="price1" for="price1">$999.99</label>
+                        <h2 class="price2">$599</h2>
+                        <p class="middleText">
+                            Korem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum
+                            est a, mattis
+                            tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut
+                            interdum tellus
+                            elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent
+                            taciti sociosqu
+                            ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent auctor purus luctus
+                            enim
+                            egestas, ac scelerisque ante pulvinar. Donec ut rhoncus ex. Suspendisse ac rhoncus nisl, eu
+                            tempor urna.
+                            Curabitur vel bibendum lorem. Morbi convallis convallis diam sit amet lacinia. Aliquam in
+                            elementum
+                            tellus.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 px-1">
+                    <div class="topImg">
+                        <img class="footer_banner_img"
+                            src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}">
+                        <h2 class="imageText">Vorem ipsum dolor
+                            sit amet, consectetur</h2>
+                    </div>
+                    <div class="bottomImg">
+                        <img class="footer_banner_img"
+                            src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}">
+                        <h2 class="imageText">Vorem ipsum dolor
+                            sit amet, consectetur</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+
+        <br><br>
+        
+        <div class="container px-auto mx-auto">
+            <div class="row mx-auto">
+                <div class="col-12">
+                    <h1 class="shopHeading">For You</h1>
+                    <div class="innerArea6">
+                        <div class="inner1 cardOne">
+                            @foreach ($latest_products as $key => $product)
+                                @if ($key < 6)
+                                    <div class="">
+                                        <a href="">
+                                            <div class="inner2">
+                                                <div class="">
+                                                    @if (isset($product))
+                                                        @php($overallRating = \App\CPU\ProductManager::get_overall_rating($product->reviews))
+                                                        <div class="flash_deal_product rtl"
+                                                            onclick="location.href='{{ route('product', $product->slug) }}'">
+                                                            @if ($product->discount > 0)
+                                                                <span class="for-discoutn-value p-1 pl-2 pr-2">
+                                                                    @if ($product->discount_type == 'percent')
+                                                                        {{ round($product->discount, !empty($decimal_point_settings) ? $decimal_point_settings : 0) }}%
+                                                                    @elseif($product->discount_type == 'flat')
+                                                                        {{ \App\CPU\Helpers::currency_converter($product->discount) }}
+                                                                    @endif {{ \App\CPU\translate('off') }}
+                                                                </span>
+                                                            @endif
+                                                            <div class=" d-flex">
+                                                                <div class="d-flex align-items-center justify-content-center"
+                                                                    style="padding-{{ Session::get('direction') === 'rtl' ? 'right:12px' : 'left:12px' }};padding-top:12px;">
+                                                                    <div class="flash-deals-background-image">
+                                                                        <img class="__img-125px"
+                                                                            src="{{ \App\CPU\ProductManager::product_image_path('thumbnail') }}/{{ $product['thumbnail'] }}"
+                                                                            onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" />
+                                                                    </div>
+                                                                </div>
+                                                                <div
+                                                                    class="flash_deal_product_details pl-3 pr-3 pr-1 d-flex align-items-center">
+                                                                    <div>
+                                                                        <div>
+                                                                            <span class="flash-product-title">
+                                                                                {{ $product['name'] }}
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="flash-product-review">
+                                                                            @for ($inc = 0; $inc < 5; $inc++)
+                                                                                @if ($inc < $overallRating[0])
+                                                                                    <i
+                                                                                        class="sr-star czi-star-filled active"></i>
+                                                                                @else
+                                                                                    <i class="sr-star czi-star"
+                                                                                        style="color:#fea569 !important"></i>
+                                                                                @endif
+                                                                            @endfor
+                                                                            <label class="badge-style2">
+                                                                                ( {{ $product->reviews->count() }} )
+                                                                            </label>
+                                                                        </div>
+                                                                        <div>
+                                                                            @if ($product->discount > 0)
+                                                                                <strike
+                                                                                    style="font-size: 12px!important;color: #E96A6A!important;">
+                                                                                    {{ \App\CPU\Helpers::currency_converter($product->unit_price) }}
+                                                                                </strike>
+                                                                            @endif
+                                                                        </div>
+                                                                        <div class="flash-product-price">
+                                                                            {{ \App\CPU\Helpers::currency_converter($product->unit_price - \App\CPU\Helpers::get_product_discount($product, $product->unit_price)) }}
+    
+                                                                        </div>
+    
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+    
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                @endif
                             @endforeach
                         </div>
                     </div>
-
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                        <div class="middleArea mx-5 my-5">
-                            <label class="dealOfTheDay" for="dealOfTheDay" style="color:#fff;">Deal Of Day</label>
-                            <h1 class="middleHeading">Vorem ipsum dolor
-                                sit amet, consectetur</h1>
-                            <label class="price1" for="price1">$999.99</label>
-                            <h2 class="price2">$599</h2>
-                            <p class="middleText">
-                                Korem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum
-                                est a, mattis
-                                tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut
-                                interdum tellus
-                                elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent
-                                taciti sociosqu
-                                ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent auctor purus luctus
-                                enim
-                                egestas, ac scelerisque ante pulvinar. Donec ut rhoncus ex. Suspendisse ac rhoncus nisl, eu
-                                tempor urna.
-                                Curabitur vel bibendum lorem. Morbi convallis convallis diam sit amet lacinia. Aliquam in
-                                elementum
-                                tellus.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                        <div class="topImg">
-                            <img class="footer_banner_img"
-                                src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}">
-                            <h2 class="imageText">Vorem ipsum dolor
-                                sit amet, consectetur</h2>
-                        </div>
-                        <div class="bottomImg">
-                            <img class="footer_banner_img"
-                                src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}">
-                            <h2 class="imageText">Vorem ipsum dolor
-                                sit amet, consectetur</h2>
-                        </div>
-                    </div>
+    
                 </div>
             </div>
         </div>
-        <br><br>
-        <div class="row">
-            <div class="col-12">
-                <h1 class="shopHeading">For You</h1>
-                <div class="innerArea6">
-                    <div class="inner1 cardOne">
-                        @foreach ($latest_products as $key => $product)
-                            @if ($key < 6)
-                                <div class="">
-                                    <a href="">
-                                        <div class="inner2">
-                                            <div class="">
-                                                @if (isset($product))
-                                                    @php($overallRating = \App\CPU\ProductManager::get_overall_rating($product->reviews))
-                                                    <div class="flash_deal_product rtl"
-                                                        onclick="location.href='{{ route('product', $product->slug) }}'">
-                                                        @if ($product->discount > 0)
-                                                            <span class="for-discoutn-value p-1 pl-2 pr-2">
-                                                                @if ($product->discount_type == 'percent')
-                                                                    {{ round($product->discount, !empty($decimal_point_settings) ? $decimal_point_settings : 0) }}%
-                                                                @elseif($product->discount_type == 'flat')
-                                                                    {{ \App\CPU\Helpers::currency_converter($product->discount) }}
-                                                                @endif {{ \App\CPU\translate('off') }}
-                                                            </span>
-                                                        @endif
-                                                        <div class=" d-flex">
-                                                            <div class="d-flex align-items-center justify-content-center"
-                                                                style="padding-{{ Session::get('direction') === 'rtl' ? 'right:12px' : 'left:12px' }};padding-top:12px;">
-                                                                <div class="flash-deals-background-image">
-                                                                    <img class="__img-125px"
-                                                                        src="{{ \App\CPU\ProductManager::product_image_path('thumbnail') }}/{{ $product['thumbnail'] }}"
-                                                                        onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" />
-                                                                </div>
-                                                            </div>
-                                                            <div
-                                                                class="flash_deal_product_details pl-3 pr-3 pr-1 d-flex align-items-center">
-                                                                <div>
-                                                                    <div>
-                                                                        <span class="flash-product-title">
-                                                                            {{ $product['name'] }}
-                                                                        </span>
-                                                                    </div>
-                                                                    <div class="flash-product-review">
-                                                                        @for ($inc = 0; $inc < 5; $inc++)
-                                                                            @if ($inc < $overallRating[0])
-                                                                                <i
-                                                                                    class="sr-star czi-star-filled active"></i>
-                                                                            @else
-                                                                                <i class="sr-star czi-star"
-                                                                                    style="color:#fea569 !important"></i>
-                                                                            @endif
-                                                                        @endfor
-                                                                        <label class="badge-style2">
-                                                                            ( {{ $product->reviews->count() }} )
-                                                                        </label>
-                                                                    </div>
-                                                                    <div>
-                                                                        @if ($product->discount > 0)
-                                                                            <strike
-                                                                                style="font-size: 12px!important;color: #E96A6A!important;">
-                                                                                {{ \App\CPU\Helpers::currency_converter($product->unit_price) }}
-                                                                            </strike>
-                                                                        @endif
-                                                                    </div>
-                                                                    <div class="flash-product-price">
-                                                                        {{ \App\CPU\Helpers::currency_converter($product->unit_price - \App\CPU\Helpers::get_product_discount($product, $product->unit_price)) }}
 
-                                                                    </div>
 
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @endif
-
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            @endif
-                        @endforeach
-                    </div>
-                </div>
-
-            </div>
-        </div>
 
         <br><br>
 
-        <div class="row">
-            <div class="col-12">
-                <div class="innerArea9">
-                    <a href="{{ route('products', ['data_from' => 'latest']) }}"><button class="loadMore">
-                            Load More
-                        </button></a>
+        <div class="container px-auto">
+            <div class="row mx-auto">
+                <div class="col-12">
+                    <div class="innerArea9">
+                        <a href="{{ route('products', ['data_from' => 'latest']) }}"><button class="loadMore">
+                                Load More
+                            </button></a>
+                    </div>
+    
                 </div>
-
             </div>
         </div>
+
 
         <br><br>
         </div>
@@ -595,6 +621,10 @@
 
     }
 
+    .bann1{
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
     .cont1 {
         color: #fff;
         /* margin: 10px 10px; */
@@ -978,18 +1008,18 @@
 
     } */
 
-    .innerArea4 {
+    /* .innerArea4 {
         display: inline-flex;
 
-    }
+    } */
 
     .innerArea4 .img1 {
         background-image:
             linear-gradient(to left, rgba(245, 246, 252, 0.52), rgba(0, 0, 0, 0.5)),
             url('pg11.jpg');
-        width: 565px;
-        height: 438px;
-        margin-left: 35px;
+        width: 600px;
+        height: 380px;
+        /* margin-left: 35px; */
         background-size: cover;
         background-repeat: no-repeat;
         background-position: top center;
@@ -1001,19 +1031,19 @@
 
 
 
-    .innerArea4 .img1 .innerBody .heading h1 {
+    .innerArea4  .innerBody .heading h1 {
         font-size: 35px;
         color: #FFF;
         font-weight: 600;
     }
 
-    .innerArea4 .img1 .innerBody .innerText p {
+    .innerArea4  .innerBody .innerText p {
         font-size: 14px;
         color: #fff;
 
     }
 
-    .innerArea4 .img1 .innerBody .btnBody .btnShop {
+    .innerArea4  .innerBody .btnBody .btnShop {
         background-color: #EC0000;
         color: #fff;
         width: 116px;
@@ -1044,19 +1074,30 @@
         width: 80%;
     } */
 
-    .innerArea4 .img2 .innerBody2 .heading2 h1 {
+    .innerArea4 .innerBody2{
+        position: absolute;
+    top: 15px;
+    left: 35px;
+    }
+    
+    .innerArea4 .innerBody3{
+        position: absolute;
+    top: 55px;
+    left: 35px;
+    }
+    .innerArea4  .innerBody2 .heading2 h1 {
         font-size: 30px;
         color: #FFF;
-        width: 20%;
+        width: 70%;
         font-weight: 600;
     }
 
-    .innerArea4 .img2 .innerBody2 .innerText2 p {
+    .innerArea4  .innerBody2 .innerText2 p {
         color: #fff;
         font-size: 15px;
     }
 
-    .innerArea4 .img2 .innerBody2 .priceBody2 p {
+    .innerArea4  .innerBody2 .priceBody2 p {
 
         font-size: 30px;
         color: #EC0000;
@@ -1064,7 +1105,7 @@
         margin-top: -10px;
     }
 
-    .innerArea4 .img2 .innerBody2 .priceBody2 p span {
+    .innerArea4  .innerBody2 .priceBody2 p span {
         font-size: 20px;
         color: #fff;
         text-decoration: line-through;
@@ -1092,19 +1133,19 @@
         width: 80%;
     } */
 
-    .innerArea4 .img3 .innerBody3 .heading3 h1 {
+    .innerArea4  .innerBody3 .heading3 h1 {
         font-size: 30px;
         color: #FFF;
-        width: 20%;
+        width: 100%;
         font-weight: 600;
     }
 
-    .innerArea4 .img3 .innerBody3 .innerText3 p {
+    .innerArea4  .innerBody3 .innerText3 p {
         color: #fff;
         font-size: 15px;
     }
 
-    .innerArea4 .img3 .innerBody3 .priceBody3 p {
+    .innerArea4  .innerBody3 .priceBody3 p {
 
         font-size: 30px;
         color: #EC0000;
@@ -1112,7 +1153,7 @@
         margin-top: -10px;
     }
 
-    .innerArea4 .img3 .innerBody3 .priceBody3 p span {
+    .innerArea4  .innerBody3 .priceBody3 p span {
         font-size: 20px;
         color: #fff;
         text-decoration: line-through;
@@ -1144,6 +1185,11 @@
         text-decoration: underline;
     } */
 
+    .innerArea4 .innerBody{
+        position: absolute;
+    top: 200px;
+    left: 20px
+    }
     .innerArea6 {
 
         width: 100%;
@@ -1415,15 +1461,15 @@
     }
 
     .middleArea .middleText {
-        margin-top: 55px;
-        font-size: 18px;
+        margin-top: 50px;
+        font-size: 16px;
     }
 
     .imageText {
         color: #fff;
         position: absolute;
-        margin-top: 300px;
-        margin-left: 20px;
+        margin-top: 274px;
+        margin-left: 32px;
         font-size: 35px;
         font-weight: 700;
     }
@@ -2271,9 +2317,9 @@
         width: 80%
     }
 
-    .rightSide {
+    /* .rightSide {
         margin-left: 225px;
-    }
+    } */
 
     .innerArea4 .img2 .innerBody2 {
         position: absolute;
@@ -2306,7 +2352,7 @@
             linear-gradient(to left, rgba(245, 246, 252, 0.048), rgba(0, 0, 0, 0.5)),
             url('img2.png');
         width: 355px;
-        height: 213px;
+        height: 185px;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: top center;
@@ -2319,7 +2365,7 @@
             linear-gradient(to left, rgba(245, 246, 252, 0.48), rgba(0, 0, 0, 0.5)),
             url('img1.png');
         width: 355px;
-        height: 213px;
+        height: 185px;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: top center;
@@ -2330,7 +2376,7 @@
     .shopHeading {
         font-size: 40px;
         font-weight: 600;
-        padding: 0 30px;
+        /* padding: 0 30px; */
     }
 
     .innea5 {
@@ -2340,7 +2386,7 @@
     .innea5 .viewBtn {
         position: absolute;
         top: 45px;
-        left: 205px;
+        left: 220px;
         color: black;
         text-decoration: underline;
     }
@@ -2399,11 +2445,12 @@
         }
 
         .topImg {
-            width: 335px;
+            width: auto;
+
         }
 
         .bottomImg {
-            width: 335px;
+            width: auto;
         }
 
         .imageText {
@@ -2442,12 +2489,12 @@
 
         .innerArea4 .img2 {
             margin: 0 2px;
-            width: 360px !important;
+            width: 330px !important;
 
         }
 
         .innerArea4 .img3 {
-            width: 360px !important;
+            width: 330px !important;
             margin: 0 2px;
         }
 
@@ -2483,12 +2530,12 @@
         }
 
         .topImg {
-            width: 250px;
+            width: auto;
             height: 360px;
         }
 
         .bottomImg {
-            width: 250px;
+            width: auto;
             height: 360px;
         }
 
@@ -2565,6 +2612,9 @@
             font-size: 25px;
         }
 
+        .innerArea4 .innerBody{
+            top: 0;
+        }
         .innerArea4 .img2 .innerBody2 .priceBody2 p {
             font-size: 25px;
         }
@@ -2595,7 +2645,7 @@
 
         .innea5 .viewBtn {
             font-size: 12px;
-            top: 0px;
+            top: 20px;
             left: 0px
         }
 
@@ -2661,17 +2711,18 @@
         }
 
         .topImg {
-            width: 348px;
+            width: auto;
             height: 250px;
         }
 
         .bottomImg {
-            width: 348px;
+            width: auto;
             height: 250px;
         }
 
         .imageText {
-            margin-top: 0;
+            margin-top: 100px;
+            margin-left: 15px;
 
         }
 

@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Mail;
 
 
 
-
 //for maintenance mode
 Route::get('maintenance-mode', 'Web\WebController@maintenance_mode')->name('maintenance-mode');
 

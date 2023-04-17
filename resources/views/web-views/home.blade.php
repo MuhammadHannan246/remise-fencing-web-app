@@ -565,7 +565,8 @@
 
                         @php($main_section_banner = \App\Model\Banner::where('banner_type', 'Main Section Banner')->where('published', 1)->orderBy('id', 'desc')->latest()->first())
                         @if (isset($main_section_banner))
-                            <div class="img22" style="background: linear-gradient(to left, rgb(42 42 42 / 52%), rgba(0, 0, 0, 1.5)), url({{ asset('storage/app/public/banner') }}/{{ $main_section_banner['photo'] }});">
+                            <div class="img22" style="background: linear-gradient(to left, rgb(42 42 42 / 52%), rgba(0, 0, 0, 1.5)), url({{ asset('storage/app/public/banner') }}/{{ $main_section_banner['photo'] }});    background-position: center;
+                            background-size: cover;">
                                 {{-- <img class=""
                                     src="{{ asset('storage/app/public/banner') }}/{{ $main_section_banner['photo'] }}"> --}}
                                 <div class="innText">
@@ -1619,8 +1620,7 @@
 
         width: 1250px;
         height: 375px;
-        background-position: center;
-        background-size: cover;
+     
         border-radius: 15px;
 
     }

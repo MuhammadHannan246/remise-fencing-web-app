@@ -1682,6 +1682,7 @@
         background-size: cover;
         border-radius: 15px;
         margin-bottom: 20px;
+        position: relative;
     }
 
     .bottomImg {
@@ -1692,6 +1693,8 @@
         background-size: cover;
         border-radius: 15px;
         margin-top: 20px;
+        position: relative;
+
     }
 
     .middleArea {
@@ -1737,8 +1740,8 @@
     .imageText {
         color: #fff;
         position: absolute;
-        margin-top: 274px;
-        margin-left: 32px;
+     
+        left: 20px;
         font-size: 35px;
         font-weight: 700;
     }
@@ -2727,7 +2730,7 @@
         }
 
         .imageText {
-            margin-top: 210px;
+            /* margin-top: 210px; */
         }
     }
 
@@ -2821,8 +2824,8 @@
         }
 
         .imageText {
-            margin-top: 115px;
-            font-size: 28px;
+            /* margin-top: 115px; */
+            font-size: 25px;
 
         }
 
@@ -3016,8 +3019,8 @@
         }
 
         .imageText {
-            margin-top: 100px;
-            margin-left: 15px;
+            
+            top: 100px;
 
         }
 

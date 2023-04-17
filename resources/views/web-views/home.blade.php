@@ -50,9 +50,7 @@
 
             <div class="row rowDiv">
 
-                @php(
-    $categories = \App\Model\Category::with(['childes.childes'])->where('position', 0)->priority()->paginate(11),
-)
+                @php($categories = \App\Model\Category::with(['childes.childes'])->where('position', 0)->priority()->paginate(11))
                 <ul
                     class="navbar-nav mega-nav pr-2 pl-2 toggleCat {{ Session::get('direction') === 'rtl' ? 'mr-2' : 'mr-2' }} d-none d-xl-block __mega-nav">
                     <li class="nav-item {{ !request()->is('/') ? 'dropdown' : '' }}">
@@ -275,9 +273,7 @@
                                             </ul>
                                         </li>
                                     @endif
-                                    @php(
-    $discount_product = App\Model\Product::with(['reviews'])->active()->where('discount', '!=', 0)->count(),
-)
+                                    @php($discount_product = App\Model\Product::with(['reviews'])->active()->where('discount', '!=', 0)->count())
                                     @if ($discount_product > 0)
                                         <li class="nav-item dropdown {{ request()->is('/') ? 'active' : '' }}">
                                             <a class="nav-link text-capitalize navLink"
@@ -324,9 +320,7 @@
                             </div>
 
                             <div class="col col-lg-7 col-md-12 col-sm-12 col-12 bann1">
-                                @php(
-    $main_banner = \App\Model\Banner::where('banner_type', 'Main Banner')->where('published', 1)->orderBy('id', 'desc')->get(),
-)
+                                @php($main_banner = \App\Model\Banner::where('banner_type', 'Main Banner')->where('published', 1)->orderBy('id', 'desc')->get())
                                 @foreach ($main_banner as $banner)
                                     <div class="" style="position:relative;">
                                         <img class="img1"
@@ -569,12 +563,9 @@
                 <div class="col-12">
                     <div class="innerArea7">
 
-                        @php(
-    $main_section_banner = \App\Model\Banner::where('banner_type', 'Main Section Banner')->where('published', 1)->orderBy('id', 'desc')->latest()->first(),
-)
+                        @php($main_section_banner = \App\Model\Banner::where('banner_type', 'Main Section Banner')->where('published', 1)->orderBy('id', 'desc')->latest()->first())
                         @if (isset($main_section_banner))
-                            <div class="img22"
-                                style="background: linear-gradient(to left, rgb(42 42 42 / 52%), rgba(0, 0, 0, 1.5)), url({{ asset('storage/app/public/banner') }}/{{ $main_section_banner['photo'] }});">
+                            <div class="img22" style="background: linear-gradient(to left, rgb(42 42 42 / 52%), rgba(0, 0, 0, 1.5)), url({{ asset('storage/app/public/banner') }}/{{ $main_section_banner['photo'] }});">
                                 {{-- <img class=""
                                     src="{{ asset('storage/app/public/banner') }}/{{ $main_section_banner['photo'] }}"> --}}
                                 <div class="innText">

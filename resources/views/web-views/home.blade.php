@@ -45,12 +45,14 @@
 
     @section('content')
 
-           <div class="container">
+        <div class="container">
 
 
             <div class="row rowDiv">
 
-                @php($categories = \App\Model\Category::with(['childes.childes'])->where('position', 0)->priority()->paginate(11))
+                @php(
+    $categories = \App\Model\Category::with(['childes.childes'])->where('position', 0)->priority()->paginate(11),
+)
                 <ul
                     class="navbar-nav mega-nav pr-2 pl-2 toggleCat {{ Session::get('direction') === 'rtl' ? 'mr-2' : 'mr-2' }} d-none d-xl-block __mega-nav">
                     <li class="nav-item {{ !request()->is('/') ? 'dropdown' : '' }}">
@@ -76,12 +78,12 @@
                                                 href="javascript:"
                                                 onclick="location.href='{{ route('products', ['id' => $category['id'], 'data_from' => 'category', 'page' => 1]) }}'">
                                                 <div class="d-flex">
-    
+
                                                     <span
                                                         class="w-0 flex-grow-1 childDrop {{ Session::get('direction') === 'rtl' ? 'pr-3' : 'pl-3' }}">{{ $category['name'] }}</span>
                                                     <i
                                                         class="czi-arrow-{{ Session::get('direction') === 'rtl' ? 'left' : 'right' }} __inline-15"></i>
-    
+
                                                 </div>
                                                 @if ($category->childes->count() > 0)
                                                     <div>
@@ -95,10 +97,10 @@
                                                     style="right: 100%; text-align: {{ Session::get('direction') === 'rtl' ? 'right' : 'left' }};">
                                                     @foreach ($category['childes'] as $subCategory)
                                                         <li class="dropdown">
-                                                            <a class="dropdown-item flex-between"
-                                                                <?php if ($subCategory->childes->count() > 0) {
-                                                                    echo "data-toggle='dropdown'";
-                                                                } ?> href="javascript:"
+                                                            <a class="dropdown-item flex-between" <?php if ($subCategory->childes->count() > 0) {
+                                                                echo "data-toggle='dropdown'";
+                                                            } ?>
+                                                                href="javascript:"
                                                                 onclick="location.href='{{ route('products', ['id' => $subCategory['id'], 'data_from' => 'category', 'page' => 1]) }}'">
                                                                 <div>
                                                                     <span
@@ -130,15 +132,15 @@
                                     @endif
                                 @endforeach
                                 <li class="dropdown">
-                                    <a class="dropdown-item text-capitalize text-center"
-                                        href="{{ route('categories') }}" style="color: #FF061E; !important;">
+                                    <a class="dropdown-item text-capitalize text-center" href="{{ route('categories') }}"
+                                        style="color: #FF061E; !important;">
                                         {{ \App\CPU\translate('view_more') }}
-    
+
                                         <i
                                             class="czi-arrow-{{ Session::get('direction') === 'rtl' ? 'left' : 'right' }} __inline-15"></i>
                                     </a>
                                 </li>
-    
+
                             </ul>
                         @else
                             <ul class="dropdown-menu __dropdown-menu-2"
@@ -147,10 +149,10 @@
                                     <li class="dropdown">
                                         <a class="dropdown-item flex-between <?php if ($category->childes->count() > 0) {
                                             echo "data-toggle='dropdown";
-                                        } ?> "
-                                            <?php if ($category->childes->count() > 0) {
-                                                echo "data-toggle='dropdown'";
-                                            } ?> href="javascript:"
+                                        } ?> " <?php if ($category->childes->count() > 0) {
+                                            echo "data-toggle='dropdown'";
+                                        } ?>
+                                            href="javascript:"
                                             onclick="location.href='{{ route('products', ['id' => $category['id'], 'data_from' => 'category', 'page' => 1]) }}'">
                                             <div class="d-flex">
                                                 <img src="{{ asset("storage/app/public/category/$category->icon") }}"
@@ -210,7 +212,7 @@
                                     <a class="dropdown-item d-block text-center" href="{{ route('categories') }}"
                                         style="color: {{ $web_config['primary_color'] }} !important;">
                                         {{ \App\CPU\translate('view_more') }}
-    
+
                                         <i class="czi-arrow-{{ Session::get('direction') === 'rtl' ? 'left' : 'right' }} __text-8px"
                                             style="background:none !important;color:{{ $web_config['primary_color'] }} !important;"></i>
                                     </a>
@@ -221,105 +223,110 @@
                 </ul>
 
                 {{-- <div class="col col-lg-0 hideMobe"></div> --}}
-    
+
 
                 <div class="col col-lg-9 col-md-12 col-sm-12">
                     <!-- <div class="innArea"> -->
-                    
 
-                        <div class="innerArea4">
+
+                    <div class="innerArea4">
 
                         <div class="row mx-auto">
 
                             <div class="col col-lg-12 col-md-12 col-sm-12 col-12 bann1" style="margin-bottom: 10px;">
                                 <ul class="navbar-nav nav_float"
-                                style="{{ Session::get('direction') === 'rtl' ? 'padding-right: 0px ' : '' }}">
-                                <li class="nav-item dropdown {{ request()->is('/') ? 'active' : '' }}">
-                                    <a class="nav-link navLink"
-                                        href="{{ route('home') }}">{{ \App\CPU\translate('Home') }}</a>
-                                    {{-- <a class="nav-link" href="{{route('home')}}">{{ \App\CPU\translate('Home')}}</a> --}}
-                                </li>
-                
-                                @if (\App\Model\BusinessSetting::where(['type' => 'product_brand'])->first()->value)
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle navLink" href="#"
-                                            data-toggle="dropdown">{{ \App\CPU\translate("Today's Deals") }}</a>
-                                        <ul class="dropdown-menu __dropdown-menu-sizing dropdown-menu-{{ Session::get('direction') === 'rtl' ? 'right' : 'left' }} scroll-bar"
-                                            style="text-align: {{ Session::get('direction') === 'rtl' ? 'right' : 'left' }};">
-                                            @foreach (\App\CPU\BrandManager::get_active_brands() as $brand)
-                                                <li class="__inline-17">
-                                                    <div>
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('products', ['id' => $brand['id'], 'data_from' => 'brand', 'page' => 1]) }}">
-                                                            {{ $brand['name'] }}
-                                                        </a>
-                                                    </div>
-                                                    <div class="align-baseline">
-                                                        @if ($brand['brand_products_count'] > 0)
-                                                            <span class="count-value px-2">(
-                                                                {{ $brand['brand_products_count'] }} )</span>
-                                                        @endif
-                                                    </div>
-                                                </li>
-                                            @endforeach
-                                            <li class="__inline-17">
-                                                <div>
-                                                    <a class="dropdown-item" href="{{ route('brands') }}"
-                                                        style="color: {{ $web_config['primary_color'] }} !important;">
-                                                        {{ \App\CPU\translate('View_more') }}
-                                                    </a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                @endif
-                                @php($discount_product = App\Model\Product::with(['reviews'])->active()->where('discount', '!=', 0)->count())
-                                @if ($discount_product > 0)
-                                    <li class="nav-item dropdown {{ request()->is('/') ? 'active' : '' }}">
-                                        <a class="nav-link text-capitalize navLink"
-                                            href="{{ route('products', ['data_from' => 'discounted', 'page' => 1]) }}">{{ \App\CPU\translate('Trending Products') }}</a>
-                                    </li>
-                                @endif
-                
-                                @php($business_mode = \App\CPU\Helpers::get_business_settings('business_mode'))
-                                @if ($business_mode == 'multi')
+                                    style="{{ Session::get('direction') === 'rtl' ? 'padding-right: 0px ' : '' }}">
                                     <li class="nav-item dropdown {{ request()->is('/') ? 'active' : '' }}">
                                         <a class="nav-link navLink"
-                                            href="{{ route('sellers') }}">{{ \App\CPU\translate('Special Offers') }}</a>
+                                            href="{{ route('home') }}">{{ \App\CPU\translate('Home') }}</a>
+                                        {{-- <a class="nav-link" href="{{route('home')}}">{{ \App\CPU\translate('Home')}}</a> --}}
                                     </li>
-                
-                                    @php($seller_registration = \App\Model\BusinessSetting::where(['type' => 'seller_registration'])->first()->value)
-                                    @if ($seller_registration)
-                                        <li class="nav-item">
-                                            <div class="dropdown">
-                                                <button class="btn dropdown-toggle navLink1" type="button"
-                                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                                    aria-expanded="false"
-                                                    style="padding-{{ Session::get('direction') === 'rtl' ? 'right' : 'left' }}: 0">
-                                                    {{ \App\CPU\translate('Seller') }} {{ \App\CPU\translate('zone') }}
-                                                </button>
-                                                <div class="dropdown-menu __dropdown-menu-3 __min-w-165px"
-                                                    aria-labelledby="dropdownMenuButton"
-                                                    style="text-align: {{ Session::get('direction') === 'rtl' ? 'right' : 'left' }};">
-                                                    <a class="dropdown-item" href="{{ route('shop.apply') }}">
-                                                        {{ \App\CPU\translate('Become a') }}
-                                                        {{ \App\CPU\translate('Seller') }}
-                                                    </a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="{{ route('seller.auth.login') }}">
-                                                        {{ \App\CPU\translate('Seller') }} {{ \App\CPU\translate('login') }}
-                                                    </a>
-                                                </div>
-                                            </div>
+
+                                    @if (\App\Model\BusinessSetting::where(['type' => 'product_brand'])->first()->value)
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle navLink" href="#"
+                                                data-toggle="dropdown">{{ \App\CPU\translate("Today's Deals") }}</a>
+                                            <ul class="dropdown-menu __dropdown-menu-sizing dropdown-menu-{{ Session::get('direction') === 'rtl' ? 'right' : 'left' }} scroll-bar"
+                                                style="text-align: {{ Session::get('direction') === 'rtl' ? 'right' : 'left' }};">
+                                                @foreach (\App\CPU\BrandManager::get_active_brands() as $brand)
+                                                    <li class="__inline-17">
+                                                        <div>
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('products', ['id' => $brand['id'], 'data_from' => 'brand', 'page' => 1]) }}">
+                                                                {{ $brand['name'] }}
+                                                            </a>
+                                                        </div>
+                                                        <div class="align-baseline">
+                                                            @if ($brand['brand_products_count'] > 0)
+                                                                <span class="count-value px-2">(
+                                                                    {{ $brand['brand_products_count'] }} )</span>
+                                                            @endif
+                                                        </div>
+                                                    </li>
+                                                @endforeach
+                                                <li class="__inline-17">
+                                                    <div>
+                                                        <a class="dropdown-item" href="{{ route('brands') }}"
+                                                            style="color: {{ $web_config['primary_color'] }} !important;">
+                                                            {{ \App\CPU\translate('View_more') }}
+                                                        </a>
+                                                    </div>
+                                                </li>
+                                            </ul>
                                         </li>
                                     @endif
-                                @endif
-                            </ul>
+                                    @php(
+    $discount_product = App\Model\Product::with(['reviews'])->active()->where('discount', '!=', 0)->count(),
+)
+                                    @if ($discount_product > 0)
+                                        <li class="nav-item dropdown {{ request()->is('/') ? 'active' : '' }}">
+                                            <a class="nav-link text-capitalize navLink"
+                                                href="{{ route('products', ['data_from' => 'discounted', 'page' => 1]) }}">{{ \App\CPU\translate('Trending Products') }}</a>
+                                        </li>
+                                    @endif
+
+                                    @php($business_mode = \App\CPU\Helpers::get_business_settings('business_mode'))
+                                    @if ($business_mode == 'multi')
+                                        <li class="nav-item dropdown {{ request()->is('/') ? 'active' : '' }}">
+                                            <a class="nav-link navLink"
+                                                href="{{ route('sellers') }}">{{ \App\CPU\translate('Special Offers') }}</a>
+                                        </li>
+
+                                        @php($seller_registration = \App\Model\BusinessSetting::where(['type' => 'seller_registration'])->first()->value)
+                                        @if ($seller_registration)
+                                            <li class="nav-item">
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle navLink1" type="button"
+                                                        id="dropdownMenuButton" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false"
+                                                        style="padding-{{ Session::get('direction') === 'rtl' ? 'right' : 'left' }}: 0">
+                                                        {{ \App\CPU\translate('Seller') }}
+                                                        {{ \App\CPU\translate('zone') }}
+                                                    </button>
+                                                    <div class="dropdown-menu __dropdown-menu-3 __min-w-165px"
+                                                        aria-labelledby="dropdownMenuButton"
+                                                        style="text-align: {{ Session::get('direction') === 'rtl' ? 'right' : 'left' }};">
+                                                        <a class="dropdown-item" href="{{ route('shop.apply') }}">
+                                                            {{ \App\CPU\translate('Become a') }}
+                                                            {{ \App\CPU\translate('Seller') }}
+                                                        </a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item" href="{{ route('seller.auth.login') }}">
+                                                            {{ \App\CPU\translate('Seller') }}
+                                                            {{ \App\CPU\translate('login') }}
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        @endif
+                                    @endif
+                                </ul>
                             </div>
 
                             <div class="col col-lg-7 col-md-12 col-sm-12 col-12 bann1">
                                 @php(
-                                        $main_banner = \App\Model\Banner::where('banner_type', 'Main Banner')->where('published', 1)->orderBy('id', 'desc')->get())
+    $main_banner = \App\Model\Banner::where('banner_type', 'Main Banner')->where('published', 1)->orderBy('id', 'desc')->get(),
+)
                                 @foreach ($main_banner as $banner)
                                     <div class="" style="position:relative;">
                                         <img class="img1"
@@ -351,7 +358,7 @@
                                         <img class="img2" {{-- onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" --}}
                                             src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}"
                                             alt="">
-                                       
+
                                         <div class="innerBody2">
 
                                             <div class="heading2">
@@ -368,12 +375,12 @@
 
                                     </div>
                                     <div class="" style="position: relative;">
-                                            <img class="img3" {{-- onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" --}}
-                                                src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}"
-                                                alt="">
-                                                <div class="innerBody3">
+                                        <img class="img3" {{-- onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" --}}
+                                            src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}"
+                                            alt="">
+                                        <div class="innerBody3">
 
-                                                <div class="heading3">
+                                            <div class="heading3">
                                                 <h1>Horem ipsum</h1>
                                             </div>
                                             <div class="innerText3">
@@ -406,29 +413,29 @@
 
         <br><br>
 
-<div class="container px-auto">
-    <div class="row mx-auto">
+        <div class="container px-auto">
+            <div class="row mx-auto">
 
-        <div class="col-9 px-0">
-            <h1 class="shopHeading">Shop Our Top Categories</h1>
-        </div>
-        <div class="col-3 px-0">
-            <div class="innea5">
-                <a class=" viewBtn" href="#">View All ></i></a>
+                <div class="col-9 px-0">
+                    <h1 class="shopHeading">Shop Our Top Categories</h1>
+                </div>
+                <div class="col-3 px-0">
+                    <div class="innea5">
+                        <a class=" viewBtn" href="#">View All ></i></a>
+
+                    </div>
+
+                </div>
 
             </div>
-
         </div>
 
-    </div>
-</div>
-    
 
         <br><br>
         <div class="container">
             <div class="cardsContainer d-flex justify-content-center ">
                 <div class="row">
-    
+
                     <div class="col-12">
                         <div class="innerArea6">
                             <div class="inner1 cardOne">
@@ -438,7 +445,8 @@
                                             <a
                                                 href="{{ route('products', ['id' => $category['id'], 'data_from' => 'category', 'page' => 1]) }}">
                                                 <div class="inner2">
-                                                    <div class="card" style=" background: linear-gradient(to bottom, rgba(245, 246, 252, 0.048), rgba(0, 0, 0, 0.5)), url({{ asset("storage/app/public/category/$category->icon") }}); " >
+                                                    <div class="card"
+                                                        style=" background: linear-gradient(to bottom, rgba(245, 246, 252, 0.048), rgba(0, 0, 0, 0.5)), url({{ asset("storage/app/public/category/$category->icon") }}); ">
                                                         {{-- <img onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
                                                             src="c"
                                                             alt="{{ $category->name }}"> --}}
@@ -451,16 +459,16 @@
                                 @endforeach
                             </div>
                         </div>
-    
+
                     </div>
-    
-    
+
+
                 </div>
-    
-    
+
+
             </div>
         </div>
-        
+
 
         <br><br><br>
 
@@ -486,7 +494,8 @@
                                                                         {{ round($product->discount, !empty($decimal_point_settings) ? $decimal_point_settings : 0) }}%
                                                                     @elseif($product->discount_type == 'flat')
                                                                         {{ \App\CPU\Helpers::currency_converter($product->discount) }}
-                                                                    @endif {{ \App\CPU\translate('off') }}
+                                                                    @endif
+                                                                    {{ \App\CPU\translate('off') }}
                                                                 </span>
                                                             @endif
                                                             <div class=" d-flex">
@@ -530,15 +539,15 @@
                                                                         </div>
                                                                         <div class="flash-product-price">
                                                                             {{ \App\CPU\Helpers::currency_converter($product->unit_price - \App\CPU\Helpers::get_product_discount($product, $product->unit_price)) }}
-    
+
                                                                         </div>
-    
+
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     @endif
-    
+
                                                 </div>
                                             </div>
                                         </a>
@@ -547,22 +556,25 @@
                             @endforeach
                         </div>
                     </div>
-    
+
                 </div>
-    
+
             </div>
-           
+
         </div>
-         
+
         <br><br>
         <div class="container px-auto">
             <div class="row mx-auto">
                 <div class="col-12">
                     <div class="innerArea7">
-    
-                        @php($main_section_banner = \App\Model\Banner::where('banner_type', 'Main Section Banner')->where('published', 1)->orderBy('id', 'desc')->latest()->first())
+
+                        @php(
+    $main_section_banner = \App\Model\Banner::where('banner_type', 'Main Section Banner')->where('published', 1)->orderBy('id', 'desc')->latest()->first(),
+)
                         @if (isset($main_section_banner))
-                            <div class="img22">
+                            <div class="img22"
+                                style="background: linear-gradient(to left, rgb(42 42 42 / 52%), rgba(0, 0, 0, 1.5)), url({{ asset('storage/app/public/banner') }}/{{ $main_section_banner['photo'] }});">
                                 {{-- <img class=""
                                     src="{{ asset('storage/app/public/banner') }}/{{ $main_section_banner['photo'] }}"> --}}
                                 <div class="innText">
@@ -579,92 +591,93 @@
         </div>
 
 
-<div class="container px-auto">
-    <div class="row mx-auto">
-        <div class="col-12">
-            <h1 class="shopHeading">Trending Products</h1>
-            <div class="innerArea6">
-                <div class="inner1 cardOne">
-                    @foreach ($latest_products as $key => $product)
-                        @if ($key < 6)
-                            <div class="">
-                                <a href="">
-                                    <div class="inner2">
-                                        <div class="">
-                                            @if (isset($product))
-                                                @php($overallRating = \App\CPU\ProductManager::get_overall_rating($product->reviews))
-                                                <div class="flash_deal_product rtl"
-                                                    onclick="location.href='{{ route('product', $product->slug) }}'">
-                                                    @if ($product->discount > 0)
-                                                        <span class="for-discoutn-value p-1 pl-2 pr-2">
-                                                            @if ($product->discount_type == 'percent')
-                                                                {{ round($product->discount, !empty($decimal_point_settings) ? $decimal_point_settings : 0) }}%
-                                                            @elseif($product->discount_type == 'flat')
-                                                                {{ \App\CPU\Helpers::currency_converter($product->discount) }}
-                                                            @endif {{ \App\CPU\translate('off') }}
-                                                        </span>
-                                                    @endif
-                                                    <div class=" d-flex">
-                                                        <div class="d-flex align-items-center justify-content-center"
-                                                            style="padding-{{ Session::get('direction') === 'rtl' ? 'right:12px' : 'left:12px' }};padding-top:12px;">
-                                                            <div class="flash-deals-background-image">
-                                                                <img class="__img-125px"
-                                                                    src="{{ \App\CPU\ProductManager::product_image_path('thumbnail') }}/{{ $product['thumbnail'] }}"
-                                                                    onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" />
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="flash_deal_product_details pl-3 pr-3 pr-1 d-flex align-items-center">
-                                                            <div>
-                                                                <div>
-                                                                    <span class="flash-product-title">
-                                                                        {{ $product['name'] }}
-                                                                    </span>
-                                                                </div>
-                                                                <div class="flash-product-review">
-                                                                    @for ($inc = 0; $inc < 5; $inc++)
-                                                                        @if ($inc < $overallRating[0])
-                                                                            <i
-                                                                                class="sr-star czi-star-filled active"></i>
-                                                                        @else
-                                                                            <i class="sr-star czi-star"
-                                                                                style="color:#fea569 !important"></i>
-                                                                        @endif
-                                                                    @endfor
-                                                                    <label class="badge-style2">
-                                                                        ( {{ $product->reviews->count() }} )
-                                                                    </label>
-                                                                </div>
-                                                                <div>
-                                                                    @if ($product->discount > 0)
-                                                                        <strike
-                                                                            style="font-size: 12px!important;color: #E96A6A!important;">
-                                                                            {{ \App\CPU\Helpers::currency_converter($product->unit_price) }}
-                                                                        </strike>
+        <div class="container px-auto">
+            <div class="row mx-auto">
+                <div class="col-12">
+                    <h1 class="shopHeading">Trending Products</h1>
+                    <div class="innerArea6">
+                        <div class="inner1 cardOne">
+                            @foreach ($latest_products as $key => $product)
+                                @if ($key < 6)
+                                    <div class="">
+                                        <a href="">
+                                            <div class="inner2">
+                                                <div class="">
+                                                    @if (isset($product))
+                                                        @php($overallRating = \App\CPU\ProductManager::get_overall_rating($product->reviews))
+                                                        <div class="flash_deal_product rtl"
+                                                            onclick="location.href='{{ route('product', $product->slug) }}'">
+                                                            @if ($product->discount > 0)
+                                                                <span class="for-discoutn-value p-1 pl-2 pr-2">
+                                                                    @if ($product->discount_type == 'percent')
+                                                                        {{ round($product->discount, !empty($decimal_point_settings) ? $decimal_point_settings : 0) }}%
+                                                                    @elseif($product->discount_type == 'flat')
+                                                                        {{ \App\CPU\Helpers::currency_converter($product->discount) }}
                                                                     @endif
+                                                                    {{ \App\CPU\translate('off') }}
+                                                                </span>
+                                                            @endif
+                                                            <div class=" d-flex">
+                                                                <div class="d-flex align-items-center justify-content-center"
+                                                                    style="padding-{{ Session::get('direction') === 'rtl' ? 'right:12px' : 'left:12px' }};padding-top:12px;">
+                                                                    <div class="flash-deals-background-image">
+                                                                        <img class="__img-125px"
+                                                                            src="{{ \App\CPU\ProductManager::product_image_path('thumbnail') }}/{{ $product['thumbnail'] }}"
+                                                                            onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" />
+                                                                    </div>
                                                                 </div>
-                                                                <div class="flash-product-price">
-                                                                    {{ \App\CPU\Helpers::currency_converter($product->unit_price - \App\CPU\Helpers::get_product_discount($product, $product->unit_price)) }}
+                                                                <div
+                                                                    class="flash_deal_product_details pl-3 pr-3 pr-1 d-flex align-items-center">
+                                                                    <div>
+                                                                        <div>
+                                                                            <span class="flash-product-title">
+                                                                                {{ $product['name'] }}
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="flash-product-review">
+                                                                            @for ($inc = 0; $inc < 5; $inc++)
+                                                                                @if ($inc < $overallRating[0])
+                                                                                    <i
+                                                                                        class="sr-star czi-star-filled active"></i>
+                                                                                @else
+                                                                                    <i class="sr-star czi-star"
+                                                                                        style="color:#fea569 !important"></i>
+                                                                                @endif
+                                                                            @endfor
+                                                                            <label class="badge-style2">
+                                                                                ( {{ $product->reviews->count() }} )
+                                                                            </label>
+                                                                        </div>
+                                                                        <div>
+                                                                            @if ($product->discount > 0)
+                                                                                <strike
+                                                                                    style="font-size: 12px!important;color: #E96A6A!important;">
+                                                                                    {{ \App\CPU\Helpers::currency_converter($product->unit_price) }}
+                                                                                </strike>
+                                                                            @endif
+                                                                        </div>
+                                                                        <div class="flash-product-price">
+                                                                            {{ \App\CPU\Helpers::currency_converter($product->unit_price - \App\CPU\Helpers::get_product_discount($product, $product->unit_price)) }}
 
+                                                                        </div>
+
+                                                                    </div>
                                                                 </div>
-
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    @endif
                                                 </div>
-                                            @endif
-                                        </div>
+                                            </div>
+                                        </a>
                                     </div>
-                                </a>
-                            </div>
-                        @endif
-                    @endforeach
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-    
+
 
         </div>
         <br><br><br>
@@ -678,74 +691,78 @@
                 </div>
             </div>
         </div>
-        
+
 
         <br>
-<div class="container px-auto">
-    <div class="innerArea6">
-        <div class="inner1">
-            <div class="row">
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 px-0">
-                    <div class="">
+        <div class="container px-auto">
+            <div class="innerArea6">
+                <div class="inner1">
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 px-0">
+                            <div class="">
 
-                        @foreach (\App\Model\Banner::where('banner_type', 'Footer Banner')->where('published', 1)->orderBy('id', 'desc')->take(3)->get() as $banner)
-                            <div class="leftImg">
-                                <a href="{{ $banner->url }}" class="d-block">
-                                    <img class="footer_banner_img"
-                                        src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}">
-                                </a>
+                                @foreach (\App\Model\Banner::where('banner_type', 'Footer Banner')->where('published', 1)->orderBy('id', 'desc')->take(3)->get() as $banner)
+                                    <div class="leftImg">
+                                        <a href="{{ $banner->url }}" class="d-block">
+                                            <img class="footer_banner_img"
+                                                src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}">
+                                        </a>
+                                    </div>
+                                @endforeach
                             </div>
-                        @endforeach
-                    </div>
-                </div>
+                        </div>
 
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 px-0">
-                    <div class="middleArea mx-4 my-10">
-                        <label class="dealOfTheDay" for="dealOfTheDay" style="color:#fff;">Deal Of Day</label>
-                        <h1 class="middleHeading">Vorem ipsum dolor
-                            sit amet, consectetur</h1>
-                        <label class="price1" for="price1">$999.99</label>
-                        <h2 class="price2">$599</h2>
-                        <p class="middleText">
-                            Korem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum
-                            est a, mattis
-                            tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut
-                            interdum tellus
-                            elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent
-                            taciti sociosqu
-                            ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent auctor purus luctus
-                            enim
-                            egestas, ac scelerisque ante pulvinar. Donec ut rhoncus ex. Suspendisse ac rhoncus nisl, eu
-                            tempor urna.
-                            Curabitur vel bibendum lorem. Morbi convallis convallis diam sit amet lacinia. Aliquam in
-                            elementum
-                            tellus.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 px-1">
-                    <div class="topImg">
-                        <img class="footer_banner_img"
-                            src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}">
-                        <h2 class="imageText">Vorem ipsum dolor
-                            sit amet, consectetur</h2>
-                    </div>
-                    <div class="bottomImg">
-                        <img class="footer_banner_img"
-                            src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}">
-                        <h2 class="imageText">Vorem ipsum dolor
-                            sit amet, consectetur</h2>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 px-0">
+                            <div class="middleArea mx-4 my-10">
+                                <label class="dealOfTheDay" for="dealOfTheDay" style="color:#fff;">Deal Of Day</label>
+                                <h1 class="middleHeading">Vorem ipsum dolor
+                                    sit amet, consectetur</h1>
+                                <label class="price1" for="price1">$999.99</label>
+                                <h2 class="price2">$599</h2>
+                                <p class="middleText">
+                                    Korem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie,
+                                    dictum
+                                    est a, mattis
+                                    tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut
+                                    interdum tellus
+                                    elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent
+                                    taciti sociosqu
+                                    ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent auctor purus
+                                    luctus
+                                    enim
+                                    egestas, ac scelerisque ante pulvinar. Donec ut rhoncus ex. Suspendisse ac rhoncus nisl,
+                                    eu
+                                    tempor urna.
+                                    Curabitur vel bibendum lorem. Morbi convallis convallis diam sit amet lacinia. Aliquam
+                                    in
+                                    elementum
+                                    tellus.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 px-1">
+                            <div class="topImg">
+                                <img class="footer_banner_img"
+                                    src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}">
+                                <h2 class="imageText">Vorem ipsum dolor
+                                    sit amet, consectetur</h2>
+                            </div>
+                            <div class="bottomImg">
+                                <img class="footer_banner_img"
+                                    src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}">
+                                <h2 class="imageText">Vorem ipsum dolor
+                                    sit amet, consectetur</h2>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-    
+
 
 
         <br><br>
-        
+
         <div class="container px-auto mx-auto">
             <div class="row mx-auto">
                 <div class="col-12">
@@ -768,7 +785,8 @@
                                                                         {{ round($product->discount, !empty($decimal_point_settings) ? $decimal_point_settings : 0) }}%
                                                                     @elseif($product->discount_type == 'flat')
                                                                         {{ \App\CPU\Helpers::currency_converter($product->discount) }}
-                                                                    @endif {{ \App\CPU\translate('off') }}
+                                                                    @endif
+                                                                    {{ \App\CPU\translate('off') }}
                                                                 </span>
                                                             @endif
                                                             <div class=" d-flex">
@@ -812,15 +830,15 @@
                                                                         </div>
                                                                         <div class="flash-product-price">
                                                                             {{ \App\CPU\Helpers::currency_converter($product->unit_price - \App\CPU\Helpers::get_product_discount($product, $product->unit_price)) }}
-    
+
                                                                         </div>
-    
+
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     @endif
-    
+
                                                 </div>
                                             </div>
                                         </a>
@@ -829,7 +847,7 @@
                             @endforeach
                         </div>
                     </div>
-    
+
                 </div>
             </div>
         </div>
@@ -846,7 +864,7 @@
                                 Load More
                             </button></a>
                     </div>
-    
+
                 </div>
             </div>
         </div>
@@ -874,13 +892,15 @@
 
     }
 
-    .nav_float{
+    .nav_float {
         flex-direction: row !important;
-        align-items: center ;
+        align-items: center;
     }
-    .nav_float li{
+
+    .nav_float li {
         margin: 10px 15px;
     }
+
     .nav-item .dropdown-toggle::after {
         margin-left: 8px !important;
     }
@@ -890,10 +910,11 @@
 
     }
 
-    .bann1{
+    .bann1 {
         padding-right: 0 !important;
         padding-left: 0 !important;
     }
+
     .cont1 {
         color: #fff;
         /* margin: 10px 10px; */
@@ -1300,19 +1321,19 @@
 
 
 
-    .innerArea4  .innerBody .heading h1 {
+    .innerArea4 .innerBody .heading h1 {
         font-size: 35px;
         color: #FFF;
         font-weight: 600;
     }
 
-    .innerArea4  .innerBody .innerText p {
+    .innerArea4 .innerBody .innerText p {
         font-size: 14px;
         color: #fff;
 
     }
 
-    .innerArea4  .innerBody .btnBody .btnShop {
+    .innerArea4 .innerBody .btnBody .btnShop {
         background-color: #EC0000;
         color: #fff;
         width: 116px;
@@ -1343,30 +1364,31 @@
         width: 80%;
     } */
 
-    .innerArea4 .innerBody2{
+    .innerArea4 .innerBody2 {
         position: absolute;
-    top: 15px;
-    left: 35px;
+        top: 15px;
+        left: 35px;
     }
-    
-    .innerArea4 .innerBody3{
+
+    .innerArea4 .innerBody3 {
         position: absolute;
-    top: 55px;
-    left: 35px;
+        top: 55px;
+        left: 35px;
     }
-    .innerArea4  .innerBody2 .heading2 h1 {
+
+    .innerArea4 .innerBody2 .heading2 h1 {
         font-size: 30px;
         color: #FFF;
         width: 70%;
         font-weight: 600;
     }
 
-    .innerArea4  .innerBody2 .innerText2 p {
+    .innerArea4 .innerBody2 .innerText2 p {
         color: #fff;
         font-size: 15px;
     }
 
-    .innerArea4  .innerBody2 .priceBody2 p {
+    .innerArea4 .innerBody2 .priceBody2 p {
 
         font-size: 30px;
         color: #EC0000;
@@ -1374,7 +1396,7 @@
         margin-top: -10px;
     }
 
-    .innerArea4  .innerBody2 .priceBody2 p span {
+    .innerArea4 .innerBody2 .priceBody2 p span {
         font-size: 20px;
         color: #fff;
         text-decoration: line-through;
@@ -1402,19 +1424,19 @@
         width: 80%;
     } */
 
-    .innerArea4  .innerBody3 .heading3 h1 {
+    .innerArea4 .innerBody3 .heading3 h1 {
         font-size: 30px;
         color: #FFF;
         width: 100%;
         font-weight: 600;
     }
 
-    .innerArea4  .innerBody3 .innerText3 p {
+    .innerArea4 .innerBody3 .innerText3 p {
         color: #fff;
         font-size: 15px;
     }
 
-    .innerArea4  .innerBody3 .priceBody3 p {
+    .innerArea4 .innerBody3 .priceBody3 p {
 
         font-size: 30px;
         color: #EC0000;
@@ -1422,7 +1444,7 @@
         margin-top: -10px;
     }
 
-    .innerArea4  .innerBody3 .priceBody3 p span {
+    .innerArea4 .innerBody3 .priceBody3 p span {
         font-size: 20px;
         color: #fff;
         text-decoration: line-through;
@@ -1454,11 +1476,12 @@
         text-decoration: underline;
     } */
 
-    .innerArea4 .innerBody{
+    .innerArea4 .innerBody {
         position: absolute;
-    top: 200px;
-    left: 20px
+        top: 200px;
+        left: 20px
     }
+
     .innerArea6 {
 
         width: 100%;
@@ -1602,7 +1625,7 @@
     }
 
     .innerArea7 .img22 {
-        background: linear-gradient(to left, rgb(42 42 42 / 52%), rgba(0, 0, 0, 1.5)), url({{ asset('storage/app/public/banner') }}/{{ $main_section_banner['photo'] }});
+
         width: 1250px;
         height: 375px;
         background-position: center;
@@ -1740,7 +1763,7 @@
     .imageText {
         color: #fff;
         position: absolute;
-     
+
         left: 20px;
         font-size: 35px;
         font-weight: 700;
@@ -1868,10 +1891,11 @@
             text-align: center;
         }
 
-        .innerArea7 .img22 .innText{
+        .innerArea7 .img22 .innText {
             margin-top: 135px !important;
             margin-left: 35px;
         }
+
         .socialIcons {
             display: flex;
             justify-content: center;
@@ -2738,13 +2762,15 @@
 
     @media screen and (max-width: 825px) {
 
-        .nav_float .nav-link{
+        .nav_float .nav-link {
             font-size: 12px;
         }
-        .nav_float .nav-item .dropdown .navLink1{
+
+        .nav_float .nav-item .dropdown .navLink1 {
             font-size: 12px !important;
 
         }
+
         .innerr {
             display: none;
         }
@@ -2840,20 +2866,24 @@
     /* Mobile CSS HOME */
     @media screen and (max-width: 425px) {
 
-        .nav_float{
+        .nav_float {
             flex-wrap: wrap;
             justify-content: center;
         }
-        .nav_float li{
-            margin:5px 10px;
+
+        .nav_float li {
+            margin: 5px 10px;
         }
-        .nav_float li a{
+
+        .nav_float li a {
             font-size: 9px;
         }
-        .nav_float .nav-item .dropdown .navLink1{
+
+        .nav_float .nav-item .dropdown .navLink1 {
             font-size: 9px !important;
 
         }
+
         .side1 {
             display: none;
         }
@@ -2910,9 +2940,10 @@
             font-size: 25px;
         }
 
-        .innerArea4 .innerBody{
+        .innerArea4 .innerBody {
             top: 0;
         }
+
         .innerArea4 .img2 .innerBody2 .priceBody2 p {
             font-size: 25px;
         }
@@ -3019,7 +3050,7 @@
         }
 
         .imageText {
-            
+
             top: 100px;
 
         }

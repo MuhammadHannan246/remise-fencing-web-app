@@ -318,15 +318,18 @@
                                     @endif
                                 </ul>
                             </div>
+                            @php($main_banner = \App\Model\Banner::where('banner_type', 'Main Banner')->where('published', 1)->orderBy('id', 'desc')->get())
+                            @if(count($main_banner) >2)
 
                             <div class="col col-lg-7 col-md-12 col-sm-12 col-12 bann1">
-                                @php($main_banner = \App\Model\Banner::where('banner_type', 'Main Banner')->where('published', 1)->orderBy('id', 'desc')->get())
-                                @foreach ($main_banner as $banner)
-                                    <div class="" style="position:relative;">
-                                        <img class="img1"
-                                            onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
-                                            src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}"
-                                            alt="">
+                                {{-- @foreach ($main_banner as $banner) --}}
+                                <div style="position:relative;">
+                                    <div class="img1" style="  background-image:
+                                    linear-gradient(to left, rgba(245, 246, 252, 0.52), rgba(0, 0, 0, 0.5)),
+                                    url({{ asset('storage/app/public/banner') }}/{{ $main_banner[0]['photo'] }});  background-size: cover;
+        background-repeat: no-repeat;
+        background-position: top center;">
+                                       
                                         <div class="innerBody">
                                             <div class="heading">
                                                 <h1>Forem ipsum dolor sit</h1>
@@ -343,15 +346,19 @@
                                             </div>
                                         </div>
                                     </div>
-                                @endforeach
+                                </div>
+                                {{-- @endforeach --}}
                             </div>
 
                             <div class="col col-lg-5 col-md-12 col-sm-12 col-12 bann1">
                                 <div class="rightSide">
-                                    <div class="" style="position: relative;">
-                                        <img class="img2" {{-- onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" --}}
-                                            src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}"
-                                            alt="">
+                                    <div class="img2" style="position: relative;         background-image:
+                                    linear-gradient(to left, rgba(245, 246, 252, 0.48), rgba(0, 0, 0, 0.5)),
+                                    url({{ asset('storage/app/public/banner') }}/{{ $main_banner[1]['photo'] }});
+                                background-size: cover;
+                                background-repeat: no-repeat;
+                                background-position: top center;">
+                                       
 
                                         <div class="innerBody2">
 
@@ -362,16 +369,20 @@
                                                 <p>vorem ipsum dolor sit.</p>
                                             </div>
                                             <div class="priceBody2">
-                                                <p>$200 <span>$200</span></p>
+                                                {{-- <p>$200 <span>$200</span></p> --}}
+                                                <a href="" class="btnShopBan">Shop Now</a>
 
                                             </div>
                                         </div>
 
                                     </div>
-                                    <div class="" style="position: relative;">
-                                        <img class="img3" {{-- onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" --}}
-                                            src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}"
-                                            alt="">
+                                    <div class="img3" style="position: relative;         background-image:
+                                    linear-gradient(to left, rgba(245, 246, 252, 0.48), rgba(0, 0, 0, 0.5)),
+                                    url({{ asset('storage/app/public/banner') }}/{{ $main_banner[2]['photo'] }});
+                                background-size: cover;
+                                background-repeat: no-repeat;
+                                background-position: top center;">
+                                        
                                         <div class="innerBody3">
 
                                             <div class="heading3">
@@ -381,7 +392,9 @@
                                                 <p>vorem ipsum dolor sit.</p>
                                             </div>
                                             <div class="priceBody3">
-                                                <p>$200 <span>$200</span></p>
+                                                {{-- <p>$200 <span>$200</span></p> --}}
+
+                                                <a href="" class="btnShopBan">Shop Now</a>
 
                                             </div>
                                         </div>
@@ -390,6 +403,97 @@
 
                                 </div>
                             </div>
+
+
+                            @elseif(count($main_banner) >1)
+                            <div class="col col-lg-7 col-md-12 col-sm-12 col-12 bann1">
+                                {{-- @foreach ($main_banner as $banner) --}}
+                            
+                                    <div class="img1" style="position:relative;  background-image:
+                                    linear-gradient(to left, rgba(245, 246, 252, 0.52), rgba(0, 0, 0, 0.5)),
+                                    url({{ asset('storage/app/public/banner') }}/{{ $main_banner[0]['photo'] }});  background-size: cover;
+        background-repeat: no-repeat;
+        background-position: top center; ">
+
+                                        <div class="innerBody">
+                                            <div class="heading">
+                                                <h1>Forem ipsum dolor sit</h1>
+                                            </div>
+                                            <div class="innerText">
+                                                <p>Vorem ipsum dolor sit amet, consectetur adipiscing
+                                                    elit Nunc vulputate libero et.</p>
+
+                                            </div>
+                                            <div class="btnBody">
+                                                <a href="{{ route('products', ['data_from' => 'latest']) }}"><button
+                                                        class="btnShop">Shop Now</button></a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+
+                            <div class="col col-lg-5 col-md-12 col-sm-12 col-12 bann1">
+                                <div class="rightSide">
+                                    <div class="img25" style="position: relative;     background-image:
+                                    linear-gradient(to left, rgba(245, 246, 252, 0.48), rgba(0, 0, 0, 0.5)),
+                                    url({{ asset('storage/app/public/banner') }}/{{ $main_banner[1]['photo'] }});
+                                background-size: cover;
+                                background-repeat: no-repeat;
+                                background-position: top center;">
+                                      
+
+                                        <div class="innerBody25">
+
+                                            <div class="heading2">
+                                                <h1>Sorem ipsum dolor</h1>
+                                            </div>
+                                            <div class="innerText2">
+                                                <p>vorem ipsum dolor sit.</p>
+                                            </div>
+                                            <div class="priceBody2">
+                                                {{-- <p>$200 <span>$200</span></p> --}}
+                                                <a href="" class="btnShopBan">Shop Now</a>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                              
+
+                                </div>
+                            </div> 
+
+                            @elseif(count($main_banner) >0)
+                            <div class="col col-lg-12 col-md-12 col-sm-12 col-12 bann1">
+                                {{-- @foreach ($main_banner as $banner) --}}
+                            
+                                    <div class="imgOne" style="position:relative;  background-image:
+                                    linear-gradient(to left, rgba(245, 246, 252, 0.52), rgba(0, 0, 0, 0.5)),
+                                    url({{ asset('storage/app/public/banner') }}/{{ $main_banner[0]['photo'] }});  background-size: cover;
+        background-repeat: no-repeat;
+        background-position: top center; ">
+                                        <div class="innerBody525">
+                                            <div class="heading">
+                                                <h1>Forem ipsum dolor sit</h1>
+                                            </div>
+                                            <div class="innerText">
+                                                <p>Vorem ipsum dolor sit amet, consectetur adipiscing
+                                                    elit Nunc vulputate libero et.</p>
+
+                                            </div>
+                                            <div class="btnBody">
+                                                <a href="{{ route('products', ['data_from' => 'latest']) }}"><button
+                                                        class="btnShop">Shop Now</button></a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+
+                            @else
+
+                            @endif
                         </div>
                     </div>
                     <!-- </div> -->
@@ -563,9 +667,9 @@
                 <div class="col-12">
                     <div class="innerArea7">
 
-                        @php($main_section_banner = \App\Model\Banner::where('banner_type', 'Main Section Banner')->where('published', 1)->orderBy('id', 'desc')->latest()->first())
-                        @if (isset($main_section_banner))
-                            <div class="img22" style="background: linear-gradient(to left, rgb(42 42 42 / 52%), rgba(0, 0, 0, 1.5)), url({{ asset('storage/app/public/banner') }}/{{ $main_section_banner['photo'] }});    background-position: center;
+                        @php($promo_banner = \App\Model\Banner::where('banner_type', 'Promo Banner')->where('published', 1)->orderBy('id', 'desc')->latest()->first())
+                        @if (isset($promo_banner))
+                            <div class="img22" style="background: linear-gradient(to left, rgb(42 42 42 / 52%), rgba(0, 0, 0, 1.5)), url({{ asset('storage/app/public/banner') }}/{{ $promo_banner['photo'] }});    background-position: center;
                             background-size: cover;">
                                 {{-- <img class=""
                                     src="{{ asset('storage/app/public/banner') }}/{{ $main_section_banner['photo'] }}"> --}}
@@ -693,14 +797,19 @@
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 px-0">
                             <div class="">
 
-                                @foreach (\App\Model\Banner::where('banner_type', 'Footer Banner')->where('published', 1)->orderBy('id', 'desc')->take(3)->get() as $banner)
+
+                                @php($todayLeft = \App\Model\Banner::where('banner_type', 'Today Banner Left')->where('published', 1)->orderBy('id', 'desc')->take(3)->get())
+                                {{-- @foreach ( as $banner) --}}
+
+                                @if(count($todayLeft) > 0)
                                     <div class="leftImg">
-                                        <a href="{{ $banner->url }}" class="d-block">
-                                            <img class="footer_banner_img"
-                                                src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}">
+                                        <a href="{{ $todayLeft[0]->url }}" class="d-block">
+                                            <img 
+                                                src="{{ asset('storage/app/public/banner') }}/{{ $todayLeft[0]['photo'] }}">
                                         </a>
                                     </div>
-                                @endforeach
+                                    @endif
+                                {{-- @endforeach --}}
                             </div>
                         </div>
 
@@ -732,19 +841,25 @@
                                 </p>
                             </div>
                         </div>
+                        @php($todayRight = \App\Model\Banner::where('banner_type', 'Today Banner Right')->where('published', 1)->orderBy('id', 'desc')->take(3)->get())
+
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 px-1">
-                            <div class="topImg">
-                                <img class="footer_banner_img"
-                                    src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}">
+
+                            @if(count($todayRight) > 1)
+                            <div class="topImg" style="background: linear-gradient(to bottom, rgb(42 42 42 / 52%), rgba(0, 0, 0, 0.5)), url({{ asset('storage/app/public/banner') }}/{{ $todayRight[0]['photo'] }});  background-position: center;
+                            background-size: cover;">
+                                
                                 <h2 class="imageText">Vorem ipsum dolor
                                     sit amet, consectetur</h2>
                             </div>
-                            <div class="bottomImg">
-                                <img class="footer_banner_img"
-                                    src="{{ asset('storage/app/public/banner') }}/{{ $banner['photo'] }}">
+                            <div class="bottomImg" style="background: linear-gradient(to bottom, rgb(42 42 42 / 52%), rgba(0, 0, 0, 0.5)), url({{ asset('storage/app/public/banner') }}/{{ $todayRight[1]['photo'] }});  background-position: center;
+                            background-size: cover;">
+                                
                                 <h2 class="imageText">Vorem ipsum dolor
                                     sit amet, consectetur</h2>
                             </div>
+
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -1296,10 +1411,21 @@
     } */
 
     .innerArea4 .img1 {
+
+        width: 480px;
+        height: 380px;
+        /* margin-left: 35px; */
+
+
+        border-radius: 15px;
+
+    }
+
+    .innerArea4 .imgOne {
         background-image:
             linear-gradient(to left, rgba(245, 246, 252, 0.52), rgba(0, 0, 0, 0.5)),
             url('pg11.jpg');
-        width: 600px;
+        width: 805px;
         height: 380px;
         /* margin-left: 35px; */
         background-size: cover;
@@ -1310,8 +1436,25 @@
 
     }
 
+    .rightSide .innerBody2 .priceBody2 .btnShopBan ,     .rightSide .innerBody3 .priceBody3 .btnShopBan{
+
+        background: #FF061E; 
+        color: #fff;
+        padding: 5px 10px;
+        font-size: 12px;
+        text-decoration: none;
 
 
+}
+.rightSide .innerBody25 .priceBody2 .btnShopBan {
+
+background: #FF061E; 
+color: #fff;
+padding: 5px 10px;
+font-size: 12px;
+text-decoration: none;
+
+}
 
     .innerArea4 .innerBody .heading h1 {
         font-size: 35px;
@@ -1326,6 +1469,25 @@
     }
 
     .innerArea4 .innerBody .btnBody .btnShop {
+        background-color: #EC0000;
+        color: #fff;
+        width: 116px;
+        height: 33.02px;
+        border: none;
+    }
+    .innerArea4 .innerBody525 .heading h1 {
+        font-size: 35px;
+        color: #FFF;
+        font-weight: 600;
+    }
+
+    .innerArea4 .innerBody525 .innerText p {
+        font-size: 14px;
+        color: #fff;
+
+    }
+
+    .innerArea4 .innerBody525 .btnBody .btnShop {
         background-color: #EC0000;
         color: #fff;
         width: 116px;
@@ -1380,6 +1542,17 @@
         font-size: 15px;
     }
 
+    .innerArea4 .innerBody25 .heading2 h1 {
+        font-size: 30px;
+        color: #FFF;
+        width: 70%;
+        font-weight: 600;
+    }
+
+    .innerArea4 .innerBody25 .innerText2 p {
+        color: #fff;
+        font-size: 15px;
+    }
     .innerArea4 .innerBody2 .priceBody2 p {
 
         font-size: 30px;
@@ -1470,7 +1643,12 @@
 
     .innerArea4 .innerBody {
         position: absolute;
-        top: 200px;
+        top: 0;
+        left: 20px
+    }
+    .innerArea4 .innerBody525 {
+        position: absolute;
+        top: 55%;
         left: 20px
     }
 
@@ -1676,35 +1854,32 @@
 
     }
 
-    .innerArea8 .inn2 .leftImg img {
+    /* .innerArea8 .inn2 .leftImg img {
         width: 430px;
         height: 856px;
         object-fit: cover;
         border-radius: 15px;
 
-    }
+    } */
 
     .innerArea8 .inn2 .rightArea {
         margin-top: 0px;
     }
 
     .topImg {
-        background: linear-gradient(to bottom, rgb(42 42 42 / 52%), rgba(0, 0, 0, 0.5)), url('img3.jpg');
+        
         width: 430px;
         height: 414px;
-        background-position: center;
-        background-size: cover;
+
         border-radius: 15px;
         margin-bottom: 20px;
         position: relative;
     }
 
     .bottomImg {
-        background: linear-gradient(to bottom, rgb(42 42 42 / 52%), rgba(0, 0, 0, 0.5)), url('img4.jpg');
         width: 430px;
         height: 414px;
-        background-position: center;
-        background-size: cover;
+       
         border-radius: 15px;
         margin-top: 20px;
         position: relative;
@@ -1754,7 +1929,7 @@
     .imageText {
         color: #fff;
         position: absolute;
-
+        top: 60%;
         left: 20px;
         font-size: 35px;
         font-weight: 700;
@@ -2604,7 +2779,7 @@
     .innerArea4 .img1 .innerBody {
 
         display: inline-block;
-        margin: 265px 20px;
+        margin: 200px 20px;
         width: 80%
     }
 
@@ -2614,13 +2789,14 @@
 
     .innerArea4 .img2 .innerBody2 {
         position: absolute;
-        margin: 15px 15px;
+        /* margin: 15px 15px; */
         width: 80%;
     }
 
     .innerArea4 .img3 .innerBody3 {
         position: absolute;
-        margin: 45px 15px;
+        top: 25%;
+        /* margin: 45px 15px; */
         width: 80%;
     }
 
@@ -2639,24 +2815,28 @@
     } */
 
     .innerArea4 .img3 {
-        background-image:
-            linear-gradient(to left, rgba(245, 246, 252, 0.048), rgba(0, 0, 0, 0.5)),
-            url('img2.png');
         width: 330px;
         height: 185px;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: top center;
+
         margin: 10px 10px;
         border-radius: 15px;
     }
 
     .innerArea4 .img2 {
+
+        width: 330px;
+        height: 185px;
+
+        margin: 0 10px;
+        border-radius: 15px;
+    }
+
+    .innerArea4 .img25 {
         background-image:
             linear-gradient(to left, rgba(245, 246, 252, 0.48), rgba(0, 0, 0, 0.5)),
             url('img1.png');
         width: 330px;
-        height: 185px;
+        height: 380px;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: top center;
@@ -2664,6 +2844,11 @@
         border-radius: 15px;
     }
 
+    .innerArea4 .innerBody25{
+        position: absolute;
+    top: 195px;
+    left: 35px;
+    }
     .shopHeading {
         font-size: 40px;
         font-weight: 600;
@@ -2774,12 +2959,18 @@
         }
 
         .img1 {
-            width: 725px !important;
+            width: 660px !important;
             height: 438px !important;
             margin: 2px 7px;
 
         }
 
+        .innerArea4 .imgOne{
+            width: 660px !important;
+            height: 438px !important;
+            margin: 2px 7px;
+
+        }
         .cardTwo {
             margin-right: 0px;
         }
@@ -2893,7 +3084,13 @@
         }
 
         .img1 {
-            width: 336px !important;
+            width: 315px !important;
+            height: 213px !important;
+            margin: 2px 0px;
+        }
+
+        .innerArea4 .imgOne {
+            width: 315px !important;
             height: 213px !important;
             margin: 2px 0px;
         }
@@ -2908,12 +3105,12 @@
         }
 
         .innerArea4 .img2 {
-            width: 336px !important;
+            width: 315px !important;
             margin: 2px 0px;
         }
 
         .innerArea4 .img3 {
-            width: 336px !important;
+            width: 315px !important;
 
             margin: 2px 0px;
         }
@@ -2921,11 +3118,20 @@
         .innerArea4 .img1 .innerBody .heading h1 {
             font-size: 25px;
         }
-
-
-        .innerArea4 .img2 .innerBody2 {
-            margin: 50px 15px;
+        .innerArea4 .imgOne .innerBody525 .heading h1 {
+            font-size: 25px;
         }
+        .innerArea4 .innerBody525{
+            top: 20%;
+        }
+
+        .innerArea4 .innerBody525 .btnBody .btnShop{
+            width: 90px;
+            height: 27px;
+        }
+        /* .innerArea4 .img2 .innerBody2 {
+            margin: 50px 15px;
+        } */
 
         .innerArea4 .img2 .innerBody2 .heading2 h1 {
             font-size: 25px;

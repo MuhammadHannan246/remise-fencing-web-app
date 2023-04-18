@@ -3023,4 +3023,7 @@
   'push_notification_update' => 'Push notification update',
   'Announcement_Setup' => 'Announcement Setup',
   'Ecommerce' => 'Ecommerce',
+  'Promo Banner' => 'Promo Banner',
+  'Today Banner Left' => 'Today Banner Left',
+  'Today Banner Right' => 'Today Banner Right',
 );

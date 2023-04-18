@@ -43,13 +43,13 @@
                                                class="title-color text-capitalize">{{\App\CPU\translate('banner_type')}}</label>
                                         <select class="js-example-responsive form-control w-100"
                                                 name="banner_type" required>
-                                            <option value="Main Banner">{{ \App\CPU\translate('Main Banner')}}</option>
+                                            <option value="Main Banner">Main Banner</option>
                                             <option
-                                                value="Footer Banner">{{ \App\CPU\translate('Footer Banner')}}</option>
+                                                value="Promo Banner">Promotion Banner</option>
                                             <option
-                                                value="Popup Banner">{{ \App\CPU\translate('Popup Banner')}}</option>
+                                                value="Today Banner Left">Today's Banner Left</option>
                                             <option
-                                                value="Main Section Banner">{{ \App\CPU\translate('Main Section Banner')}}</option>
+                                                value="Today Banner Right">Today's Banner Right</option>
                                         </select>
                                     </div>
 

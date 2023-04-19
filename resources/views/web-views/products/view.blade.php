@@ -14,6 +14,18 @@
     <meta property="twitter:description" content="{!! substr($web_config['about']->value,0,100) !!}">
 
     <style>
+        .brandName:hover{
+            color: #FF061E;
+
+        }
+        #brand:hover{
+            color: #FF061E;
+
+        }
+        .categoryOptions:hover{
+            color: #FF061E !important;
+
+        }
         .for-count-value {
 
         {{Session::get('direction') === "rtl" ? 'left' : 'right'}}: 0.6875 rem;;
@@ -72,10 +84,10 @@
 
 @php($decimal_point_settings = \App\CPU\Helpers::get_business_settings('decimal_point_settings'))
     <!-- Page Title-->
-    <div class="d-flex w-100 justify-content-center align-items-center mb-3 __min-h-70px __inline-35" style="background:{{$web_config['primary_color']}}10;">
+    <div class="d-flex w-100 justify-content-center align-items-center mb-3 __min-h-70px __inline-35" >
 
         <div class="text-capitalize container text-center">
-            <span class="__text-18px font-semibold">{{\App\CPU\translate(str_replace('_',' ',$data['data_from']))}} {{\App\CPU\translate('products')}} {{ isset($brand_name) ? '('.$brand_name.')' : ''}}</span>
+            <span class="__text-18px font-semibold" style=" font-size: 35px;">{{\App\CPU\translate(str_replace('_',' ',$data['data_from']))}} {{\App\CPU\translate('products')}} {{ isset($brand_name) ? '('.$brand_name.')' : ''}}</span>
         </div>
 
     </div>
@@ -84,11 +96,12 @@
          style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
         <div class="row">
             <!-- Sidebar-->
-            <aside
-                class="col-lg-3 hidden-xs col-md-3 col-sm-4 SearchParameters __search-sidebar {{Session::get('direction') === "rtl" ? 'pl-2' : 'pr-2'}}"
-                id="SearchParameters">
+            <aside 
+                class="col-lg-3 hidden-xs col-md-3 col-sm-4 d-flex justify-content-center SearchParameters __search-sidebar {{Session::get('direction') === "rtl" ? 'pl-2' : 'pr-2'}}"
+                id="SearchParameters" style="    border: 1px solid #7777 !important;
+    border-radius: 15px;">
                 <!--Price Sidebar-->
-                <div class="cz-sidebar box-shadow-lg __inline-35" id="shop-sidebar">
+                <div class="cz-sidebar box-shadow-lg " id="shop-sidebar">
                     <div class="cz-sidebar-header box-shadow-sm">
                         <button class="close {{Session::get('direction') === "rtl" ? 'mr-auto' : 'ml-auto'}}"
                                 type="button" data-dismiss="sidebar" aria-label="Close"><span
@@ -99,11 +112,11 @@
                         <!-- Filter by price-->
                         <div class="text-center">
                             <div class="__cate-side-title border-bottom">
-                                <span class="widget-title font-semibold">{{\App\CPU\translate('filter')}} </span>
+                                <span class="widget-title " style="font-size: 18px; font-weight:500;">{{\App\CPU\translate('filter')}} </span>
                             </div>
                             <div
-                                class="__p-25-10 w-100 pt-4">
-                                <label class="w-100 opacity-75 text-nowrap for-shoting d-block mb-0" for="sorting" style="padding-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}: 0">
+                                class=" w-100 pt-4">
+                                <label class="w-100 opacity-75 text-nowrap for-shoting d-block mb-0" for="sorting" style="padding: 0; ">
                                     <select class="form-control custom-select" id="searchByFilterValue">
                                         <option selected disabled>{{\App\CPU\translate('Choose')}}</option>
                                         <option
@@ -123,30 +136,31 @@
                         <!-- Filter by price-->
                         <div class="text-center">
                             <div class="__cate-side-title border-top border-bottom">
-                                <span class="widget-title font-semibold">{{\App\CPU\translate('Price')}} </span>
+                                <span class="widget-title " style="font-size: 18px; font-weight:500;">{{\App\CPU\translate('Price')}} </span>
                             </div>
 
-                            <div class="d-flex justify-content-between align-items-center __cate-side-price">
+                            <div class="d-flex justify-content-between align-items-center ">
                                 <div class="__w-35p">
                                     <input class="bg-white cz-filter-search form-control form-control-sm appended-form-control"
-                                           type="number" value="0" min="0" max="1000000" id="min_price" placeholder="Min">
+                                           type="number"  min="0" max="1000000" id="min_price" placeholder="Min" style="border-radius: 5px !important">
 
                                 </div>
                                 <div class="__w-10p">
                                     <p class="m-0">{{\App\CPU\translate('to')}}</p>
                                 </div>
                                 <div class="__w-35p">
-                                    <input value="100" min="100" max="1000000"
+                                    <input  min="100" max="1000000"
                                            class="bg-white cz-filter-search form-control form-control-sm appended-form-control"
-                                           type="number" id="max_price"  placeholder="Max">
+                                           type="number" id="max_price"  placeholder="Max" style="border-radius: 5px !important">
 
                                 </div>
 
                                 <div class="d-flex justify-content-center align-items-center __number-filter-btn">
 
-                                    <a class=""
+                                    <a class=""  style="background: #FF061E !important;
+"
                                         onclick="searchByPrice()">
-                                        <i class="__inline-37 czi-arrow-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}"></i>
+                                        <i class="__inline-37 czi-arrow-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}" style="color:#fff !important; font-weight:800;"></i>
                                     </a>
 
                                 </div>
@@ -159,13 +173,13 @@
                             <div class="__cate-side-title border-top border-bottom">
                                 <span class="widget-title font-semibold">{{\App\CPU\translate('brands')}}</span>
                             </div>
-                            <div class="__cate-side-price pb-0">
+                            <div class=" pb-0">
                                 <div class="input-group-overlay input-group-sm">
-                                    <input style="{{Session::get('direction') === "rtl" ? 'padding-right: 32px;' : ''}}" placeholder="{{__('Search by brands')}}"
+                                    <input style="border-radius: 5px !important;" placeholder="{{__('Search by brands')}}"
                                         class="__inline-38 cz-filter-search form-control form-control-sm appended-form-control"
                                         type="text" id="search-brand">
                                     <div class="input-group-append-overlay">
-                                        <span class="input-group-text">
+                                        <span class="input-group-text" style="background: #FF061E !important; color: #fff !important;">
                                             <i class="czi-search"></i>
                                         </span>
                                     </div>
@@ -177,7 +191,7 @@
                                     <div class="brand mt-2 for-brand-hover {{Session::get('direction') === "rtl" ? 'mr-2' : ''}}" id="brand">
                                         <li class="flex-between __inline-39"
                                             onclick="location.href='{{route('products',['id'=> $brand['id'],'data_from'=>'brand','page'=>1])}}'">
-                                            <div >
+                                            <div class="brandName">
                                                 {{ $brand['name'] }}
                                             </div>
                                             @if($brand['brand_products_count'] > 0 )
@@ -197,7 +211,7 @@
                         <!-- Categories-->
                         <div>
                             <div  class="text-center __cate-side-title border-top border-bottom">
-                                <span class="widget-title font-semibold">{{\App\CPU\translate('categories')}}</span>
+                                <span class="widget-title" style="font-size: 18px; font-weight: 500;">{{\App\CPU\translate('categories')}}</span>
                             </div>
                             @php($categories=\App\CPU\CategoryManager::parents())
                             <div class="accordion mt-n1 __cate-side-price" id="shop-categories">
@@ -205,18 +219,18 @@
                                     <div >
                                         <div class="card-header p-1 flex-between">
                                             <div>
-                                                <label class="for-hover-lable cursor-pointer" onclick="location.href='{{route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])}}'">
+                                                <label class=" cursor-pointer categoryOptions" onclick="location.href='{{route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])}}'">
                                                     {{$category['name']}}
                                                 </label>
                                             </div>
-                                            <div class="px-2 cursor-pointer" onclick="$('#collapse-{{$category['id']}}').slideToggle(300); if($(this).find('.pull-right').hasClass('active')){
+                                            <div class="px-2 cursor-pointer " onclick="$('#collapse-{{$category['id']}}').slideToggle(300); if($(this).find('.pull-right').hasClass('active')){
                                                 $(this).find('.pull-right').removeClass('active');
                                                 $(this).find('.pull-right').text('+')
                                             }else {$(this).find('.pull-right').addClass('active');
                                                 $(this).find('.pull-right').text('-')}
 
                                                 ">
-                                                <strong class="pull-right for-brand-hover">
+                                                <strong class="pull-right categoryOptions">
                                                     {{$category->childes->count()>0?'+':''}}
                                                 </strong>
                                             </div>
@@ -266,12 +280,11 @@
             <!-- Content  -->
             <section class="col-lg-9">
                 <div class="d-flex flex-wrap align-items-center justify-content-between __inline-43 __gap-6px p-2">
-                    <div class="filter-show-btn btn btn--primary py-1 px-2">
-                        <i class="tio-filter"></i>
+                    <div class="filter-show-btn btn btn--primary py-1 px-2" style="background: #FF061E !important; border:1px solid  #FF061E !important ">
+                        <i class="tio-filter" ></i>
                     </div>
-                    <h1 class="max-sm-order-1">
-                        <label id="price-filter-count"> {{$products->total()}} {{\App\CPU\translate('items found')}} </label>
-                    </h1>
+                    
+                        <label id="price-filter-count" style="font-size:15px;"> {{$products->total()}} {{\App\CPU\translate('items found')}} </label>
                     <div class="d-flex align-items-center ml-auto">
 
                         <div class="w-100">
@@ -279,9 +292,9 @@
                                 <input hidden name="data_from" value="{{$data['data_from']}}">
                                 <div class=" {{Session::get('direction') === "rtl" ? 'float-left' : 'float-right'}}">
                                     <label class="for-shoting" for="sorting">
-                                        <span>{{\App\CPU\translate('sort_by')}}</span>
+                                        <span style="font-size: 15px;">{{\App\CPU\translate('sort_by')}}</span>
                                     </label>
-                                    <select class="__inline-44"
+                                    <select class="__inline-44" style="border:1px solid #7777 !important;"
                                                 onchange="filter(this.value)">
                                         <option value="latest">{{\App\CPU\translate('Latest')}}</option>
                                         <option

@@ -1,36 +1,78 @@
+
+<div class="">    
+        <div class="inner122">
+            <div class="">
 @php($overallRating = \App\CPU\ProductManager::get_overall_rating($product->reviews))
 
-
-
-<div class="product-single-hover">
-    <div class="overflow-hidden position-relative">
-        <div class=" inline_product clickable d-flex justify-content-center"
-                style="cursor: pointer;background:{{$web_config['primary_color']}}10;border-radius: 5px 5px 0px 0px;">
-            @if($product->discount > 0)
-                <div class="d-flex" style="left:8px;top:8px;">
-                        <span class="for-discoutn-value p-1 pl-2 pr-2">
-                        @if ($product->discount_type == 'percent')
-                                {{round($product->discount, (!empty($decimal_point_settings) ? $decimal_point_settings: 0))}}%
-                            @elseif($product->discount_type =='flat')
-                                {{\App\CPU\Helpers::currency_converter($product->discount)}}
-                            @endif
-                            {{\App\CPU\translate('off')}}
-                        </span>
-                </div>
-            @else
-                <div class="d-flex justify-content-end for-dicount-div-null">
-                    <span class="for-discoutn-value-null"></span>
-                </div>
-            @endif
-            <div class="d-flex d-block">
-                <a href="{{route('product',$product->slug)}}">
-                    <img src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail']}}"
+<div class="flash_deal_product">
+    <div class=" d-flex flex-column">
+        <div class=" d-flex align-items-center justify-content-center"
+               >
+           
+            <div class="flash-deals-background-image">
+                {{-- <a href="{{route('product',$product->slug)}}"> --}}
+                    <img class="__img-125px"
+                    src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail']}}"
                         onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'">
-                </a>
+                {{-- </a> --}}
             </div>
         </div>
-        <div class="single-product-details">
-            <div class="text-{{Session::get('direction') === "rtl" ? 'right pr-3' : 'left pl-3'}}">
+        <div class="flash_deal_product_details" style="width: 100%">
+            
+            <div class="d-flex mt-4">
+                <div>
+                    <div>
+                        <span class="flash-product-title" style="color: #000;
+                        font-size: 18px;
+                        font-weight: 600;">
+                            {{ $product['name'] }}
+                        </span>
+                    </div>
+                    <div class="flash-product-review">
+                        @for ($inc = 0; $inc < 5; $inc++)
+                            @if ($inc < $overallRating[0])
+                                <i
+                                    class="sr-star czi-star-filled active"></i>
+                            @else
+                            
+
+                                <i class="sr-star czi-star"
+                                    style="color:#FFC700 !important; font-size: 18px;"></i>
+                            @endif
+                        @endfor
+                        <label class="badge-style2">
+                            ( {{ $product->reviews->count() }} )
+                        </label>
+                    </div>
+
+                </div>
+                
+                <div class="d-flex align-items-center justify-content-between priceCol" style="width: 35%;">
+                    <div>
+                        @if ($product->discount > 0)
+                            <p
+                            style="font-size: 14px!important; color: #1E1E1E99; !important; font-weight:700;    text-decoration: line-through;
+                            text-decoration-color: red; text-decoration-thickness:1.5px;">
+                                {{ \App\CPU\Helpers::currency_converter($product->unit_price) }}
+                            </p>
+                        @endif
+                    </div>
+                    <div class="flash-product-price">
+
+                        <p style="color: red;
+                        font-size: 20px;
+                        font-weight: 800;">
+                            {{ \App\CPU\Helpers::currency_converter($product->unit_price - \App\CPU\Helpers::get_product_discount($product, $product->unit_price)) }}
+
+                        </p>
+
+                    </div>
+                </div> 
+                
+
+            </div>
+            
+            {{-- <div class="text-{{Session::get('direction') === "rtl" ? 'right pr-3' : 'left pl-3'}}">
                 <a href="{{route('product',$product->slug)}}">
                     {{ Str::limit($product['name'], 23) }}
                 </a>
@@ -60,23 +102,32 @@
                         )}}
                     </span>
                 </div>
-            </div>
+            </div> --}}
 
         </div>
-        <div class="text-center quick-view">
-            @if(Request::is('product/*'))
-                <a class="btn btn--primary btn-sm" href="{{route('product',$product->slug)}}">
-                    <i class="czi-forward align-middle {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}"></i>
-                    {{\App\CPU\translate('View')}}
-                </a>
-            @else
-                <a class="btn btn--primary btn-sm"
-                style="margin-top:0px;padding-top:5px;padding-bottom:5px;padding-left:10px;padding-right:10px;" href="javascript:"
-                onclick="quickView('{{$product->id}}')">
-                    <i class="czi-eye align-middle {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}"></i>
-                    {{\App\CPU\translate('Quick')}}   {{\App\CPU\translate('View')}}
-                </a>
-            @endif
-        </div>
+       
     </div>
 </div>
+
+            </div>
+        </div>
+</div>
+
+
+
+<style>
+    .flash_deal_product{
+        height: 310px;;
+    }
+    .__img-125px{
+        width: 208px;
+    }
+
+    @media screen and (max-width:825px){
+        
+        .__img-125px{
+        width: 225px;
+    }
+
+    }
+</style>

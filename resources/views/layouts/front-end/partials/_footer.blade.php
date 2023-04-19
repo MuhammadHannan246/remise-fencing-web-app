@@ -89,15 +89,15 @@
     margin-left: 30px;
 }
 
-.comp1 {
+/* .comp1 {
     margin-left: 50px;
-}
+} */
 
 .companyName {
     color: #fff;
     font-size: 17px;
     margin-left: 20px;
-    text-align: center;
+    /* text-align: center; */
     font-weight: 600;
 }
 .socialIcons{
@@ -148,6 +148,9 @@
     .socialIcons{
         float: none;
     }
+    .menuItemTerm{
+        text-align: center;
+    }
 }
 
 @media screen and (max-width:480px) {
@@ -184,6 +187,7 @@
         /* margin-left: 25px; */
         text-align: center;
     }
+
 }
 
 
@@ -316,14 +320,14 @@
 
                         <hr class="mobileDivide">
 
-                        <div class="col col-lg-2 col-md-12 col-sm-12 col-12">
+                        <div class="col col-lg-3 col-md-12 col-sm-12 col-12">
                             <div class="company comp2">
                                 <h4 class="companyName">Legal</h4>
                                 <ul class="menuList">
                                     <a href="{{ \App\CPU\translate('terms_&_conditions') }}">
-                                    <li class="menuItem">Terms & Conditions</li>
+                                    <li class="menuItemTerm">Terms & Conditions</li>
                                             </a>
-                                    <a class="widget-list-link" href="{{route('privacy-policy')}}">
+                                    <a class="widget-list-link menuItemTerm" href="{{route('privacy-policy')}}">
                                         {{\App\CPU\translate('privacy_policy')}}
                                     
                                 </a>
@@ -334,7 +338,7 @@
                         <hr class="mobileDivide">
 
 
-                        <div class="col col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="col col-lg-5 col-md-12 col-sm-12 col-12">
                             <div class="company comp1">
                                 <h4 class="companyName">Offices</h4>
                                 <ul class="menuList menuOffice">

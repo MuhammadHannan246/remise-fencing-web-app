@@ -130,7 +130,11 @@
                                     @endif
                                 @endforeach
                                 <li class="dropdown">
-                                    <a class="dropdown-item text-capitalize text-center" href="{{ route('categories') }}"
+                                    {{-- <a class="dropdown-item text-capitalize text-center" href="{{ route('categories') }}"
+                                        style="color: #FF061E; !important;">
+                                        {{ \App\CPU\translate('view_more') }} --}}
+
+                                        <a class="dropdown-item text-capitalize text-center" href="{{ route('products', ['data_from' => 'latest']) }}"
                                         style="color: #FF061E; !important;">
                                         {{ \App\CPU\translate('view_more') }}
 
@@ -325,7 +329,7 @@
                                 {{-- @foreach ($main_banner as $banner) --}}
                                 <div style="position:relative;">
                                     <div class="img1" style="  background-image:
-                                    linear-gradient(to left, rgba(245, 246, 252, 0.52), rgba(0, 0, 0, 0.5)),
+                                    linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                     url({{ asset('storage/app/public/banner') }}/{{ $main_banner[0]['photo'] }});  background-size: cover;
         background-repeat: no-repeat;
         background-position: top center;">
@@ -353,7 +357,7 @@
                             <div class="col col-lg-5 col-md-12 col-sm-12 col-12 bann1">
                                 <div class="rightSide">
                                     <div class="img2" style="position: relative;         background-image:
-                                    linear-gradient(to left, rgba(245, 246, 252, 0.48), rgba(0, 0, 0, 0.5)),
+                                     linear-gradient(89.95deg, #1E1E1E -22.83%, rgba(30, 30, 30, 0) 111.11%),
                                     url({{ asset('storage/app/public/banner') }}/{{ $main_banner[1]['photo'] }});
                                 background-size: cover;
                                 background-repeat: no-repeat;
@@ -370,14 +374,14 @@
                                             </div>
                                             <div class="priceBody2">
                                                 {{-- <p>$200 <span>$200</span></p> --}}
-                                                <a href="" class="btnShopBan">Shop Now</a>
+                                                <a href="{{ route('products', ['data_from' => 'latest']) }}" class="btnShopBan">Shop Now</a>
 
                                             </div>
                                         </div>
 
                                     </div>
                                     <div class="img3" style="position: relative;         background-image:
-                                    linear-gradient(to left, rgba(245, 246, 252, 0.48), rgba(0, 0, 0, 0.5)),
+                                    linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                     url({{ asset('storage/app/public/banner') }}/{{ $main_banner[2]['photo'] }});
                                 background-size: cover;
                                 background-repeat: no-repeat;
@@ -394,7 +398,7 @@
                                             <div class="priceBody3">
                                                 {{-- <p>$200 <span>$200</span></p> --}}
 
-                                                <a href="" class="btnShopBan">Shop Now</a>
+                                                <a href="{{ route('products', ['data_from' => 'latest']) }}" class="btnShopBan">Shop Now</a>
 
                                             </div>
                                         </div>
@@ -410,7 +414,7 @@
                                 {{-- @foreach ($main_banner as $banner) --}}
                             
                                     <div class="img1" style="position:relative;  background-image:
-                                    linear-gradient(to left, rgba(245, 246, 252, 0.52), rgba(0, 0, 0, 0.5)),
+linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                     url({{ asset('storage/app/public/banner') }}/{{ $main_banner[0]['photo'] }});  background-size: cover;
         background-repeat: no-repeat;
         background-position: top center; ">
@@ -436,7 +440,7 @@
                             <div class="col col-lg-5 col-md-12 col-sm-12 col-12 bann1">
                                 <div class="rightSide">
                                     <div class="img25" style="position: relative;     background-image:
-                                    linear-gradient(to left, rgba(245, 246, 252, 0.48), rgba(0, 0, 0, 0.5)),
+                                     linear-gradient(89.95deg, #1E1E1E -22.83%, rgba(30, 30, 30, 0) 111.11%),
                                     url({{ asset('storage/app/public/banner') }}/{{ $main_banner[1]['photo'] }});
                                 background-size: cover;
                                 background-repeat: no-repeat;
@@ -453,7 +457,7 @@
                                             </div>
                                             <div class="priceBody2">
                                                 {{-- <p>$200 <span>$200</span></p> --}}
-                                                <a href="" class="btnShopBan">Shop Now</a>
+                                                <a href="{{ route('products', ['data_from' => 'latest']) }}" class="btnShopBan">Shop Now</a>
 
                                             </div>
                                         </div>
@@ -469,7 +473,7 @@
                                 {{-- @foreach ($main_banner as $banner) --}}
                             
                                     <div class="imgOne" style="position:relative;  background-image:
-                                    linear-gradient(to left, rgba(245, 246, 252, 0.52), rgba(0, 0, 0, 0.5)),
+                                   linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                     url({{ asset('storage/app/public/banner') }}/{{ $main_banner[0]['photo'] }});  background-size: cover;
         background-repeat: no-repeat;
         background-position: top center; ">
@@ -519,7 +523,7 @@
                 </div>
                 <div class="col-3 px-0">
                     <div class="innea5">
-                        <a class=" viewBtn" href="#">View All ></i></a>
+                        <a class=" viewBtn" href="{{ route('products', ['data_from' => 'latest']) }}">View All ></i></a>
 
                     </div>
 
@@ -689,7 +693,9 @@
                                     <p class="redText">Lorem Ipsum</p>
                                     <h1 class="whiteHeading">Sorem ipsum dolor sit amet elit.</h1>
                                     <p class="whiteText">Dorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    <button class="shop">Shop Now</button>
+                                    <button class="shop"> 
+                                        <a href="{{ route('products', ['data_from' => 'latest']) }}">
+                                        Shop Now </a></button>
                                 </div>
                             </div>
                         @endif
@@ -931,8 +937,8 @@
                                                                             onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" />
                                                                     </div>
                                                                 </div>
-                                                                <div
-                                                                    class="flash_deal_product_details" style="width: 100%">
+                                                                
+                                                                <div class="flash_deal_product_details" style="width: 100%">
                                                                     <div class="d-flex mt-4">
                                                                         <div>
                                                                             <div>
@@ -1884,6 +1890,11 @@ text-decoration: none;
 
         /* transition: 0.5s; */
     }
+    .innerArea7 .img22 .innText .shop a{
+        color: #fff;
+        text-decoration: none;
+
+    }
 
     .innerArea7 .img22 .innText .shop:hover {
         opacity: 0.7;
@@ -2060,7 +2071,7 @@ text-decoration: none;
         color: #fff;
         font-size: 17px;
         margin-left: 20px;
-        text-align: center;
+        /* text-align: center; */
         font-weight: 600;
     }
 
@@ -2117,7 +2128,11 @@ text-decoration: none;
         }
 
         .companyName {
-            margin-left: 0;
+            /* margin-left: 0; */
+            text-align: center;
+        }
+        .comp1{
+            margin-left: 35px;
         }
     }
 

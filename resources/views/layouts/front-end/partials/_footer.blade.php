@@ -114,11 +114,17 @@
 .menuList a:hover{
     color: #FF061E;
 }
+.mobileDivide{
+    display: none;
+}
 @media screen and (max-width: 825px) {
     .searchMarketing {
         text-align: center;
     }
 
+    .mobileDivide{
+    display: block;
+}
     .socialIcons {
         display: flex;
         justify-content: center;
@@ -131,6 +137,16 @@
 
     .companyName {
         margin-left: 0;
+    }
+    .officeBranch{
+        text-align: center;
+    }
+    .comp4{
+        margin-left: 25px;
+
+    }
+    .socialIcons{
+        float: none;
     }
 }
 
@@ -147,9 +163,9 @@
         margin-left: 10px;
     }
 
-    .companyName {
+    /* .companyName {
         margin-left: 10px;
-    }
+    } */
 
     .searchMarketing {
         text-align: center;
@@ -163,6 +179,10 @@
 
     .textFoot {
         font-size: 12px;
+    }
+    .menuOffice{
+        /* margin-left: 25px; */
+        text-align: center;
     }
 }
 
@@ -179,7 +199,7 @@
     <div class="footer">
         <div class="container">
 
-            <div class="row">
+            <div class="row ml-0">
                 <div class="col col-lg-6 col-md-4 col-sm-4 ">
                     <h2 class="headingFoot">Join Our News Letter</h2>
                     <p class="textFoot">Norem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -230,7 +250,7 @@
             </div>
             <hr><br><br>
             <div class="row">
-                <div class="col col-lg-3 col-md-12 col-sm-12 logFooter">
+                <div class="col-lg-3 col-md-12 col-sm-12 pr-0 logFooter">
                     <img class="footLogo"
                         src="{{ asset('storage/app/public/company/') }}/{{ $web_config['footer_logo']->value }}"
                         alt="">
@@ -242,6 +262,9 @@
                     </p>
 
                 </div>
+
+                {{-- <hr class="mobileDivide"> --}}
+
                 <!-- <div class="col-1">
 
             </div> -->
@@ -264,32 +287,34 @@
                             </div>
                         </div>
 
+                        <hr class="mobileDivide">
 
                         <div class="col col-lg-2 col-md-12 col-sm-12 col-12">
                             <div class="company comp3">
                                 <h4 class="companyName">Socials</h4>
                                 <ul class="menuList">
-                                    <a href="https://www.twitter.com/">
-                                        <li class="menuItem">Twitter</li>
-                                    </a>
-                                    <a href="https://www.facebook.com/">
-                                        <li class="menuItem">Facebook</li>
-                                    </a>
-                                    <a href="https://www.instagram.com/">
-                                        <li class="menuItem">Instagram</li>
-                                    </a>
-                                    <a href="https://www.linkedin.com/">
-                                        <li class="menuItem">LinkedIn</li>
-                                    </a>
-                                    <a href="https://www.pinterest.com/">
-                                        <li class="menuItem">Pinterest</li>
-                                    </a>
+                                    
+                                        <li class="menuItem"><a href="https://www.twitter.com/">Twitter</a></li>
+                                    
+
+                                        <li class="menuItem"><a href="https://www.facebook.com/">Facebook</a></li>
+                                    
+                                    
+                                        <li class="menuItem"><a href="https://www.instagram.com/">Instagram</a></li>
+                                    
+                                    
+                                        <li class="menuItem"><a href="https://www.linkedin.com/">LinkedIn</a></li>
+                                    
+                                    
+                                        <li class="menuItem"><a href="https://www.pinterest.com/">Pinterest</a></li>
+                                    
                                 </ul>
 
                             </div>
 
                         </div>
 
+                        <hr class="mobileDivide">
 
                         <div class="col col-lg-2 col-md-12 col-sm-12 col-12">
                             <div class="company comp2">
@@ -306,13 +331,14 @@
 
                             </div>
                         </div>
+                        <hr class="mobileDivide">
 
 
                         <div class="col col-lg-6 col-md-12 col-sm-12 col-12">
                             <div class="company comp1">
                                 <h4 class="companyName">Offices</h4>
-                                <ul class="menuList">
-                                    <li class="menuItem">Branch Office:
+                                <ul class="menuList menuOffice">
+                                    <li class="menuItem officeBranch">Branch Office:
                                         {{ \App\CPU\Helpers::get_business_settings('shop_address') }}</li>
                                     <li class="menuItem">Head Office: 999 Tyra Extension,
                                         Haagmouth, Georgia, USA, 42553</li>
@@ -338,7 +364,7 @@
 
             <hr>
 
-            <div class="row">
+            <div class="row ml-0">
                 <div class="col col-lg-6 col-md-12 col-sm-12 col-12">
                     <p class="searchMarketing">© 2023. All Rights Reserved By Search Marketing Services</p>
                 </div>

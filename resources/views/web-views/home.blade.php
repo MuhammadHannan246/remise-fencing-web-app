@@ -578,7 +578,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
             <div class="row mx-auto">
                 <div class="col-12">
                     <h1 class="shopHeading">Flash Sales</h1>
-                    <br>
+                    {{-- <br> --}}
                     <div class="innerArea6">
                         <div class="inner1 cardOne">
                             @foreach ($latest_products as $key => $product)
@@ -605,9 +605,11 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                                 <div class="d-flex align-items-center justify-content-center"
                                                                     >
                                                                     <div class="flash-deals-background-image">
+                                                                        <a href="{{route('product',$product->slug)}}">
                                                                         <img class="__img-125px"
                                                                             src="{{ \App\CPU\ProductManager::product_image_path('thumbnail') }}/{{ $product['thumbnail'] }}"
                                                                             onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" />
+                                                                        </a>
                                                                     </div>
                                                                 </div>
                                                                 <div
@@ -710,7 +712,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
             <div class="row mx-auto">
                 <div class="col-12">
                     <h1 class="shopHeading">Trending Products</h1>
-                    <br>
+                    {{-- <br> --}}
                     <div class="innerArea6">
                         <div class="inner1 cardOne">
                             @foreach ($latest_products as $key => $product)
@@ -737,10 +739,15 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                                 <div class="d-flex align-items-center justify-content-center"
                                                                    >
                                                                     <div class="flash-deals-background-image">
+
+                                                                        <a href="{{route('product',$product->slug)}}">
+
                                                                         <img class="__img-125px"
                                                                             src="{{ \App\CPU\ProductManager::product_image_path('thumbnail') }}/{{ $product['thumbnail'] }}"
                                                                             onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" />
-                                                                    </div>
+                                                                        </a>
+                                                                    
+                                                                        </div>
                                                                 </div>
                                                                 <div
                                                                     class="flash_deal_product_details" style="width: 100%">
@@ -932,10 +939,13 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                                 <div class="d-flex align-items-center justify-content-center"
                                                                     >
                                                                     <div class="flash-deals-background-image">
+                                                                        <a href="{{route('product',$product->slug)}}">
                                                                         <img class="__img-125px"
                                                                             src="{{ \App\CPU\ProductManager::product_image_path('thumbnail') }}/{{ $product['thumbnail'] }}"
                                                                             onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" />
-                                                                    </div>
+                                                                   
+                                                                        </a>
+                                                                        </div>
                                                                 </div>
 
                                                                 <div class="flash_deal_product_details" style="width: 100%">
@@ -2092,9 +2102,7 @@ text-decoration: none;
             margin-left: 10px;
         }
 
-        .searchMarketing {
-            text-align: center;
-        }
+      
 
         .socialIcons {
             display: flex;
@@ -2108,9 +2116,7 @@ text-decoration: none;
     }
 
     @media screen and (max-width: 825px) {
-        .searchMarketing {
-            text-align: center;
-        }
+       
 
         .innerArea7 .img22 .innText {
             margin-top: 135px !important;
@@ -2136,31 +2142,10 @@ text-decoration: none;
         }
     }
 
-    .menuList {
-        line-height: 2;
-        font-size: 14px;
-        list-style: none;
-        color: #FFF;
-        /* justify-content: center; */
-    }
-
-    .menuList .menuItem:hover {
-        cursor: pointer;
-        color: #FF061E;
-    }
 
 
-    .searchMarketing {
-        color: #fff;
-        font-size: 16px;
-    }
 
-    .iconSocial {
-        color: #FFF;
-        float: right;
-        margin: 0 0 0 35px !important;
-        font-size: 20px;
-    }
+   
 
 
     .mainDiv {
@@ -2854,7 +2839,7 @@ text-decoration: none;
     }
 
     .flash_deal_product{
-        height: 328px !important;
+        height: 370px !important;
     }
     .innerArea6 .inner1 .inner122{
         width: 268px;
@@ -3311,6 +3296,9 @@ text-decoration: none;
 
         }
 
+        .flash_deal_product{
+            
+        }
         .innerArea7 .img22 .innText .redText {
 
             font-size: 12px;

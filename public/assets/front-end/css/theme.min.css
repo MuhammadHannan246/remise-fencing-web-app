@@ -17428,7 +17428,6 @@ body {
 
 .checkbox-alphanumeric input:checked ~ label {
     transform: scale(1.1);
-    border-color: red !important;
 }
 
 .checkbox-alphanumeric--style-1 label {

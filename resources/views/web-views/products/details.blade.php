@@ -20,6 +20,8 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
 </head>
 
@@ -48,8 +50,8 @@
 
     <div class="container-fluid my-3 prod-det">
         <div class="row my-2">
-            <div class="col-lg-5 col-md-4 col-12">
-                <div class="cz-product-gallery">
+            <div class="col-lg-4 col-md-12 col-12">
+                <div class="cz-product-gallery flex-column">
                     <div class="cz-preview">
                         @if($product->images!=null && json_decode($product->images)>0)
                             @if(json_decode($product->colors) && $product->color_image)
@@ -138,27 +140,27 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg description">
+            <div class="col-lg-5 description p-5">
                 <h2 class="h2-heading">
                     {{$product->name}}
                 </h2>
                 <div class="d-flex flex-wrap align-items-center mb-2 pro">
                     <span
-                        class="d-inline-block  align-middle mt-1 {{Session::get('direction') === "rtl" ? 'ml-md-2 ml-sm-0 pl-2' : 'mr-md-2 mr-sm-0 pr-2'}} __color-FE961C">{{$overallRating[0]}}</span>
-                    <div class="star-rating" style="{{Session::get('direction') === "rtl" ? 'margin-left: 25px;' : 'margin-right: 25px;'}}">
+                        class="d-inline-block  align-middle mt-1 {{Session::get('direction') === "rtl" ? 'ml-md-2 ml-sm-0 pl-2' : 'mr-md-2 mr-sm-0 pr-2'}} __color-FE961C" style="font-size: 20px;">{{$overallRating[0]}}</span>
+                    <div class="star-rating" >
                         @for($inc=0;$inc<5;$inc++)
                             @if($inc<$overallRating[0])
-                                <i class="sr-star czi-star-filled active"></i>
+                                <i class="sr-star czi-star-filled active" style="font-size:20px; "></i>
                             @else
-                                <i class="sr-star czi-star"></i>
+                                <i class="sr-star czi-star" style="font-size:20px; "></i>
                             @endif
                         @endfor
                     </div>
-                    <span class="font-regular font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-1 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-1 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'}}">{{$overallRating[1]}} {{\App\CPU\translate('Reviews')}}</span>
+                    <span class="font-regular font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-1 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-1 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'}}" style="font-size:11px !important;">{{$overallRating[1]}} {{\App\CPU\translate('Reviews')}}</span>
                     <span class="__inline-25"></span>
-                    <span class="font-regular font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-1 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-1 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'}}">{{$countOrder}} {{\App\CPU\translate('orders')}}   </span>
+                    <span class="font-regular font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-1 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-1 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'}}" style="font-size:11px !important;">{{$countOrder}} {{\App\CPU\translate('orders')}}   </span>
                     <span class="__inline-25">    </span>
-                    <span class="font-regular font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-0 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-0 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'}} text-capitalize">  {{$countWishlist}} {{\App\CPU\translate('wish_listed')}} </span>
+                    <span class="font-regular font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-0 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-0 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'}} text-capitalize" style="font-size:11px !important;">  {{$countWishlist}} {{\App\CPU\translate('wish_listed')}} </span>
 
                 </div>
                 {{-- <div class="float-left sold">
@@ -169,9 +171,9 @@
 
                 <div class="product-inner" style="clear: both;">
                     <p class="sold-by"> Sold By </p>
-                    <h3 class="title h3-heading"> {{$product->seller->shop->name}} </h3>
-                    <img src="/Images/Badge.png" class="pt-1 pl-2">
-                    <img src="/Images/Message-icon.png" style="float: right;">
+                    <h3 class="title h3-heading" style="text-transform: capitalize;"> {{$product->seller->shop->name}} </h3>
+                    <img src="{{asset('public/assets/Images/Badge.png')}}" class="pt-1 pl-2">
+                    <img src="{{asset('public/assets/Images/Message-icon.png')}}" style="float: right;">
                     <i class="fa-sharp fa-solid fa-messages-question" style="color: #ff061e;"></i>
                     <p class="desrptn">Details
                         {!! $product['details'] !!}
@@ -180,7 +182,7 @@
 
                 <div class="price">
                     <p>
-                        {{\App\CPU\Helpers::get_price_range($product) }}
+                        {{\App\CPU\Helpers::get_price_range($product) }}    
                     </p>
                     <p class="discount">
                         was <span style="
@@ -209,17 +211,48 @@
                                 dictum est a, mattis tellus.
                             </p>
                         </li>
+                    
+                        <li><i class="fa-solid fa-circle-check"
+                            style="color: #ff001e;float: left;margin-top: 7px;font-size: 20px;"></i>
+                        <p style="display: flex;padding-left: 12px;">
+                            Gorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </p>
+                    </li>
+
+                    <li><i class="fa-solid fa-circle-check"
+                        style="color: #ff001e;float: left;margin-top: 7px;font-size: 20px;"></i>
+                    <p style="display: flex;padding-left: 12px;">
+                        Forem ipsum dolor sit amet, consectetur adipiscing elit.
+Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
+                    </p>
+                </li>
+
+                <li><i class="fa-solid fa-circle-check"
+                    style="color: #ff001e;float: left;margin-top: 7px;font-size: 20px;"></i>
+                <p style="display: flex;padding-left: 12px;">
+                    Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
+                </p>
+            </li>
+
+            <li><i class="fa-solid fa-circle-check"
+                style="color: #ff001e;float: left;margin-top: 7px;font-size: 20px;"></i>
+            <p style="display: flex;padding-left: 12px;">
+                Horem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus.
+
+            </p>
+        </li>
+
                     </ul>
 
                 </div>
             </div>
-            <div class="col-lg cart p-0">
-                <div class="col-lg border-left-cart">
+            <div class="col-lg-3 cart p-5 border-left-cart" >
+                <div class="col-lg ">
                     <h3 class="delivery h3-heading"> Delivery </h3>
                     <div class="location-select">
                         <i class="fa-solid fa-location-dot"></i>
                         <select class="form-select" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
+                            <option selected>85256 Jacobi Green</option>
                             <option value="1">One</option>
                             <option value="2">Two</option>
                             <option value="3">Three</option>
@@ -311,9 +344,7 @@
                         </div>
                         @foreach (json_decode($product->choice_options) as $key => $choice)
                             <div class="row flex-start mx-0">
-                                <div
-                                    class="product-description-label text-body mt-2 {{Session::get('direction') === "rtl" ? 'pl-2' : 'pr-2'}}">{{ $choice->title }}
-                                    :
+                                <div class="product-description-label text-body mt-2 {{Session::get('direction') === "rtl" ? 'pl-2' : 'pr-2'}}" style="font-size:20px; font-weight:600">{{ $choice->title }}
                                 </div>
                                 <div>
                                     <ul class="list-inline checkbox-alphanumeric checkbox-alphanumeric--style-1 mb-2 mx-1 flex-start row"
@@ -336,7 +367,7 @@
                     @endforeach
 
                     <!-- Quantity + Add to cart -->
-                        <div class="mt-2">
+                        {{-- <div class="mt-2">
                             <div class="product-quantity d-flex flex-wrap align-items-center __gap-15">
                                 <div class="d-flex align-items-center">
                                     <div class="product-description-label text-body mt-2">{{\App\CPU\translate('Quantity')}}:</div>
@@ -368,7 +399,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="row no-gutters d-none mt-2 flex-start d-flex">
                             <div class="col-12">
                                 @if(($product['product_type'] == 'physical') && ($product['current_stock']<=0))
@@ -552,8 +583,8 @@
                         </div>
                         <div class="viewBy">
                             <p>View:</p>
-                            <img src="/Images/Grid icon.png">
-                            <img class="pl-4" src="/Images/nav-icon.png">
+                            <img src="{{asset('public/assets/Images/Grid-icon.png')}}">
+                            <img class="pl-4" src="{{asset('public/assets/Images/nav-icon.png')}}">
                         </div>
                     </div>
 
@@ -616,7 +647,7 @@
 
     .h2-heading {
         font-family: Burbank Big Condensed !important;
-        font-size: 33.23px;
+        font-size: 30px;
         color: #1E1E1E !important;
         font-weight: 600 !important;
         line-height: 33px !important;
@@ -696,7 +727,7 @@
     }
 
     .border-left-cart {
-        border-left: solid 1px #1E1E1E80;
+        border-left: solid 2px #7777;
         padding-bottom: 25px;
     }
 
@@ -740,15 +771,16 @@
         border-radius: 5px;
     }
 
+
     .size button:hover {
         background-color: #1E1E1E0D;
-        border: solid 1px #BC0012;
+        border: solid 1px #FF061E;
         border-radius: 5px;
     }
 
     .size button:focus {
         outline: none;
-        border: solid 1px #BC0012 !important;
+        border: solid 1px #FF061E !important;
         border-radius: 5px !important;
     }
 
@@ -817,7 +849,7 @@
 
     .buy-btn:hover {
         color: white !important;
-        border: solid 1px #BC0012;
+        border: solid 1px #000 !important;
         background-color: #000 !important;
     }
 
@@ -941,28 +973,31 @@
         background: #FFF;
         border-radius: 12px;
         border: solid 1px #1e1e1e;
+        height: 50px;
     }
 
     .Plus-Minus span {
         width: 20%;
         text-align: center;
-        font-size: 42px;
+        font-size: 36px;
         font-weight: 600;
         cursor: pointer;
         user-select: none;
+        height: 48px;
+
     }
 
     .minus {
         color: white;
-        border-top-left-radius: 12px !important;
-        border-bottom-left-radius: 12px !important;
+        border-top-left-radius: 11px !important;
+        border-bottom-left-radius: 11px !important;
         background: #1e1e1e;
     }
 
     .plus {
         color: white;
-        border-top-right-radius: 12px !important;
-        border-bottom-right-radius: 12px !important;
+        border-top-right-radius: 11px !important;
+        border-bottom-right-radius: 11px !important;
         background: #FF061E;
     }
 
@@ -972,10 +1007,11 @@
 
     .Plus-Minus span.num {
         width: 80%;
-        font-size: 24px;
+        font-size: 18px;
         border-right: 2px solid rgba(0, 0, 0, 0.2);
         border-left: 2px solid rgba(0, 0, 0, 0.2);
         pointer-events: none;
+        height: 25px;
     }
 
     .price-shipping {
@@ -1038,7 +1074,7 @@
     .location-select .fa-location-dot {
         color: #000;
         position: absolute;
-        top: 17px;
+        top: 14px;
         left: 12px;
         font-size: 18px;
     }
@@ -1086,6 +1122,26 @@
         margin-left: 0px !important;
     }
 
+    .__text-12px{
+        font-size: 13px !important;
+        font-weight: 600 !important;
+    }
+    .__text-12px:hover{
+        color: #FF061E !important;
+        
+        border: 1px solid #FF061E !important;
+        /* background: #FF061E !important; */
+        /* color: #FFF !important; */
+    }
+    .checkbox-alphanumeric input:checked ~ label {
+        border: 1px solid #000 !important;
+        /* border-color: #000 !important; */
+        background: #000 !important;
+        color: #FFF !important;
+        font-size: 12px;
+        font-weight: 500;
+
+    }
 
 
     .orders .row {

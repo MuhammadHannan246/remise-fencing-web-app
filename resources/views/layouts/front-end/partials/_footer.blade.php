@@ -103,6 +103,12 @@
 .socialIcons{
     float: right;
 }
+.iconSocial {
+        color: #FFF;
+        float: right;
+        margin: 0 0 0 35px !important;
+        font-size: 20px;
+    }
 .menuList a{
     line-height: 2;
     font-size: 14px;
@@ -111,6 +117,23 @@
     text-decoration: none;
 
 }
+.searchMarketing {
+        color: #fff;
+        font-size: 16px;
+    }
+    .menuList {
+        line-height: 2;
+        font-size: 14px;
+        list-style: none;
+        color: #FFF;
+        /* justify-content: center; */
+    }
+
+    .menuList .menuItem:hover {
+        cursor: pointer;
+        color: #FF061E;
+    }
+
 .menuList a:hover{
     color: #FF061E;
 }
@@ -137,6 +160,7 @@
 
     .companyName {
         margin-left: 0;
+        text-align: center;
     }
     .officeBranch{
         text-align: center;
@@ -151,6 +175,20 @@
     .menuItemTerm{
         text-align: center;
     }
+ .comp2, .comp3, .comp4 {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.comp1{
+    display: grid;
+    justify-items: center;
+}
+.logFooter{
+    display: grid;
+    
+    justify-items: center;
+}
 }
 
 @media screen and (max-width:480px) {
@@ -166,13 +204,14 @@
         margin-left: 10px;
     }
 
-    /* .companyName {
+    .companyName {
         margin-left: 10px;
-    } */
+    }
 
     .searchMarketing {
         text-align: center;
     }
+
 
     .socialIcons {
         display: flex;
@@ -253,7 +292,7 @@
                 </div>
             </div>
             <hr><br><br>
-            <div class="row">
+            <div class="row  mr-0">
                 <div class="col-lg-3 col-md-12 col-sm-12 pr-0 logFooter">
                     <img class="footLogo"
                         src="{{ asset('storage/app/public/company/') }}/{{ $web_config['footer_logo']->value }}"
@@ -275,7 +314,7 @@
                 <br><br>
 
                 <div class="col col-lg-9 col-md-12 col-sm-12 footRight">
-                    <div class="row">
+                    <div class="row mr-0">
 
                         <div class="col col-lg-2 col-md-12 col-sm-12 col-12">
                             <div class="company comp4">

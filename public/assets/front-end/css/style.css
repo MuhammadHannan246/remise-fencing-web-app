@@ -647,7 +647,7 @@ a {
 }
 
 .__btn-grp button {
-    height: 42px;
+    height: 50px;
     line-height: 40px;
     padding-top: 0;
     padding-bottom: 0;
@@ -660,10 +660,11 @@ a {
     .__btn-grp button {
         font-size: 14px;
         padding: 0 15px;
-        height: 38px;
+        height: 50px;
         line-height: 38px;
     }
 }
+
 .czi-arrow-left,
 .czi-arrow-right {
     background: transparent;

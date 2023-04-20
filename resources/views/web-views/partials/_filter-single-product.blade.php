@@ -10,11 +10,11 @@
                >
            
             <div class="flash-deals-background-image">
-                {{-- <a href="{{route('product',$product->slug)}}"> --}}
+                <a href="{{route('product',$product->slug)}}">
                     <img class="__img-125px"
                     src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail']}}"
                         onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'">
-                {{-- </a> --}}
+                </a>
             </div>
         </div>
         <div class="flash_deal_product_details" style="width: 100%">

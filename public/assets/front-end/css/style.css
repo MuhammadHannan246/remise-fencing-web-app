@@ -514,6 +514,7 @@ a {
 
 .font-semibold {
     font-weight: 600;
+    font-size: 18px;
 }
 
 .font-bold {
@@ -954,7 +955,7 @@ a {
 
 .__search-sidebar .__number-filter-btn a {
     width: 35px;
-    height: 35px;
+    height: 39px;
     border-radius: 3px;
     background: #1b7fed;
     padding: 0;

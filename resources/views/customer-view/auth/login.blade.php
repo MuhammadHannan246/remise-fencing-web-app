@@ -95,7 +95,7 @@
                                         style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};"
                                         required>
                                         <label for="si-password" class = "emailLbl" >{{\App\CPU\translate('password')}}</label>
-                                <label class="password-toggle-btn">
+                                <label class="password-toggle-btn" style="top: 38px;">
                                     <input class="custom-control-input" type="checkbox">
                                     <i class="fa-solid fa-eye fa-flip-horizontal fa-sm" style="color: #00000099;
                                     ;"></i>

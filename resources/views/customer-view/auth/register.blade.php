@@ -144,7 +144,7 @@
                                             background: transparent;
                                             left: 615px !important;">
                                 <input class="custom-control-input" type="checkbox">
-                                <i class="fa-solid fa-eye fa-flip-horizontal fa-sm"
+                                <i class="fa-solid fa-eye fa-flip-horizontal fa-sm" 
                                     style="color: #00000099;
                                                 font-size: 16px;"></i>
                                 <span class="sr-only">{{ \App\CPU\translate('Show') }}

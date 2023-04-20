@@ -11848,7 +11848,6 @@ label:not(.form-check-label):not(.custom-control-label):not(.custom-file-label):
 
 .password-toggle-btn {
     position: absolute;
-    top: 50%;
     right: .625rem;
     margin-bottom: 0;
     padding: .5rem;

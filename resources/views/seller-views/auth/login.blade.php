@@ -76,14 +76,18 @@
                                     <label class="input-label LblSeller" for="signinSrEmail">{{\App\CPU\translate('your_email')}}</label>
 
                         </div>
+                        <br> <br>
+
                         <div class="form-group INPSeller">
                             <div class="password-toggle">
-                                <input class="form-control ship-control" name="password" type="password" id="si-password"
+                                        
+                                        
+                                        <input class="form-control ship-control" name="password" type="password" id="si-password"
                                         style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};"
                                         required>
-                            <label for="si-password" class="LblSeller" >{{\App\CPU\translate('password')}}</label>
+                                                      <label for="si-password" class="LblSeller" >{{\App\CPU\translate('password')}}</label>
 
-                                <label class="password-toggle-btn">
+                                <label class="password-toggle-btn" style="top: 38px;">
                                     <input class="custom-control-input" type="checkbox">
                                     <i class="fa-solid fa-eye fa-flip-horizontal fa-sm" style="color: #00000099;
                                     "></i>

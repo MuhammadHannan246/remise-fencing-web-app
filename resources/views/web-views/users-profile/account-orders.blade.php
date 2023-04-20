@@ -24,8 +24,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
 </head>
-@section('content')
 <body>
+    @section('content')
 
     <div class="container-fluid my-3 top mt-5 orders">
         <h1 class="main-heading">
@@ -306,9 +306,10 @@
 
 
         <!-- Modal -->
-        <div class="modal fade filter-modal" id="exampleModalCenter" tabindex="-1" role="dialog"
+       
+        {{-- <div class="modal fade filter-modal" id="exampleModalCenter" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
+            < class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -365,9 +366,17 @@
 
                     </div>
 
+                </div>
+                
+            </class>
+        </div> --}}
 
-</body>
-@endsection
+        @endsection
+
+    </body>
+
+
+
 </html>
 
 

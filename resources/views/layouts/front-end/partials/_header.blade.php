@@ -456,7 +456,7 @@
         {{-- New Navbar --}}
 
         <div class="navbar navbar-expand-md navbar-light navBarHeight">
-            <div class="container ">
+            <div class="container " style="display:block !important;">
                 {{-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button> --}}

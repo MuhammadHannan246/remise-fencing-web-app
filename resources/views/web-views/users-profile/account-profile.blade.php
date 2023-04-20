@@ -25,6 +25,7 @@
         integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
@@ -51,14 +52,64 @@
 
     <br>
     <div class="divIn">
-        <h2 class="oderSumm profilee">My Profile</h2>
+        <div class="modalOuter" style="display: flex;
+        align-items: center;">
+            <div class="modalDiv">
+
+                <button style="border: 1px solid; margin-top:10px; margin-right:5px;" type="button" class="btn btnModal" data-toggle="modal" data-target="#exampleModal">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">My Profile</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="myAccountBar">
+                                    <h4 class="myAccHeading">My Account</h4>
+                                    <ul class="side">
+                                        <li class="side-item"><a href="user-account">Profile</a></li>
+                                        <li class="side-item"><a href="account-address">Address</a></li>
+                                        <li class="side-item"><a href="#">Settings</a></li>
+                                        <li class="side-item"><a href="#">Payments</a></li>
+                                        <li class="side-item"><a href="#">Vouchers</a></li>
+                                        <li class="side-item"><a href="#">Reviews</a></li>
+            
+                                    </ul>
+                                    <h4 class="myAccHeading">My Orders</h4>
+                                    <ul class="side">
+                                        <li class="side-item"><a href="#">My Return</a></li>
+                                        <li class="side-item"><a href="#">My Cancellation</a></li>
+                                    </ul>
+                                    <h4 class="myAccHeading">Sell on Remise</h4>
+            
+                                </div>
+                            </div>
+            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h2 class="oderSumm profilee">My Profile</h2>
+
+            </div>
+        </div>
+        
         <br><br>
 
         <div class="divInner2">
             <h4 class="helloUser" style="font-size: 16px; font-weight: 600;">
 
-                Hello, Talha Ahme4 &nbsp;
-                <img src="verify.png" alt="">
+                Hello, {{$customerDetail->f_name}} &nbsp;
+                <img src="{{asset('public/assets/Images/verify.png')}}" alt="">
             </h4>
 
             {{-- <button class="editProfile"><i class="fa-solid fa-pen" style="color: #ffffff;"></i>&nbsp;&nbsp;Edit
@@ -73,7 +124,7 @@
     <div class="divIn">
         <div class="divInner2">
             <div class="row">
-                <div class="col-3">
+                <div class="col-3 hideOnMob">
                     <div class="myAccountBar">
                         <h4 class="myAccHeading">My Account</h4>
                         <ul class="side">
@@ -94,7 +145,7 @@
 
                     </div>
                 </div>
-                <div class="col-9">
+                <div class="col-lg-9 col-md-12 col-sm-12">
                     <div class="myAccountBar1">
                         <form class="mt-3 px-sm-2 pb-2" action="{{route('user-update')}}" method="post"
                         enctype="multipart/form-data">
@@ -111,8 +162,8 @@
                                         <div class="{{Session::get('direction') === "rtl" ? 'pr-2' : 'pl-2'}}">
                                             <h5 class="font-name">{{$customerDetail->f_name. ' '.$customerDetail->l_name}}</h5>
                                             <label for="files"
-                                                style="cursor: pointer; color:{{$web_config['primary_color']}};"
-                                                class="spandHeadO m-0">
+                                                style="cursor: pointer; color:#000; "
+                                                class="spandHeadO m-0" >
                                                 {{\App\CPU\translate('change_your_profile')}}
                                             </label>
                                             <span class="text-danger __text-10px">( * {{\App\CPU\translate('Image ratio should be 1:1')}}  )</span>
@@ -121,7 +172,7 @@
                                     </div>
                                     <h3 class="font-name"> <br>{{\App\CPU\translate('account_information')}} </h3>
 
-                                    <div class="col-6">
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
                                         <br><br>
                                         <div class="form2">
                                             <input type="text" class="form__input2" id="f_name" name="f_name"
@@ -148,8 +199,12 @@
                                         <!-- </div> -->
                                     </div>
 
-                                    <div class="col-6">
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
                                         <br><br>
+                                        <br class="mobile">
+                                        <br class="mobile">
+    
                                         <div class="form2">
                                             <input type="number" class="form__input2" type="text" id="phone"
                                             name="phone"
@@ -164,14 +219,26 @@
                                                 <div class="password-toggle">
                                                     <input class="form__input2" name="password" type="password"
                                                            id="password">
-                                                    <label class="password-toggle-btn">
+
+
+                                                           <label
+                                                           class="password-toggle-btn btnPass">
+                                                           <input class="custom-control-input" type="checkbox">
+                                                           <i class="fa-solid fa-eye fa-flip-horizontal fa-sm"
+                                                               style="color: #00000099;
+                                                                           font-size: 16px;"></i>
+                                                           <span class="sr-only">{{ \App\CPU\translate('Show') }}
+                                                               {{ \App\CPU\translate('password') }} </span>
+                                                       </label>
+
+                                                           {{-- <label class="password-toggle-btn">
                                                         <input class="custom-control-input" type="checkbox"
-                                                               style="display: none">
-                                                        <i class="czi-eye password-toggle-indicator"
-                                                           onChange="checkPasswordMatch()"></i>
+                                                               >
+                                                               <i class="fa-solid fa-eye fa-flip-horizontal fa-sm" style="color: #00000099;" onChange="checkPasswordMatch()"></i>
+
                                                         <span
                                                             class="sr-only">{{\App\CPU\translate('Show')}} {{\App\CPU\translate('password')}} </span>
-                                                    </label>
+                                                    </label> --}}
                                                 </div>
                                                 <label for="gender" class="form__label2">New Password</label>
                                             </div>
@@ -184,13 +251,27 @@
                                                     <input class="form__input2" name="confirm_password" type="password"
                                                            id="confirm_password">
                                                     <div>
-                                                        <label class="password-toggle-btn">
+
+                                                        <label class="password-toggle-btn btnPass"
+                                                        >
+                                                        <input class="custom-control-input" type="checkbox"
+                                                            style="text-align: {{ Session::get('direction') === 'rtl' ? 'right' : 'left' }};">
+                                                        <i class="fa-solid fa-eye fa-flip-horizontal fa-sm"
+                                                            style="color: #00000099;
+                                                                               font-size: 16px;"></i>
+                        
+                                                        <span class="sr-only">{{ \App\CPU\translate('Show') }}
+                                                            {{ \App\CPU\translate('password') }} </span>
+                                                    </label>
+
+                                                        {{-- <label class="password-toggle-btn">
                                                             <input class="custom-control-input" type="checkbox"
-                                                                   style="display: none">
-                                                            <i class="czi-eye password-toggle-indicator"
-                                                               onChange="checkPasswordMatch()"></i><span
+                                                                  >
+
+                                                                   <i class="fa-solid fa-eye fa-flip-horizontal fa-sm" style="color: #00000099;" onChange="checkPasswordMatch()"></i>
+                                                            <span
                                                                 class="sr-only">{{\App\CPU\translate('Show')}} {{\App\CPU\translate('password')}} </span>
-                                                        </label>
+                                                        </label> --}}
                                                     </div>
                                                 </div>
                                                 <label for="password" class="form__label2">Re-Enter Password</label>
@@ -200,7 +281,8 @@
 
                                     </div>
 
-                                        <button type="submit" class="btn--update">{{\App\CPU\translate('update')}}   </button>
+                                    <button type="submit" class="btn--update">{{\App\CPU\translate('update')}}   </button>
+                                 
                                 </div>
 
                             </div>
@@ -221,9 +303,42 @@
     <br>
 
 
+    <script>
+      
+    </script>
 
     <script>
-        var sideItems = document.querySelectorAll(".side-item");
+      
+      $(document).ready(function() {
+            $("#show_hide_password a").on('click', function(event) {
+                event.preventDefault();
+                if ($('#show_hide_password input').attr("type") == "text") {
+                    $('#show_hide_password input').attr('type', 'password');
+                    $('#show_hide_password i').addClass("fa-eye-slash");
+                    $('#show_hide_password i').removeClass("fa-eye");
+                } else if ($('#show_hide_password input').attr("type") == "password") {
+                    $('#show_hide_password input').attr('type', 'text');
+                    $('#show_hide_password i').removeClass("fa-eye-slash");
+                    $('#show_hide_password i').addClass("fa-eye");
+                }
+            });
+        });
+    
+        $(document).ready(function() {
+            $("#show_hide_password2 a").on('click', function(event) {
+                event.preventDefault();
+                if ($('#show_hide_password2 input').attr("type") == "text") {
+                    $('#show_hide_password2 input').attr('type', 'password');
+                    $('#show_hide_password2 i').addClass("fa-eye-slash");
+                    $('#show_hide_password2 i').removeClass("fa-eye");
+                } else if ($('#show_hide_password2 input').attr("type") == "password") {
+                    $('#show_hide_password2 input').attr('type', 'text');
+                    $('#show_hide_password2 i').removeClass("fa-eye-slash");
+                    $('#show_hide_password2 i').addClass("fa-eye");
+                }
+            });
+        });
+      var sideItems = document.querySelectorAll(".side-item");
         for (var i = 0; i < sideItems.length; i++) {
             sideItems[i].addEventListener("click", function () {
                 this.classList.add("active");
@@ -238,11 +353,21 @@
 <style>
             @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
+        
+
+
+
 .innerArea {
     background: #000;
     height: 40px;
     display: flex !important;
     color: #fff;
+
+}
+
+.password-toggle-btn{
+    top: 35px ;
+    left: 365px ;
 
 }
 
@@ -1245,6 +1370,12 @@ input[type=radio] {
     .textFoot {
         font-size: 12px;
     }
+    .hideOnMob{
+        display: none;
+    }
+    .password-toggle-btn{
+        left: 175px !important;
+    }
 }
 
 @media screen and (max-width: 825px) {
@@ -1265,6 +1396,27 @@ input[type=radio] {
     .companyName {
         margin-left: 0;
     }
+    .hideOnMob{
+        display: none;
+    }
+    .password-toggle-btn{
+        left: 528px;
+    }
+    .divIn{
+        width: 96%;
+    }
+    .myAccountBar1{
+        height: 925px !important;
+    }
+    .mobile{
+        display: block !important;
+    }
+    .divInner2{
+    justify-content: center;
+ }
+ .modalDiv{
+    display: block !important;
+ }
 }
 
 .menuList {
@@ -1276,11 +1428,17 @@ input[type=radio] {
 }
 
 .btn--update{
-margin-top: 50px;
+margin-top: 50px !important;
 background-color:#FF061E;
 color: white;
 border: 0px solid #FF061E;
 padding:8px;
+height: 55px;
+border-radius: 15px;
+}
+.btn--update:hover{
+    background: #000;
+
 }
 
 .menuList .menuItem:hover {
@@ -1654,9 +1812,15 @@ padding:8px;
 /* Profile Page CSS */
 .divInner2 {
     display: flex;
+    /* justify-content: center; */
 
 }
-
+ .mobile{
+    display: none;
+ }
+.modalDiv{
+    display: none;
+}
 .editProfile {
     position: absolute;
     top: 68%;
@@ -1698,7 +1862,7 @@ padding:8px;
     border: 1px solid #8a8181a1;
     padding: 10px 30px;
     border-radius: 25px;
-    height: 420px;
+    height: 590px;
     display: grid;
     justify-items: stretch;
     margin-top: 10px;
@@ -1708,7 +1872,7 @@ padding:8px;
     border: 1px solid #8a8181a1;
     padding: 35px 30px;
     border-radius: 25px;
-    height: 490px;
+    height: 590px;
     display: grid;
     justify-items: stretch;
     margin-top: 10px;
@@ -1893,6 +2057,18 @@ Labels {
     .cardBox {
         padding: 15px 5px;
     }
+    .myAccountBar1{
+        height: 975px !important;
+    }
+    .mobile{
+    display: block;
+ }
+ .divInner2{
+    justify-content: center;
+ }
+ .modalDiv{
+    display: block !important;
+ }
 
 }
 
@@ -3662,8 +3838,8 @@ text-align: left;
             } else if (password != confirmPassword) {
                 $("#message").html("{{\App\CPU\translate('Passwords do not match')}}!");
                 $("#message").attr("style", "color:red");
-            } else if (confirmPassword.length <= 6) {
-                $("#message").html("{{\App\CPU\translate('password Must Be 6 Character')}}");
+            } else if (confirmPassword.length <= 8) {
+                $("#message").html("{{\App\CPU\translate('password must be more than 8 Character')}}");
                 $("#message").attr("style", "color:red");
             } else {
 

@@ -118,13 +118,13 @@
                         <!-- Filter by price-->
                         <div class="text-center">
                             <div class="__cate-side-title border-bottom">
-                                <span class="widget-title " style="font-size: 18px; font-weight:500;">{{\App\CPU\translate('filter')}} </span>
+                                <span class="widget-title " style="font-size: 18px; font-weight:600;">{{\App\CPU\translate('filter')}} </span>
                             </div>
                             <div
                                 class=" w-100 pt-4">
-                                <label class="w-100 opacity-75 text-nowrap for-shoting d-block mb-0" for="sorting" style="padding: 0; ">
-                                    <select class="form-control custom-select" id="searchByFilterValue">
-                                        <option selected disabled>{{\App\CPU\translate('Choose')}}</option>
+                                <label class=" opacity-75 text-nowrap for-shoting d-block mb-0" for="sorting" style="padding: 0; ">
+                                    <select class="form-control custom-select" id="searchByFilterValue" style="padding:0px !important; height: 40px;">
+                                        <option selected >Choose category</option>
                                         <option
                                             value="{{route('products',['id'=> $data['id'],'data_from'=>'best-selling','page'=>1])}}" {{isset($data['data_from'])!=null?$data['data_from']=='best-selling'?'selected':'':''}}>{{\App\CPU\translate('best_selling_product')}}</option>
                                         <option
@@ -142,13 +142,13 @@
                         <!-- Filter by price-->
                         <div class="text-center">
                             <div class="__cate-side-title border-top border-bottom">
-                                <span class="widget-title " style="font-size: 18px; font-weight:500;">{{\App\CPU\translate('Price')}} </span>
+                                <span class="widget-title " style="font-size: 18px; font-weight:600;">{{\App\CPU\translate('Price')}} </span>
                             </div>
 
                             <div class="d-flex justify-content-between align-items-center ">
                                 <div class="__w-35p">
-                                    <input class="bg-white cz-filter-search form-control form-control-sm appended-form-control"
-                                           type="number"  min="0" max="1000000" id="min_price" placeholder="Min" style="border-radius: 5px !important">
+                                    <input class="bg-white cz-filter-search form-control form-control-sm appended-form-control" 
+                                           type="number"  min="0" max="1000000" id="min_price" placeholder="Min" style="border-radius: 5px !important; padding: 0 5px !important; height: 40px;">
 
                                 </div>
                                 <div class="__w-10p">
@@ -157,7 +157,7 @@
                                 <div class="__w-35p">
                                     <input  min="100" max="1000000"
                                            class="bg-white cz-filter-search form-control form-control-sm appended-form-control"
-                                           type="number" id="max_price"  placeholder="Max" style="border-radius: 5px !important">
+                                           type="number" id="max_price"  placeholder="Max" style="border-radius: 5px !important; padding: 0 5px !important; height: 40px; ">
 
                                 </div>
 
@@ -181,7 +181,8 @@
                             </div>
                             <div class=" pb-0">
                                 <div class="input-group-overlay input-group-sm">
-                                    <input style="border-radius: 5px !important;" placeholder="{{__('Search by brands')}}"
+                                    <input style="border-radius: 5px !important;     padding: 0 5px !important;
+    height: 40px;" placeholder="{{__('Search by brands')}}"
                                         class="__inline-38 cz-filter-search form-control form-control-sm appended-form-control"
                                         type="text" id="search-brand">
                                     <div class="input-group-append-overlay">
@@ -318,7 +319,7 @@
                     </div>
                 </div>
                 @if (count($products) > 0)
-                    <div class="row mt-3" id="ajax-products">
+                    <div class="row mt-3 ml-1 mr-1" id="ajax-products">
                         @include('web-views.products._ajax-products',['products'=>$products,'decimal_point_settings'=>$decimal_point_settings])
                     </div>
                 @else

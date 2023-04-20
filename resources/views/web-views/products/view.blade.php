@@ -26,6 +26,12 @@
             color: #FF061E !important;
 
         }
+        
+        .dropClr:hover{
+            color: #fff ;
+            background: #FF061E;
+
+        }
         .for-count-value {
 
         {{Session::get('direction') === "rtl" ? 'left' : 'right'}}: 0.6875 rem;;
@@ -296,14 +302,14 @@
                                     </label>
                                     <select class="__inline-44" style="border:1px solid #7777 !important;"
                                                 onchange="filter(this.value)">
-                                        <option value="latest">{{\App\CPU\translate('Latest')}}</option>
-                                        <option
+                                        <option class="dropClr" value="latest">{{\App\CPU\translate('Latest')}}</option>
+                                        <option class="dropClr"
                                             value="low-high">{{\App\CPU\translate('Low_to_High')}} {{\App\CPU\translate('Price')}} </option>
-                                        <option
+                                        <option class="dropClr"
                                             value="high-low">{{\App\CPU\translate('High_to_Low')}} {{\App\CPU\translate('Price')}}</option>
-                                        <option
+                                        <option class="dropClr"
                                             value="a-z">{{\App\CPU\translate('A_to_Z')}} {{\App\CPU\translate('Order')}}</option>
-                                        <option
+                                        <option class="dropClr"
                                             value="z-a">{{\App\CPU\translate('Z_to_A')}} {{\App\CPU\translate('Order')}}</option>
                                     </select>
                                 </div>

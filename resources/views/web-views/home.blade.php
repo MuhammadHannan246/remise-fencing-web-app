@@ -56,7 +56,7 @@
                     <li class="nav-item {{ !request()->is('/') ? 'dropdown' : '' }}">
                         <a class="nav-link  dropdown-toggle {{ Session::get('direction') === 'rtl' ? 'pr-0' : 'pl-0' }}"
                             href="#" data-toggle="dropdown"
-                            style="{{ request()->is('/') ? 'pointer-events: none' : '' }}">
+                            style=" color: #fff !important; {{ request()->is('/') ? 'pointer-events: none' : '' }}">
                             <i class="czi-menu align-middle mt-n1 {{ Session::get('direction') === 'rtl' ? 'mr-2' : 'mr-2' }}"
                                 style="color:#fff;"></i>
                             <span class="navCate"
@@ -937,7 +937,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                                             onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" />
                                                                     </div>
                                                                 </div>
-                                                                
+
                                                                 <div class="flash_deal_product_details" style="width: 100%">
                                                                     <div class="d-flex mt-4">
                                                                         <div>

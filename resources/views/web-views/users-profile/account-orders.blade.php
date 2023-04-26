@@ -174,6 +174,9 @@
                 </div>
                @endforeach
 
+            </div>
+        </div>
+    </div>
                 {{-- <div class="row order-row">
                     <div class="col-3 col-md-5 name">
                         <div class="card order-card" style="width: 18rem;">
@@ -299,10 +302,6 @@
                     </div>
                 </div> --}}
 
-            </div>
-
-
-        </div>
 
 
         <!-- Modal -->

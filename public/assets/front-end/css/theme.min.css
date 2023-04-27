@@ -5,7 +5,11 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Poppins");
 
+*{
+  font-family: 'Poppins' !important;
+}
 :root {
     --blue: #007bff;
     --indigo: #6610f2;
@@ -12835,7 +12839,7 @@ a.nav-link:hover .media-tab-media {
 }
 
 .navbar-nav .nav-item {
-    margin-bottom: .25rem
+    margin-bottom: -0.32rem
 }
 
 .navbar-nav .nav-link {
@@ -12994,7 +12998,7 @@ a.nav-link:hover .media-tab-media {
 .navbar-tool-icon-box {
     position: relative;
     width: 2.875rem;
-    height: 2.875rem;
+    height: 3.275rem;
     transition: color 0.25s ease-in-out;
     border-radius: 50%;
     line-height: 2.625rem;
@@ -17358,7 +17362,7 @@ body {
 }
 
 .nav-item .dropdown-toggle::after {
-    margin-left: 20px !important;
+    margin-left: 0px !important;
 }
 
 .navbar-tool-text {

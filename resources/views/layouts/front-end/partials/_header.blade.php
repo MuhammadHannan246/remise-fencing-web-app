@@ -571,7 +571,7 @@
                             </div>
                         @else
                             <div class="dropdown">
-                                <a class="navbar-tool {{ Session::get('direction') === 'rtl' ? 'mr-md-0' : 'ml-md-0' }} navAccount"
+                                <a class="navbar-tool fontt {{ Session::get('direction') === 'rtl' ? 'mr-md-0' : 'ml-md-0' }} navAccount"
                                     type="button" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false">
                                     <div class="navbar-tool-icon-box bg-secondary">

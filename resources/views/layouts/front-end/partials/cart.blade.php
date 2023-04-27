@@ -1,7 +1,7 @@
 {{--code improved Md. Al imrun Khandakar--}}
-<div class="navbar-tool navCart  {{Session::get('direction') === "rtl" ? 'mr-md-3' : 'ml-md-3'}}"
+<div class="navbar-tool navCart fontt {{Session::get('direction') === "rtl" ? 'mr-md-3' : 'ml-md-3'}}"
      style="margin-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}: 6px; ">
-    <a class="navbar-tool-icon-box bg-secondary" href="{{route('shop-cart')}}" >
+    <a class="navbar-tool-icon-box bg-secondary " href="{{route('shop-cart')}}" >
         {{-- <span class="navbar-tool-label">
             @php($cart=\App\CPU\CartManager::get_cart())
             {{$cart->count()}}

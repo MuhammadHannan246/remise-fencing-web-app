@@ -51,22 +51,22 @@
             <div class="row rowDiv">
 
                 @php($categories = \App\Model\Category::with(['childes.childes'])->where('position', 0)->priority()->paginate(11))
-                <ul
+                <ul style="margin-left: 5px"
                     class="navbar-nav mega-nav pr-2 pl-2 toggleCat {{ Session::get('direction') === 'rtl' ? 'mr-2' : 'mr-2' }} d-none d-xl-block __mega-nav">
                     <li class="nav-item {{ !request()->is('/') ? 'dropdown' : '' }}">
-                        <a class="nav-link  dropdown-toggle {{ Session::get('direction') === 'rtl' ? 'pr-0' : 'pl-0' }}"
+                        <a class="nav-link  {{ Session::get('direction') === 'rtl' ? 'pr-0' : 'pl-0' }}"
                             href="#" data-toggle="dropdown"
                             style=" color: #fff !important; {{ request()->is('/') ? 'pointer-events: none' : '' }}">
                             <i class="czi-menu align-middle mt-n1 {{ Session::get('direction') === 'rtl' ? 'mr-2' : 'mr-2' }}"
                                 style="color:#fff;"></i>
-                            <span class="navCate"
-                                style="color:#fff; margin-{{ Session::get('direction') === 'rtl' ? 'right' : 'left' }}: 30px !important;margin-{{ Session::get('direction') === 'rtl' ? 'left' : 'right' }}:">
-                                {{ \App\CPU\translate('categories') }}
+                            <span class="navCate fontt2"
+                                style="text-transform: capitalize !important; color:#fff;">
+                                {{ \App\CPU\translate('Browse Categories') }}
                             </span>
                         </a>
                         @if (request()->is('/'))
                             <ul class="dropdown-menu __dropdown-menu"
-                                style="{{ Session::get('direction') === 'rtl' ? 'text-align: right;' : 'text-align: left;' }}padding-bottom: 10px!important; width: 107%;">
+                                style="{{ Session::get('direction') === 'rtl' ? 'text-align: right;' : 'text-align: left;' }}padding-bottom: 32px!important; width: 107%;">
                                 @foreach ($categories as $key => $category)
                                     @if ($key < 5)
                                         <li class="dropdown">
@@ -235,18 +235,18 @@
 
                         <div class="row mx-auto">
 
-                            <div class="col col-lg-12 col-md-12 col-sm-12 col-12 bann1" style="margin-bottom: 10px;">
-                                <ul class="navbar-nav nav_float"
+                            <div class="col col-lg-12 col-md-12 col-sm-12 col-12 bann1" style="margin-bottom: 10px; margin-left: 43px;">
+                                <ul  class="navbar-nav nav_float"
                                     style="{{ Session::get('direction') === 'rtl' ? 'padding-right: 0px ' : '' }}">
                                     <li class="nav-item dropdown {{ request()->is('/') ? 'active' : '' }}">
-                                        <a class="nav-link navLink"
+                                        <a class="nav-link navLink fontt"
                                             href="{{ route('home') }}">{{ \App\CPU\translate('Home') }}</a>
                                         {{-- <a class="nav-link" href="{{route('home')}}">{{ \App\CPU\translate('Home')}}</a> --}}
                                     </li>
 
                                     @if (\App\Model\BusinessSetting::where(['type' => 'product_brand'])->first()->value)
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle navLink" href="#"
+                                            <a class="nav-link dropdown-toggle navLink fontt" href="#"
                                                 data-toggle="dropdown">{{ \App\CPU\translate("Today's Deals") }}</a>
                                             <ul class="dropdown-menu __dropdown-menu-sizing dropdown-menu-{{ Session::get('direction') === 'rtl' ? 'right' : 'left' }} scroll-bar"
                                                 style="text-align: {{ Session::get('direction') === 'rtl' ? 'right' : 'left' }};">
@@ -268,7 +268,7 @@
                                                 @endforeach
                                                 <li class="__inline-17">
                                                     <div>
-                                                        <a class="dropdown-item" href="{{ route('brands') }}"
+                                                        <a class="dropdown-item " href="{{ route('brands') }}"
                                                             style="color: {{ $web_config['primary_color'] }} !important;">
                                                             {{ \App\CPU\translate('View_more') }}
                                                         </a>
@@ -280,7 +280,7 @@
                                     @php($discount_product = App\Model\Product::with(['reviews'])->active()->where('discount', '!=', 0)->count())
                                     @if ($discount_product > 0)
                                         <li class="nav-item dropdown {{ request()->is('/') ? 'active' : '' }}">
-                                            <a class="nav-link text-capitalize navLink"
+                                            <a class="nav-link text-capitalize navLink fontt"
                                                 href="{{ route('products', ['data_from' => 'discounted', 'page' => 1]) }}">{{ \App\CPU\translate('Trending Products') }}</a>
                                         </li>
                                     @endif
@@ -288,15 +288,15 @@
                                     @php($business_mode = \App\CPU\Helpers::get_business_settings('business_mode'))
                                     @if ($business_mode == 'multi')
                                         <li class="nav-item dropdown {{ request()->is('/') ? 'active' : '' }}">
-                                            <a class="nav-link navLink"
+                                            <a class="nav-link navLink fontt"
                                                 href="{{ route('sellers') }}">{{ \App\CPU\translate('Special Offers') }}</a>
                                         </li>
 
                                         @php($seller_registration = \App\Model\BusinessSetting::where(['type' => 'seller_registration'])->first()->value)
                                         @if ($seller_registration)
-                                            <li class="nav-item">
+                                            <li class="nav-item ">
                                                 <div class="dropdown">
-                                                    <button class="btn dropdown-toggle navLink1" type="button"
+                                                    <button class="btn dropdown-toggle NAVFONTHOVER fontt " type="button"
                                                         id="dropdownMenuButton" data-toggle="dropdown"
                                                         aria-haspopup="true" aria-expanded="false"
                                                         style="padding-{{ Session::get('direction') === 'rtl' ? 'right' : 'left' }}: 0">
@@ -543,7 +543,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                             <div class="inner1 cardOne">
                                 @foreach ($categories as $key => $category)
                                     @if ($key < 6)
-                                        <div class="">
+                                        
                                             <a
                                                 href="{{ route('products', ['id' => $category['id'], 'data_from' => 'category', 'page' => 1]) }}">
                                                 <div class="inner2">
@@ -556,7 +556,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                     </div>
                                                 </div>
                                             </a>
-                                        </div>
+                                       
                                     @endif
                                 @endforeach
                             </div>
@@ -583,10 +583,9 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                         <div class="inner1 cardOne">
                             @foreach ($latest_products as $key => $product)
                                 @if ($key < 4)
-                                    <div class="">
-                                        <a href="" class="underLine">
+                                   
                                             <div class="inner122">
-                                                <div class="">
+                                        
                                                     @if (isset($product))
                                                         @php($overallRating = \App\CPU\ProductManager::get_overall_rating($product->reviews))
                                                         <div class="flash_deal_product rtl"
@@ -665,9 +664,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                     @endif
 
                                                 </div>
-                                            </div>
-                                        </a>
-                                    </div>
+                                 
                                 @endif
                             @endforeach
                         </div>
@@ -717,10 +714,9 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                         <div class="inner1 cardOne">
                             @foreach ($latest_products as $key => $product)
                                 @if ($key < 4)
-                                    <div class="">
-                                        <a href="" class="underLine">
+                                    
                                             <div class="inner122">
-                                                <div class="">
+                                           
                                                     @if (isset($product))
                                                         @php($overallRating = \App\CPU\ProductManager::get_overall_rating($product->reviews))
                                                         <div class="flash_deal_product rtl"
@@ -802,9 +798,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                         </div>
                                                     @endif
                                                 </div>
-                                            </div>
-                                        </a>
-                                    </div>
+                                    
                                 @endif
                             @endforeach
                         </div>
@@ -917,10 +911,9 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                         <div class="inner1 cardOne">
                             @foreach ($latest_products as $key => $product)
                                 @if ($key < 4)
-                                    <div class="">
-                                        <a href="" class="underLine">
+                                    
                                             <div class="inner122">
-                                                <div class="">
+                                        
                                                     @if (isset($product))
                                                         @php($overallRating = \App\CPU\ProductManager::get_overall_rating($product->reviews))
                                                         <div class="flash_deal_product rtl"
@@ -1007,9 +1000,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                     @endif
 
                                                 </div>
-                                            </div>
-                                        </a>
-                                    </div>
+                                          
                                 @endif
                             @endforeach
                         </div>
@@ -1049,6 +1040,36 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
 </html>
 
 <style>
+    .NAVFONTHOVER:hover{
+       
+        color: #FF061E !important;
+        opacity: 1 !important;
+
+    
+    }
+    @font-face {
+    font-family: 'BURBANKBIGCONDENSED-BOLD';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
+  
+}
+@font-face {
+    font-family: 'BURBANKBIGCONDENSED-BLACK';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
+  
+}
+.fontt{
+    font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+    font-style: normal;
+font-weight: 600 !important;
+font-size: 23.2274px !important;
+}
+
+.fontt2{
+    font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+font-weight: 600 !important;
+font-size: 20px !important;
+letter-spacing: 1px;
+}
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
     .innerArea {
@@ -1472,7 +1493,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
 
     .innerArea4 .img1 {
 
-        width: 480px;
+        width: 484px;
         height: 380px;
         /* margin-left: 35px; */
 
@@ -2824,9 +2845,10 @@ text-decoration: none;
     .innerArea4 .img1 .innerBody {
 
         display: inline-block;
-        margin: 200px 20px;
+        margin: 80px 20px;
         width: 80%
     }
+
 
     /* .rightSide {
         margin-left: 225px;
@@ -2846,7 +2868,7 @@ text-decoration: none;
         overflow: hidden;
     border-radius: 15px;
     vertical-align: middle;
-    margin: 5px 10px;
+    margin: 0px 10px;
     position: relative;
     }
     .__img-125px{
@@ -2874,7 +2896,7 @@ text-decoration: none;
     } */
 
     .innerArea4 .img3 {
-        width: 330px;
+        width: 353px;
         height: 185px;
 
         margin: 10px 10px;
@@ -2883,7 +2905,7 @@ text-decoration: none;
 
     .innerArea4 .img2 {
 
-        width: 330px;
+        width: 353px;
         height: 185px;
 
         margin: 0 10px;
@@ -2905,9 +2927,11 @@ text-decoration: none;
     left: 35px;
     }
     .shopHeading {
-        font-size: 40px;
-        font-weight: 600;
-        /* padding: 0 30px; */
+        font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+    font-style: normal;
+   font-weight: 600 !important;
+   font-size: 44px !important;
+   margin-bottom: 32px;
     }
 
     .innea5 {
@@ -2942,7 +2966,6 @@ text-decoration: none;
     }
 
     .rowDiv {
-        margin-left: 0 !important;
         margin-right: 0 !important;
     }
 
@@ -3000,7 +3023,7 @@ text-decoration: none;
             font-size: 12px;
         }
 
-        .nav_float .nav-item .dropdown .navLink1 {
+        .nav_float .nav-item .dropdown  {
             font-size: 12px !important;
 
         }
@@ -3134,7 +3157,7 @@ text-decoration: none;
             font-size: 9px;
         }
 
-        .nav_float .nav-item .dropdown .navLink1 {
+        .nav_float .nav-item .dropdown  {
             font-size: 9px !important;
 
         }
@@ -3262,6 +3285,7 @@ text-decoration: none;
 
         .shopHeading {
             font-size: 15px;
+           
         }
 
         .innea5 .viewBtn {
@@ -3353,6 +3377,7 @@ text-decoration: none;
         .hideMobe {
             display: none;
         }
+     
     }
 </style>
 

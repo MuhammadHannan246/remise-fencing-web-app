@@ -356,7 +356,7 @@ a {
 
 .__mega-nav .nav-item .nav-link span {
     margin-right: 35px;
-    margin-left: 35px;
+   
 }
 
 .mega-nav .nav-item .nav-link {
@@ -3902,6 +3902,9 @@ a {
     border-radius: 5px;
     width: 125px;
     height: 125px;
+}
+.flash-deals-background-image{
+    border-radius: 15px;
 }
 
 .__inline-61 .feature-product-title {

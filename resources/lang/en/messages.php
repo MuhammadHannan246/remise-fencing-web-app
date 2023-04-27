@@ -3031,4 +3031,6 @@
   'password Must Be 8 Character' => 'Password Must Be 8 Character',
   'password must be more than 8 Character' => 'Password must be more than 8 Character',
   'Choose category' => 'Choose category',
+  'bcategories' => 'Bcategories',
+  'Browse Categories' => 'Browse Categories',
 );

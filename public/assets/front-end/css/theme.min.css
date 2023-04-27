@@ -4495,7 +4495,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 
     .navbar-expand-md .navbar-collapse {
         display: -ms-flexbox !important;
-       
+
         -ms-flex-preferred-size: auto;
         flex-basis: auto
     }
@@ -12379,7 +12379,7 @@ h1 .dropdown-toggle::after, h2 .dropdown-toggle::after, h3 .dropdown-toggle::aft
     position: relative;
     width: 100%;
     transition: all 0.25s ease-in-out;
-    font-size: .875rem;
+    font-size: 1.5rem;
     font-weight: normal
 }
 

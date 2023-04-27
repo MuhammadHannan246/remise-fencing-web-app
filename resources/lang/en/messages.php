@@ -3033,4 +3033,9 @@
   'Choose category' => 'Choose category',
   'bcategories' => 'Bcategories',
   'Browse Categories' => 'Browse Categories',
+  'product tag' => 'Product tag',
+  'withdrawal methods' => 'Withdrawal methods',
+  'mail_received_successfully' => 'Mail received successfully',
+  'Employee_Update' => 'Employee Update',
+  'No_delivery_man_found' => 'No delivery man found',
 );

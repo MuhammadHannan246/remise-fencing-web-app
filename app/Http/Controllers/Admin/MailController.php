@@ -118,8 +118,10 @@ class MailController extends Controller
     public function send(Request $request)
     {
         $response_flag = 0;
+        $error = '';
+        $emailServices_smtp = Helpers::get_business_settings('mail_config');
         try {
-            $emailServices_smtp = Helpers::get_business_settings('mail_config');
+
             if ($emailServices_smtp['status'] == 0) {
                 $emailServices_smtp = Helpers::get_business_settings('mail_config_sendgrid');
             }
@@ -129,8 +131,9 @@ class MailController extends Controller
             }
         } catch (\Exception $exception) {
             $response_flag = 2;
+            $error = $exception;
         }
 
-        return response()->json(['success' => $response_flag]);
+        return response()->json(['success' => $response_flag, 'error'=> $error]);
     }
 }

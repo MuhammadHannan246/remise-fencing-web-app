@@ -1,4 +1,11 @@
 <style>
+
+@font-face {
+    font-family: 'BURBANKBIGCONDENSED-BOLD';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
+  
+}
+
     .for-count-value {
         color: {{ $web_config['primary_color'] }};
     }
@@ -187,7 +194,8 @@
     }
 
     .navAccount {
-        font-size: 18px;
+        font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+        font-size: 24px;
         font-weight: 800;
         padding: 2px;
     }

@@ -616,8 +616,9 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                                     <div class="d-flex mt-4">
                                                                         <div>
                                                                             <span class="flash-product-title" style="color: #000;
-                                                                            font-size: 20px;
-                                                                            font-weight: 600;">
+                                                                            font-size: 26px;
+                                                                            font-weight: 600;
+    font-family: 'BURBANKBIGCONDENSED-BOLD' !important;">
                                                                                 {{ $product['name'] }}
                                                                             </span>
                                                                         </div>
@@ -640,16 +641,21 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                                                 @if ($product->discount > 0)
                                                                                     <p 
 
-                                                                                        style="font-size: 14px!important; color: #1E1E1E99; !important; font-weight:700;    text-decoration: line-through;
-                                                                                        text-decoration-color: red; text-decoration-thickness:1.5px;">
+    
+                                                                                        style=" font-size: 18px!important; color: #1E1E1E99; !important; font-weight:700;    text-decoration: line-through;
+                                                                                        text-decoration-color: red; text-decoration-thickness:1.5px;
+                                                                                        font-family: 'BURBANKBIGCONDENSED-BOLD' !important;">
                                                                                         {{ \App\CPU\Helpers::currency_converter($product->unit_price) }}
                                                                                     </p>
                                                                                 @endif
                                                                             </div>
                                                                             <div class="flash-product-price">
  
-                                                                                <p style="color: red;
-                                                                                font-size: 20px;
+                                                                                <p style="
+    font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+                                                                                
+                                                                                color: red;
+                                                                                font-size: 30px;
                                                                                 font-weight: 800;">
                                                                                 {{ \App\CPU\Helpers::currency_converter($product->unit_price - \App\CPU\Helpers::get_product_discount($product, $product->unit_price)) }}
                                                                             </p>
@@ -749,8 +755,12 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                                     class="flash_deal_product_details" style="width: 100%">
                                                                     <div class="d-flex mt-4">
                                                                         <div>
-                                                                            <span class="flash-product-title" style="color: #000;
-                                                                            font-size: 20px;
+                                                                            <span class="flash-product-title" style="
+                                                                            
+                                                                            font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+
+                                                                            color: #000;
+                                                                            font-size: 26px;
                                                                             font-weight: 600;">
                                                                                 {{ $product['name'] }}
                                                                             </span>
@@ -773,7 +783,10 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                                             <div>
                                                                                 @if ($product->discount > 0)
                                                                                     <p
-                                                                                    style="font-size: 14px!important; color: #1E1E1E99; !important; font-weight:700;    text-decoration: line-through;
+                                                                                    style="
+                                                                                        font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+
+                                                                                    font-size: 18px!important; color: #1E1E1E99; !important; font-weight:700;    text-decoration: line-through;
                                                                                     text-decoration-color: red; text-decoration-thickness:1.5px;">
                                                                                         {{ \App\CPU\Helpers::currency_converter($product->unit_price) }}
                                                                                     </p>
@@ -782,7 +795,9 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                                             <div class="flash-product-price">
 
                                                                                 <p style="color: red;
-                                                                                font-size: 20px;
+                                                                                    font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+
+                                                                                font-size: 30px;
                                                                                 font-weight: 800;">
                                                                                     {{ \App\CPU\Helpers::currency_converter($product->unit_price - \App\CPU\Helpers::get_product_discount($product, $product->unit_price)) }}
 
@@ -848,7 +863,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
 
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 px-0">
                             <div class="middleArea mx-4 my-10">
-                                <label class="dealOfTheDay" for="dealOfTheDay" style="color:#fff;">Deal Of Day</label>
+                                <label class="dealOfTheDay" for="dealOfTheDay" style="font-family:'Poppins' !important; color:#fff;">Deal Of Day</label>
                                 <h1 class="middleHeading">Vorem ipsum dolor
                                     sit amet, consectetur</h1>
                                 <label class="price1" for="price1">$999.99</label>
@@ -945,8 +960,12 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                                     <div class="d-flex mt-4">
                                                                         <div>
                                                                             <div>
-                                                                                <span class="flash-product-title" style="color: #000;
-                                                                                font-size: 20px;
+                                                                                <span class="flash-product-title"
+                                                                                
+                                                                                style="
+                                                                                font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+                                                                                color: #000;
+                                                                                font-size: 26px;
                                                                                 font-weight: 600;">
                                                                                     {{ $product['name'] }}
                                                                                 </span>
@@ -974,7 +993,10 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                                             <div>
                                                                                 @if ($product->discount > 0)
                                                                                     <p
-                                                                                    style="font-size: 14px!important; color: #1E1E1E99; !important; font-weight:700;    text-decoration: line-through;
+                                                                                    style="
+                                                                                        font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+
+                                                                                    font-size: 18px!important; color: #1E1E1E99; !important; font-weight:700;    text-decoration: line-through;
                                                                                     text-decoration-color: red; text-decoration-thickness:1.5px;">
                                                                                         {{ \App\CPU\Helpers::currency_converter($product->unit_price) }}
                                                                                     </p>
@@ -983,7 +1005,9 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                                             <div class="flash-product-price">
 
                                                                                 <p style="color: red;
-                                                                                font-size: 20px;
+                                                                                    font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+
+                                                                                font-size: 30px;
                                                                                 font-weight: 800;">
                                                                                     {{ \App\CPU\Helpers::currency_converter($product->unit_price - \App\CPU\Helpers::get_product_discount($product, $product->unit_price)) }}
 
@@ -1538,6 +1562,8 @@ text-decoration: none;
 }
 
     .innerArea4 .innerBody .heading h1 {
+    font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+
         font-size: 35px;
         color: #FFF;
         font-weight: 600;
@@ -1612,6 +1638,8 @@ text-decoration: none;
     }
 
     .innerArea4 .innerBody2 .heading2 h1 {
+    font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+
         font-size: 30px;
         color: #FFF;
         width: 70%;
@@ -1671,6 +1699,8 @@ text-decoration: none;
     } */
 
     .innerArea4 .innerBody3 .heading3 h1 {
+    font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+
         font-size: 30px;
         color: #FFF;
         width: 100%;
@@ -1897,8 +1927,10 @@ text-decoration: none;
     }
 
     .innerArea7 .img22 .innText .whiteHeading {
+        font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+
         color: #fff;
-        font-size: 45px;
+        font-size: 55px;
         font-weight: 600;
         line-height: 1;
 
@@ -1906,7 +1938,7 @@ text-decoration: none;
 
     .innerArea7 .img22 .innText .whiteText {
         color: #fff;
-        font-size: 20px;
+        font-size: 16px;
         font-weight: 300 !important;
     }
 
@@ -1985,11 +2017,14 @@ text-decoration: none;
     }
 
     .middleArea .middleHeading {
-        font-size: 34px;
+        font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+        font-size: 49px;
         font-weight: 600 !important;
     }
 
     .middleArea .price1 {
+        font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+
         color: #777;
         font-size: 20px;
         line-height: 0;
@@ -1999,6 +2034,8 @@ text-decoration: none;
     }
 
     .middleArea .price2 {
+        font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+
         font-size: 50px;
         font-weight: 600;
         color: #EC0000;
@@ -2013,11 +2050,13 @@ text-decoration: none;
     }
 
     .imageText {
+
+        font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
         color: #fff;
         position: absolute;
         top: 60%;
         left: 20px;
-        font-size: 35px;
+        font-size: 46px;
         font-weight: 700;
     }
 
@@ -2845,7 +2884,7 @@ text-decoration: none;
     .innerArea4 .img1 .innerBody {
 
         display: inline-block;
-        margin: 80px 20px;
+        margin: 180px 20px;
         width: 80%
     }
 
@@ -2856,7 +2895,7 @@ text-decoration: none;
 
     .innerArea4 .img2 .innerBody2 {
         position: absolute;
-        /* margin: 15px 15px; */
+        /* margin: 15px 0px; */
         width: 80%;
     }
 

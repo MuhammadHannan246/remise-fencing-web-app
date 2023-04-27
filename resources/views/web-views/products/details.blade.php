@@ -171,7 +171,13 @@
 
                 <div class="product-inner" style="clear: both;">
                     <p class="sold-by"> Sold By </p>
-                    <h3 class="title h3-heading" style="text-transform: capitalize;"> {{$product->seller->shop->name}} </h3>
+                    <h3 class="title h3-heading" style="text-transform: capitalize;">
+                        @if($product->added_by=='seller')
+                        {{ $product->seller->shop?$product->seller->shop->name:$product->seller->f_name}}
+                    @elseif($product->added_by=='admin')
+                       {{$web_config['name']->value}}
+                    @endif
+                </h3>
                     <img src="{{asset('public/assets/Images/Badge.png')}}" class="pt-1 pl-2">
                     <img src="{{asset('public/assets/Images/Message-icon.png')}}" style="float: right;">
                     <i class="fa-sharp fa-solid fa-messages-question" style="color: #ff061e;"></i>
@@ -182,7 +188,7 @@
 
                 <div class="price">
                     <p>
-                        {{\App\CPU\Helpers::get_price_range($product) }}    
+                        {{\App\CPU\Helpers::get_price_range($product) }}
                     </p>
                     <p class="discount">
                         was <span style="
@@ -211,7 +217,7 @@
                                 dictum est a, mattis tellus.
                             </p>
                         </li>
-                    
+
                         <li><i class="fa-solid fa-circle-check"
                             style="color: #ff001e;float: left;margin-top: 7px;font-size: 20px;"></i>
                         <p style="display: flex;padding-left: 12px;">
@@ -1128,7 +1134,7 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
     }
     .__text-12px:hover{
         color: #FF061E !important;
-        
+
         border: 1px solid #FF061E !important;
         /* background: #FF061E !important; */
         /* color: #FFF !important; */

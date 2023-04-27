@@ -10,7 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
@@ -19,9 +18,6 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 
 </head>
 
@@ -187,12 +183,18 @@
                 </div>
 
                 <div class="price">
-                    <p>
+                    <p style="font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+                    margin-bottom:0px;
+                    ">
                         {{\App\CPU\Helpers::get_price_range($product) }}
                     </p>
                     <p class="discount">
-                        was <span style="
+                        Was <span style=" 
+                        font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+                        color:#1E1E1E99;
+                        font-size:14px;
                         text-decoration: line-through;
+                        text-decoration-color:#000;
                     ">30.99</span>
                     </p>
                 </div>
@@ -294,7 +296,8 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
                     </script>
                     <div class="row price-shipping">
                         <div class="col-6">
-                            <p>Price
+                            <p style="color: #1E1E1E80;
+                            ">Price
 
                             </p>
                         </div>
@@ -304,7 +307,9 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
                     </div>
                     <div class="row price-shipping pb-4">
                         <div class="col-6">
-                            <p>Shipping</p>
+                            <p 
+                            style="color: #1E1E1E80;
+                            ">Shipping</p>
                         </div>
                         <div class="col-6" style="text-align: end;">
                             <p> <b>${{$product->shipping_cost}}</b> </p>
@@ -316,7 +321,7 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
                         <div class="position-relative {{Session::get('direction') === "rtl" ? 'ml-n4' : 'mr-n4'}} mb-2">
                             @if (count(json_decode($product->colors)) > 0)
                                 <div class="flex-start">
-                                    <div class="product-description-label mt-2 text-body">{{\App\CPU\translate('color')}}:
+                                    <div class="product-description-label mt-2 text-body" style="color: #1E1E1E80 !important;">{{\App\CPU\translate('color')}}:
                                     </div>
                                     <div>
                                         <ul class="list-inline checkbox-color mb-1 flex-start {{Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'}}"
@@ -457,6 +462,7 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
         <div class="row">
             <div class="col-sm-3">
                 <div class="rating-block">
+
                     <h2 class="bold padding-bottom-7 h2-heading">4.7 <small>/5.0</small></h2>
                     <i class="fa-solid fa-star float-left" style="color: #ffc700; font-size: 30px;"></i>
                     <i class="fa-solid fa-star float-left" style="color: #ffc700; font-size: 30px;"></i>
@@ -647,13 +653,23 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
 </html>
 
 <style>
+       @font-face {
+    font-family: 'BURBANKBIGCONDENSED-BOLD';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
+  
+}
+@font-face {
+    font-family: 'BURBANKBIGCONDENSED-BLACK';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
+  
+}
         .container-fluid {
         padding: 0px 60px !important;
     }
 
     .h2-heading {
-        font-family: Burbank Big Condensed !important;
-        font-size: 30px;
+        font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+        font-size: 33.23px;
         color: #1E1E1E !important;
         font-weight: 600 !important;
         line-height: 33px !important;
@@ -663,8 +679,10 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
     }
 
     .h3-heading {
+        font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+
         color: #1E1E1E !important;
-        font-family: Burbank Big Condensed !important;
+        /* font-family: Burbank Big Condensed !important; */
         font-size: 26px;
         font-weight: 600 !important;
         line-height: 26px !important;
@@ -898,8 +916,8 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
 
     .price .discount {
         color: #1E1E1E;
-        font-family: Poppins;
-        font-size: 11px;
+        font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+        font-size: 16px;
         font-weight: 600;
         line-height: 17px;
         letter-spacing: 0em;
@@ -2326,3 +2344,16 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
             src="https://platform-api.sharethis.com/js/sharethis.js#property=5f55f75bde227f0012147049&product=sticky-share-buttons"
             async="async"></script>
 @endpush
+<script>
+    window.onload = function () {
+      var span = document.createElement('span');
+    
+      span.className = 'fa';
+      span.style.display = 'none';
+      document.body.insertBefore(span, document.body.firstChild);
+      
+      alert(window.getComputedStyle(span, null).getPropertyValue('font-family'));
+        
+      document.body.removeChild(span);
+    };
+    </script>

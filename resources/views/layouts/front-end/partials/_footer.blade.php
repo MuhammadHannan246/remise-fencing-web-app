@@ -29,7 +29,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
         integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous">
     </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.6.0/css/all.min.css" integrity="sha512-ykRBEJhyZ+B/BIJcBuOyUoIxh0OfdICfHPnPfBy7eIiyJv536ojTCsgX8aqrLQ9VJZHGz4tvYyzOM0lkgmQZGw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
@@ -419,20 +419,30 @@
 
 
                         <a href="https://www.facebook.com/">
-                            <i class="fab fa-facebook-f iconSocial"></i>
+                            {{-- <i class="fab fa-facebook-f iconSocial"></i> --}}
+                            {{-- <i class="fa-brands fa-facebook-f iconSocial"></i> --}}
+                            <img src="{{asset('public/assets/Images/fb.png')}}" alt="" class="iconSocial">
                         </a>
                         <a href="https://www.instagram.com/">
-                            <i class="fab fa-instagram iconSocial"></i>
+                            {{-- <i class="fab fa-instagram iconSocial"></i> --}}
+                            <img src="{{asset('public/assets/Images/insta.png')}}" alt="" class="iconSocial">
+
                         </a>
                         <a href="https://www.twitter.com/">
-                            <i class="fab fa-twitter iconSocial"></i>
+                            {{-- <i class="fab fa-twitter iconSocial"></i> --}}
+                            <img src="{{asset('public/assets/Images/t.png')}}" alt="" class="iconSocial">
+
                         </a>
 
                         <a href="https://www.linkedin.com/">
-                            <i class="fab fa-linkedin-in iconSocial"></i>
+                            {{-- <i class="fab fa-linkedin-in iconSocial"></i> --}}
+                            <img src="{{asset('public/assets/Images/link.png')}}" alt="" class="iconSocial">
+
                         </a>
                         <a href="https://www.pinterest.com/">
-                            <i class="fab fa-pinterest iconSocial"></i>
+                            {{-- <i class="fab fa-pinterest iconSocial"></i> --}}
+                            <img src="{{asset('public/assets/Images/p.png')}}" alt="" class="iconSocial">
+
                         </a>
                     </div>
 

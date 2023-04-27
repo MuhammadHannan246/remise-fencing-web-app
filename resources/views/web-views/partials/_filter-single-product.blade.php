@@ -23,8 +23,9 @@
                 <div>
                     <div>
                         <span class="flash-product-title" style="color: #000;
-                        font-size: 18px;
-                        font-weight: 600;">
+                        font-size: 26px;
+                        font-weight: 600;
+                        font-family: 'BURBANKBIGCONDENSED-BOLD' !important;">
                             {{ $product['name'] }}
                         </span>
                     </div>
@@ -51,8 +52,9 @@
                     <div>
                         @if ($product->discount > 0)
                             <p
-                            style="font-size: 14px!important; color: #1E1E1E99; !important; font-weight:700;    text-decoration: line-through;
-                            text-decoration-color: red; text-decoration-thickness:1.5px;">
+                            style="font-size: 18px!important; color: #1E1E1E99; !important; font-weight:700;    text-decoration: line-through;
+                            text-decoration-color: red; text-decoration-thickness:1.5px;
+                            font-family: 'BURBANKBIGCONDENSED-BOLD' !important;">
                                 {{ \App\CPU\Helpers::currency_converter($product->unit_price) }}
                             </p>
                         @endif
@@ -60,7 +62,8 @@
                     <div class="flash-product-price">
 
                         <p style="color: red;
-                        font-size: 20px;
+                        font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+                        font-size: 30px;
                         font-weight: 800;">
                             {{ \App\CPU\Helpers::currency_converter($product->unit_price - \App\CPU\Helpers::get_product_discount($product, $product->unit_price)) }}
 

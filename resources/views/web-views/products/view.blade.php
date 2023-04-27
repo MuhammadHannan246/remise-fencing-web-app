@@ -83,6 +83,10 @@
             }
         }
 
+        @font-face {
+    font-family: 'BURBANKBIGCONDENSED-BOLD';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
+}
     </style>
 @endpush
 
@@ -93,7 +97,7 @@
     <div class="d-flex w-100 justify-content-center align-items-center mb-3 __min-h-70px __inline-35" >
 
         <div class="text-capitalize container text-center">
-            <span class="__text-18px font-semibold" style=" font-size: 35px;">{{\App\CPU\translate(str_replace('_',' ',$data['data_from']))}} {{\App\CPU\translate('products')}} {{ isset($brand_name) ? '('.$brand_name.')' : ''}}</span>
+            <span class="__text-18px font-semibold" style=" font-size: 40px; font-family: 'BURBANKBIGCONDENSED-BOLD' !important;">{{\App\CPU\translate(str_replace('_',' ',$data['data_from']))}} {{\App\CPU\translate('products')}} {{ isset($brand_name) ? '('.$brand_name.')' : ''}}</span>
         </div>
 
     </div>
@@ -118,7 +122,7 @@
                         <!-- Filter by price-->
                         <div class="text-center">
                             <div class="__cate-side-title border-bottom">
-                                <span class="widget-title " style="font-size: 18px; font-weight:600;">{{\App\CPU\translate('filter')}} </span>
+                                <span class="widget-title " style="font-size: 25px; font-weight:600; font-family: 'BURBANKBIGCONDENSED-BOLD' !important;">{{\App\CPU\translate('filter')}} </span>
                             </div>
                             <div
                                 class=" w-100 pt-4">
@@ -142,7 +146,7 @@
                         <!-- Filter by price-->
                         <div class="text-center">
                             <div class="__cate-side-title border-top border-bottom">
-                                <span class="widget-title " style="font-size: 18px; font-weight:600;">{{\App\CPU\translate('Price')}} </span>
+                                <span class="widget-title " style="font-size: 25px; font-weight:600; font-family: 'BURBANKBIGCONDENSED-BOLD' !important;">{{\App\CPU\translate('Price')}} </span>
                             </div>
 
                             <div class="d-flex justify-content-between align-items-center ">
@@ -177,7 +181,7 @@
                     <div>
                         <div class="text-center">
                             <div class="__cate-side-title border-top border-bottom">
-                                <span class="widget-title font-semibold">{{\App\CPU\translate('brands')}}</span>
+                                <span class="widget-title font-semibold" style="">{{\App\CPU\translate('brands')}}</span>
                             </div>
                             <div class=" pb-0">
                                 <div class="input-group-overlay input-group-sm">
@@ -218,7 +222,7 @@
                         <!-- Categories-->
                         <div>
                             <div  class="text-center __cate-side-title border-top border-bottom">
-                                <span class="widget-title" style="font-size: 18px; font-weight: 500;">{{\App\CPU\translate('categories')}}</span>
+                                <span class="widget-title" style="font-size: 25px; font-weight: 500; font-family: 'BURBANKBIGCONDENSED-BOLD' !important;">{{\App\CPU\translate('categories')}}</span>
                             </div>
                             @php($categories=\App\CPU\CategoryManager::parents())
                             <div class="accordion mt-n1 __cate-side-price" id="shop-categories">

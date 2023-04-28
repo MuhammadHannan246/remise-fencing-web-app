@@ -53,7 +53,7 @@
 
     <br><br><br>
 
-    <div class="container-fluid my-3 pb-5 innerArea_new register">
+    <div class="container my-3 pb-5 innerArea_new register">
         <div class="col-12 logo text-center">
             <img src="{{asset("storage/app/public/company")."/".$web_config['web_logo']->value}}"
             onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
@@ -97,8 +97,14 @@
                                         <label for="si-password" class = "emailLbl" >{{\App\CPU\translate('password')}}</label>
                                 <label class="password-toggle-btn" style="top: 38px;">
                                     <input class="custom-control-input" type="checkbox">
-                                    <i class="fa-solid fa-eye fa-flip-horizontal fa-sm" style="color: #00000099;
-                                    ;"></i>
+                                    {{-- <i class="fa-solid fa-eye fa-flip-horizontal fa-sm" style="color: #00000099;
+                                    ;"></i> --}}
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#00000099" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                        <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                                      </svg>
+                                   
                                     <span
                                         class="sr-only">{{\App\CPU\translate('Show')}} {{\App\CPU\translate('password')}} </span>
                                 </label>

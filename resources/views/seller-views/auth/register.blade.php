@@ -68,7 +68,7 @@
     <!---- New Section starts here-->
 
 
-    <div class="container-fluid my-3 pb-5 innerArea_new register">
+    <div class="container my-3 pb-5 innerArea_new register">
         <br><br><br>
         <div class="col-12 logo text-center">
             <img src="{{asset("storage/app/public/company")."/".$web_config['web_logo']->value}}"
@@ -121,36 +121,41 @@
                                 <div class="invalid-feedback">{{\App\CPU\translate('Please enter your phone number')}}!</div>
                             </div>
 
-                            <div class="form-group ship-form" style="position: relative;">
+                            <div class="form-group ship-form passINPUT" >
                                 <label class="lblClr" for="si-password">{{\App\CPU\translate('password')}}</label>
                                         <div class="password-toggle">
                                             <input type="password" class="form-control ship-control form-control-user" minlength="6" id="exampleInputPassword" name="password" required>
-                                            <label class="password-toggle-btn"style="position: absolute;
-                                            top: 36px;
-                                            width: 20px;
-                                            background: transparent;
-                                            left: 615px;">
-                                                <input class="custom-control-input" type="checkbox"> <i class="fa-solid fa-eye fa-flip-horizontal fa-sm" style="color: #00000099;
-                                                font-size: 16px;"></i><span
+                                            <label class="password-toggle-btn btnPass"style="">
+                                                <input class="custom-control-input" type="checkbox"> 
+                                                
+                                                {{-- <i class="fa-solid fa-eye fa-flip-horizontal fa-sm" style="color: #00000099;
+                                                font-size: 16px;"></i> --}}
+                                                
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#00000099" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                                                  </svg>
+                                                <span
                                                     class="sr-only">{{\App\CPU\translate('Show')}} {{\App\CPU\translate('password')}} </span>
                                             </label>
                                         </div>
                             </div>
 
-                            <div class="form-group ship-form" style="position: relative;">
+                            <div class="form-group ship-form passINPUT">
                                 <label class="lblClr" for="si-password">{{\App\CPU\translate('confirm_password')}}</label>
                                         <div class="password-toggle">
                                             <input type="password" class="form-control ship-control form-control-user" minlength="6" id="exampleRepeatPassword"  required>
                                           <div class="pass invalid-feedback">{{\App\CPU\translate('Repeat')}}  {{\App\CPU\translate('password')}} {{\App\CPU\translate('not match')}} .</div>
 
-                                            <label class="password-toggle-btn" style="position: absolute;
-                                            top: 36px;
-                                            width: 20px;
-                                            background: transparent;
-                                            left: 615px;">
+                                            <label class="password-toggle-btn btnPass">
                                                 <input class="custom-control-input" type="checkbox"
-                                                       style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};"> <i class="fa-solid fa-eye fa-flip-horizontal fa-sm" style="color: #00000099;
-                                                       font-size: 16px;"></i><span
+                                                       style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};"> 
+                                                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#00000099" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                                        <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                                                      </svg>
+    
+                                                       <span
                                                     class="sr-only">{{\App\CPU\translate('Show')}} {{\App\CPU\translate('password')}} </span>
                                             </label>
                                           </div>
@@ -229,7 +234,7 @@
                         <br/>
                     @else
                     <div class="col-12">
-                        <div class="row py-2">
+                        <div class="row py-2 d-flex align-items-end">
                             <div class="col-6 pr-0">
                                 <input type="text" class="form-control __h-40" name="default_captcha_value" value=""
                                        placeholder="{{\App\CPU\translate('Enter captcha value')}}" class="border-0" autocomplete="off">
@@ -290,6 +295,15 @@
 <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
+
+
+        .register .btnPass{
+            position: absolute;
+            top: -33px !important;
+            width: 30px;
+            background: transparent;
+            left: 525px !important;
+        }
     .innerArea {
         background: #000;
         height: 40px;
@@ -1203,20 +1217,9 @@
     }
 
     /* footer CSS */
-    .footer {
-        background: #000;
-        padding-top: 100px;
-    }
 
-    .headingFoot {
-        color: #fff;
-    }
 
-    .textFoot {
-        color: #FFF;
-        line-height: 0;
-    }
-
+    
 
     .footLogo {
         width: 180px;
@@ -1255,17 +1258,7 @@
         margin-left: 30px;
     }
 
-    .comp1 {
-        margin-left: 50px;
-    }
 
-    .companyName {
-        color: #fff;
-        font-size: 17px;
-        margin-left: 20px;
-        text-align: center;
-        font-weight: 600;
-    }
 
     @media screen and (max-width:480px) {
         .comp3 {
@@ -1280,9 +1273,6 @@
             margin-left: 10px;
         }
 
-        .companyName {
-            margin-left: 10px;
-        }
 
         .searchMarketing {
             text-align: center;
@@ -1296,6 +1286,9 @@
 
         .textFoot {
             font-size: 12px;
+        }
+        .register .btnPass{
+            left: 300px !important;
         }
     }
 
@@ -1314,9 +1307,6 @@
             font-size: 8px;
         }
 
-        .companyName {
-            margin-left: 0;
-        }
     }
 
     .menuList {

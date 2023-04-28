@@ -31,12 +31,6 @@
 
     }
 
-    .input-group-text {
-        padding: 0.7rem 0.76rem !important;
-        font-size: 2rem !important;
-        /* background: #FF061E !important; */
-
-    }
 
     .mega-nav .dropdown-menu>.dropdown>a {
         padding: 2rem 0.5rem;
@@ -53,7 +47,9 @@
     .topbar {
         padding: 1rem 0;
         font-size: 1.2rem;
-        background: #000;
+        /* background: #000; */
+        background: #151515;
+
         color: #FFF;
 
     }
@@ -172,7 +168,9 @@
     }
 
     .input-group-text {
-        padding: 1.45rem 0.76rem !important;
+        padding: 1.45rem 1.2rem !important;
+        font-size: 2rem !important;
+
     }
 
     .form-control {
@@ -401,19 +399,25 @@
 
 
 <header class="box-shadow-sm rtl __inline-10">
-    <!-- Topbar-->
+    <!-- Topbara-->
     <div class="topbar">
         <div class="container">
 
             <div class="leftDiscount">
                 <div class="topbar-text dropdown d-md-none ">
                     <a class="topbar-link" href="tel: {{ $web_config['phone']->value }}">
-                        <i class="fa fa-phone"></i> {{ $web_config['phone']->value }}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                          </svg> 
+                        {{ $web_config['phone']->value }}
+
                     </a>
                 </div>
                 <div class="d-none d-md-block {{ Session::get('direction') === 'rtl' ? 'mr-2' : 'mr-2' }} text-nowrap">
                     <a class="topbar-link d-none d-md-inline-block" href="tel:{{ $web_config['phone']->value }}">
-                        <i class="fa fa-phone"></i> {{ $web_config['phone']->value }}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                          </svg> {{ $web_config['phone']->value }}
                     </a>
                 </div>
                 <div class="discount50">

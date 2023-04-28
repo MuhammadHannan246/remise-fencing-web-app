@@ -2127,13 +2127,6 @@ text-decoration: none;
         margin-left: 50px;
     }
 
-    .companyName {
-        color: #fff;
-        font-size: 17px;
-        margin-left: 20px;
-        /* text-align: center; */
-        font-weight: 600;
-    }
 
     @media screen and (max-width:480px) {
         .bann1{
@@ -2151,9 +2144,6 @@ text-decoration: none;
             margin-left: 10px;
         }
 
-        .companyName {
-            margin-left: 10px;
-        }
 
       
 
@@ -2186,14 +2176,11 @@ text-decoration: none;
             font-size: 8px;
         }
 
-        .companyName {
-            /* margin-left: 0; */
-            text-align: center;
-        }
-        .comp1{
+         .comp1{
             margin-left: 35px;
         }
     }
+    
 
 
 

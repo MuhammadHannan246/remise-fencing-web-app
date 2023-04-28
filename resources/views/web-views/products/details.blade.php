@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://icons.getbootstrap.com/">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -375,7 +376,7 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
                                     </ul>
                                 </div>
                             </div>
-                    @endforeach
+                        @endforeach
 
                     <!-- Quantity + Add to cart -->
                         {{-- <div class="mt-2">
@@ -464,11 +465,27 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
                 <div class="rating-block">
 
                     <h2 class="bold padding-bottom-7 h2-heading">4.7 <small>/5.0</small></h2>
+                    {{-- <i class="bi bi-eye-slash" style="color: #000 !important;"></i> --}}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                      </svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                      </svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                      </svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                      </svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                      </svg>
+                    {{-- <i class="fa-solid fa-star float-left" style="color: #ffc700; font-size: 30px;"></i>
                     <i class="fa-solid fa-star float-left" style="color: #ffc700; font-size: 30px;"></i>
                     <i class="fa-solid fa-star float-left" style="color: #ffc700; font-size: 30px;"></i>
                     <i class="fa-solid fa-star float-left" style="color: #ffc700; font-size: 30px;"></i>
-                    <i class="fa-solid fa-star float-left" style="color: #ffc700; font-size: 30px;"></i>
-                    <i class="fa-solid fa-star float-left" style="color: #ffc700; font-size: 30px;"></i>
+                    <i class="fa-solid fa-star float-left" style="color: #ffc700; font-size: 30px;"></i> --}}
                 </div>
                 <h5>
                     80 Rating
@@ -478,11 +495,28 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
                 <div class="float-left">
                     <div class="float-left" style="width:100px; line-height:1;">
                         <div style="margin:5px 0;">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+
+                            {{-- <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
                             <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
                             <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
                             <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
-                            <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
-                            <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
+                            <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i> --}}
 
                         </div>
                     </div>
@@ -498,11 +532,27 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
                 <div class="float-left">
                     <div class="float-left" style="width:100px; line-height:1;">
                         <div style="margin:5px 0;">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                            {{-- <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
                             <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
                             <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
                             <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
-                            <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
-                            <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i>
+                            <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i> --}}
 
                         </div>
                     </div>
@@ -518,11 +568,30 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
                 <div class="float-left">
                     <div class="float-left" style="width:100px; line-height:1;">
                         <div style="margin:5px 0;">
-                            <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
+
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+
+
+                            {{-- <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
                             <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
                             <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
                             <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i>
-                            <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i>
+                            <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i> --}}
 
                         </div>
                     </div>
@@ -538,11 +607,29 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
                 <div class="float-left">
                     <div class="float-left" style="width:100px; line-height:1;">
                         <div style="margin:5px 0;">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+
+
+                            {{-- <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
                             <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
-                            <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
                             <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i>
                             <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i>
-                            <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i>
+                            <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i> --}}
 
                         </div>
                     </div>
@@ -558,11 +645,30 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
                 <div class="float-left">
                     <div class="float-left" style="width:100px; line-height:1;">
                         <div style="margin:5px 0;">
-                            <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
+                           
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                              </svg>
+
+                           
+                            {{-- <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
                             <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i>
                             <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i>
                             <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i>
-                            <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i>
+                            <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i> --}}
 
                         </div>
                     </div>
@@ -599,7 +705,7 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
                             <img class="pl-4" src="{{asset('public/assets/Images/nav-icon.png')}}">
                         </div>
                     </div>
-
+                </form>
             </div>
 
         </div>
@@ -613,11 +719,29 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
                             <img src="/Images/review-1.png" class="img-rounded">
                             <div class="review-block-name"><a href="#">Rachil</a></div>
                             <div class="review-block-rate">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                  </svg>
+    
+
+                                {{-- <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
                                 <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
                                 <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
                                 <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
-                                <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
-                                <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
+                                <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i> --}}
                             </div>
                         </div>
                         <div class="col-sm-2">

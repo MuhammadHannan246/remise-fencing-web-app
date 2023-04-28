@@ -28,7 +28,9 @@
     <style>
         /* footer CSS */
 .footer {
-    background: #000;
+    /* background: #000; */
+    background: #151515;
+
     padding-top: 100px;
 }
 
@@ -117,6 +119,7 @@
         list-style: none;
         color: #FFF;
         /* justify-content: center; */
+        padding-left: 40px;
     }
 
     .menuList .menuItem:hover {
@@ -149,7 +152,7 @@
     }
 
     .companyName {
-        margin-left: 30px;
+        margin-left: 40px;
         text-align: center;
     }
     .officeBranch{
@@ -195,7 +198,7 @@
     }
 
     .companyName {
-        margin-left: 40px;
+        margin-left: 30px;
     }
 
     .searchMarketing {
@@ -238,15 +241,8 @@
                     <p class="textFoot">Norem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 </div>
                 <div class="col-lg-6 col-md-8 col-sm-8 ">
-                    <form action="{{ route('subscription') }}" method="post"
-                        style="width: 100%;
-    border: 1px solid #97A3AE;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: row; ; font-family:poppins;
-    padding:2px;
-    height:65px"
-                        class="example" action="action_page.php">
+                    
+                    <form action="{{ route('subscription') }}" method="post" style="width: 100%;border: 1px solid #97A3AE;border-radius: 10px;display: flex;flex-direction: row; ; font-family:poppins;padding:2px;height:65px" class="example" action="action_page.php">
                         @csrf
                         <input
                             style="padding: 29px 10px !important;

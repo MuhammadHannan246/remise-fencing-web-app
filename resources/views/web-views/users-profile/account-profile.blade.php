@@ -57,7 +57,10 @@
             <div class="modalDiv">
 
                 <button style="border: 1px solid; margin-top:10px; margin-right:5px;" type="button" class="btn btnModal" data-toggle="modal" data-target="#exampleModal">
-                    <i class="fa-solid fa-bars"></i>
+                    {{-- <i class="fa-solid fa-bars"></i> --}}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000" class="bi bi-list" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                      </svg>
                 </button>
             
                 <!-- Modal -->
@@ -206,9 +209,10 @@
                                         <br class="mobile">
     
                                         <div class="form2">
-                                            <input type="number" class="form__input2" type="text" id="phone"
+                                            <input type="text" class="form__input2" type="text" id="phone"
                                             name="phone"
                                             value="{{$customerDetail['phone']}}" required>
+                                            
                                                 <label for="phone" class="form__label2">{{\App\CPU\translate('phone_number')}}
                                             </label>
                                         </div>
@@ -220,17 +224,22 @@
                                                     <input class="form__input2" name="password" type="password"
                                                            id="password">
 
-
+                                                           
                                                            <label
-                                                           class="password-toggle-btn btnPass">
+                                                           class="password-toggle-btn btnPass" style="width:60px;" >
                                                            <input class="custom-control-input" type="checkbox">
-                                                           <i class="fa-solid fa-eye fa-flip-horizontal fa-sm"
+                                                           {{-- <i class="fa-solid fa-eye fa-flip-horizontal fa-sm"
                                                                style="color: #00000099;
-                                                                           font-size: 16px;"></i>
+                                                                           font-size: 16px;"></i> --}}
+
+                                                                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#00000099" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                                                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                                                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                                                                          </svg>            
                                                            <span class="sr-only">{{ \App\CPU\translate('Show') }}
                                                                {{ \App\CPU\translate('password') }} </span>
                                                        </label>
-
+                                                       
                                                            {{-- <label class="password-toggle-btn">
                                                         <input class="custom-control-input" type="checkbox"
                                                                >
@@ -246,19 +255,27 @@
 
                                         <br><br><br><br>
                                         <!-- <div class="mainDiv"> -->
+                                            
+
                                             <div class="form2">
                                                 <div class="password-toggle">
-                                                    <input class="form__input2" name="confirm_password" type="password"
+                                                    <input class=" form__input2" name="confirm_password" type="password"
                                                            id="confirm_password">
                                                     <div>
 
-                                                        <label class="password-toggle-btn btnPass"
-                                                        >
+
+                                                        <label class="password-toggle-btn btnPass" style="width:60px;">
+                                                             
                                                         <input class="custom-control-input" type="checkbox"
                                                             style="text-align: {{ Session::get('direction') === 'rtl' ? 'right' : 'left' }};">
-                                                        <i class="fa-solid fa-eye fa-flip-horizontal fa-sm"
+                                                        {{-- <i class="fa-solid fa-eye fa-flip-horizontal fa-sm"
                                                             style="color: #00000099;
-                                                                               font-size: 16px;"></i>
+                                                                               font-size: 16px;"></i> --}}
+
+                                                                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#00000099" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                                                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                                                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                                                                            </svg>
                         
                                                         <span class="sr-only">{{ \App\CPU\translate('Show') }}
                                                             {{ \App\CPU\translate('password') }} </span>
@@ -276,10 +293,14 @@
                                                 </div>
                                                 <label for="password" class="form__label2">Re-Enter Password</label>
                                             </div>
-                                            <div id='message'></div>
                                         <!-- </div> -->
 
                                     </div>
+                                    
+                               
+                                    <div id='message'></div>
+                                        
+                    
 
                                     <button type="submit" class="btn--update">{{\App\CPU\translate('update')}}   </button>
                                  
@@ -356,7 +377,11 @@
         
 
 
-
+#message{
+    position: absolute;
+    top: 83% !important;
+    left: 72% !important;
+}
 .innerArea {
     background: #000;
     height: 40px;
@@ -1332,13 +1357,6 @@ input[type=radio] {
     margin-left: 50px;
 }
 
-.companyName {
-    color: #fff;
-    font-size: 17px;
-    margin-left: 20px;
-    text-align: center;
-    font-weight: 600;
-}
 
 @media screen and (max-width:480px) {
     .comp3 {
@@ -1376,6 +1394,10 @@ input[type=radio] {
     .password-toggle-btn{
         left: 175px !important;
     }
+    #message{
+    top: 90% !important;
+    left: 21% !important;
+    }
 }
 
 @media screen and (max-width: 825px) {
@@ -1409,7 +1431,7 @@ input[type=radio] {
         height: 925px !important;
     }
     .mobile{
-        display: block !important;
+        display: none !important;
     }
     .divInner2{
     justify-content: center;
@@ -1428,7 +1450,7 @@ input[type=radio] {
 }
 
 .btn--update{
-margin-top: 50px !important;
+margin-top: 60px !important;
 background-color:#FF061E;
 color: white;
 border: 0px solid #FF061E;
@@ -2061,7 +2083,7 @@ Labels {
         height: 975px !important;
     }
     .mobile{
-    display: block;
+    display: block !important;
  }
  .divInner2{
     justify-content: center;
@@ -3441,9 +3463,6 @@ text-align: left;
         border: none !important;
     }
 
-    .fa-bars:before {
-        font-size: 18px !important;
-    }
 
     .mob-cat-btn {
         font-size: 14px !important;

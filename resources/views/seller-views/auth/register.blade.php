@@ -145,7 +145,6 @@
                                 <label class="lblClr" for="si-password">{{\App\CPU\translate('confirm_password')}}</label>
                                         <div class="password-toggle">
                                             <input type="password" class="form-control ship-control form-control-user" minlength="6" id="exampleRepeatPassword"  required>
-                                          <div class="pass invalid-feedback">{{\App\CPU\translate('Repeat')}}  {{\App\CPU\translate('password')}} {{\App\CPU\translate('not match')}} .</div>
 
                                             <label class="password-toggle-btn btnPass">
                                                 <input class="custom-control-input" type="checkbox"
@@ -158,6 +157,8 @@
                                                        <span
                                                     class="sr-only">{{\App\CPU\translate('Show')}} {{\App\CPU\translate('password')}} </span>
                                             </label>
+                                            <div class="pass invalid-feedback">{{\App\CPU\translate('Repeat')}}  {{\App\CPU\translate('password')}} {{\App\CPU\translate('not match')}} .</div>
+
                                           </div>
                                           <br><br>
                                         </div>

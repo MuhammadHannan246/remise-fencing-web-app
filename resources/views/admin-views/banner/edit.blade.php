@@ -87,7 +87,7 @@
                                         </select>
                                     </div>
 
-                                    <div class="form-group mb-0" id="resource-brand" style="display: {{$banner['resource_type']=='brand'?'block':'none'}}">
+                                    <div    class="form-group mb-0" id="resource-brand" style="display: {{$banner['resource_type']=='brand'?'block':'none'}}">
                                         <label for="brand_id" class="title-color text-capitalize">{{\App\CPU\translate('brand')}}</label>
                                         <select class="js-example-responsive form-control w-100"
                                                 name="brand_id">

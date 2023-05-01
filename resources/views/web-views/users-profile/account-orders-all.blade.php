@@ -24,10 +24,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
 </head>
-@section('content')
 <body>
+    @section('content')
 
-    <div class="container-fluid my-3 top mt-5 orders">
+    <div class="container my-3 top mt-5 orders">
 
     <div class="divIn">
         <div class="modalOuter" style="display: flex;
@@ -47,7 +47,9 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">My Orders</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">My Orders All
+                                    
+                                </h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -319,9 +321,9 @@
 
                     </div>
 
+                    @endsection
 
 </body>
-@endsection
 </html>
 
 

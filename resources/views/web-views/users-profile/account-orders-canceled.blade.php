@@ -27,20 +27,21 @@
 @section('content')
 <body>
 
-    <div class="container-fluid my-3 top mt-5 orders">
+    <div class="container my-3 top mt-5 orders">
         <h1 class="main-heading">
             My Orders Canceled
         </h1>
 
         <div class="row top-filter">
-            <div class="col user col-xl-2 col-lg-3 col-md-12">
+            <div class="col user col-xl-2 col-lg-3 col-md-12 col-sm-12 col-12">
                 <h4 class="order-h4">
                     Hello, {{$custname[0]->f_name}}
                 </h4>
-                <img src="{{asset('assets/Images/check-shield.png')}}">
+                <img src="{{asset('public/assets/Images/verify.png')}}">
+
 
             </div>
-            <div class="col filter-btn col-xl-6 col-lg-6 col-md-12">
+            <div class="col filter-btn col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
                 <a class="btn" href="AllOrders" role="button">All</a>
                 <a class="btn" href="PendingOrders" role="button">Pending</a>
                 <a class="btn" href="CanceledOrders" role="button">Canceled</a>

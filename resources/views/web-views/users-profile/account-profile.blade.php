@@ -57,7 +57,7 @@
             <div class="modalDiv">
 
                 <button style="border: 1px solid; margin-top:10px; margin-right:5px;" type="button" class="btn btnModal" data-toggle="modal" data-target="#exampleModal">
-                    {{-- <i class="fa-solid fa-bars"></i> --}}
+                  
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000" class="bi bi-list" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                       </svg>
@@ -100,7 +100,7 @@
                     </div>
                 </div>
             </div>
-            <div>
+        <div>
                 <h2 class="oderSumm profilee">My Profile</h2>
 
             </div>
@@ -122,7 +122,7 @@
 
 
     </div>
-
+ 
 
     <div class="divIn">
         <div class="divInner2">
@@ -2088,7 +2088,8 @@ Labels {
  .divInner2{
     justify-content: center;
  }
- .modalDiv{
+ .
+ {
     display: block !important;
  }
 

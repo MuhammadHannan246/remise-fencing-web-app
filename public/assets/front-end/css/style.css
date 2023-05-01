@@ -3227,8 +3227,38 @@ a {
     border-radius: 50px;
     width: 50px !important;
     height: 50px !important;
+    object-fit: cover;
+}
+.myAccountBar {
+    border: 1px solid #8a8181a1;
+    padding: 10px 30px;
+    border-radius: 25px;
+    height: 590px;
+    display: grid;
+    justify-items: stretch;
+    margin-top: 10px;
 }
 
+.myAccHeading {
+    color: #1E1E1E;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.side-item a {
+    text-decoration: none;
+    color: #1E1E1ECC;
+    line-height: 2;
+    font-weight: 500;
+}
+.side-item a:hover {
+    text-decoration: none;
+    color: #FF061E;
+}
+
+.modalDiv{
+    display:none;
+}
 .__inline-49 .headerTitle {
     font-size: 24px;
     font-weight: 600;
@@ -3736,6 +3766,13 @@ a {
         font-size: 20px !important;
     }
 }
+@media screen and (max-width:480px) {
+    .modalDiv{
+        display: block !important;
+    }
+
+    
+}
 @media (max-width: 600px) {
     .__inline-61 .flash_deal_title {
         font-weight: 700;
@@ -3849,6 +3886,7 @@ a {
         border-radius: 5px;
     }
 }
+
 .__inline-61 .featured_deal_carosel .carousel-inner {
     width: 100% !important;
 }
@@ -4161,6 +4199,13 @@ a {
         display: inline;
     }
 }
+@media screen and (max-width: 825px){
+    .modalDiv{
+        display: block !important;
+    }
+
+}
+
 .__inline-68 {
     width: 120px;
     border-radius: 5px;

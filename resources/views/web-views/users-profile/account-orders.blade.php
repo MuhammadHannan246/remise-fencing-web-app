@@ -27,17 +27,74 @@
 <body>
     @section('content')
 
-    <div class="container-fluid my-3 top mt-5 orders">
-        <h1 class="main-heading">
+    <div class="container my-3 top mt-5 orders">
+
+    <div class="divIn">
+        <div class="modalOuter" style="display: flex;
+        align-items: center;">
+            <div class="modalDiv">
+
+                <button style="border: 1px solid; margin-top:10px; margin-right:5px;" type="button" class="btn btnModal" data-toggle="modal" data-target="#exampleModal">
+                  
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000" class="bi bi-list" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                      </svg>
+                </button>
+            
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">My Profile</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="myAccountBar">
+                                    <h4 class="myAccHeading">My Account</h4>
+                                    <ul class="side">
+                                        <li class="side-item"><a href="user-account">Profile</a></li>
+                                        <li class="side-item"><a href="account-address">Address</a></li>
+                                        <li class="side-item"><a href="#">Settings</a></li>
+                                        <li class="side-item"><a href="#">Payments</a></li>
+                                        <li class="side-item"><a href="#">Vouchers</a></li>
+                                        <li class="side-item"><a href="#">Reviews</a></li>
+            
+                                    </ul>
+                                    <h4 class="myAccHeading">My Orders</h4>
+                                    <ul class="side">
+                                        <li class="side-item"><a href="#">My Return</a></li>
+                                        <li class="side-item"><a href="#">My Cancellation</a></li>
+                                    </ul>
+                                    <h4 class="myAccHeading">Sell on Remise</h4>
+            
+                                </div>
+                            </div>
+            
+                        </div>
+                    </div>
+                                </div>
+            </div>
+        <div>
+                <!-- <h2 class="oderSumm profilee">My Profile</h2> -->
+
+                <h1 class="main-heading">
             My Orders
         </h1>
+            </div>
+        </div>
+</div>
+
 
         <div class="row top-filter">
             <div class="col user col-xl-2 col-lg-3 col-md-12">
                 <h4 class="order-h4">
                     Hello, {{$custname[0]->f_name}}
                 </h4>
-                <img src="{{asset('assets/Images/check-shield.png')}}">
+                <img src="{{asset('public/assets/Images/verify.png')}}">
 
             </div>
             <div class="col filter-btn col-xl-9 col-lg-9 col-md-12">
@@ -61,12 +118,7 @@
         </div>
 
         <!-- Button trigger modal -->
-        <div class="pop-btn">
-            <i type="button" class="btn btn-primary fa-solid fa-bars popup-btn modal-btn" data-toggle="modal"
-                data-target="#exampleModalCenter">
-            </i>
-            <h3 class="h3-heading mob-cat-btn">Account</h3>
-        </div>
+
 
         <div class="row inner-content">
             <div class="account">
@@ -1578,6 +1630,9 @@
                 color: #ff061e !important;
                 border: none !important;
             }
+            .modalDiv{
+                dis
+            }
 
             .fa-bars:before {
                 font-size: 18px !important;
@@ -1663,6 +1718,9 @@
             .viewBy p {
                 font-size: 14px !important;
             }
+            .top-filter{
+                flex-direction: column;
+            }
 
 
 
@@ -1709,15 +1767,16 @@
             }
 
             .top-filter .filter-btn {
-                text-align: left !important;
+                /* text-align: left !important; */
                 margin-top: 15px;
                 max-width: 100% !important;
                 flex: none;
-                padding-left: 0px;
+                /* padding-left: 0px; */
             }
 
             .top-filter .filter-btn a {
                 padding: 5px 18px !important;
+                margin: 5px;
             }
 
             .orders .inner-content {

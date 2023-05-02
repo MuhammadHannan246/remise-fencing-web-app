@@ -383,6 +383,7 @@
                                                         <select name="billing_country"  id="" class="form-control selectpicker" style="padding: 0px !important; height: 50px !important;" data-live-search="true">
                                                             @foreach($countries as $country)
                                                                 <option value="{{ $country['name'] }}">{{ $country['name'] }}</option>
+                                                                hello
                                                             @endforeach
                                                         </select>
                                                     </div>

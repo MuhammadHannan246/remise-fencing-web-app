@@ -1457,6 +1457,8 @@ a {
     padding: 6px 25px;
     font-size: 15px;
     display: block;
+    color: #000 !important;
+    text-decoration: none;
 }
 
 .__customer-sidebar .widget-title:not(:last-child) a {

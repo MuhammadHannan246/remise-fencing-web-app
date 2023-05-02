@@ -103,7 +103,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                            </div>
 
                             <!-- Tab panes -->
                             <div class="tab-content">
@@ -174,8 +174,8 @@
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{\App\CPU\translate('close')}}</button>
                                 <button type="submit" class="btn btn--primary">{{\App\CPU\translate('Add')}} {{\App\CPU\translate('Informations')}}  </button>
                             </div>
-                        </div>
-                    </form>
+                            </div>
+                        </form>
                 </div>
             </div>
 
@@ -193,7 +193,7 @@
 
                     <!-- Addresses list-->
                     <div class="d-flex justify-content-end mb-3">
-                        <button type="submit" class="btn btn--primary" data-toggle="modal"
+                        <button type="button" class="btn btn--primary" data-toggle="modal"
                             data-target="#exampleModal" id="add_new_address">{{\App\CPU\translate('add_new_address')}}
                         </button>
                     </div>

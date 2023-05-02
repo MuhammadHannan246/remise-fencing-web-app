@@ -214,14 +214,25 @@
         padding: 2px;
     }
 
-    .navCart:hover {
+    .navCart a:hover {
         color: #FF061E !important;
         cursor: pointer;
-
+        text-decoration: none;
+        background-color: white !important;
     }
 
-    .navCart:hover svg path {
+    .navCart a{
+        display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    color: black;
+    transition: inherit !important;
+    background-color: white !important;
+    }
+    .navCart a:hover svg path {
         fill: #FF061E !important;
+        
 
     }
 

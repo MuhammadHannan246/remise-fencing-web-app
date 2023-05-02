@@ -11,6 +11,20 @@
         .razorpay-payment-button {
             display: none !important;
         }
+        .steps-light .step-item.active .step-count, .steps-light .step-item.active .step-progress{
+            background-color: #FF061E !important;
+        }
+
+        .btnShipping{
+            background: #000 !important;
+                            border: 1px solid #000 !important;
+                            width:100%;
+                            text-transform: capitalize;
+        }
+        .btnShipping:hover{
+            background: #FF061E !important;
+            border: 1px solid #FF061E !important;
+        }
     </style>
 
     {{--stripe--}}
@@ -401,8 +415,8 @@
                     </div>
                     <!-- Navigation (desktop)-->
                     <div class="row justify-content-center">
-                        <div class="col-md-6 text-center mt-5">
-                            <a class="btn btn-secondary btn-block" href="{{route('checkout-details')}}">
+                        <div class="col-md-12 text-center mt-5">
+                            <a class="btn btn-secondary btn-block btnShipping" style="padding:10px 15px !important;" href="{{route('checkout-details')}}">
                                 <span class="d-none d-sm-inline">{{\App\CPU\translate('Back to Shipping')}}</span>
                                 <span class="d-inline d-sm-none">{{\App\CPU\translate('Back')}}</span>
                             </a>

@@ -3101,10 +3101,13 @@ a {
     }
 }
 .__inline-46 {
-    height: 3em;
+    height: 50px;
+    width: 100% !important;
     width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
+    border: 1px solid #7777;
+    border-radius: 0.8rem !important;
 }
 
 .__inline-47 .page-item.active > .page-link {

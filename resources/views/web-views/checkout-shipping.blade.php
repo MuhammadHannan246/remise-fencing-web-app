@@ -77,6 +77,14 @@
             background: #FF061E !important;
 
         }
+        .anotherAdd:focus{
+            outline: none !important;
+
+        }
+        .addType{
+            padding: 0 !important;
+            height: 50px !important;
+        }
         /*@media only screen and (max-width: 768px) {*/
         /*    !* For mobile phones: *!*/
         /*    #location_map_canvas {*/
@@ -167,7 +175,7 @@
                                                     <div class="form-group">
                                                         <label
                                                             for="exampleInputPassword1">{{ \App\CPU\translate('address')}} {{ \App\CPU\translate('Type')}}</label>
-                                                        <select class="form-control" name="address_type">
+                                                        <select class="form-control" name="address_type" style="padding:0px !important; height: 50px !important;">
                                                             <option
                                                                 value="permanent">{{ \App\CPU\translate('Permanent')}}</option>
                                                             <option value="home">{{ \App\CPU\translate('Home')}}</option>
@@ -206,7 +214,7 @@
                                                             for="exampleInputEmail1">{{ \App\CPU\translate('Country')}}
                                                             <span
                                                                 style="color: red">*</span></label>
-                                                        <select name="country" id="" class="form-control selectpicker" data-live-search="true" required>
+                                                        <select name="country" id="" class="form-control selectpicker" data-live-search="true" required ">
                                                             @forelse($countries as $country)
                                                                 <option value="{{ $country['name'] }}">{{ $country['name'] }}</option>
                                                             @empty
@@ -230,7 +238,7 @@
                                                      <div class="form-check" style="padding-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 1.25rem;">
                                                         <input type="checkbox" name="save_address" class="form-check-input"
                                                                id="exampleCheck1">
-                                                        <label class="form-check-label" for="exampleCheck1" style="padding-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 1.09rem">
+                                                        <label class="form-check-label" for="exampleCheck1" style="padding-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 2.09rem">
                                                             {{ \App\CPU\translate('save_this_address')}}
                                                         </label>
                                                     </div>
@@ -335,7 +343,7 @@
                                                     <div class="form-group">
                                                         <label
                                                             for="exampleInputPassword1">{{ \App\CPU\translate('address')}} {{ \App\CPU\translate('Type')}}</label>
-                                                        <select class="form-control" name="billing_address_type">
+                                                        <select class="form-control" name="billing_address_type" style="padding:0px !important; height: 50px !important;">
                                                             <option
                                                                 value="permanent">{{ \App\CPU\translate('Permanent')}}</option>
                                                             <option value="home">{{ \App\CPU\translate('Home')}}</option>
@@ -372,7 +380,7 @@
                                                         <label
                                                             for="exampleInputEmail1">{{ \App\CPU\translate('Country')}}
                                                             <span style="color: red">*</span></label>
-                                                        <select name="billing_country" id="" class="form-control selectpicker" data-live-search="true">
+                                                        <select name="billing_country"  id="" class="form-control selectpicker" style="padding: 0px !important; height: 50px !important;" data-live-search="true">
                                                             @foreach($countries as $country)
                                                                 <option value="{{ $country['name'] }}">{{ $country['name'] }}</option>
                                                             @endforeach
@@ -398,7 +406,7 @@
                                                     <div class="form-check" style="padding-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 1.25rem;">
                                                         <input type="checkbox" name="save_address_billing" class="form-check-input"
                                                             id="save_address_billing">
-                                                        <label class="form-check-label" for="save_address_billing" style="padding-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 1.09rem">
+                                                        <label class="form-check-label" for="save_address_billing" style="padding-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 2.09rem">
                                                             {{ \App\CPU\translate('save_this_address')}}
                                                         </label>
                                                     </div>

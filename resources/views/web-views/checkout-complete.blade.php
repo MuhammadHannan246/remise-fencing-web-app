@@ -27,7 +27,8 @@
          style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
         <div class="row d-flex justify-content-center">
             <div class="col-md-10 col-lg-10">
-                <div class="card">
+                <div class="card" style="    border: 1px solid #7777;
+                border-radius: 15px;">
                     @if(auth('customer')->check())
                         <div class=" p-5">
                             <div class="row">

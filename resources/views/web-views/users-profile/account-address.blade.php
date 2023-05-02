@@ -8,6 +8,17 @@
     <link rel="stylesheet" href="{{ asset('public/assets/front-end/css/bootstrap-select.min.css') }}">
 
     <style>
+
+@font-face {
+    font-family: 'BURBANKBIGCONDENSED-BOLD';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
+  
+}
+@font-face {
+    font-family: 'BURBANKBIGCONDENSED-BLACK';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
+  
+}
         .cz-sidebar-body h3:hover + .divider-role {
             border-bottom: 3px solid {{$web_config['primary_color']}} !important;
         }
@@ -184,7 +195,8 @@
 
         <!-- Page Content-->
         <div class="container pb-5 mb-2 rtl">
-            <h3 class="py-3 text-center headerTitle">{{\App\CPU\translate('addresses')}}</h3>
+            <h3 class="py-3 text-center headerTitle" style="    font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+ font-size:33.23px;            ">{{\App\CPU\translate('addresses')}}</h3>
             <div class="row">
                 <!-- Sidebar-->
             @include('web-views.partials._profile-aside')
@@ -192,12 +204,8 @@
                 <section class="col-lg-9 col-md-9">
 
                     <!-- Addresses list-->
-                    <div class="d-flex justify-content-end mb-3">
-                        <button type="button" class="btn btn--primary" data-toggle="modal"
-                            data-target="#exampleModal" id="add_new_address">{{\App\CPU\translate('add_new_address')}}
-                        </button>
-                    </div>
-                    <div class="row g-3">
+                   
+                    <div class="row g-3 mt-1 ml-2" style="border:1px solid #7777; border-radius:10px;">
                     @foreach($shippingAddresses as $shippingAddress)
                         <section class="col-lg-6 col-md-6">
                             <div class="card __shadow h-100">

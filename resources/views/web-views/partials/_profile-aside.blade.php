@@ -1,4 +1,4 @@
-<div class="sidebarR col-lg-3 col-md-3 pr-lg-3 pr-xl-4">
+<div class="sidebarR col-lg-3 col-md-3 pr-lg-3 pr-xl-4" style="border:1px solid #7777; border-radius: 10px;">
     <!--Price Sidebar-->
     <div class="__customer-sidebar" id="shop-sidebar">
         <div>
@@ -35,9 +35,7 @@
         </div>
         <div>
             <!-- Filter by price-->
-            <div class="widget-title">
-                <a class="{{Request::is('wishlists*')?'active-menu':''}}" href="{{route('wishlists')}}"> {{\App\CPU\translate('wish_list')}}  </a>
-            </div>
+          
         </div>
 
         {{--to do--}}

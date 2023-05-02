@@ -21,10 +21,13 @@ class CartManager
         $user = Helpers::get_customer();
         if (session()->has('offline_cart')) {
             $cart = session('offline_cart');
+            $cart = [$cart];
+            //return $cart;
             $storage = [];
             foreach ($cart as $item) {
+
                 $db_cart = Cart::where(['customer_id' => $user->id, 'seller_id' => $item['seller_id'], 'seller_is' => $item['seller_is']])->first();
-                $storage[] = [
+                $storage = [
                     'customer_id' => $user->id,
                     'cart_group_id' => isset($db_cart) ? $db_cart['cart_group_id'] : str_replace('offline', $user->id, $item['cart_group_id']),
                     'product_id' => $item['product_id'],
@@ -234,7 +237,7 @@ class CartManager
         $str = '';
         $variations = [];
         $price = 0;
-        
+
         $user = Helpers::get_customer($request);
         $product = Product::find($request->id);
 
@@ -243,7 +246,7 @@ class CartManager
             $str = Color::where('code', $request['color'])->first()->name;
             $variations['color'] = $str;
         }
-        
+
         //Gets all the choice values of customer choice option and generate a string like Black-S-Cotton
         $choices = [];
         foreach (json_decode($product->choice_options) as $key => $choice) {
@@ -255,7 +258,7 @@ class CartManager
                 $str .= str_replace(' ', '', $request[$choice->name]);
             }
         }
-        
+
         if ($user == 'offline') {
             if (session()->has('offline_cart')) {
                 $cart = session('offline_cart');
@@ -284,7 +287,7 @@ class CartManager
                 ];
             }
         }
-        
+
         $cart['color']          = $request->has('color') ? $request['color'] : null;
         $cart['product_id']     = $product->id;
         $cart['product_type']   = $product->product_type;
@@ -297,7 +300,7 @@ class CartManager
                 'message' => translate('out_of_stock!')
             ];
         }
-        
+
         $cart['variations'] = json_encode($variations);
         $cart['variant'] = $str;
 
@@ -318,7 +321,7 @@ class CartManager
         } else {
             $price = $product->unit_price;
         }
-        
+
         $tax = Helpers::tax_calculation($price, $product['tax'], 'percent');
 
         //generate group id
@@ -359,7 +362,7 @@ class CartManager
         } else {
             $cart['shop_info'] = Helpers::get_business_settings('company_name');
         }
-        
+
         $shippingMethod = Helpers::get_business_settings('shipping_method');
 
         if($shippingMethod == 'inhouse_shipping')
@@ -377,7 +380,7 @@ class CartManager
             }
         }
         $cart['shipping_type']=$shipping_type;
-        
+
         if ($user == 'offline') {
             return $user;
             $offline_cart = session('offline_cart');
@@ -386,7 +389,7 @@ class CartManager
         } else {
             // return $cart;
 
-            
+
             //$cart->save();
             $arr = [
 
@@ -413,16 +416,16 @@ class CartManager
                 'variations' => $cart->variations,
             ];
             //return $arr;
-           
+
             try {
                 DB::table('carts')->insert($arr);
             } catch (Throwable $e) {
                 //report($e);
-         
+
                 return $e;
             }
         }
-        
+
         return [
             'status' => 1,
             'message' => translate('successfully_added!')

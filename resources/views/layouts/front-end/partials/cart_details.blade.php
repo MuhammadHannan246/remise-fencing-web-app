@@ -2,12 +2,12 @@
       @font-face {
     font-family: 'BURBANKBIGCONDENSED-BOLD';
     src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
-  
+
 }
 @font-face {
     font-family: 'BURBANKBIGCONDENSED-BLACK';
     src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
-  
+
 }
 .cancelBTN:focus{
 
@@ -16,7 +16,7 @@
 .shipSelect{
     padding: 0 !important;
     height: 55px !important;
-    
+
 }
 </style>
 <div class="feature_header mb-2">
@@ -145,6 +145,7 @@
                                 <td>
                                     <div>
                                         @php($minimum_order=\App\Model\Product::select('minimum_order_qty')->find($cartItem['product_id']))
+                                        
                                         <input class="__cart-input" type="number" name="quantity[{{ $cartItem['id'] }}]" id="cartQuantity{{$cartItem['id']}}"
                                         onchange="updateCartQuantity('{{ $minimum_order->minimum_order_qty }}', '{{$cartItem['id']}}')" min="{{ $minimum_order->minimum_order_qty ?? 1 }}" value="{{$cartItem['quantity']}}">
                                     </div>
@@ -160,7 +161,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <button class="btn btn-link px-0 text-danger cancelBTN" 
+                                    <button class="btn btn-link px-0 text-danger cancelBTN"
                                             onclick="removeFromCart({{ $cartItem['id'] }})" type="button"><i
                                             class="czi-close-circle {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}" style="font-size: 20px; color:#FF061E;"></i>
                                     </button>
@@ -227,8 +228,8 @@
             $shipping_type = isset($admin_shipping) == true ? $admin_shipping->shipping_type : 'order_wise';
         ?>
     @if ($shipping_type == 'order_wise' && $physical_product)
-        @php($shippings=\App\CPU\Helpers::get_shipping_methods(1,'admin')) 
-      
+        @php($shippings=\App\CPU\Helpers::get_shipping_methods(1,'admin'))
+
         @php($choosen_shipping=\App\Model\CartShipping::where(['cart_group_id'=>$cartItem['cart_group_id']])->first())
 
         @if(isset($choosen_shipping)==false)

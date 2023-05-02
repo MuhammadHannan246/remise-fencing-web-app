@@ -55,7 +55,7 @@ class LoginController extends Controller
         ]);
         //recaptcha validation
         $recaptcha = Helpers::get_business_settings('recaptcha');
-        if (isset($recaptcha) && $recaptcha['status'] == 1) {
+        // if (isset($recaptcha) && $recaptcha['status'] == 1) {
             try {
                 $request->validate([
                     'g-recaptcha-response' => [
@@ -72,12 +72,12 @@ class LoginController extends Controller
                     ],
                 ]);
             } catch (\Exception $exception) {}
-        } else {
-            if (strtolower($request->default_captcha_value) != strtolower(Session('default_captcha_code'))) {
-                Session::forget('default_captcha_code');
-                return back()->withErrors(\App\CPU\translate('Captcha Failed'));
-            }
-        }
+        // } else {
+        //     if (strtolower($request->default_captcha_value) != strtolower(Session('default_captcha_code'))) {
+        //         Session::forget('default_captcha_code');
+        //         return back()->withErrors(\App\CPU\translate('Captcha Failed'));
+        //     }
+        // }
 
         $se = Seller::where(['email' => $request['email']])->first(['status']);
 

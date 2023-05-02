@@ -3040,4 +3040,5 @@
   'No_delivery_man_found' => 'No delivery man found',
   'order_summary' => 'Order summary',
   'No.' => 'No.',
+  'Seller request for open a shop' => 'Seller request for open a shop',
 );

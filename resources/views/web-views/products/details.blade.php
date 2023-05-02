@@ -1,6 +1,6 @@
 @extends('layouts.front-end.app')
 
-@section('title',$product['name'])
+@section('title', $product['name'])
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,21 +16,21 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://icons.getbootstrap.com/">
-    
+
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </head>
 
 <body>
-@section('content')
-<?php
-    $overallRating = \App\CPU\ProductManager::get_overall_rating($product->reviews);
-    $rating = \App\CPU\ProductManager::get_rating($product->reviews);
-    $decimal_point_settings = \App\CPU\Helpers::get_business_settings('decimal_point_settings');
-    ?>
-    <div class="container-fluid breadcrumbs">
-        {{-- <nav aria-label="breadcrumb">
+    @section('content')
+        <?php
+        $overallRating = \App\CPU\ProductManager::get_overall_rating($product->reviews);
+        $rating = \App\CPU\ProductManager::get_rating($product->reviews);
+        $decimal_point_settings = \App\CPU\Helpers::get_business_settings('decimal_point_settings');
+        ?>
+        <div class="container-fluid breadcrumbs">
+            {{-- <nav aria-label="breadcrumb">
             <ol class="breadcrumb m-0">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item"><a href="#">Categories</a></li>
@@ -39,354 +39,336 @@
                 <li class="breadcrumb-item active" aria-current="page">Full Name</li>
             </ol>
         </nav> --}}
-    </div>
+        </div>
 
-    <div class="container-fluid" >
-        <hr class="m-5" >
-    </div>
+        <div class="container-fluid">
+            <hr class="m-5">
+        </div>
 
-    <div class="container-fluid my-3 prod-det">
-        <div class="row my-2">
-            <div class="col-lg-4 col-md-12 col-12">
-                <div class="cz-product-gallery flex-column">
-                    <div class="cz-preview">
-                        @if($product->images!=null && json_decode($product->images)>0)
-                            @if(json_decode($product->colors) && $product->color_image)
-                                @foreach (json_decode($product->color_image) as $key => $photo)
-                                    @if($photo->color != null)
-                                        <div class="cz-preview-item d-flex align-items-center justify-content-center {{$key==0?'active':''}}"
-                                             id="image{{$photo->color}}">
-                                            <img class="cz-image-zoom img-responsive w-100 __max-h-323px"
-                                                 onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-                                                 src="{{asset("storage/app/public/product/$photo->image_name")}}"
-                                                 data-zoom="{{asset("storage/app/public/product/$photo->image_name")}}"
-                                                 alt="Product image" width="">
-                                            <div class="cz-image-zoom-pane"></div>
-                                        </div>
-                                    @else
-                                        <div class="cz-preview-item d-flex align-items-center justify-content-center {{$key==0?'active':''}}"
-                                             id="image{{$key}}">
-                                            <img class="cz-image-zoom img-responsive w-100 __max-h-323px"
-                                                 onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-                                                 src="{{asset("storage/app/public/product/$photo->image_name")}}"
-                                                 data-zoom="{{asset("storage/app/public/product/$photo->image_name")}}"
-                                                 alt="Product image" width="">
-                                            <div class="cz-image-zoom-pane"></div>
-                                        </div>
-                                    @endif
-                                @endforeach
-                            @else
-                                @foreach (json_decode($product->images) as $key => $photo)
-                                    <div class="cz-preview-item d-flex align-items-center justify-content-center {{$key==0?'active':''}}"
-                                         id="image{{$key}}">
-                                        <img class="cz-image-zoom img-responsive w-100 __max-h-323px"
-                                             onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-                                             src="{{asset("storage/app/public/product/$photo")}}"
-                                             data-zoom="{{asset("storage/app/public/product/$photo")}}"
-                                             alt="Product image" width="">
-                                        <div class="cz-image-zoom-pane"></div>
-                                    </div>
-                                @endforeach
-                            @endif
-                        @endif
-                    </div>
-                    <div class="cz">
-                        <div class="table-responsive __max-h-515px" data-simplebar>
-                            <div class="d-flex">
-                                @if($product->images!=null && json_decode($product->images)>0)
-                                    @if(json_decode($product->colors) && $product->color_image)
-                                        @foreach (json_decode($product->color_image) as $key => $photo)
-                                            @if($photo->color != null)
-                                                <div class="cz-thumblist">
-                                                    <a class="cz-thumblist-item  {{$key==0?'active':''}} d-flex align-items-center justify-content-center"
-                                                       id="preview-img{{$photo->color}}" href="#image{{$photo->color}}">
-                                                        <img
-                                                            onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-                                                            src="{{asset("storage/app/public/product/$photo->image_name")}}"
-                                                            alt="Product thumb">
-                                                    </a>
-                                                </div>
-                                            @else
-                                                <div class="cz-thumblist">
-                                                    <a class="cz-thumblist-item  {{$key==0?'active':''}} d-flex align-items-center justify-content-center"
-                                                       id="preview-img{{$key}}" href="#image{{$key}}">
-                                                        <img
-                                                            onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-                                                            src="{{asset("storage/app/public/product/$photo->image_name")}}"
-                                                            alt="Product thumb">
-                                                    </a>
-                                                </div>
-                                            @endif
-                                        @endforeach
-                                    @else
-                                        @foreach (json_decode($product->images) as $key => $photo)
-                                            <div class="cz-thumblist">
-                                                <a class="cz-thumblist-item  {{$key==0?'active':''}} d-flex align-items-center justify-content-center"
-                                                   id="preview-img{{$key}}" href="#image{{$key}}">
-                                                    <img
-                                                        onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-                                                        src="{{asset("storage/app/public/product/$photo")}}"
-                                                        alt="Product thumb">
-                                                </a>
+        <div class="container-fluid my-3 prod-det">
+            <div class="row my-2">
+                <div class="col-lg-4 col-md-12 col-12">
+                    <div class="cz-product-gallery flex-column">
+                        <div class="cz-preview">
+                            @if ($product->images != null && json_decode($product->images) > 0)
+                                @if (json_decode($product->colors) && $product->color_image)
+                                    @foreach (json_decode($product->color_image) as $key => $photo)
+                                        @if ($photo->color != null)
+                                            <div class="cz-preview-item d-flex align-items-center justify-content-center {{ $key == 0 ? 'active' : '' }}"
+                                                id="image{{ $photo->color }}">
+                                                <img class="cz-image-zoom img-responsive w-100 __max-h-323px"
+                                                    onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
+                                                    src="{{ asset("storage/app/public/product/$photo->image_name") }}"
+                                                    data-zoom="{{ asset("storage/app/public/product/$photo->image_name") }}"
+                                                    alt="Product image" width="">
+                                                <div class="cz-image-zoom-pane"></div>
                                             </div>
-                                        @endforeach
-                                    @endif
+                                        @else
+                                            <div class="cz-preview-item d-flex align-items-center justify-content-center {{ $key == 0 ? 'active' : '' }}"
+                                                id="image{{ $key }}">
+                                                <img class="cz-image-zoom img-responsive w-100 __max-h-323px"
+                                                    onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
+                                                    src="{{ asset("storage/app/public/product/$photo->image_name") }}"
+                                                    data-zoom="{{ asset("storage/app/public/product/$photo->image_name") }}"
+                                                    alt="Product image" width="">
+                                                <div class="cz-image-zoom-pane"></div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                @else
+                                    @foreach (json_decode($product->images) as $key => $photo)
+                                        <div class="cz-preview-item d-flex align-items-center justify-content-center {{ $key == 0 ? 'active' : '' }}"
+                                            id="image{{ $key }}">
+                                            <img class="cz-image-zoom img-responsive w-100 __max-h-323px"
+                                                onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
+                                                src="{{ asset("storage/app/public/product/$photo") }}"
+                                                data-zoom="{{ asset("storage/app/public/product/$photo") }}"
+                                                alt="Product image" width="">
+                                            <div class="cz-image-zoom-pane"></div>
+                                        </div>
+                                    @endforeach
                                 @endif
+                            @endif
+                        </div>
+                        <div class="cz">
+                            <div class="table-responsive __max-h-515px" data-simplebar>
+                                <div class="d-flex">
+                                    @if ($product->images != null && json_decode($product->images) > 0)
+                                        @if (json_decode($product->colors) && $product->color_image)
+                                            @foreach (json_decode($product->color_image) as $key => $photo)
+                                                @if ($photo->color != null)
+                                                    <div class="cz-thumblist">
+                                                        <a class="cz-thumblist-item  {{ $key == 0 ? 'active' : '' }} d-flex align-items-center justify-content-center"
+                                                            id="preview-img{{ $photo->color }}"
+                                                            href="#image{{ $photo->color }}">
+                                                            <img onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
+                                                                src="{{ asset("storage/app/public/product/$photo->image_name") }}"
+                                                                alt="Product thumb">
+                                                        </a>
+                                                    </div>
+                                                @else
+                                                    <div class="cz-thumblist">
+                                                        <a class="cz-thumblist-item  {{ $key == 0 ? 'active' : '' }} d-flex align-items-center justify-content-center"
+                                                            id="preview-img{{ $key }}"
+                                                            href="#image{{ $key }}">
+                                                            <img onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
+                                                                src="{{ asset("storage/app/public/product/$photo->image_name") }}"
+                                                                alt="Product thumb">
+                                                        </a>
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        @else
+                                            @foreach (json_decode($product->images) as $key => $photo)
+                                                <div class="cz-thumblist">
+                                                    <a class="cz-thumblist-item  {{ $key == 0 ? 'active' : '' }} d-flex align-items-center justify-content-center"
+                                                        id="preview-img{{ $key }}"
+                                                        href="#image{{ $key }}">
+                                                        <img onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
+                                                            src="{{ asset("storage/app/public/product/$photo") }}"
+                                                            alt="Product thumb">
+                                                    </a>
+                                                </div>
+                                            @endforeach
+                                        @endif
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-5 description p-5">
-                <h2 class="h2-heading">
-                    {{$product->name}}
-                </h2>
-                <div class="d-flex flex-wrap align-items-center mb-2 pro">
-                    <span
-                        class="d-inline-block  align-middle mt-1 {{Session::get('direction') === "rtl" ? 'ml-md-2 ml-sm-0 pl-2' : 'mr-md-2 mr-sm-0 pr-2'}} __color-FE961C" style="font-size: 20px;">{{$overallRating[0]}}</span>
-                    <div class="star-rating" >
-                        @for($inc=0;$inc<5;$inc++)
-                            @if($inc<$overallRating[0])
-                                <i class="sr-star czi-star-filled active" style="font-size:20px; "></i>
-                            @else
-                                <i class="sr-star czi-star" style="font-size:20px; "></i>
-                            @endif
-                        @endfor
-                    </div>
-                    <span class="font-regular font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-1 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-1 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'}}" style="font-size:11px !important;">{{$overallRating[1]}} {{\App\CPU\translate('Reviews')}}</span>
-                    <span class="__inline-25"></span>
-                    <span class="font-regular font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-1 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-1 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'}}" style="font-size:11px !important;">{{$countOrder}} {{\App\CPU\translate('orders')}}   </span>
-                    <span class="__inline-25">    </span>
-                    <span class="font-regular font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-0 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-0 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'}} text-capitalize" style="font-size:11px !important;">  {{$countWishlist}} {{\App\CPU\translate('wish_listed')}} </span>
+                <div class="col-lg-5 description p-5">
+                    <h2 class="h2-heading">
+                        {{ $product->name }}
+                    </h2>
+                    <div class="d-flex flex-wrap align-items-center mb-2 pro">
+                        <span
+                            class="d-inline-block  align-middle mt-1 {{ Session::get('direction') === 'rtl' ? 'ml-md-2 ml-sm-0 pl-2' : 'mr-md-2 mr-sm-0 pr-2' }} __color-FE961C"
+                            style="font-size: 20px;">{{ $overallRating[0] }}</span>
+                        <div class="star-rating">
+                            @for ($inc = 0; $inc < 5; $inc++)
+                                @if ($inc < $overallRating[0])
+                                    <i class="sr-star czi-star-filled active" style="font-size:20px; "></i>
+                                @else
+                                    <i class="sr-star czi-star" style="font-size:20px; "></i>
+                                @endif
+                            @endfor
+                        </div>
+                        <span
+                            class="font-regular font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{ Session::get('direction') === 'rtl' ? 'mr-1 ml-md-2 ml-1 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-1 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1' }}"
+                            style="font-size:11px !important;">{{ $overallRating[1] }}
+                            {{ \App\CPU\translate('Reviews') }}</span>
+                        <span class="__inline-25"></span>
+                        <span
+                            class="font-regular font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{ Session::get('direction') === 'rtl' ? 'mr-1 ml-md-2 ml-1 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-1 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1' }}"
+                            style="font-size:11px !important;">{{ $countOrder }} {{ \App\CPU\translate('orders') }}
+                        </span>
+                        <span class="__inline-25"> </span>
+                        <span
+                            class="font-regular font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{ Session::get('direction') === 'rtl' ? 'mr-1 ml-md-2 ml-0 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-0 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1' }} text-capitalize"
+                            style="font-size:11px !important;"> {{ $countWishlist }}
+                            {{ \App\CPU\translate('wish_listed') }} </span>
 
-                </div>
-                {{-- <div class="float-left sold">
+                    </div>
+                    {{-- <div class="float-left sold">
                     <p class="px-2 py-1 m-0">
                         Sold 120
                     </p>
                 </div> --}}
 
-                <div class="product-inner" style="clear: both;">
-                    <p class="sold-by"> Sold By </p>
-                    <h3 class="title h3-heading" style="text-transform: capitalize;">
-                        @if($product->added_by=='seller')
-                        {{ $product->seller->shop?$product->seller->shop->name:$product->seller->f_name}}
-                    @elseif($product->added_by=='admin')
-                       {{$web_config['name']->value}}
-                    @endif
-                </h3>
-                    <img src="{{asset('public/assets/Images/Badge.png')}}" class="pt-1 pl-2">
-                    <img src="{{asset('public/assets/Images/Message-icon.png')}}" style="float: right;">
-                    <i class="fa-sharp fa-solid fa-messages-question" style="color: #ff061e;"></i>
-                    <p class="desrptn">Details
-                        {!! $product['details'] !!}
-                    </p>
-                </div>
+                    <div class="product-inner" style="clear: both;">
+                        <p class="sold-by"> Sold By </p>
+                        <h3 class="title h3-heading" style="text-transform: capitalize;">
+                            @if ($product->added_by == 'seller')
+                                {{ $product->seller->shop ? $product->seller->shop->name : $product->seller->f_name }}
+                            @elseif($product->added_by == 'admin')
+                                {{ $web_config['name']->value }}
+                            @endif
+                        </h3>
+                        <img src="{{ asset('public/assets/Images/Badge.png') }}" class="pt-1 pl-2">
+                        <img src="{{ asset('public/assets/Images/Message-icon.png') }}" style="float: right;">
+                        <i class="fa-sharp fa-solid fa-messages-question" style="color: #ff061e;"></i>
 
-                <div class="price">
-                    <p style="font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+                    </div>
+
+
+                    <div class="price" style="padding-top: 30px;padding-bottom: 30px;">
+                        <p
+                            style="font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
                     margin-bottom:0px;
                     ">
-                        {{\App\CPU\Helpers::get_price_range($product) }}
-                    </p>
-                    <p class="discount">
-                        Was <span style=" 
+
+{{ \App\CPU\Helpers::currency_converter($product->unit_price - \App\CPU\Helpers::get_product_discount($product, $product->unit_price)) }}
+                        </p>
+                        @if ($product->discount > 0)
+                        <p class="discount">
+                            Was <span
+                                style="
                         font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
                         color:#1E1E1E99;
                         font-size:14px;
                         text-decoration: line-through;
                         text-decoration-color:#000;
-                    ">30.99</span>
-                    </p>
-                </div>
-                <div class="size">
-                    <h2 class="h2-heading">
-                        Size
-                    </h2>
-                    <button src="#" class="px-4 py-1 m-0 mx-2"> S </button>
-                    <button src="#" class="px-4 py-1 m-0 mx-2"> M </button>
-                    <button src="#" class="px-4 py-1 m-0 mx-2"> L </button>
-                    <button src="#" class="px-4 py-1 m-0 mx-2"> XL </button>
-                </div>
-                <div class="product-about pt-4" style="clear: both;">
-                    <h2 class="h2-heading">
-                        About this Item
-                    </h2>
-                    <ul class="p-0 about-item-desc" style="list-style: none;">
-                        <li><i class="fa-solid fa-circle-check"
-                                style="color: #ff001e;float: left;margin-top: 7px;font-size: 20px;"></i>
-                            <p style="display: flex;padding-left: 12px;">
-                                Horem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie,
-                                dictum est a, mattis tellus.
-                            </p>
-                        </li>
-
-                        <li><i class="fa-solid fa-circle-check"
-                            style="color: #ff001e;float: left;margin-top: 7px;font-size: 20px;"></i>
-                        <p style="display: flex;padding-left: 12px;">
-                            Gorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    ">{{ \App\CPU\Helpers::currency_converter($product->unit_price) }}</span>
                         </p>
-                    </li>
+                        @endif
+                    </div>
+                    <div class="size">
+                        <h2 class="h2-heading">
+                            Size
+                        </h2>
+                        <button src="#" class="px-4 py-1 m-0 mx-2"> S </button>
+                        <button src="#" class="px-4 py-1 m-0 mx-2"> M </button>
+                        <button src="#" class="px-4 py-1 m-0 mx-2"> L </button>
+                        <button src="#" class="px-4 py-1 m-0 mx-2"> XL </button>
+                    </div>
+                    <div class="product-about pt-4" style="clear: both;">
+                        <h2 class="h2-heading">
+                            About this Item
+                        </h2>
+                        <p class="desrptn">Details
+                            {!! $product['details'] !!}
+                        </p>
 
-                    <li><i class="fa-solid fa-circle-check"
-                        style="color: #ff001e;float: left;margin-top: 7px;font-size: 20px;"></i>
-                    <p style="display: flex;padding-left: 12px;">
-                        Forem ipsum dolor sit amet, consectetur adipiscing elit.
-Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
-                    </p>
-                </li>
 
-                <li><i class="fa-solid fa-circle-check"
-                    style="color: #ff001e;float: left;margin-top: 7px;font-size: 20px;"></i>
-                <p style="display: flex;padding-left: 12px;">
-                    Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
-                </p>
-            </li>
-
-            <li><i class="fa-solid fa-circle-check"
-                style="color: #ff001e;float: left;margin-top: 7px;font-size: 20px;"></i>
-            <p style="display: flex;padding-left: 12px;">
-                Horem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus.
-
-            </p>
-        </li>
-
-                    </ul>
-
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3 cart p-5 border-left-cart" >
-                <div class="col-lg ">
-                    <h3 class="delivery h3-heading"> Delivery </h3>
-                    <div class="location-select">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>85256 Jacobi Green</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
-                    <h3 class="h3-heading">
-                        Total Stock: {{$product->current_stock}}
-                    </h3>
-                    <div class="wrapper Plus-Minus">
-                        <span class="minus">-</span>
-                        <span class="num">01</span>
-                        <span class="plus">+</span>
-                    </div>
-                    <script>
-                        const plus = document.querySelector(".plus"),
-                            minus = document.querySelector(".minus"),
-                            num = document.querySelector(".num");
-                        let a = 1;
-                        plus.addEventListener("click", () => {
-                            a++;
-                            //a = (a < 10) ? "0" + a : a;
-                            num.innerText = a;
-                            document.getElementById('qtyProduct').setAttribute("value", a);
-                            checkQTY();
-                        });
-
-                        minus.addEventListener("click", () => {
-                            if (a > 1) {
-                                a--;
+                <div class="col-lg-3 cart p-5 border-left-cart">
+                    <div class="col-lg ">
+                        <h3 class="delivery h3-heading"> Delivery </h3>
+                        <div class="location-select">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>85256 Jacobi Green</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                        <h3 class="h3-heading">
+                            Total Stock: {{ $product->current_stock }}
+                        </h3>
+                        <div class="wrapper Plus-Minus">
+                            <span class="minus">-</span>
+                            <span class="num">01</span>
+                            <span class="plus">+</span>
+                        </div>
+                        <script>
+                            const plus = document.querySelector(".plus"),
+                                minus = document.querySelector(".minus"),
+                                num = document.querySelector(".num");
+                            let a = 1;
+                            plus.addEventListener("click", () => {
+                                a++;
                                 //a = (a < 10) ? "0" + a : a;
                                 num.innerText = a;
-                                document.getElementById('qtyProduct').value = a;
-                            }
-                        });
+                                document.getElementById('qtyProduct').setAttribute("value", a);
+                                checkQTY();
+                            });
 
-                    </script>
-                    <div class="row price-shipping">
-                        <div class="col-6">
-                            <p style="color: #1E1E1E80;
+                            minus.addEventListener("click", () => {
+                                if (a > 1) {
+                                    a--;
+                                    //a = (a < 10) ? "0" + a : a;
+                                    num.innerText = a;
+                                    document.getElementById('qtyProduct').value = a;
+                                }
+                            });
+                        </script>
+                        <div class="row price-shipping">
+                            <div class="col-6">
+                                <p style="color: #1E1E1E80;
                             ">Price
 
-                            </p>
+                                </p>
+                            </div>
+                            <div class="col-6" style="text-align: end;">
+                                <p> <b>{{ \App\CPU\Helpers::get_price_range($product) }}</b> </p>
+                            </div>
                         </div>
-                        <div class="col-6" style="text-align: end;">
-                            <p> <b>${{\App\CPU\Helpers::get_price_range($product) }}</b> </p>
-                        </div>
-                    </div>
-                    <div class="row price-shipping pb-4">
-                        <div class="col-6">
-                            <p 
-                            style="color: #1E1E1E80;
+                        <div class="row price-shipping pb-4">
+                            <div class="col-6">
+                                <p style="color: #1E1E1E80;
                             ">Shipping</p>
+                            </div>
+                            <div class="col-6" style="text-align: end;">
+                                <p> <b>${{ $product->shipping_cost }}</b> </p>
+                            </div>
                         </div>
-                        <div class="col-6" style="text-align: end;">
-                            <p> <b>${{$product->shipping_cost}}</b> </p>
-                        </div>
-                    </div>
-                    <form id="add-to-cart-form" class="mb-2">
-                        @csrf
-                        <input type="hidden" name="id" value="{{ $product->id }}">
-                        <div class="position-relative {{Session::get('direction') === "rtl" ? 'ml-n4' : 'mr-n4'}} mb-2">
-                            @if (count(json_decode($product->colors)) > 0)
-                                <div class="flex-start">
-                                    <div class="product-description-label mt-2 text-body" style="color: #1E1E1E80 !important;">{{\App\CPU\translate('color')}}:
+                        <form id="add-to-cart-form" class="mb-2">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $product->id }}">
+                            <div
+                                class="position-relative {{ Session::get('direction') === 'rtl' ? 'ml-n4' : 'mr-n4' }} mb-2">
+                                @if (count(json_decode($product->colors)) > 0)
+                                    <div class="flex-start">
+                                        <div class="product-description-label mt-2 text-body"
+                                            style="color: #1E1E1E80 !important;">{{ \App\CPU\translate('color') }}:
+                                        </div>
+                                        <div>
+                                            <ul class="list-inline checkbox-color mb-1 flex-start {{ Session::get('direction') === 'rtl' ? 'mr-2' : 'ml-2' }}"
+                                                style="padding-{{ Session::get('direction') === 'rtl' ? 'right' : 'left' }}: 0;">
+                                                @foreach (json_decode($product->colors) as $key => $color)
+                                                    <div>
+                                                        <li>
+                                                            <input type="radio"
+                                                                id="{{ $product->id }}-color-{{ str_replace('#', '', $color) }}"
+                                                                name="color" value="{{ $color }}"
+                                                                @if ($key == 0) checked @endif>
+                                                            <label style="background: {{ $color }};"
+                                                                for="{{ $product->id }}-color-{{ str_replace('#', '', $color) }}"
+                                                                data-toggle="tooltip"
+                                                                onclick="focus_preview_image_by_color('{{ str_replace('#', '', $color) }}')">
+                                                                <span class="outline"></span></label>
+                                                        </li>
+                                                    </div>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
+                                @endif
+                                @php
+                                    $qty = 0;
+                                    if (!empty($product->variation)) {
+                                        foreach (json_decode($product->variation) as $key => $variation) {
+                                            $qty += $variation->qty;
+                                        }
+                                    }
+                                @endphp
+                            </div>
+                            <input type="text" name="quantity" id="qtyProduct" style="display:none;"
+                                class="form-control input-number text-center cart-qty-field __inline-29" placeholder="1"
+                                value="{{ $product->minimum_order_qty ?? 1 }}"
+                                product-type="{{ $product->product_type }}" min="{{ $product->minimum_order_qty ?? 1 }}"
+                                max="100">
+                            @foreach (json_decode($product->choice_options) as $key => $choice)
+                                <div class="row flex-start mx-0">
+                                    <div class="product-description-label text-body mt-2 {{ Session::get('direction') === 'rtl' ? 'pl-2' : 'pr-2' }}"
+                                        style="font-size:20px; font-weight:600">{{ $choice->title }}
                                     </div>
                                     <div>
-                                        <ul class="list-inline checkbox-color mb-1 flex-start {{Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'}}"
-                                            style="padding-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 0;">
-                                            @foreach (json_decode($product->colors) as $key => $color)
+                                        <ul class="list-inline checkbox-alphanumeric checkbox-alphanumeric--style-1 mb-2 mx-1 flex-start row"
+                                            style="padding-{{ Session::get('direction') === 'rtl' ? 'right' : 'left' }}: 0;">
+                                            @foreach ($choice->options as $key => $option)
                                                 <div>
-                                                    <li>
+                                                    <li class="for-mobile-capacity">
+
                                                         <input type="radio"
-                                                            id="{{ $product->id }}-color-{{ str_replace('#','',$color) }}"
-                                                            name="color" value="{{ $color }}"
-                                                            @if($key == 0) checked @endif>
-                                                        <label style="background: {{ $color }};"
-                                                            for="{{ $product->id }}-color-{{ str_replace('#','',$color) }}"
-                                                            data-toggle="tooltip" onclick="focus_preview_image_by_color('{{ str_replace('#','',$color) }}')">
-                                                        <span class="outline"></span></label>
+                                                            id="{{ $choice->name }}-{{ $option }}"
+                                                            name="{{ $choice->name }}" value="{{ $option }}"
+                                                            @if ($key == 0) checked @endif>
+                                                        <label class="__text-12px"
+                                                            for="{{ $choice->name }}-{{ $option }}">{{ $option }}</label>
                                                     </li>
                                                 </div>
                                             @endforeach
                                         </ul>
                                     </div>
                                 </div>
-                            @endif
-                            @php
-                                $qty = 0;
-                                if(!empty($product->variation)){
-                                foreach (json_decode($product->variation) as $key => $variation) {
-                                        $qty += $variation->qty;
-                                    }
-                                }
-                            @endphp
-                        </div>
-                        <input type="text" name="quantity" id="qtyProduct" style="display:none;"
-                                            class="form-control input-number text-center cart-qty-field __inline-29"
-                                            placeholder="1" value="{{ $product->minimum_order_qty ?? 1 }}" product-type="{{ $product->product_type }}" min="{{ $product->minimum_order_qty ?? 1 }}" max="100">
-                        @foreach (json_decode($product->choice_options) as $key => $choice)
-                            <div class="row flex-start mx-0">
-                                <div class="product-description-label text-body mt-2 {{Session::get('direction') === "rtl" ? 'pl-2' : 'pr-2'}}" style="font-size:20px; font-weight:600">{{ $choice->title }}
-                                </div>
-                                <div>
-                                    <ul class="list-inline checkbox-alphanumeric checkbox-alphanumeric--style-1 mb-2 mx-1 flex-start row"
-                                        style="padding-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 0;">
-                                        @foreach ($choice->options as $key => $option)
-                                            <div>
-                                                <li class="for-mobile-capacity">
-                                                    
-                                                    <input type="radio"
-                                                        id="{{ $choice->name }}-{{ $option }}"
-                                                        name="{{ $choice->name }}" value="{{ $option }}"
-                                                        @if($key == 0) checked @endif >
-                                                    <label class="__text-12px"
-                                                        for="{{ $choice->name }}-{{ $option }}">{{ $option }}</label>
-                                                </li>
-                                            </div>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-                        @endforeach
+                            @endforeach
 
-                    <!-- Quantity + Add to cart -->
-                        {{-- <div class="mt-2">
+                            <!-- Quantity + Add to cart -->
+                            {{-- <div class="mt-2">
                             <div class="product-quantity d-flex flex-wrap align-items-center __gap-15">
                                 <div class="d-flex align-items-center">
                                     <div class="product-description-label text-body mt-2">{{\App\CPU\translate('Quantity')}}:</div>
@@ -419,382 +401,476 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
                                 </div>
                             </div>
                         </div> --}}
-                        <div class="row no-gutters d-none mt-2 flex-start d-flex">
-                            <div class="col-12">
-                                @if(($product['product_type'] == 'physical') && ($product['current_stock']<=0))
-                                    <h5 class="mt-3 text-danger">{{\App\CPU\translate('out_of_stock')}}</h5>
-                                @endif
+                            <div class="row no-gutters d-none mt-2 flex-start d-flex">
+                                <div class="col-12">
+                                    @if ($product['product_type'] == 'physical' && $product['current_stock'] <= 0)
+                                        <h5 class="mt-3 text-danger">{{ \App\CPU\translate('out_of_stock') }}</h5>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="__btn-grp mt-2 mb-3">
-                            @if(($product->added_by == 'seller' && ($seller_temporary_close || (isset($product->seller->shop) && $product->seller->shop->vacation_status && $current_date >= $seller_vacation_start_date && $current_date <= $seller_vacation_end_date))) ||
-                             ($product->added_by == 'admin' && ($inhouse_temporary_close || ($inhouse_vacation_status && $current_date >= $inhouse_vacation_start_date && $current_date <= $inhouse_vacation_end_date))))
-                                <button class="btn btn-secondary" type="button" disabled>
-                                    {{\App\CPU\translate('buy_now')}}
-                                </button>
-                                <button class="btn cart-btn " type="button" disabled>
-                                    {{\App\CPU\translate('add_to_cart')}}
-                                </button>
-                            @else
-                                <button class="btn buy-btn element-center __iniline-26 btn-gap-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}" onclick="buy_now()" type="button">
-                                    <span class="">{{\App\CPU\translate('buy_now')}}</span>
-                                </button>
-                                <button
-                                    class="btn cart-btn element-center btn-gap-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}"
-                                    onclick="addToCart()" type="button">
-                                    <span class="">{{\App\CPU\translate('add_to_cart')}}</span>
-                                </button>
-                            @endif
-                            {{-- <button type="button" onclick="addWishlist('{{$product['id']}}')"
+                            <div class="__btn-grp mt-2 mb-3">
+                                @if (
+                                    ($product->added_by == 'seller' &&
+                                        ($seller_temporary_close ||
+                                            (isset($product->seller->shop) &&
+                                                $product->seller->shop->vacation_status &&
+                                                $current_date >= $seller_vacation_start_date &&
+                                                $current_date <= $seller_vacation_end_date))) ||
+                                        ($product->added_by == 'admin' &&
+                                            ($inhouse_temporary_close ||
+                                                ($inhouse_vacation_status &&
+                                                    $current_date >= $inhouse_vacation_start_date &&
+                                                    $current_date <= $inhouse_vacation_end_date))))
+                                    <button class="btn btn-secondary" type="button" disabled>
+                                        {{ \App\CPU\translate('buy_now') }}
+                                    </button>
+                                    <button class="btn cart-btn " type="button" disabled>
+                                        {{ \App\CPU\translate('add_to_cart') }}
+                                    </button>
+                                @else
+                                    <button
+                                        class="btn buy-btn element-center __iniline-26 btn-gap-{{ Session::get('direction') === 'rtl' ? 'left' : 'right' }}"
+                                        onclick="buy_now()" type="button">
+                                        <span class="">{{ \App\CPU\translate('buy_now') }}</span>
+                                    </button>
+                                    <button
+                                        class="btn cart-btn element-center btn-gap-{{ Session::get('direction') === 'rtl' ? 'left' : 'right' }}"
+                                        onclick="addToCart()" type="button">
+                                        <span class="">{{ \App\CPU\translate('add_to_cart') }}</span>
+                                    </button>
+                                @endif
+                                {{-- <button type="button" onclick="addWishlist('{{$product['id']}}')"
                                     class="btn __text-18px text-danger">
                                 <i class="fa fa-heart-o "
                                 aria-hidden="true"></i>
                                 <span class="countWishlist-{{$product['id']}}">{{$countWishlist}}</span>
                             </button> --}}
-                            @if(($product->added_by == 'seller' && ($seller_temporary_close || (isset($product->seller->shop) && $product->seller->shop->vacation_status && $current_date >= $seller_vacation_start_date && $current_date <= $seller_vacation_end_date))) ||
-                             ($product->added_by == 'admin' && ($inhouse_temporary_close || ($inhouse_vacation_status && $current_date >= $inhouse_vacation_start_date && $current_date <= $inhouse_vacation_end_date))))
-                                <div class="alert alert-danger" role="alert">
-                                    {{\App\CPU\translate('this_shop_is_temporary_closed_or_on_vacation._You_cannot_add_product_to_cart_from_this_shop_for_now')}}
-                                </div>
-                            @endif
-                        </div>
-                    </form>
+                                @if (
+                                    ($product->added_by == 'seller' &&
+                                        ($seller_temporary_close ||
+                                            (isset($product->seller->shop) &&
+                                                $product->seller->shop->vacation_status &&
+                                                $current_date >= $seller_vacation_start_date &&
+                                                $current_date <= $seller_vacation_end_date))) ||
+                                        ($product->added_by == 'admin' &&
+                                            ($inhouse_temporary_close ||
+                                                ($inhouse_vacation_status &&
+                                                    $current_date >= $inhouse_vacation_start_date &&
+                                                    $current_date <= $inhouse_vacation_end_date))))
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ \App\CPU\translate('this_shop_is_temporary_closed_or_on_vacation._You_cannot_add_product_to_cart_from_this_shop_for_now') }}
+                                    </div>
+                                @endif
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="container-fluid reviews">
-        <h2 class="h2-heading">Ratings & Reviews</h2>
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="rating-block">
+        <div class="container-fluid reviews">
+            <h2 class="h2-heading">Ratings & Reviews</h2>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="rating-block">
 
-                    <h2 class="bold padding-bottom-7 h2-heading">4.7 <small>/5.0</small></h2>
-                    {{-- <i class="bi bi-eye-slash" style="color: #000 !important;"></i> --}}
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                      </svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                      </svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                      </svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                      </svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                      </svg>
-                    {{-- <i class="fa-solid fa-star float-left" style="color: #ffc700; font-size: 30px;"></i>
+                        <h2 class="bold padding-bottom-7 h2-heading">4.7 <small>/5.0</small></h2>
+                        {{-- <i class="bi bi-eye-slash" style="color: #000 !important;"></i> --}}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffc700"
+                            class="bi bi-star-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffc700"
+                            class="bi bi-star-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffc700"
+                            class="bi bi-star-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffc700"
+                            class="bi bi-star-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffc700"
+                            class="bi bi-star-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                        </svg>
+                        {{-- <i class="fa-solid fa-star float-left" style="color: #ffc700; font-size: 30px;"></i>
                     <i class="fa-solid fa-star float-left" style="color: #ffc700; font-size: 30px;"></i>
                     <i class="fa-solid fa-star float-left" style="color: #ffc700; font-size: 30px;"></i>
                     <i class="fa-solid fa-star float-left" style="color: #ffc700; font-size: 30px;"></i>
                     <i class="fa-solid fa-star float-left" style="color: #ffc700; font-size: 30px;"></i> --}}
+                    </div>
+                    <h5>
+                        80 Rating
+                    </h5>
                 </div>
-                <h5>
-                    80 Rating
-                </h5>
-            </div>
-            <div class="col-sm-5">
-                <div class="float-left">
-                    <div class="float-left" style="width:100px; line-height:1;">
-                        <div style="margin:5px 0;">
+                <div class="col-sm-5">
+                    <div class="float-left">
+                        <div class="float-left" style="width:100px; line-height:1;">
+                            <div style="margin:5px 0;">
 
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700"
+                                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700"
+                                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700"
+                                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700"
+                                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700"
+                                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
 
-                            {{-- <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
+                                {{-- <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
                             <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
                             <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
                             <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
                             <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i> --}}
 
-                        </div>
-                    </div>
-                    <div class="float-left" style="width:180px;">
-                        <div class="progress" style="height:9px; margin:8px 0;">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0"
-                                aria-valuemax="5" style="width: 100%">
                             </div>
                         </div>
+                        <div class="float-left" style="width:180px;">
+                            <div class="progress" style="height:9px; margin:8px 0;">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0"
+                                    aria-valuemax="5" style="width: 100%">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="float-right" style="margin-left:10px;">75</div>
                     </div>
-                    <div class="float-right" style="margin-left:10px;">75</div>
-                </div>
-                <div class="float-left">
-                    <div class="float-left" style="width:100px; line-height:1;">
-                        <div style="margin:5px 0;">
+                    <div class="float-left">
+                        <div class="float-left" style="width:100px; line-height:1;">
+                            <div style="margin:5px 0;">
 
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg>
-                            {{-- <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700"
+                                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700"
+                                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700"
+                                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700"
+                                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33"
+                                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                {{-- <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
                             <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
                             <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
                             <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
                             <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i> --}}
 
-                        </div>
-                    </div>
-                    <div class="float-left" style="width:180px;">
-                        <div class="progress" style="height:9px; margin:8px 0;">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0"
-                                aria-valuemax="5" style="width: 09%">
                             </div>
                         </div>
-                    </div>
-                    <div class="float-right" style="margin-left:10px;">09</div>
-                </div>
-                <div class="float-left">
-                    <div class="float-left" style="width:100px; line-height:1;">
-                        <div style="margin:5px 0;">
-
-
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg>
-
-
-                            {{-- <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
-                            <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
-                            <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
-                            <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i>
-                            <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i> --}}
-
-                        </div>
-                    </div>
-                    <div class="float-left" style="width:180px;">
-                        <div class="progress" style="height:9px; margin:8px 0;">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0"
-                                aria-valuemax="5" style="width: 01%">
+                        <div class="float-left" style="width:180px;">
+                            <div class="progress" style="height:9px; margin:8px 0;">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0"
+                                    aria-valuemax="5" style="width: 09%">
+                                </div>
                             </div>
                         </div>
+                        <div class="float-right" style="margin-left:10px;">09</div>
                     </div>
-                    <div class="float-right" style="margin-left:10px;">01</div>
-                </div>
-                <div class="float-left">
-                    <div class="float-left" style="width:100px; line-height:1;">
-                        <div style="margin:5px 0;">
-
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg>
+                    <div class="float-left">
+                        <div class="float-left" style="width:100px; line-height:1;">
+                            <div style="margin:5px 0;">
 
 
-                            {{-- <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
-                            <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
-                            <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i>
-                            <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i>
-                            <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i> --}}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700"
+                                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700"
+                                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700"
+                                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33"
+                                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33"
+                                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
 
-                        </div>
-                    </div>
-                    <div class="float-left" style="width:180px;">
-                        <div class="progress" style="height:9px; margin:8px 0;">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0"
-                                aria-valuemax="5" style="width: 50%">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="float-right" style="margin-left:10px;">09</div>
-                </div>
-                <div class="float-left">
-                    <div class="float-left" style="width:100px; line-height:1;">
-                        <div style="margin:5px 0;">
-                           
-
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                              </svg>
-
-                           
-                            {{-- <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
-                            <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i>
-                            <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i>
-                            <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i>
-                            <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i> --}}
-
-                        </div>
-                    </div>
-                    <div class="float-left" style="width:180px;">
-                        <div class="progress" style="height:9px; margin:8px 0;">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0"
-                                aria-valuemax="5" style="width: 35%">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="float-right" style="margin-left:10px;">15</div>
-                </div>
-            </div>
-        </div>
-        <div class="row my-filters">
-            <div class="col-lg-8 col-sm-6 product-review-bot">
-                <h3 class="h3-heading">Product Reviews</h3>
-            </div>
-            <div class="col-lg-4 col-sm-6 sort-by p-0">
-                <form action="/action_page.php">
-                    <div class="rightSort">
-                        <div class="sortBy">
-                            <label for="cars">Sort by:</label>
-                            <select name="cars" id="cars">
-                                <option value="volvo">Best</option>
-                                <option value="saab">Saab</option>
-                                <option value="opel">Opel</option>
-                                <option value="audi">Audi</option>
-                            </select>
-                        </div>
-                        <div class="viewBy">
-                            <p>View:</p>
-                            <img src="{{asset('public/assets/Images/Grid-icon.png')}}">
-                            <img class="pl-4" src="{{asset('public/assets/Images/nav-icon.png')}}">
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-
-        <div class="row">
-            <div class="col-sm-12">
-                <hr />
-                <div class="review-block">
-                    <div class="row">
-                        <div class="col-sm-10">
-                            <img src="/Images/review-1.png" class="img-rounded">
-                            <div class="review-block-name"><a href="#">Rachil</a></div>
-                            <div class="review-block-rate">
-
-                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                                  </svg>
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                                  </svg>
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                                  </svg>
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                                  </svg>
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                                  </svg>
-    
 
                                 {{-- <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
+                            <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
+                            <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
+                            <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i>
+                            <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i> --}}
+
+                            </div>
+                        </div>
+                        <div class="float-left" style="width:180px;">
+                            <div class="progress" style="height:9px; margin:8px 0;">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0"
+                                    aria-valuemax="5" style="width: 01%">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="float-right" style="margin-left:10px;">01</div>
+                    </div>
+                    <div class="float-left">
+                        <div class="float-left" style="width:100px; line-height:1;">
+                            <div style="margin:5px 0;">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700"
+                                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700"
+                                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33"
+                                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33"
+                                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33"
+                                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+
+
+                                {{-- <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
+                            <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
+                            <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i>
+                            <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i>
+                            <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i> --}}
+
+                            </div>
+                        </div>
+                        <div class="float-left" style="width:180px;">
+                            <div class="progress" style="height:9px; margin:8px 0;">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0"
+                                    aria-valuemax="5" style="width: 50%">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="float-right" style="margin-left:10px;">09</div>
+                    </div>
+                    <div class="float-left">
+                        <div class="float-left" style="width:100px; line-height:1;">
+                            <div style="margin:5px 0;">
+
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700"
+                                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33"
+                                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33"
+                                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33"
+                                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33"
+                                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+
+
+                                {{-- <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
+                            <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i>
+                            <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i>
+                            <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i>
+                            <i class="fa-solid fa-star float-left" style="color: #1E1E1E33;"></i> --}}
+
+                            </div>
+                        </div>
+                        <div class="float-left" style="width:180px;">
+                            <div class="progress" style="height:9px; margin:8px 0;">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0"
+                                    aria-valuemax="5" style="width: 35%">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="float-right" style="margin-left:10px;">15</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row my-filters">
+                <div class="col-lg-8 col-sm-6 product-review-bot">
+                    <h3 class="h3-heading">Product Reviews</h3>
+                </div>
+                <div class="col-lg-4 col-sm-6 sort-by p-0">
+                    <form action="/action_page.php">
+                        <div class="rightSort">
+                            <div class="sortBy">
+                                <label for="cars">Sort by:</label>
+                                <select name="cars" id="cars">
+                                    <option value="volvo">Best</option>
+                                    <option value="saab">Saab</option>
+                                    <option value="opel">Opel</option>
+                                    <option value="audi">Audi</option>
+                                </select>
+                            </div>
+                            <div class="viewBy">
+                                <p>View:</p>
+                                <img src="{{ asset('public/assets/Images/Grid-icon.png') }}">
+                                <img class="pl-4" src="{{ asset('public/assets/Images/nav-icon.png') }}">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <hr />
+                    <div class="review-block">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <img src="/Images/review-1.png" class="img-rounded">
+                                <div class="review-block-name"><a href="#">Rachil</a></div>
+                                <div class="review-block-rate">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700"
+                                        class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700"
+                                        class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700"
+                                        class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700"
+                                        class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700"
+                                        class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                    </svg>
+
+
+                                    {{-- <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
                                 <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
                                 <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
                                 <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
                                 <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i> --}}
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <p style="float: right;">
+                                    11 march 2022
+                                </p>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="review-block-description">Horem ipsum dolor sit amet, consectetur adipiscing
+                                    elit.
+                                    Etiam eu turpis molestie, dictum est a, mattis tellus.
+                                </div>
+                                <div class="rev-img">
+                                    <img src="/Images/review-1-1.png">
+                                    <img src="/Images/review-1-1.png">
+                                    <img src="/Images/review-1-1.png">
+                                </div>
+                                <div class="rev-like">
+                                    <i class="fa fa-thumbs-up" aria-hidden="true"> 08</i>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm-2">
-                            <p style="float: right;">
-                                11 march 2022
-                            </p>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="review-block-description">Horem ipsum dolor sit amet, consectetur adipiscing
-                                elit.
-                                Etiam eu turpis molestie, dictum est a, mattis tellus.
-                            </div>
-                            <div class="rev-img">
-                                <img src="/Images/review-1-1.png">
-                                <img src="/Images/review-1-1.png">
-                                <img src="/Images/review-1-1.png">
-                            </div>
-                            <div class="rev-like">
-                                <i class="fa fa-thumbs-up" aria-hidden="true"> 08</i>
-                            </div>
-                        </div>
+                        <hr />
                     </div>
-                    <hr />
                 </div>
             </div>
+
         </div>
 
-    </div>
-
-@endsection
+    @endsection
 </body>
 
 </html>
 
 <style>
-       @font-face {
-    font-family: 'BURBANKBIGCONDENSED-BOLD';
-    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
-  
-}
-@font-face {
-    font-family: 'BURBANKBIGCONDENSED-BLACK';
-    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
-  
-}
-        .container-fluid {
+    @font-face {
+        font-family: 'BURBANKBIGCONDENSED-BOLD';
+        src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf') }});
+
+    }
+
+    @font-face {
+        font-family: 'BURBANKBIGCONDENSED-BLACK';
+        src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf') }});
+
+    }
+
+    .container-fluid {
         padding: 0px 60px !important;
     }
 
@@ -1277,18 +1353,20 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
         margin-left: 0px !important;
     }
 
-    .__text-12px{
+    .__text-12px {
         font-size: 13px !important;
         font-weight: 600 !important;
     }
-    .__text-12px:hover{
+
+    .__text-12px:hover {
         color: #FF061E !important;
 
         border: 1px solid #FF061E !important;
         /* background: #FF061E !important; */
         /* color: #FFF !important; */
     }
-    .checkbox-alphanumeric input:checked ~ label {
+
+    .checkbox-alphanumeric input:checked~label {
         border: 1px solid #000 !important;
         /* border-color: #000 !important; */
         background: #000 !important;
@@ -1604,7 +1682,7 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
     }
 
 
-    .product-review-bot{
+    .product-review-bot {
         padding: 0px !important;
     }
 
@@ -2298,7 +2376,7 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
             justify-content: center;
         }
 
-        .top-filter .filter-btn{
+        .top-filter .filter-btn {
             padding-top: 15px;
             text-align: center;
         }
@@ -2373,11 +2451,9 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
     }
 </style>
 @push('script')
-
     <script type="text/javascript">
-
-            function checkQTY() {
-                $val = document.getElementById('qtyProduct').value;
+        function checkQTY() {
+            $val = document.getElementById('qtyProduct').value;
             productType = $($val).attr('product-type');
             minValue = parseInt($($val).attr('min'));
             maxValue = parseInt($($val).attr('max'));
@@ -2415,7 +2491,7 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
 
         cartQuantityInitialize();
         getVariantPrice();
-        $('#add-to-cart-form input').on('change', function () {
+        $('#add-to-cart-form input').on('change', function() {
             getVariantPrice();
         });
 
@@ -2424,53 +2500,55 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
             $('#show-modal-view').modal('toggle')
         }
 
-        function focus_preview_image_by_color(key){
-            $('a[href="#image'+key+'"]')[0].click();
+        function focus_preview_image_by_color(key) {
+            $('a[href="#image' + key + '"]')[0].click();
         }
     </script>
     <script>
-        $( document ).ready(function() {
+        $(document).ready(function() {
             load_review();
         });
         let load_review_count = 1;
-        function load_review()
-        {
+
+        function load_review() {
 
             $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                    }
-                });
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
             $.ajax({
-                    type: "post",
-                    url: '{{route('review-list-product')}}',
-                    data:{
-                        product_id:{{$product->id}},
-                        offset:load_review_count
-                    },
-                    success: function (data) {
-                        $('#product-review-list').append(data.productReview)
-                        if(data.not_empty == 0 && load_review_count>2){
-                            toastr.info('{{\App\CPU\translate('no more review remain to load')}}', {
-                                CloseButton: true,
-                                ProgressBar: true
-                            });
-                            console.log('iff');
-                        }
+                type: "post",
+                url: '{{ route('review-list-product') }}',
+                data: {
+                    product_id: {{ $product->id }},
+                    offset: load_review_count
+                },
+                success: function(data) {
+                    $('#product-review-list').append(data.productReview)
+                    if (data.not_empty == 0 && load_review_count > 2) {
+                        toastr.info('{{ \App\CPU\translate('no more review remain to load') }}', {
+                            CloseButton: true,
+                            ProgressBar: true
+                        });
+                        console.log('iff');
                     }
-                });
-                load_review_count++
+                }
+            });
+            load_review_count++
         }
     </script>
 
     {{-- Messaging with shop seller --}}
     <script>
-        $('#contact-seller').on('click', function (e) {
+        $('#contact-seller').on('click', function(e) {
             // $('#seller_details').css('height', '200px');
-            $('#seller_details').animate({'height': '276px'});
+            $('#seller_details').animate({
+                'height': '276px'
+            });
             $('#msg-option').css('display', 'block');
         });
-        $('#sendBtn').on('click', function (e) {
+        $('#sendBtn').on('click', function(e) {
             e.preventDefault();
             let msgValue = $('#msg-option').find('textarea').val();
             let data = {
@@ -2487,42 +2565,46 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
 
                 $.ajax({
                     type: "post",
-                    url: '{{route('messages_store')}}',
+                    url: '{{ route('messages_store') }}',
                     data: data,
-                    success: function (respons) {
+                    success: function(respons) {
                         console.log('send successfully');
                     }
                 });
                 $('#chatInputBox').val('');
                 $('#msg-option').css('display', 'none');
                 $('#contact-seller').find('.contact').attr('disabled', '');
-                $('#seller_details').animate({'height': '125px'});
+                $('#seller_details').animate({
+                    'height': '125px'
+                });
                 $('#go_to_chatbox').css('display', 'block');
             } else {
                 console.log('say something');
             }
         });
-        $('#cancelBtn').on('click', function (e) {
+        $('#cancelBtn').on('click', function(e) {
             e.preventDefault();
-            $('#seller_details').animate({'height': '114px'});
+            $('#seller_details').animate({
+                'height': '114px'
+            });
             $('#msg-option').css('display', 'none');
         });
     </script>
 
     <script type="text/javascript"
-            src="https://platform-api.sharethis.com/js/sharethis.js#property=5f55f75bde227f0012147049&product=sticky-share-buttons"
-            async="async"></script>
+        src="https://platform-api.sharethis.com/js/sharethis.js#property=5f55f75bde227f0012147049&product=sticky-share-buttons"
+        async="async"></script>
 @endpush
 <script>
-    window.onload = function () {
-      var span = document.createElement('span');
-    
-      span.className = 'fa';
-      span.style.display = 'none';
-      document.body.insertBefore(span, document.body.firstChild);
-      
-      alert(window.getComputedStyle(span, null).getPropertyValue('font-family'));
-        
-      document.body.removeChild(span);
+    window.onload = function() {
+        var span = document.createElement('span');
+
+        span.className = 'fa';
+        span.style.display = 'none';
+        document.body.insertBefore(span, document.body.firstChild);
+
+        //alert(window.getComputedStyle(span, null).getPropertyValue('font-family'));
+
+        document.body.removeChild(span);
     };
-    </script>
+</script>

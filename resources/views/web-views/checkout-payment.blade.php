@@ -4,6 +4,16 @@
 
 @push('css_or_js')
     <style>
+         @font-face {
+    font-family: 'BURBANKBIGCONDENSED-BOLD';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
+  
+}
+@font-face {
+    font-family: 'BURBANKBIGCONDENSED-BLACK';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
+  
+}
         .stripe-button-el {
             display: none !important;
         }
@@ -39,12 +49,15 @@
          style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
         <div class="row">
             <div class="col-md-12 mb-5 pt-5">
-                <div class="feature_header __feature_header">
-                    <span>{{ \App\CPU\translate('payment_method')}}</span>
+                <div class="feature_header __feature_header" style="background: transparent !important;">
+                    <span style="    font-family: 'BURBANKBIGCONDENSED-BOLD' !important; font-size: 33.23px;
+                    ">{{ \App\CPU\translate('payment_method')}}</span>
                 </div>
             </div>
             <section class="col-lg-8">
-                <div class="checkout_details">
+                <div class="checkout_details mt-2" style="    border: 1px solid #7777;
+                padding: 25px;
+                border-radius: 10px;">
                 @include('web-views.partials._checkout-steps',['step'=>3])
                 <!-- Payment methods accordion-->
                     <h2 class="h6 pb-3 mb-2 mt-5">{{\App\CPU\translate('choose_payment')}}</h2>

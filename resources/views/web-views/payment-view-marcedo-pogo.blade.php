@@ -11,6 +11,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://sdk.mercadopago.com/js/v2"></script>
     <!-- <script type="text/javascript" src="{{asset('public/assets/mercado_pogo/js/index.js')}}" defer></script> -->
+
+    <style> @font-face {
+        font-family: 'BURBANKBIGCONDENSED-BOLD';
+        src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
+      
+    }
+    @font-face {
+        font-family: 'BURBANKBIGCONDENSED-BLACK';
+        src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
+      
+    }</style>
 </head>
 <body>
 <main>
@@ -21,7 +32,8 @@
     <section class="payment-form dark">
         <div class="container__payment">
             <div class="block-heading">
-                <h2>Card Payment</h2>
+                <h2 style="    font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+                ">Card Payment</h2>
                 <!-- <p>This is an example of a Mercado Pago integration</p> -->
             </div>
             <div class="form-payment">

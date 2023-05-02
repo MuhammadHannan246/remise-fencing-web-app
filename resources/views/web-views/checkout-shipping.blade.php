@@ -6,6 +6,17 @@
     <link rel="stylesheet" href="{{ asset('public/assets/front-end/css/bootstrap-select.min.css') }}">
 
     <style>
+         @font-face {
+    font-family: 'BURBANKBIGCONDENSED-BOLD';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
+  
+}
+@font-face {
+    font-family: 'BURBANKBIGCONDENSED-BLACK';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
+  
+}
+
         .btn-outline {
             border-color: {{$web_config['primary_color']}} ;
         }
@@ -48,7 +59,24 @@
             transform: none !important;
             top: 41px !important;
         }
+        .steps-light .step-item.active .step-count, .steps-light .step-item.active .step-progress{
+            color: #fff;
+    background-color: #FF061E !important;
+        }
+        .step-count{
+            height: 15px !important;
+        }
 
+        .anotherAdd{
+            border: 1px solid #FF061E !important;
+            font-size: 15px !important;
+            font-weight: 600 !important;
+        }
+        .anotherAdd:hover{
+            border: 1px solid #FF061E !important;
+            background: #FF061E !important;
+
+        }
         /*@media only screen and (max-width: 768px) {*/
         /*    !* For mobile phones: *!*/
         /*    #location_map_canvas {*/
@@ -65,7 +93,7 @@
         <div class="row">
             <div class="col-md-12 mb-5 pt-5">
                 <div class="feature_header">
-                    <span>{{ \App\CPU\translate('shipping')}} {{$billing_input_by_customer==1?\App\CPU\translate('and').' '.\App\CPU\translate('billing'):' '}} {{\App\CPU\translate('address')}}</span>
+                    <span style="font-family: 'BURBANKBIGCONDENSED-BOLD' !important; text-transform:capitalize; font-size:33.23px;">{{ \App\CPU\translate('shipping')}} {{$billing_input_by_customer==1?\App\CPU\translate('and').' '.\App\CPU\translate('billing'):' '}} {{\App\CPU\translate('address')}}</span>
                 </div>
             </div>
             <section class="col-lg-8">
@@ -113,8 +141,8 @@
                                         <span class="checkmark"
                                               style="margin-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}: 10px"></span>
 
-                                        <button type="button" class="btn btn-outline" data-toggle="collapse"
-                                                data-target="#collapseThree">{{ \App\CPU\translate('Another')}} {{ \App\CPU\translate('address')}}
+                                        <button type="button" class="btn btn-outline anotherAdd" data-toggle="collapse"
+                                                data-target="#collapseThree" >{{ \App\CPU\translate('Another')}} {{ \App\CPU\translate('address')}}
                                         </button>
                                         <div id="accordion">
                                             <div id="collapseThree"
@@ -281,7 +309,7 @@
                                         <span class="checkmark"
                                             style="margin-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}: 10px"></span>
 
-                                        <button type="button" class="btn btn-outline" data-toggle="collapse"
+                                        <button type="button" class="btn btn-outline anotherAdd" data-toggle="collapse"
                                                 data-target="#billing_model">{{ \App\CPU\translate('Another')}} {{ \App\CPU\translate('address')}}
                                         </button>
                                         <div id="accordion">
@@ -402,14 +430,14 @@
                     <!-- Navigation (desktop)-->
                     <div class="row mt-3">
                         <div class="col-6">
-                            <a class="btn btn-secondary btn-block" href="{{route('shop-cart')}}">
+                            <a class="btn btn-secondary btn-block" href="{{route('shop-cart')}}" style="padding:10px 15px; border: 1px solid #000 !important; text-transform:capitalize;">
                                 <i class="czi-arrow-{{Session::get('direction') === "rtl" ? 'right' : 'left'}} mt-sm-0 mx-1"></i>
                                 <span class="d-none d-sm-inline">{{ \App\CPU\translate('shop_cart')}}</span>
                                 <span class="d-inline d-sm-none">{{ \App\CPU\translate('shop_cart')}}</span>
                             </a>
                         </div>
                         <div class="col-6">
-                            <a class="btn btn--primary btn-block" href="javascript:" onclick="proceed_to_next()">
+                            <a class="btn btn--primary btn-block" style="background: #FF061E !important; padding:10px 15px; border: 1px solid #FF061E !important; text-transform:capitalize;" href="javascript:" onclick="proceed_to_next()">
                                 <span class="d-none d-sm-inline">{{ \App\CPU\translate('proceed_payment')}}</span>
                                 <span class="d-inline d-sm-none">{{ \App\CPU\translate('Next')}}</span>
                                 <i class="czi-arrow-{{Session::get('direction') === "rtl" ? 'left' : 'right'}} mt-sm-0 mx-1"></i>

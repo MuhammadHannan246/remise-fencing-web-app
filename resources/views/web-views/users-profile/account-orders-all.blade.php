@@ -1191,8 +1191,8 @@
         }
 
         .top-filter .filter-btn a:active {
-            background-color: #1E1E1E;
-            color: white;
+            background-color: #1E1E1E !important;
+            color: white !important;
         }
 
         .top-filter .user h4 {

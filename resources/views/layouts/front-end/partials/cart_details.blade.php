@@ -1,5 +1,26 @@
+<style>
+      @font-face {
+    font-family: 'BURBANKBIGCONDENSED-BOLD';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
+  
+}
+@font-face {
+    font-family: 'BURBANKBIGCONDENSED-BLACK';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
+  
+}
+.cancelBTN:focus{
+
+    outline: none !important;
+}
+.shipSelect{
+    padding: 0 !important;
+    height: 55px !important;
+    
+}
+</style>
 <div class="feature_header mb-2">
-    <span>{{ \App\CPU\translate('shopping_cart')}}</span>
+    <span style="font-size: 33.23px; font-weight:600;font-family: 'BURBANKBIGCONDENSED-BOLD' !important;text-transform: capitalize;">Order Summary</span>
 </div>
 
 @php($shippingMethod=\App\CPU\Helpers::get_business_settings('shipping_method'))
@@ -38,13 +59,13 @@
                         <div class="card-header">
                             @if($cartItem->seller_is=='admin')
                             <b>
-                                <span>{{ \App\CPU\translate('shop_name')}} : </span>
-                                <a href="{{route('shopView',['id'=>0])}}">{{\App\CPU\Helpers::get_business_settings('company_name')}}</a>
+                                <span style="font-size: 20px;">{{ \App\CPU\translate('shop_name')}} : </span>
+                                <a style="color:#FF061E !important; font-size: 20px;" href="{{route('shopView',['id'=>0])}}">{{\App\CPU\Helpers::get_business_settings('company_name')}}</a>
                             </b>
                         @else
                             <b>
                                 <span>{{ \App\CPU\translate('shop_name')}}:</span>
-                                <a href="{{route('shopView',['id'=>$cartItem->seller_id])}}">
+                                <a style="color:#FF061E !important;" href="{{route('shopView',['id'=>$cartItem->seller_id])}}">
                                     {{\App\Model\Shop::where(['seller_id'=>$cartItem['seller_id']])->first()->name}}
                                 </a>
                             </b>
@@ -56,17 +77,17 @@
                     <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table __cart-table">
                         <thead class="thead-light">
                             <tr class="">
-                                <th class="font-weight-bold __w-5p">{{\App\CPU\translate('SL#')}}</th>
+                                <th class="font-weight-bold __w-5p" style="font-size:15px;">{{\App\CPU\translate('No.')}}</th>
                                 @if ( $shipping_type != 'order_wise')
-                                <th class="font-weight-bold __w-30p">{{\App\CPU\translate('product_details')}}</th>
+                                <th class="font-weight-bold __w-30p" style="font-size:15px; text-transform:capitalize;">{{\App\CPU\translate('product_details')}}</th>
                                 @else
-                                <th class="font-weight-bold __w-45">{{\App\CPU\translate('product_details')}}</th>
+                                <th class="font-weight-bold __w-45" style="font-size:15px; text-transform:capitalize;">{{\App\CPU\translate('product_details')}}</th>
                                 @endif
-                                <th class="font-weight-bold __w-15p">{{\App\CPU\translate('unit_price')}}</th>
-                                <th class="font-weight-bold __w-15p">{{\App\CPU\translate('qty')}}</th>
-                                <th class="font-weight-bold __w-15p">{{\App\CPU\translate('price')}}</th>
+                                <th class="font-weight-bold __w-15p" style="font-size:15px; text-transform:capitalize;">{{\App\CPU\translate('unit_price')}}</th>
+                                <th class="font-weight-bold __w-15p" style="font-size:15px; text-transform:capitalize;">{{\App\CPU\translate('qty')}}</th>
+                                <th class="font-weight-bold __w-15p" style="font-size:15px; text-transform:capitalize;">{{\App\CPU\translate('price')}}</th>
                                 @if ( $shipping_type != 'order_wise')
-                                    <th class="font-weight-bold __w-15p">{{\App\CPU\translate('shipping_cost')}} </th>
+                                    <th class="font-weight-bold __w-15p" style="font-size:15px; text-transform:capitalize;">{{\App\CPU\translate('shipping_cost')}} </th>
                                 @endif
                                 <th class="font-weight-bold __w-5p"></th>
                             </tr>
@@ -95,7 +116,7 @@
                                             </a>
                                         </div>
                                         <div class="ml-2 text-break __line-2 __w-70p">
-                                            <a href="{{route('product',$cartItem['slug'])}}">{{$cartItem['name']}}</a>
+                                            <a href="{{route('product',$cartItem['slug'])}}" style="color:black !important; font-size:15px;">{{$cartItem['name']}}</a>
 
                                         </div>
 
@@ -113,7 +134,7 @@
                                 </td>
                                 <td>
                                     <div
-                                            class=" text-accent">{{ \App\CPU\Helpers::currency_converter($cartItem['price']-$cartItem['discount']) }}</div>
+                                            class=" text-accent" style="color: #FF061E !important;">{{ \App\CPU\Helpers::currency_converter($cartItem['price']-$cartItem['discount']) }}</div>
                                         @if($cartItem['discount'] > 0)
                                             <strike class="__inline-18">
                                                 {{\App\CPU\Helpers::currency_converter($cartItem['price'])}}
@@ -139,9 +160,9 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <button class="btn btn-link px-0 text-danger"
+                                    <button class="btn btn-link px-0 text-danger cancelBTN" 
                                             onclick="removeFromCart({{ $cartItem['id'] }})" type="button"><i
-                                            class="czi-close-circle {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i>
+                                            class="czi-close-circle {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}" style="font-size: 20px; color:#FF061E;"></i>
                                     </button>
                                 </td>
                                 </tr>
@@ -206,7 +227,8 @@
             $shipping_type = isset($admin_shipping) == true ? $admin_shipping->shipping_type : 'order_wise';
         ?>
     @if ($shipping_type == 'order_wise' && $physical_product)
-        @php($shippings=\App\CPU\Helpers::get_shipping_methods(1,'admin'))
+        @php($shippings=\App\CPU\Helpers::get_shipping_methods(1,'admin')) 
+      
         @php($choosen_shipping=\App\Model\CartShipping::where(['cart_group_id'=>$cartItem['cart_group_id']])->first())
 
         @if(isset($choosen_shipping)==false)
@@ -214,7 +236,7 @@
         @endif
         <div class="row">
             <div class="col-12">
-                <select class="form-control" onchange="set_shipping_id(this.value,'all_cart_group')">
+                <select class="form-control shipSelect" onchange="set_shipping_id(this.value,'all_cart_group')">
                     <option>{{\App\CPU\translate('choose_shipping_method')}}</option>
                     @foreach($shippings as $shipping)
                         <option
@@ -230,7 +252,7 @@
 
 @if( $cart->count() == 0)
     <div class="d-flex justify-content-center align-items-center">
-        <h4 class="text-danger text-capitalize">{{\App\CPU\translate('cart_empty')}}</h4>
+        <h4 class="text-danger text-capitalize" style="font-size:25px; font-weight:600; color:#FF061E !important;">{{\App\CPU\translate('cart_empty')}}</h4>
     </div>
 @endif
 
@@ -239,7 +261,7 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-12">
-                        <label for="phoneLabel" class="form-label input-label">{{\App\CPU\translate('order_note')}} <span
+                        <label for="phoneLabel" style="font-size: 12px;" class="form-label input-label">{{\App\CPU\translate('order_note')}} <span
                                             class="input-label-secondary">({{\App\CPU\translate('Optional')}})</span></label>
                         <textarea class="form-control w-100" id="order_note" name="order_note">{{ session('order_note')}}</textarea>
                     </div>
@@ -249,11 +271,11 @@
 
 
         <div class="d-flex btn-full-max-sm align-items-center __gap-6px flex-wrap justify-content-between">
-            <a href="{{route('home')}}" class="btn btn--primary">
+            <a href="{{route('home')}}" class="btn btn--primary"  style="background: #FF061E !important; border: 1px solid #FF061E !important; padding: 10px 15px; text-transform:capitalize;">
                 <i class="fa fa-{{Session::get('direction') === "rtl" ? 'forward' : 'backward'}} px-1"></i> {{\App\CPU\translate('continue_shopping')}}
             </a>
             <a onclick="checkout()"
-            class="btn btn--primary pull-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}">
+            class="btn btn--primary pull-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}"  style="background: #FF061E !important; border: 1px solid #FF061E !important; padding: 10px 15px; text-transform:capitalize; ">
                 {{\App\CPU\translate('checkout')}}
                 <i class="fa fa-{{Session::get('direction') === "rtl" ? 'backward' : 'forward'}} px-1"></i>
             </a>

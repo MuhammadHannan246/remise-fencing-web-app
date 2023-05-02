@@ -177,7 +177,7 @@ class Helpers
 
     public static function get_shipping_methods($seller_id, $type)
     {
-        return $seller_id;
+        //return $seller_id;
         if ($type == 'admin') {
             return ShippingMethod::where(['status' => 1])->where(['creator_type' => 'admin'])->get();
         } else {

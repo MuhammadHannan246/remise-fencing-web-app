@@ -578,6 +578,8 @@
                                         {{ \App\CPU\translate('my_order') }} </a>
                                     <a class="dropdown-item" href="{{ route('user-account') }}">
                                         {{ \App\CPU\translate('my_profile') }}</a>
+                                        <a class="dropdown-item" href="{{ route('home') }}">
+                                            {{ \App\CPU\translate('Home') }}</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item"
                                         href="{{ route('customer.auth.logout') }}">{{ \App\CPU\translate('logout') }}</a>

@@ -16,7 +16,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://icons.getbootstrap.com/">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -282,15 +282,18 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
                         let a = 1;
                         plus.addEventListener("click", () => {
                             a++;
-                            a = (a < 10) ? "0" + a : a;
+                            //a = (a < 10) ? "0" + a : a;
                             num.innerText = a;
+                            document.getElementById('qtyProduct').setAttribute("value", a);
+                            checkQTY();
                         });
 
                         minus.addEventListener("click", () => {
                             if (a > 1) {
                                 a--;
-                                a = (a < 10) ? "0" + a : a;
+                                //a = (a < 10) ? "0" + a : a;
                                 num.innerText = a;
+                                document.getElementById('qtyProduct').value = a;
                             }
                         });
 
@@ -354,6 +357,9 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
                                 }
                             @endphp
                         </div>
+                        <input type="text" name="quantity" id="qtyProduct" style="display:none;"
+                                            class="form-control input-number text-center cart-qty-field __inline-29"
+                                            placeholder="1" value="{{ $product->minimum_order_qty ?? 1 }}" product-type="{{ $product->product_type }}" min="{{ $product->minimum_order_qty ?? 1 }}" max="100">
                         @foreach (json_decode($product->choice_options) as $key => $choice)
                             <div class="row flex-start mx-0">
                                 <div class="product-description-label text-body mt-2 {{Session::get('direction') === "rtl" ? 'pl-2' : 'pr-2'}}" style="font-size:20px; font-weight:600">{{ $choice->title }}
@@ -364,6 +370,7 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
                                         @foreach ($choice->options as $key => $option)
                                             <div>
                                                 <li class="for-mobile-capacity">
+                                                    
                                                     <input type="radio"
                                                         id="{{ $choice->name }}-{{ $option }}"
                                                         name="{{ $choice->name }}" value="{{ $option }}"
@@ -2368,6 +2375,44 @@ Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
 @push('script')
 
     <script type="text/javascript">
+
+            function checkQTY() {
+                $val = document.getElementById('qtyProduct').value;
+            productType = $($val).attr('product-type');
+            minValue = parseInt($($val).attr('min'));
+            maxValue = parseInt($($val).attr('max'));
+            valueCurrent = parseInt($($val).val());
+
+            var name = $($val).attr('name');
+            if (valueCurrent >= minValue) {
+                $(".btn-number[data-type='minus'][data-field='" + name + "']").removeAttr('disabled')
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Cart',
+                    text: 'Sorry  the minimum order quantity does not match'
+                });
+                $($val).val($($val).data('oldValue'));
+                document.getElementById('qtyProduct').value = $val - 1;
+                document.querySelector(".num").innerText = $val - 1;
+            }
+            if (productType === 'digital' || valueCurrent <= maxValue) {
+                $(".btn-number[data-type='plus'][data-field='" + name + "']").removeAttr('disabled')
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Cart',
+                    text: 'Sorry  stock limit exceeded.'
+                });
+                $($val).val($($val).data('oldValue'));
+                document.getElementById('qtyProduct').value = $val - 1;
+                document.querySelector(".num").innerText = $val - 1;
+            }
+
+
+        }
+
+
         cartQuantityInitialize();
         getVariantPrice();
         $('#add-to-cart-form input').on('change', function () {

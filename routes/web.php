@@ -35,6 +35,7 @@ Route::group(['namespace' => 'Web','middleware'=>['maintenance_mode']], function
         Route::post('offline-payment-checkout-complete', 'WebController@offline_payment_checkout_complete')->name('offline-payment-checkout-complete')->middleware('customer');
         Route::get('order-placed', 'WebController@order_placed')->name('order-placed')->middleware('customer');
         Route::get('shop-cart', 'WebController@shop_cart')->name('shop-cart');
+
         Route::post('order_note', 'WebController@order_note')->name('order_note');
         Route::get('digital-product-download/{id}', 'WebController@digital_product_download')->name('digital-product-download')->middleware('customer');
         Route::get('submit-review/{id}','UserProfileController@submit_review')->name('submit-review');

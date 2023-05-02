@@ -1767,6 +1767,7 @@
 
             .top-filter .filter-btn a {
                 padding: 5px 18px !important;
+                margin: 5px;
             }
 
             .orders .inner-content {

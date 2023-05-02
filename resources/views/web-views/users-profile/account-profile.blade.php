@@ -376,6 +376,17 @@
 
         
 
+            @font-face {
+    font-family: 'BURBANKBIGCONDENSED-BOLD';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
+  
+}
+@font-face {
+    font-family: 'BURBANKBIGCONDENSED-BLACK';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
+  
+}
+
 
 #message{
     position: absolute;
@@ -1607,6 +1618,9 @@ border-radius: 15px;
 .oderSumm {
     color: #000;
     font-weight: 600;
+    font-size: 33.23px;
+    font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+
 }
 
 .divIn {

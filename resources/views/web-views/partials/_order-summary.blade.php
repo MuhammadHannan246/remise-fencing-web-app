@@ -77,10 +77,10 @@
                     <form class="needs-validation" action="javascript:" method="post" novalidate id="coupon-code-ajax">
                         <div class="form-group">
                             <input class="form-control input_code" type="text" name="code" placeholder="{{\App\CPU\translate('Coupon code')}}"
-                                required>
+                                required >
                             <div class="invalid-feedback">{{\App\CPU\translate('please_provide_coupon_code')}}</div>
                         </div>
-                        <button class="btn btn--primary btn-block" type="button" onclick="couponCode()">{{\App\CPU\translate('apply_code')}}
+                        <button class="btn btn--primary btn-block" type="button" onclick="couponCode()" style="background: #FF061E !important; border: 1px solid #FF061E !important; text-transform:capitalize; padding: 10px 15px;">{{\App\CPU\translate('apply_code')}}
                         </button>
                     </form>
                 </div>
@@ -94,26 +94,6 @@
                 </span>
             </div>
         </div>
-        <div class="container mt-2">
-            <div class="row p-0">
-                <div class="col-md-3 p-0 text-center mobile-padding">
-                    <img class="order-summery-footer-image" src="{{asset("public/assets/front-end/png/delivery.png")}}" alt="">
-                    <div class="deal-title">3 {{\App\CPU\translate('days_free_delivery')}} </div>
-                </div>
-
-                <div class="col-md-3 p-0 text-center">
-                    <img class="order-summery-footer-image" src="{{asset("public/assets/front-end/png/money.png")}}" alt="">
-                    <div class="deal-title">{{\App\CPU\translate('money_back_guarantee')}}</div>
-                </div>
-                <div class="col-md-3 p-0 text-center">
-                    <img class="order-summery-footer-image" src="{{asset("public/assets/front-end/png/Genuine.png")}}" alt="">
-                    <div class="deal-title">100% {{\App\CPU\translate('genuine')}} {{\App\CPU\translate('product')}}</div>
-                </div>
-                <div class="col-md-3 p-0 text-center">
-                    <img class="order-summery-footer-image" src="{{asset("public/assets/front-end/png/Payment.png")}}" alt="">
-                    <div class="deal-title">{{\App\CPU\translate('authentic_payment')}}</div>
-                </div>
-            </div>
-        </div>
+ 
     </div>
 </aside>

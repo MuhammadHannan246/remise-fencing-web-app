@@ -1,3 +1,5 @@
+
+
 @extends('layouts.front-end.app')
 
 @section('title',\App\CPU\translate('refund_policy'))

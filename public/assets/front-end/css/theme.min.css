@@ -6,7 +6,16 @@
  */
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Poppins");
-
+@font-face {
+    font-family: 'BURBANKBIGCONDENSED-BOLD';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
+  
+}
+@font-face {
+    font-family: 'BURBANKBIGCONDENSED-BLACK';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
+  
+}
 *{
   font-family: 'Poppins' !important;
 }
@@ -17725,6 +17734,14 @@ a:hover {
 
 .feature_header span {
     background-color: #fafafc !important
+}
+.top-filter .filter-btn a:active {
+    background-color: #1E1E1E;
+    color: white;
+}
+.top .main-heading{
+
+    font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
 }
 
 .discount-top-f {

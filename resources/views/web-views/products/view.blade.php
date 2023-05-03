@@ -111,8 +111,8 @@
                 id="SearchParameters" style="    border: 1px solid #7777 !important;
     border-radius: 15px;">
                 <!--Price Sidebar-->
-                <div class="cz-sidebar box-shadow-lg " id="shop-sidebar">
-                    <div class="cz-sidebar-header box-shadow-sm">
+                <div class="cz-sidebar " id="shop-sidebar">
+                    <div class="cz-sidebar-header ">
                         <button class="close {{Session::get('direction') === "rtl" ? 'mr-auto' : 'ml-auto'}}"
                                 type="button" data-dismiss="sidebar" aria-label="Close"><span
                                 class="d-inline-block font-size-xs font-weight-normal align-middle"><span class="d-inline-block align-middle"

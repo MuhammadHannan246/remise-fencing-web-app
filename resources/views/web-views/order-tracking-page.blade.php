@@ -18,6 +18,16 @@
        .closet{
             float: {{Session::get('direction') === "rtl" ? 'left' : 'right'}};
         }
+        @font-face {
+    font-family: 'BURBANKBIGCONDENSED-BOLD';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
+  
+}
+@font-face {
+    font-family: 'BURBANKBIGCONDENSED-BLACK';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
+  
+}
     </style>
 @endpush
 
@@ -25,7 +35,11 @@
     <!-- Page Content-->
     <div class="container rtl py-5" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
         <div class="__max-w-620 mx-auto">
-            <h3 class="text-center text-capitalize">{{\App\CPU\translate('track_order')}}</h3>
+            <h3 class="text-center text-capitalize" style="
+                    font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
+                    font-size:33.23px;
+
+                ">{{\App\CPU\translate('track_order')}}</h3>
             <div class="card __card">
                 <div class="card-body">
                     <form action="{{route('track-order.result')}}" type="submit" method="post" class="p-3">

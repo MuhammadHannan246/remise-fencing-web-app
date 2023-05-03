@@ -80,10 +80,11 @@
                                     <ul class="side">
                                         <li class="side-item"><a href="user-account">Profile</a></li>
                                         <li class="side-item"><a href="account-address">Address</a></li>
-                                        <li class="side-item"><a href="#">Settings</a></li>
-                                        <li class="side-item"><a href="#">Payments</a></li>
-                                        <li class="side-item"><a href="#">Vouchers</a></li>
-                                        <li class="side-item"><a href="#">Reviews</a></li>
+                                        <li class="side-item"><a href="{{route('track-order.index') }}">Track your order</a></li>
+                            <li class="side-item"><a href="{{route('chat', ['type' => 'seller'])}}">Chat with seller</a></li>
+                            <li class="side-item"><a href="{{route('chat', ['type' => 'delivery-man'])}}">Chat with delivery-man</a></li>
+                            <li class="side-item"><a href="{{ route('account-tickets') }}">Support Ticket</a></li>
+
             
                                     </ul>
                                     <h4 class="myAccHeading">My Orders</h4>
@@ -133,10 +134,10 @@
                         <ul class="side">
                             <li class="side-item"><a href="user-account">Profile</a></li>
                             <li class="side-item"><a href="account-address">Address</a></li>
-                            <li class="side-item"><a href="#">Settings</a></li>
-                            <li class="side-item"><a href="#">Payments</a></li>
-                            <li class="side-item"><a href="#">Vouchers</a></li>
-                            <li class="side-item"><a href="#">Reviews</a></li>
+                            <li class="side-item"><a href="{{route('track-order.index') }}">Track your order</a></li>
+                            <li class="side-item"><a href="{{route('chat', ['type' => 'seller'])}}">Chat with seller</a></li>
+                            <li class="side-item"><a href="{{route('chat', ['type' => 'delivery-man'])}}">Chat with delivery-man</a></li>
+                            <li class="side-item"><a href="{{ route('account-tickets') }}">Support Ticket</a></li>
 
                         </ul>
                         <h4 class="myAccHeading">My Orders</h4>
@@ -180,7 +181,7 @@
                                         <div class="form2">
                                             <input type="text" class="form__input2" id="f_name" name="f_name"
                                             value="{{$customerDetail['f_name']}}" required>
-                                            <label for="fname" class="form__label2">Full Name</label>
+                                             <label for="fname" class="form__label2">Full Name</label>
                                         </div>
 
                                         <br><br><br><br>

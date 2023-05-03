@@ -1,5 +1,17 @@
 @extends('layouts.front-end.app')
 
+<style>
+     @font-face {
+    font-family: 'BURBANKBIGCONDENSED-BOLD';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
+  
+}
+@font-face {
+    font-family: 'BURBANKBIGCONDENSED-BLACK';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
+  
+}
+</style>
 @section('title',\App\CPU\translate('My Support Tickets'))
 @section('content')
 
@@ -73,7 +85,7 @@
     </div>
     <!-- Page Title-->
     <div class="container rtl">
-        <h3 class="headerTitle text-center py-3 mb-0">{{\App\CPU\translate('support_ticket')}}</h3>
+        <h3 class="headerTitle text-center py-3 mb-0" style="    font-family: 'BURBANKBIGCONDENSED-BOLD' !important; font-size:33.23px;        ">{{\App\CPU\translate('support_ticket')}}</h3>
     </div>
     <!-- Page Content-->
     <div class="container pb-5 mb-2 mb-md-4 mt-3 rtl" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">

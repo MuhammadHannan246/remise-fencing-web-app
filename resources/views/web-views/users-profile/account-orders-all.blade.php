@@ -60,10 +60,13 @@
                                     <ul class="side">
                                         <li class="side-item"><a href="user-account">Profile</a></li>
                                         <li class="side-item"><a href="account-address">Address</a></li>
-                                        <li class="side-item"><a href="#">Settings</a></li>
-                                        <li class="side-item"><a href="#">Payments</a></li>
-                                        <li class="side-item"><a href="#">Vouchers</a></li>
-                                        <li class="side-item"><a href="#">Reviews</a></li>
+                                        <li class="side-item"><a href="{{route('track-order.index') }}">Track your order</a></li>
+                            <li class="side-item"><a href="{{route('chat', ['type' => 'seller'])}}">Chat with seller</a></li>
+                            <li class="side-item"><a href="{{route('chat', ['type' => 'delivery-man'])}}">Chat with delivery-man</a></li>
+                            <li class="side-item"><a href="{{ route('account-tickets') }}">Support Ticket</a></li>
+
+                                        
+                                        
             
                                     </ul>
                                     <h4 class="myAccHeading">My Orders</h4>
@@ -131,10 +134,12 @@
                 <ul>
                     <li><a href="user-account">Profile</a></li>
                     <li><a href="account-address">Address</a></li>
-                    <li><a href="#">Settings</a></li>
-                    <li><a href="#">Payments</a></li>
-                    <li><a href="#">Vouchers</a></li>
-                    <li><a href="#">Reviews</a></li>
+                   
+                    <li class="side-item"><a href="{{route('track-order.index') }}">Track your order</a></li>
+                            <li class="side-item"><a href="{{route('chat', ['type' => 'seller'])}}">Chat with seller</a></li>
+                            <li class="side-item"><a href="{{route('chat', ['type' => 'delivery-man'])}}">Chat with delivery-man</a></li>
+                            <li class="side-item"><a href="{{ route('account-tickets') }}">Support Ticket</a></li>
+
                 </ul>
 
                 <h4 class="order-h4">
@@ -1238,7 +1243,7 @@
             margin-right: 8px;
             border: solid 1px #c2bfbf;
             border-radius: 18px;
-            padding: 25px 30px;
+            padding: 25px 15px;
         }
 
         .inner-content {

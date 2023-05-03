@@ -471,8 +471,130 @@
     </div>
 
 
+  
     <div class="navbar-sticky bg-light mobile-head">
 
+        <div class="divIn">
+            <div class="modalOuter" style="display: flex;
+            align-items: center;">
+                <div class="modalDiv">
+    
+                    <button style="border: 1px solid; margin-top:10px; margin-right:5px;" type="button" class="btn btnModal" data-toggle="modal" data-target="#navModal">
+                      
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000" class="bi bi-list" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                          </svg>
+                    </button>
+                
+                    <!-- Modal -->
+                    <div class="modal fade" id="navModal" tabindex="-1" role="dialog" aria-labelledby="navModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="navModalLabel">Menu</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <ul  class="navbar-nav nav_float"
+                                    style="{{ Session::get('direction') === 'rtl' ? 'padding-right: 0px ' : '' }}">
+                                    <li class="nav-item dropdown {{ request()->is('/') ? 'active' : '' }}">
+                                        <a class="nav-link navLink fontt"
+                                            href="{{ route('home') }}">{{ \App\CPU\translate('Home') }}</a>
+                                        {{-- <a class="nav-link" href="{{route('home')}}">{{ \App\CPU\translate('Home')}}</a> --}}
+                                    </li>
+
+                                    @if (\App\Model\BusinessSetting::where(['type' => 'product_brand'])->first()->value)
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle navLink fontt" href="#"
+                                                data-toggle="dropdown">{{ \App\CPU\translate("Today's Deals") }}</a>
+                                            <ul class="dropdown-menu __dropdown-menu-sizing dropdown-menu-{{ Session::get('direction') === 'rtl' ? 'right' : 'left' }} scroll-bar"
+                                                style="text-align: {{ Session::get('direction') === 'rtl' ? 'right' : 'left' }};">
+                                                @foreach (\App\CPU\BrandManager::get_active_brands() as $brand)
+                                                    <li class="__inline-17">
+                                                        <div>
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('products', ['id' => $brand['id'], 'data_from' => 'brand', 'page' => 1]) }}">
+                                                                {{ $brand['name'] }}
+                                                            </a>
+                                                        </div>
+                                                        <div class="align-baseline">
+                                                            @if ($brand['brand_products_count'] > 0)
+                                                                <span class="count-value px-2">(
+                                                                    {{ $brand['brand_products_count'] }} )</span>
+                                                            @endif
+                                                        </div>
+                                                    </li>
+                                                @endforeach
+                                                <li class="__inline-17">
+                                                    <div>
+                                                        <a class="dropdown-item " href="{{ route('brands') }}"
+                                                            style="color: {{ $web_config['primary_color'] }} !important;">
+                                                            {{ \App\CPU\translate('View_more') }}
+                                                        </a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    @endif
+                                    @php($discount_product = App\Model\Product::with(['reviews'])->active()->where('discount', '!=', 0)->count())
+                                    @if ($discount_product > 0)
+                                        <li class="nav-item dropdown {{ request()->is('/') ? 'active' : '' }}">
+                                            <a class="nav-link text-capitalize navLink fontt"
+                                                href="{{ route('products', ['data_from' => 'discounted', 'page' => 1]) }}">{{ \App\CPU\translate('Trending Products') }}</a>
+                                        </li>
+                                    @endif
+
+                                    @php($business_mode = \App\CPU\Helpers::get_business_settings('business_mode'))
+                                    @if ($business_mode == 'multi')
+                                        <li class="nav-item dropdown {{ request()->is('/') ? 'active' : '' }}">
+                                            <a class="nav-link navLink fontt"
+                                                href="{{ route('sellers') }}">{{ \App\CPU\translate('Special Offers') }}</a>
+                                        </li>
+
+                                        @php($seller_registration = \App\Model\BusinessSetting::where(['type' => 'seller_registration'])->first()->value)
+                                        @if ($seller_registration)
+                                            <li class="nav-item ">
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle NAVFONTHOVER fontt " type="button"
+                                                        id="dropdownMenuButton" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false"
+                                                        style="padding-{{ Session::get('direction') === 'rtl' ? 'right' : 'left' }}: 0">
+                                                        {{ \App\CPU\translate('Seller') }}
+                                                        {{ \App\CPU\translate('zone') }}
+                                                    </button>
+                                                    <div class="dropdown-menu __dropdown-menu-3 __min-w-165px"
+                                                        aria-labelledby="dropdownMenuButton"
+                                                        style="text-align: {{ Session::get('direction') === 'rtl' ? 'right' : 'left' }};">
+                                                        <a class="dropdown-item" href="{{ route('shop.apply') }}">
+                                                            {{ \App\CPU\translate('Become a') }}
+                                                            {{ \App\CPU\translate('Seller') }}
+                                                        </a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item" href="{{ route('seller.auth.login') }}">
+                                                            {{ \App\CPU\translate('Seller') }}
+                                                            {{ \App\CPU\translate('login') }}
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        @endif
+                                    @endif
+                                </ul>
+                                </div>
+                
+                            </div>
+                        </div>
+                                    </div>
+                </div>
+            <div>
+                  
+             
+                </div>
+            </div>
+    </div>
 
 
         {{-- New Navbar --}}
@@ -659,3 +781,4 @@
         }
     </script>
 @endpush
+

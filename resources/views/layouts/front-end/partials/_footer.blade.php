@@ -151,13 +151,6 @@
         font-size: 8px;
     }
 
-    .companyName {
-        margin-left: 40px;
-        text-align: center;
-    }
-    .officeBranch{
-        text-align: center;
-    }
     .comp4{
         margin-left: 25px;
 
@@ -165,23 +158,23 @@
     .socialIcons{
         float: none;
     }
-    .menuItemTerm{
-        text-align: center;
-    }
+ 
  .comp2, .comp3, .comp4 {
     display: grid;
-    justify-content: center;
-    align-items: center;
+    justify-content: left;
 }
 .comp1{
     display: grid;
-    justify-items: center;
+    justify-items: left;
 }
 .logFooter{
     display: grid;
     
     justify-items: center;
 }
+.comp1{
+            margin-left: 20px;
+        }
 }
 
 @media screen and (max-width:480px) {
@@ -195,16 +188,23 @@
 
     .comp1 {
         margin-left: 10px;
+        justify-items: center;
     }
 
     .companyName {
         margin-left: 30px;
+        text-align: center;
+    }
+    .menuItemTerm{
+        text-align: center;
     }
 
     .searchMarketing {
         text-align: center;
     }
-
+    .comp2, .comp3, .comp4 {
+        justify-content: center;
+    }
 
     .socialIcons {
         display: flex;
@@ -302,7 +302,7 @@
                 <div class="col col-lg-9 col-md-12 col-sm-12 footRight">
                     <div class="row mr-0">
 
-                        <div class="col col-lg-2 col-md-12 col-sm-12 col-12">
+                        <div class="col col-lg-2 col-md-6 col-sm-12 col-12">
                             <div class="company comp4">
                                 <h4 class="companyName">Company</h4>
                                 <ul class="menuList">
@@ -318,7 +318,7 @@
 
                         <hr class="mobileDivide">
 
-                        <div class="col col-lg-2 col-md-12 col-sm-12 col-12">
+                        <div class="col col-lg-2 col-md-6 col-sm-12 col-12">
                             <div class="company comp3">
                                 <h4 class="companyName">Socials</h4>
                                 <ul class="menuList">
@@ -345,7 +345,7 @@
 
                         <hr class="mobileDivide">
 
-                        <div class="col col-lg-3 col-md-12 col-sm-12 col-12">
+                        <div class="col col-lg-3 col-md-6 col-sm-12 col-12">
                             <div class="company comp2">
                                 <h4 class="companyName">Legal</h4>
                                 <ul class="menuList">
@@ -363,7 +363,7 @@
                         <hr class="mobileDivide">
 
 
-                        <div class="col col-lg-5 col-md-12 col-sm-12 col-12">
+                        <div class="col col-lg-5 col-md-6 col-sm-12 col-12">
                             <div class="company comp1">
                                 <h4 class="companyName">Offices</h4>
                                 <ul class="menuList menuOffice">

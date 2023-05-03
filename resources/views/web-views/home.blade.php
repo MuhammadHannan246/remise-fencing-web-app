@@ -226,7 +226,7 @@
 
                         <div class="row mx-auto">
 
-                            <div class="col col-lg-12 col-md-12 col-sm-12 col-12 bann1" style="margin-bottom: 10px; margin-left: 43px;">
+                            <div class="col col-lg-12 col-md-12 col-sm-12 col-12 bann1 hideDeskMenu" style="margin-bottom: 10px; margin-left: 43px;">
                                 <ul  class="navbar-nav nav_float"
                                     style="{{ Session::get('direction') === 'rtl' ? 'padding-right: 0px ' : '' }}">
                                     <li class="nav-item dropdown {{ request()->is('/') ? 'active' : '' }}">
@@ -318,7 +318,7 @@
 
                             <div class="col col-lg-7 col-md-12 col-sm-12 col-12 bann1">
                                 {{-- @foreach ($main_banner as $banner) --}}
-                                <div style="position:relative;">
+                                <div class="d-flex justify-content-center" style="position:relative;">
                                     <div class="img1" style="  background-image:
                                     linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                     url({{ asset('storage/app/public/banner') }}/{{ $main_banner[0]['photo'] }});  background-size: cover;
@@ -404,7 +404,7 @@
                             <div class="col col-lg-7 col-md-12 col-sm-12 col-12 bann1">
                                 {{-- @foreach ($main_banner as $banner) --}}
                             
-                                    <div class="img1" style="position:relative;  background-image:
+                                    <div class="img1 " style="position:relative;  background-image:
 linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                     url({{ asset('storage/app/public/banner') }}/{{ $main_banner[0]['photo'] }});  background-size: cover;
         background-repeat: no-repeat;
@@ -1777,12 +1777,15 @@ text-decoration: none;
 
 
     .innerArea6 .inner1 .cardText1 {
+        text-transform: capitalize;
         color: #fff;
         position: absolute;
-        margin-top: -45px;
+        /* margin-top: -45px; */
         text-align: center;
-        margin-left: 40px;
+        /* margin-left: 40px; */
 
+        top: 170px;
+        left: 35px;
         font-size: 20px !important;
     }
 
@@ -2144,6 +2147,9 @@ text-decoration: none;
             margin-left: 10px;
         }
 
+        .hideDeskMenu{
+            display: none;
+        }
 
       
 
@@ -2176,9 +2182,7 @@ text-decoration: none;
             font-size: 8px;
         }
 
-         .comp1{
-            margin-left: 35px;
-        }
+         
     }
     
 
@@ -2880,10 +2884,10 @@ text-decoration: none;
     }
 
     .flash_deal_product{
-        height: 370px !important;
+        height: 412px !important;
     }
     .innerArea6 .inner1 .inner122{
-        width: 268px;
+        width: 310px;
         overflow: hidden;
     border-radius: 15px;
     vertical-align: middle;
@@ -2891,7 +2895,7 @@ text-decoration: none;
     position: relative;
     }
     .__img-125px{
-        width: 275px !important;
+        width: 327px !important;
     }
     .innerArea4 .img3 .innerBody3 {
         position: absolute;
@@ -2986,6 +2990,7 @@ text-decoration: none;
 
     .rowDiv {
         margin-right: 0 !important;
+        margin-left: 0 !important;
     }
 
     .leftImg img {
@@ -3058,6 +3063,7 @@ text-decoration: none;
             display: flex;
             /* margin-left: 0; */
             margin: 2px 2px;
+            justify-content: center;
 
         }
 
@@ -3155,9 +3161,9 @@ text-decoration: none;
 
         }
 
-        .innerArea4 .img1 {
+        /* .innerArea4 .img1 {
             margin-left: 0px;
-        }
+        } */
     }
 
 
@@ -3198,9 +3204,17 @@ text-decoration: none;
             /* margin-left: 0; */
             margin: 2px 2px;
             flex-direction: column;
+            align-items: center;
 
         }
 
+        .innerArea6 .inner1 .inner2{
+            width:332px;
+        }
+        .innerArea6 .inner1 .inner2 .card{
+            width: 320px;
+            height: 312px;
+        }
         .img1 {
             width: 315px !important;
             height: 213px !important;
@@ -3213,9 +3227,9 @@ text-decoration: none;
             margin: 2px 0px;
         }
 
-        .innerArea4 .img1 {
+        /* .innerArea4 .img1 {
             margin-left: 0;
-        }
+        } */
         .innerArea4 .img25{
             width: 315px !important;
             height: 213px !important;
@@ -3323,9 +3337,10 @@ text-decoration: none;
         }
 
         .innerArea6 .inner1 .cardText1 {
-            margin-top: -35px;
-            margin-left: 39px;
 
+            top: 212px;
+            left: 75px;
+            font-size: 35px !important;
         }
 
         .offer .offerEndIn {

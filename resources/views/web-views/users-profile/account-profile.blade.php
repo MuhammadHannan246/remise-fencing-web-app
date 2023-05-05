@@ -74,11 +74,12 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
+                           
                             <div class="modal-body">
                                 <div class="myAccountBar">
                                     <h4 class="myAccHeading">My Account</h4>
                                     <ul class="side">
-                                        <li class="side-item"><a href="user-account">Profile</a></li>
+                                        <li class="side-item"><a href="{{ route('account-oder') }}">My Order</a></li>
                                         <li class="side-item"><a href="account-address">Address</a></li>
                                         <li class="side-item"><a href="{{route('track-order.index') }}">Track your order</a></li>
                             <li class="side-item"><a href="{{route('chat', ['type' => 'seller'])}}">Chat with seller</a></li>
@@ -132,7 +133,7 @@
                     <div class="myAccountBar">
                         <h4 class="myAccHeading">My Account</h4>
                         <ul class="side">
-                            <li class="side-item"><a href="user-account">Profile</a></li>
+                            <li class="side-item"><a href=" {{ route('account-oder') }}">My Order</a></li>
                             <li class="side-item"><a href="account-address">Address</a></li>
                             <li class="side-item"><a href="{{route('track-order.index') }}">Track your order</a></li>
                             <li class="side-item"><a href="{{route('chat', ['type' => 'seller'])}}">Chat with seller</a></li>

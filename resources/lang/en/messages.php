@@ -3041,4 +3041,8 @@
   'order_summary' => 'Order summary',
   'No.' => 'No.',
   'Seller request for open a shop' => 'Seller request for open a shop',
+  'out for delivery' => 'Out for delivery',
+  'Company Vehicle' => 'Company Vehicle',
+  'File type: jpg  jpeg  png. Maximum size: 2MB' => 'File type: jpg  jpeg  png. Maximum size: 2MB',
+  'Invalid order!' => 'Invalid order!',
 );

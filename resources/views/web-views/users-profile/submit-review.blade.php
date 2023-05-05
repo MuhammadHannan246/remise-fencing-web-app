@@ -1,3 +1,15 @@
+<style>
+     @font-face {
+    font-family: 'BURBANKBIGCONDENSED-BOLD';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
+  
+}
+@font-face {
+    font-family: 'BURBANKBIGCONDENSED-BLACK';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
+  
+}
+</style>
 @extends('layouts.front-end.app')
 
 @section('title',\App\CPU\translate('submit_a_review'))
@@ -13,7 +25,7 @@
         <section class="col-lg-9  col-md-9">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="__ml-20">{{\App\CPU\translate('submit_a_review')}}</h5>
+                    <h5 class="__ml-20" style="font-family: 'BURBANKBIGCONDENSED-BOLD' !important; font-size:33.23px">{{\App\CPU\translate('submit_a_review')}}</h5>
                 </div>
                 <div class="card-body">
                     <form action="{{route('review.store')}}" method="post" enctype="multipart/form-data">
@@ -21,8 +33,8 @@
                         <div class="modal-body">
 
                             <div class="form-group">
-                                <label for="exampleInputEmail1">{{\App\CPU\translate('rating')}}</label>
-                                <select class="form-control" name="rating">
+                                <label style="font-size: 12px;" for="exampleInputEmail1">{{\App\CPU\translate('rating')}}</label>
+                                <select class="form-control" name="rating" style="padding: 0px 10px !important; height:50px !important;">
                                     <option value="1">{{\App\CPU\translate('1')}}</option>
                                     <option value="2">{{\App\CPU\translate('2')}}</option>
                                     <option value="3">{{\App\CPU\translate('3')}}</option>
@@ -32,23 +44,23 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputEmail1">{{\App\CPU\translate('comment')}}</label>
+                                <label style="font-size: 12px;" for="exampleInputEmail1">{{\App\CPU\translate('comment')}}</label>
                                 <input name="product_id" value="{{$order_details->product_id}}" hidden>
                                 <input name="order_id" value="{{$order_details->order_id}}" hidden>
                                 <textarea class="form-control" name="comment"></textarea>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputEmail1">{{\App\CPU\translate('attachment')}}</label>
-                                <div class="row coba"></div>
-                                <div class="mt-1 text-info">{{\App\CPU\translate('File type: jpg, jpeg, png. Maximum size: 2MB')}}</div>
+                                <label style="font-size: 12px;" for="exampleInputEmail1">{{\App\CPU\translate('attachment')}}</label>
+                                <div class="row coba" style="justify-content: center;"></div>
+                                <div class="mt-1 text-info" style="color:#FF061E !important;">{{\App\CPU\translate('File type: jpg, jpeg, png. Maximum size: 2MB')}}</div>
                             </div>
 
                         </div>
                         <div class="modal-footer">
-                            <a href="{{ URL::previous() }}" class="btn btn-secondary">{{\App\CPU\translate('back')}}</a>
+                            <a style="width: 100%; height:45px; border-radius: 10px; padding:12px;" href="{{ URL::previous() }}" class="btn btn-secondary">{{\App\CPU\translate('back')}}</a>
 
-                            <button type="submit" class="btn btn--primary">{{\App\CPU\translate('submit')}}</button>
+                            <button style="width: 100%; height:45px; border-radius: 10px;" type="submit" class="btn btn--primary">{{\App\CPU\translate('submit')}}</button>
                         </div>
                     </form>
                 </div>

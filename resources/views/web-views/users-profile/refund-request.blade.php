@@ -1,3 +1,15 @@
+<style>
+     @font-face {
+    font-family: 'BURBANKBIGCONDENSED-BOLD';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
+  
+}
+@font-face {
+    font-family: 'BURBANKBIGCONDENSED-BLACK';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
+  
+}
+</style>
 @extends('layouts.front-end.app')
 
 @section('title',\App\CPU\translate('Refund request'))
@@ -13,7 +25,7 @@
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-9 sidebar_heading">
-            <h1 class="h3  mb-0 float-{{Session::get('direction') === "rtl" ? 'right' : 'left'}} headerTitle">
+            <h1 class="h3  mb-0 float-{{Session::get('direction') === "rtl" ? 'right' : 'left'}} headerTitle" style="    font-family: 'BURBANKBIGCONDENSED-BOLD' !important; font-size:33.23px;">
                 {{\App\CPU\translate('refund_request')}}
             </h1>
         </div>
@@ -36,21 +48,21 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-3 col-sm-2">
-                                    <img class="d-block"
+                                    <img class="d-block" style="width: 100%;"
                                         onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
                                         src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail']}}"
                                         alt="VR Collection" width="60">
                                 </div>
-                                <div class="col-9 col-sm-7 text-left">
-                                    <p>{{$product['name']}}</p>
-                                    <span>{{\App\CPU\translate('variant')}} : </span>
+                                <div class="col-9 col-sm-7 text-left" style="color:#000;">
+                                    <p style="color:#FF061E; font-size:20px; font-weight:600;">{{$product['name']}}</p>
+                                    <span style="color:#000;">{{\App\CPU\translate('variant')}} : </span>
                                                 {{$order_details->variant}}
                                 </div>
                                 <div class="col-4 col-sm-3 text-left d-flex flex-column pl-0 mt-2 mt-sm-0 pl-sm-5">
-                                    <span >{{\App\CPU\translate('QTY')}} : {{$order_details->qty}}</span>
-                                    <span>{{\App\CPU\translate('price')}} : {{\App\CPU\Helpers::currency_converter($order_details->price)}}</span>
-                                    <span>{{\App\CPU\translate('discount')}} : {{\App\CPU\Helpers::currency_converter($order_details->discount)}}</span>
-                                    <span>{{\App\CPU\translate('tax')}} : {{\App\CPU\Helpers::currency_converter($order_details->tax)}}</span>
+                                    <span style="color:#000;">{{\App\CPU\translate('QTY')}} : {{$order_details->qty}}</span>
+                                    <span style="color:#000;">{{\App\CPU\translate('price')}} : {{\App\CPU\Helpers::currency_converter($order_details->price)}}</span>
+                                    <span style="color:#000;">{{\App\CPU\translate('discount')}} : {{\App\CPU\Helpers::currency_converter($order_details->discount)}}</span>
+                                    <span style="color:#000;">{{\App\CPU\translate('tax')}} : {{\App\CPU\Helpers::currency_converter($order_details->tax)}}</span>
                                 </div>
                             </div>
                         </div>
@@ -71,9 +83,9 @@
                     <div class="card mt-2">
                         <div class="card-body">
                             <div class="row text-center">
-                                <span class="col-sm-2">{{\App\CPU\translate('subtotal')}}: {{\App\CPU\Helpers::currency_converter($subtotal)}}</span>
-                                <span class="col-sm-5">{{\App\CPU\translate('coupon_discount')}}: {{\App\CPU\Helpers::currency_converter($coupon_discount)}}</span>
-                                <span class="col-sm-5">{{\App\CPU\translate('total_refundable_amount')}}:{{\App\CPU\Helpers::currency_converter($refund_amount)}}</span>
+                                <span style="color:#000;" class="col-sm-2">{{\App\CPU\translate('subtotal')}}: {{\App\CPU\Helpers::currency_converter($subtotal)}}</span>
+                                <span style="color:#000;" class="col-sm-5">{{\App\CPU\translate('coupon_discount')}}: {{\App\CPU\Helpers::currency_converter($coupon_discount)}}</span>
+                                <span style="color:#000;"  class="col-sm-5">{{\App\CPU\translate('total_refundable_amount')}}:{{\App\CPU\Helpers::currency_converter($refund_amount)}}</span>
                             </div>
                         </div>
                     </div>
@@ -86,19 +98,19 @@
                                     <input type="hidden" name="amount" value="{{$refund_amount}}">
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label class="input-label" for="name">{{\App\CPU\translate('refund_reason')}}</label>
+                                            <label class="input-label" style="font-size: 12px;" for="name">{{\App\CPU\translate('refund_reason')}}</label>
                                             <textarea class="form-control" name="refund_reason" cols="120" 
                                                    required>{{old('details')}}</textarea>
                                         </div>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">{{\App\CPU\translate('attachment')}}</label>
-                                            <div class="row coba"></div>
+                                            <label for="exampleInputEmail1" style="font-size: 12px;">{{\App\CPU\translate('attachment')}}</label>
+                                            <div class="row coba" style="justify-content: center;"></div>
                                         </div>
     
                                     </div>
-                                    <button type="submit" class="btn btn--primary">{{\App\CPU\translate('submit')}}</button>
+                                    <button style="width:100%; height:45px; border-radius:10px; font-size:16px;" type="submit" class="btn btn--primary">{{\App\CPU\translate('submit')}}</button>
                                     
                                 </form>
                             </div>

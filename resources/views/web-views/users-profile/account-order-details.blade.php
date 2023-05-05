@@ -66,9 +66,9 @@
             {{-- Content --}}
             <section class="col-lg-9 col-md-9">
                 <div class="row">
-                    <div class="col-md-6 mb-4">
-                        <a class="page-link" href="{{ route('account-oder') }}">
-                            <i class="czi-arrow-{{Session::get('direction') === "rtl" ? 'right ml-2' : 'left mr-2'}}"></i>{{\App\CPU\translate('back')}}
+                    <div class="col-xl-2 col-lg-2 col-md-4 col-5 mb-4 mt-4">
+                        <a class="page-link" href="{{ route('account-oder') }}" style="background: #FF061E; color: #FFF; padding: 5px 30px; border-radius: 3px; font-weight: 600; text-align: center;">
+                            <i class="czi-arrow-{{Session::get('direction') === "rtl" ? 'right ml-2' : 'left mr-2'}}" style="font-weight:600;"></i>{{\App\CPU\translate('back')}}
                         </a>
                     </div>
                 </div>
@@ -80,13 +80,13 @@
                             <h4>{{\App\CPU\translate('order_verification_code')}} : {{$order['verification_code']}}</h4>
                         </div>
                     @endif
-                    <div class="payment mb-3 table-responsive">
+                    <div class="payment mb-3">
                         @if(isset($order['seller_id']) != 0)
                             @php($shopName=\App\Model\Shop::where('seller_id', $order['seller_id'])->first())
                         @endif
                         <table class="table table-borderless">
                             <thead>
-                            <tr class="order_table_tr" style="background: {{$web_config['primary_color']}}">
+                            <tr class="order_table_tr" >
                                 <td class="order_table_td">
                                     <div class="order_table_info_div">
                                         <div class="order_table_info_div_1 py-2">
@@ -170,8 +170,8 @@
                             </thead>
                         </table>
                     </div>
-                    <div class="payment mb-3 table-responsive">
-                        <table class="table table-borderless" style="min-width:720px">
+                    <div class="payment mb-3">
+                        <table class="table table-borderless" style="min-width:100%">
                             <tbody>
                             @foreach ($order->details as $key=>$detail)
                                 @php($product=json_decode($detail->product_details,true))
@@ -180,14 +180,14 @@
                                         <div class="row">
                                             <div class="col-md-4"
                                                  onclick="location.href='{{route('product',$product['slug'])}}'">
-                                                <td class="col-2 for-tab-img">
+                                                <td class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12 for-tab-img">
                                                     <img class="d-block"
                                                          onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
                                                          src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail']}}"
                                                          alt="VR Collection" width="60">
                                                 </td>
-                                                <td class="col-10 for-glaxy-name __vertical-middle">
-                                                    <a href="{{route('product',[$product['slug']])}}">
+                                                <td class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-12 for-glaxy-name __vertical-middle" >
+                                                    <a href="{{route('product',[$product['slug']])}}" style="color:#FF061E; font-size:18px; font-weight:600;">
                                                         {{isset($product['name']) ? Str::limit($product['name'],40) : ''}}
                                                     </a>
                                                     @if($detail->refund_request == 1)
@@ -287,7 +287,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="payment mb-3 table-responsive">
+                    <div class="payment mb-3">
                         @php($extra_discount=0)
                         <?php
                         if ($order['extra_discount_type'] == 'percent') {
@@ -508,10 +508,18 @@
                     </div>
                 </div>
                 <div class="justify-content mt-4 for-mobile-glaxy __gap-6px flex-nowrap">
-                    <a href="{{route('generate-invoice',[$order->id])}}" class="btn btn--primary for-glaxy-mobile w-50">
+                    <a href="{{route('generate-invoice',[$order->id])}}" class="btn btn--primary for-glaxy-mobile w-50" style="height: 45px;
+    padding: 11px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #FFF !important;">
                         {{\App\CPU\translate('generate_invoice')}}
                     </a>
-                    <a class="btn btn-secondary text-white w-49" type="button"
+                    <a class="btn btn-secondary text-white w-49" type="button" style="height: 45px;
+    padding: 11px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #FFF !important;"
                        href="{{route('track-order.result',['order_id'=>$order['id'],'from_order_details'=>1])}}">
                         {{\App\CPU\translate('Track')}} {{\App\CPU\translate('Order')}}
                     </a>

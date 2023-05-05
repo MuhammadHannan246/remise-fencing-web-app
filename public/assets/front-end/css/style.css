@@ -1427,6 +1427,9 @@ a {
     border-radius: 4px;
 }
 
+.__action-btn:focus{
+    outline: none !important;
+}
 .__btn-grp-sm {
     display: flex;
     flex-wrap: wrap;
@@ -3149,15 +3152,16 @@ a {
 }
 
 .__inline-47 .spanTr {
-    color: #ffffff;
-    font-weight: 900;
+    color: #000;
+    font-weight: 500;
     font-size: 13px;
 }
 
 .__inline-47 .spandHeadO {
-    color: #ffffff !important;
-    font-weight: 400;
-    font-size: 13px;
+    color: #000 !important;
+    font-weight: 600;
+    text-transform: capitalize;
+    font-size: 14px;
 }
 
 .__inline-47 .font-name {
@@ -3215,6 +3219,7 @@ a {
     .__inline-47 .order_table_info_div {
         width: 100%;
         display: flex;
+        align-items: baseline;
     }
     .__inline-47 .order_table_info_div_1 {
         width: 50%;

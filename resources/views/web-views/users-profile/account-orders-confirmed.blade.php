@@ -225,8 +225,27 @@
                                     </div>
                         @endif
                     <div class="col-3 col-md-3 order-num">
-                        <p class="number"></p>
-                        <p class="date">{{$order['updated_at']}}</p>
+                        
+                        <div class="__btn-grp-sm flex-nowrap">
+                            <a href="{{ route('account-order-details', ['id'=>$order->id]) }}"
+                            class="btn __action-btn" title="{{\App\CPU\translate('View')}}">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                            @if($order['payment_method']=='cash_on_delivery' && $order['order_status']=='pending')
+                                <a href="javascript:" title="{{\App\CPU\translate('Cancel')}}"
+                                onclick="route_alert('{{ route('order-cancel',[$order->id]) }}','{{\App\CPU\translate('want_to_cancel_this_order?')}}')"
+                                class="btn  __action-btn">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            @else
+                                <button class="btn  __action-btn" title="{{\App\CPU\translate('Cancel')}}" onclick="cancel_message()">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            @endif
+                        </div>
+                        
+                        {{-- <p class="number"></p>
+                        <p class="date">{{$order['updated_at']}}</p> --}}
                     </div>
                 </div>
                 @endif

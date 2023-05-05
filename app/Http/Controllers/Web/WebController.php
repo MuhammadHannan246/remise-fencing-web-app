@@ -696,6 +696,7 @@ class WebController extends Controller
                 $filterReviews = Review::where('product_id',$product->id)->with('customer')->inRandomOrder()->get();
             }
             $avgRating = Review::where('product_id',$product->id)->avg('rating');
+            // dd($product);
             $reviews = Review::where('product_id',$product->id)->with('customer')->inRandomOrder()->get();
             return view('web-views.products.details', compact('product', 'countWishlist', 'countOrder', 'relatedProducts',
                 'deal_of_the_day', 'current_date', 'seller_vacation_start_date', 'seller_vacation_end_date', 'seller_temporary_close',

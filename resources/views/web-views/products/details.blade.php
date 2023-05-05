@@ -227,6 +227,7 @@
                         ">
 
                         {{ \App\CPU\Helpers::currency_converter($product->unit_price - \App\CPU\Helpers::get_product_discount($product, $product->unit_price)) }}
+                        {{-- {{ $product->purchase_price }} --}}
                         </p>
                         @if ($product->discount > 0)
                         <p class="discount">
@@ -311,7 +312,20 @@
                                 </p>
                             </div>
                             <div class="col-6" style="text-align: end;">
-                                <p> <b>{{ \App\CPU\Helpers::get_price_range($product) }}</b> </p>
+                                <p> <b>
+                                    {{-- {{ \App\CPU\Helpers::get_price_range($product) }} --}}
+                                    {{ \App\CPU\Helpers::currency_converter($product->unit_price - \App\CPU\Helpers::get_product_discount($product, $product->unit_price)) }}
+                                    {{-- @if ($product->discount != 0)
+                                        @if ($product->discount_type == 'flat')
+                                            {{ $product->unit_price - $product->discount }}
+                                        @else
+                                            {{ $product->unit_price - $product->discount }}
+                                        @endif
+
+                                    @else
+                                        {{ $product->unit_price }}
+                                    @endif --}}
+                                </b> </p>
                             </div>
                         </div>
                         <div class="row price-shipping pb-4">

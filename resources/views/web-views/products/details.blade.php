@@ -142,32 +142,60 @@
                         {{ $product->name }}
                     </h2>
                     <div class="d-flex flex-wrap align-items-center mb-2 pro">
+                        {{-- <span
+                            class="d-inline-block  align-middle mt-1 {{ Session::get('direction') === 'rtl' ? 'ml-md-2 ml-sm-0 pl-2' : 'mr-md-2 mr-sm-0 pr-2' }} __color-FE961C"
+                            style="font-size: 20px;">{{ $overallRating[0] }}</span> --}}
                         <span
                             class="d-inline-block  align-middle mt-1 {{ Session::get('direction') === 'rtl' ? 'ml-md-2 ml-sm-0 pl-2' : 'mr-md-2 mr-sm-0 pr-2' }} __color-FE961C"
-                            style="font-size: 20px;">{{ $overallRating[0] }}</span>
+                            style="font-size: 20px;">{{ number_format($avgRating,1) }}</span>
                         <div class="star-rating">
-                            @for ($inc = 0; $inc < 5; $inc++)
+                            {{-- @for ($inc = 0; $inc < 5; $inc++)
                                 @if ($inc < $overallRating[0])
                                     <i class="sr-star czi-star-filled active" style="font-size:20px; "></i>
                                 @else
                                     <i class="sr-star czi-star" style="font-size:20px; "></i>
                                 @endif
+                            @endfor --}}
+                            @php
+                                 $floatNumber = true;
+                            @endphp
+                            @for ($i = 1; $i <= 5; $i++)
+                                @if ($i <= $avgRating)
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                    </svg>
+                                    @elseif(strpos($avgRating,'.5') !== false && $floatNumber)
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <defs>
+                                        <linearGradient id="grad">
+                                            <stop offset="50%" stop-color="#ffc700"/>
+                                            <stop offset="50%" stop-color="#1E1E1E33"/>
+                                        </linearGradient>
+                                        </defs>
+                                        <path fill="url(#grad)" d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>
+                                    @php $floatNumber = false; @endphp
+                                @else
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                </svg>
+                                @endif
                             @endfor
                         </div>
                         <span
                             class="font-regular font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{ Session::get('direction') === 'rtl' ? 'mr-1 ml-md-2 ml-1 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-1 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1' }}"
-                            style="font-size:11px !important;">{{ $overallRating[1] }}
+                            style="font-size:11px !important;">{{ $reviews->count() }}
                             {{ \App\CPU\translate('Reviews') }}</span>
                         <span class="__inline-25"></span>
                         <span
                             class="font-regular font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{ Session::get('direction') === 'rtl' ? 'mr-1 ml-md-2 ml-1 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-1 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1' }}"
                             style="font-size:11px !important;">{{ $countOrder }} {{ \App\CPU\translate('orders') }}
                         </span>
-                        <span class="__inline-25"> </span>
+                        {{-- <span class="__inline-25"> </span>
                         <span
                             class="font-regular font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{ Session::get('direction') === 'rtl' ? 'mr-1 ml-md-2 ml-0 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-0 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1' }} text-capitalize"
                             style="font-size:11px !important;"> {{ $countWishlist }}
-                            {{ \App\CPU\translate('wish_listed') }} </span>
+                            {{ \App\CPU\translate('wish_listed') }} </span> --}}
 
                     </div>
                     {{-- <div class="float-left sold">
@@ -195,10 +223,10 @@
                     <div class="price" style="padding-top: 30px;padding-bottom: 30px;">
                         <p
                             style="font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
-                    margin-bottom:0px;
-                    ">
+                        margin-bottom:0px;
+                        ">
 
-{{ \App\CPU\Helpers::currency_converter($product->unit_price - \App\CPU\Helpers::get_product_discount($product, $product->unit_price)) }}
+                        {{ \App\CPU\Helpers::currency_converter($product->unit_price - \App\CPU\Helpers::get_product_discount($product, $product->unit_price)) }}
                         </p>
                         @if ($product->discount > 0)
                         <p class="discount">
@@ -209,7 +237,7 @@
                         font-size:14px;
                         text-decoration: line-through;
                         text-decoration-color:#000;
-                    ">{{ \App\CPU\Helpers::currency_converter($product->unit_price) }}</span>
+                        ">{{ \App\CPU\Helpers::currency_converter($product->unit_price) }}</span>
                         </p>
                         @endif
                     </div>
@@ -475,41 +503,39 @@
                 <div class="col-sm-3">
                     <div class="rating-block">
 
-                        <h2 class="bold padding-bottom-7 h2-heading">4.7 <small>/5.0</small></h2>
-                        {{-- <i class="bi bi-eye-slash" style="color: #000 !important;"></i> --}}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffc700"
-                            class="bi bi-star-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                        </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffc700"
-                            class="bi bi-star-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                        </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffc700"
-                            class="bi bi-star-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                        </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffc700"
-                            class="bi bi-star-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                        </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffc700"
-                            class="bi bi-star-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                        </svg>
-                        {{-- <i class="fa-solid fa-star float-left" style="color: #ffc700; font-size: 30px;"></i>
-                    <i class="fa-solid fa-star float-left" style="color: #ffc700; font-size: 30px;"></i>
-                    <i class="fa-solid fa-star float-left" style="color: #ffc700; font-size: 30px;"></i>
-                    <i class="fa-solid fa-star float-left" style="color: #ffc700; font-size: 30px;"></i>
-                    <i class="fa-solid fa-star float-left" style="color: #ffc700; font-size: 30px;"></i> --}}
+                        <h2 class="bold padding-bottom-7 h2-heading">{{ number_format($avgRating,1) }}<small>/5.0</small></h2>
+                        @php
+                            $floatNumber = true;
+                        @endphp
+                        @for ($i = 1; $i <= 5; $i++)
+                            @if ($i <= $avgRating)
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffc700"
+                                        class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                    </svg>
+                            @elseif(strpos($avgRating,'.5') !== false && $floatNumber)
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <defs>
+                                        <linearGradient id="grad">
+                                            <stop offset="50%" stop-color="#ffc700"/>
+                                            <stop offset="50%" stop-color="#1E1E1E33"/>
+                                        </linearGradient>
+                                        </defs>
+                                        <path fill="url(#grad)" d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>
+                                    @php $floatNumber = false; @endphp
+                            @else
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#1E1E1E33"
+                                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                            @endif
+                        @endfor
                     </div>
                     <h5>
-                        80 Rating
+                        {{ $reviews->count() }} Rating
                     </h5>
                 </div>
                 <div class="col-sm-5">
@@ -543,22 +569,24 @@
                                         d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                 </svg>
 
-                                {{-- <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
-                            <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
-                            <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
-                            <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
-                            <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i> --}}
-
                             </div>
                         </div>
                         <div class="float-left" style="width:180px;">
-                            <div class="progress" style="height:9px; margin:8px 0;">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0"
-                                    aria-valuemax="5" style="width: 100%">
+                            <div class="float-left" style="width:180px;">
+                                @php
+                                    $reviewsCount = $reviews->where('rating',5)->count();
+                                    $progressBar = ($reviewsCount / $reviews->count()) * 100;
+                                @endphp
+                                <div class="progress" style="height:9px; margin:8px 0;">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0"
+                                        aria-valuemax="5" style="width: {{ $progressBar }}%">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="float-right" style="margin-left:10px;">75</div>
+                        <div class="float-right" style="margin-left:10px;">
+                            {{ $reviewsCount }}
+                        </div>
                     </div>
                     <div class="float-left">
                         <div class="float-left" style="width:100px; line-height:1;">
@@ -598,13 +626,21 @@
                             </div>
                         </div>
                         <div class="float-left" style="width:180px;">
-                            <div class="progress" style="height:9px; margin:8px 0;">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0"
-                                    aria-valuemax="5" style="width: 09%">
+                            <div class="float-left" style="width:180px;">
+                                @php
+                                    $reviewsCount = $reviews->where('rating',4)->count();
+                                    $progressBar = ($reviewsCount / $reviews->count()) * 100;
+                                @endphp
+                                <div class="progress" style="height:9px; margin:8px 0;">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0"
+                                        aria-valuemax="5" style="width: {{ $progressBar }}%">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="float-right" style="margin-left:10px;">09</div>
+                        <div class="float-right" style="margin-left:10px;">
+                            {{ $reviewsCount }}
+                        </div>
                     </div>
                     <div class="float-left">
                         <div class="float-left" style="width:100px; line-height:1;">
@@ -647,13 +683,19 @@
                             </div>
                         </div>
                         <div class="float-left" style="width:180px;">
+                            @php
+                                $reviewsCount = $reviews->where('rating',3)->count();
+                                $progressBar = ($reviewsCount / $reviews->count()) * 100;
+                            @endphp
                             <div class="progress" style="height:9px; margin:8px 0;">
                                 <div class="progress-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0"
-                                    aria-valuemax="5" style="width: 01%">
+                                    aria-valuemax="5" style="width: {{ $progressBar }}%">
                                 </div>
                             </div>
                         </div>
-                        <div class="float-right" style="margin-left:10px;">01</div>
+                        <div class="float-right" style="margin-left:10px;">
+                            {{ $reviewsCount }}
+                        </div>
                     </div>
                     <div class="float-left">
                         <div class="float-left" style="width:100px; line-height:1;">
@@ -695,13 +737,21 @@
                             </div>
                         </div>
                         <div class="float-left" style="width:180px;">
-                            <div class="progress" style="height:9px; margin:8px 0;">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0"
-                                    aria-valuemax="5" style="width: 50%">
+                            <div class="float-left" style="width:180px;">
+                                @php
+                                    $reviewsCount = $reviews->where('rating',2)->count();
+                                    $progressBar = ($reviewsCount / $reviews->count()) * 100;
+                                @endphp
+                                <div class="progress" style="height:9px; margin:8px 0;">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0"
+                                        aria-valuemax="5" style="width: {{ $progressBar }}%">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="float-right" style="margin-left:10px;">09</div>
+                        <div class="float-right" style="margin-left:10px;">
+                            {{ $reviewsCount }}
+                        </div>
                     </div>
                     <div class="float-left">
                         <div class="float-left" style="width:100px; line-height:1;">
@@ -744,13 +794,21 @@
                             </div>
                         </div>
                         <div class="float-left" style="width:180px;">
-                            <div class="progress" style="height:9px; margin:8px 0;">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0"
-                                    aria-valuemax="5" style="width: 35%">
+                            <div class="float-left" style="width:180px;">
+                                @php
+                                    $reviewsCount = $reviews->where('rating',1)->count();
+                                    $progressBar = ($reviewsCount / $reviews->count()) * 100;
+                                @endphp
+                                <div class="progress" style="height:9px; margin:8px 0;">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0"
+                                        aria-valuemax="5" style="width: {{ $progressBar }}%">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="float-right" style="margin-left:10px;">15</div>
+                        <div class="float-right" style="margin-left:10px;">
+                            {{ $reviewsCount }}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -759,96 +817,79 @@
                     <h3 class="h3-heading">Product Reviews</h3>
                 </div>
                 <div class="col-lg-4 col-sm-6 sort-by p-0">
-                    <form action="/action_page.php">
+                    <form id="filter-form" action="{{ route('product',request()->slug) }}" method="GET">
                         <div class="rightSort">
                             <div class="sortBy">
                                 <label for="cars">Sort by:</label>
-                                <select name="cars" id="cars">
-                                    <option value="volvo">Best</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="opel">Opel</option>
-                                    <option value="audi">Audi</option>
+                                <select name="filter" id="filter">
+                                    <option value="best" {{ request()->filter == 'best' ? 'selected' : '' }}>Best</option>
+                                    <option value="latest" {{ request()->filter == 'latest' ? 'selected' : '' }}>Latest</option>
+                                    <option value="average" {{ request()->filter == 'average' ? 'selected' : '' }}>Average</option>
+                                    <option value="" {{ request()->filter == '' ? 'selected' : '' }}>No preferences</option>
                                 </select>
                             </div>
-                            <div class="viewBy">
+                            {{-- <div class="viewBy">
                                 <p>View:</p>
                                 <img src="{{ asset('public/assets/Images/Grid-icon.png') }}">
                                 <img class="pl-4" src="{{ asset('public/assets/Images/nav-icon.png') }}">
-                            </div>
+                            </div> --}}
                         </div>
                     </form>
                 </div>
 
             </div>
 
+            @foreach ($filterReviews as $review)
             <div class="row">
                 <div class="col-sm-12">
                     <hr />
                     <div class="review-block">
                         <div class="row">
                             <div class="col-sm-10">
-                                <img src="/Images/review-1.png" class="img-rounded">
-                                <div class="review-block-name"><a href="#">Rachil</a></div>
+                                <img src="{{ asset('storage/app/public/profile/'.$review->customer->image) }}" class="img-rounded" height="50px" width="50px">
+                                <div class="review-block-name"><a href="#">{{ $review->customer->f_name .' '. $review->customer->l_name }}</a></div>
                                 <div class="review-block-rate">
-
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700"
-                                        class="bi bi-star-fill" viewBox="0 0 16 16">
-                                        <path
-                                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                    </svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700"
-                                        class="bi bi-star-fill" viewBox="0 0 16 16">
-                                        <path
-                                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                    </svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700"
-                                        class="bi bi-star-fill" viewBox="0 0 16 16">
-                                        <path
-                                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                    </svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700"
-                                        class="bi bi-star-fill" viewBox="0 0 16 16">
-                                        <path
-                                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                    </svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700"
-                                        class="bi bi-star-fill" viewBox="0 0 16 16">
-                                        <path
-                                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                    </svg>
-
-
-                                    {{-- <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
-                                <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
-                                <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
-                                <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i>
-                                <i class="fa-solid fa-star float-left" style="color: #ffc700;"></i> --}}
+                                    @for($i = 1; $i <= 5; $i++)
+                                    @if ($i <= $review->rating)
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#ffc700"
+                                            class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                        </svg>
+                                        @else
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                        </svg>
+                                    @endif
+                                    @endfor
                                 </div>
                             </div>
                             <div class="col-sm-2">
                                 <p style="float: right;">
-                                    11 march 2022
+                                    {{ $review->created_at->format('d M Y') }}
                                 </p>
                             </div>
                             <div class="col-sm-6">
-                                <div class="review-block-description">Horem ipsum dolor sit amet, consectetur adipiscing
-                                    elit.
-                                    Etiam eu turpis molestie, dictum est a, mattis tellus.
-                                </div>
+                                <div class="review-block-description">{{ $review->comment }}</div>
                                 <div class="rev-img">
-                                    <img src="/Images/review-1-1.png">
-                                    <img src="/Images/review-1-1.png">
-                                    <img src="/Images/review-1-1.png">
+                                    @php
+                                        $imageArray = json_decode($review->attachment);
+                                    @endphp
+                                    @foreach ($imageArray as $attachment)
+                                        <img src="{{ asset('storage/app/public/review/'.$attachment) }}" alt="review img">
+                                    @endforeach
                                 </div>
-                                <div class="rev-like">
+                                {{-- <div class="rev-like">
                                     <i class="fa fa-thumbs-up" aria-hidden="true"> 08</i>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                         <hr />
                     </div>
                 </div>
             </div>
+            @endforeach
+
 
         </div>
 
@@ -2452,6 +2493,9 @@
 </style>
 @push('script')
     <script type="text/javascript">
+         $('#filter').change(function () {
+            $('#filter-form').submit();
+        });
         function checkQTY() {
             $val = document.getElementById('qtyProduct').value;
             productType = $($val).attr('product-type');

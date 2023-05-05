@@ -682,10 +682,24 @@ class WebController extends Controller
             $inhouse_vacation_end_date = $product->added_by == 'admin' ? $inhouse_vacation['vacation_end_date'] : null;
             $inhouse_vacation_status = $product->added_by == 'admin' ? $inhouse_vacation['status'] : false;
             $inhouse_temporary_close = $product->added_by == 'admin' ? $temporary_close['status'] : false;
-
+            //Filters
+            if(request()->filter == 'best'){
+                $filterReviews = Review::where('product_id',$product->id)->with('customer')->where('rating',5)->inRandomOrder()->take(3)->get();
+            }
+            elseif(request()->filter == 'latest'){
+                $filterReviews = Review::where('product_id',$product->id)->with('customer')->inRandomOrder()->latest()->take(3)->get();
+            }
+            elseif(request()->filter == 'average'){
+                $filterReviews = Review::where('product_id',$product->id)->with('customer')->whereBetween('rating',[2,4])->inRandomOrder()->take(3)->get();
+            }
+            else{
+                $filterReviews = Review::where('product_id',$product->id)->with('customer')->inRandomOrder()->get();
+            }
+            $avgRating = Review::where('product_id',$product->id)->avg('rating');
+            $reviews = Review::where('product_id',$product->id)->with('customer')->inRandomOrder()->get();
             return view('web-views.products.details', compact('product', 'countWishlist', 'countOrder', 'relatedProducts',
                 'deal_of_the_day', 'current_date', 'seller_vacation_start_date', 'seller_vacation_end_date', 'seller_temporary_close',
-                'inhouse_vacation_start_date', 'inhouse_vacation_end_date', 'inhouse_vacation_status', 'inhouse_temporary_close'));
+                'inhouse_vacation_start_date', 'inhouse_vacation_end_date', 'inhouse_vacation_status', 'inhouse_temporary_close','reviews','filterReviews','avgRating'));
         }
 
         Toastr::error(translate('not_found'));

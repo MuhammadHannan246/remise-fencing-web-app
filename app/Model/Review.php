@@ -32,6 +32,18 @@ class Review extends Model
     {
         $query->where('status',1);
     }
+    // public function scopeFilter($query,$filter)
+    // {
+    //     if($filter == 'best'){
+    //         $query->where('rating',5);
+    //     }
+    //     elseif($filter == 'latest'){
+    //         $query->latest();
+    //     }
+    //     elseif($filter == 'average'){
+    //         $query->whereBetween('rating',[3,4]);
+    //     }
+    // }
     public function user()
     {
         return $this->hasOne('App\User', 'id', 'customer_id');

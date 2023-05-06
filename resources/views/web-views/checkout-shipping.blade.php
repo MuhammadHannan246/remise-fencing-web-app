@@ -34,9 +34,9 @@
             border-color: {{$web_config['primary_color']}}    !important;
         }
 
-        /*#location_map_canvas {*/
-        /*    height: 100%;*/
-        /*}*/
+        /* #location_map_canvas {
+           height: 100%;
+         } */
 
         .filter-option{
             display: block;
@@ -85,12 +85,15 @@
             padding: 0 !important;
             height: 50px !important;
         }
-        /*@media only screen and (max-width: 768px) {*/
-        /*    !* For mobile phones: *!*/
-        /*    #location_map_canvas {*/
-        /*        height: 200px;*/
-        /*    }*/
-        /*}*/
+        .abc div{
+            padding: 0px 10px !important;
+        }
+        /* @media only screen and (max-width: 768px) {
+           !* For mobile phones: *!
+           #location_map_canvas {
+               height: 200px;
+           }
+        } */
     </style>
 @endpush
 
@@ -209,18 +212,22 @@
                                                                name="zip" {{$shipping_addresses->count()==0?'required':''}}>
                                                         @endif
                                                     </div>
+
                                                     <div class="form-group">
                                                         <label
                                                             for="exampleInputEmail1">{{ \App\CPU\translate('Country')}}
                                                             <span
                                                                 style="color: red">*</span></label>
-                                                        <select name="country" id="" class="form-control selectpicker" data-live-search="true" required ">
-                                                            @forelse($countries as $country)
-                                                                <option value="{{ $country['name'] }}">{{ $country['name'] }}</option>
-                                                            @empty
-                                                                <option value="">{{ \App\CPU\translate('No_country_to_deliver') }}</option>
-                                                            @endforelse
-                                                        </select>
+                                                                <div class="abc">
+                                                                    <select name="country" id="" class="form-control selectpicker" data-live-search="true" required >
+                                                                        @forelse($countries as $country)
+                                                                            <option value="{{ $country['name'] }}">{{ $country['name'] }}</option>
+                                                                        @empty
+                                                                            <option value="">{{ \App\CPU\translate('No_country_to_deliver') }}</option>
+                                                                        @endforelse
+                                                                    </select>
+                                                                </div>
+                                                        
                                                     </div>
 
                                                     <div class="form-group">
@@ -486,8 +493,10 @@
             }
         }
     </script>
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key={{\App\CPU\Helpers::get_business_settings('map_api_key')}}&libraries=places&v=3.49"></script>
+    <script>
+        // {{-- src="https://maps.googleapis.com/maps/api/js?key={{\App\CPU\Helpers::get_business_settings('map_api_key')}}&libraries=places&v=3.49"></script> --}}
+        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+
     <script>
         function initAutocomplete() {
             var myLatLng = {

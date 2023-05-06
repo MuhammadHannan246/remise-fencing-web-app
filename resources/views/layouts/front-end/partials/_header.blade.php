@@ -187,7 +187,7 @@
     }
 
     .navBarHeight {
-        padding: 10px 0px;
+        padding: 5px 0px 10px 0px;
     }
 
     .navAccount {
@@ -211,6 +211,15 @@
         padding: 2px;
     }
 
+    .navbar-brand{
+        height: 67px;
+        padding: 0px 15px !important;
+
+
+    }
+    .newDIV{
+        margin: 0px !important;
+    }
     .navCart a:hover {
         color: #FF061E !important;
         cursor: pointer;
@@ -474,7 +483,7 @@
   
     <div class="navbar-sticky bg-light mobile-head">
 
-        <div class="divIn">
+        <div class="divIn newDIV">
             <div class="modalOuter" style="display: flex;
             align-items: center;">
                 <div class="modalDiv">

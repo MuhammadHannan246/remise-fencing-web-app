@@ -62,7 +62,7 @@
                                         <li class="side-item"><a href="account-address">Address</a></li>
                                         <li class="side-item"><a href="{{route('track-order.index') }}">Track your order</a></li>
                             <li class="side-item"><a href="{{route('chat', ['type' => 'seller'])}}">Chat with seller</a></li>
-                            <li class="side-item"><a href="{{route('chat', ['type' => 'delivery-man'])}}">Chat with delivery-man</a></li>
+                            {{-- <li class="side-item"><a href="{{route('chat', ['type' => 'delivery-man'])}}">Chat with delivery-man</a></li> --}}
                             <li class="side-item"><a href="{{ route('account-tickets') }}">Support Ticket</a></li>
 
                                         
@@ -72,7 +72,7 @@
                                     <h4 class="myAccHeading">My Orders</h4>
                                     <ul class="side">
                                         <li class="side-item"><a href="#">My Return</a></li>
-                                        <li class="side-item"><a href="#">My Cancellation</a></li>
+                                        <li class="side-item"><a href="CanceledOrders">My Cancellation</a></li>
                                     </ul>
                                     <h4 class="myAccHeading">Sell on Remise</h4>
             
@@ -137,7 +137,7 @@
                    
                     <li class="side-item"><a href="{{route('track-order.index') }}">Track your order</a></li>
                             <li class="side-item"><a href="{{route('chat', ['type' => 'seller'])}}">Chat with seller</a></li>
-                            <li class="side-item"><a href="{{route('chat', ['type' => 'delivery-man'])}}">Chat with delivery-man</a></li>
+                            {{-- <li class="side-item"><a href="{{route('chat', ['type' => 'delivery-man'])}}">Chat with delivery-man</a></li> --}}
                             <li class="side-item"><a href="{{ route('account-tickets') }}">Support Ticket</a></li>
 
                 </ul>
@@ -147,7 +147,7 @@
                 </h4>
                 <ul>
                     <li><a href="#">My Return</a></li>
-                    <li><a href="#">My Cancellation</a></li>
+                    <li><a href="CanceledOrders">My Cancellation</a></li>
                 </ul>
 
                 <h4 class="order-h4">
@@ -286,64 +286,9 @@
 
 
         <!-- Modal -->
-        <div class="modal fade filter-modal" id="exampleModalCenter" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Body start-->
-
-                        <div class="account account-mob">
-                            <h4 class="order-h4">
-                                My Account
-                            </h4>
-                            <ul>
-                                <li>
-                                    Profile
-                                </li>
-                                <li>
-                                    Address
-                                </li>
-                                <li>
-                                    Settings
-                                </li>
-                                <li>
-                                    Payments
-                                </li>
-                                <li>
-                                    Vouchers
-                                </li>
-                                <li>
-                                    Reviews
-                                </li>
-                            </ul>
-
-                            <h4 class="order-h4">
-                                My Orders
-                            </h4>
-                            <ul>
-                                <li>
-                                    My Return
-                                </li>
-                                <li>
-                                    My Cancellation
-                                </li>
-                            </ul>
-
-                            <h4 class="order-h4">
-                                Sell on Remise
-                            </h4>
-                        </div>
-
-
                         <!-- Body end -->
 
-                    </div>
+                    {{-- </div> --}}
 
                     @endsection
 

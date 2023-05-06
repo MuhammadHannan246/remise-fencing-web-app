@@ -62,7 +62,7 @@
                                         <li class="side-item"><a href="account-address">Address</a></li>
                                         <li class="side-item"><a href="{{route('track-order.index') }}">Track your order</a></li>
                             <li class="side-item"><a href="{{route('chat', ['type' => 'seller'])}}">Chat with seller</a></li>
-                            <li class="side-item"><a href="{{route('chat', ['type' => 'delivery-man'])}}">Chat with delivery-man</a></li>
+                            {{-- <li class="side-item"><a href="{{route('chat', ['type' => 'delivery-man'])}}">Chat with delivery-man</a></li> --}}
                             <li class="side-item"><a href="{{ route('account-tickets') }}">Support Ticket</a></li>
 
                                        
@@ -72,7 +72,7 @@
                                     <h4 class="myAccHeading">My Orders</h4>
                                     <ul class="side">
                                         <li class="side-item"><a href="#">My Return</a></li>
-                                        <li class="side-item"><a href="#">My Cancellation</a></li>
+                                        <li class="side-item"><a href="CanceledOrders">My Cancellation</a></li>
                                     </ul>
                                     <h4 class="myAccHeading">Sell on Remise</h4>
             
@@ -137,7 +137,7 @@
                    
                     <li class="side-item"><a href="{{route('track-order.index') }}">Track your order</a></li>
                             <li class="side-item"><a href="{{route('chat', ['type' => 'seller'])}}">Chat with seller</a></li>
-                            <li class="side-item"><a href="{{route('chat', ['type' => 'delivery-man'])}}">Chat with delivery-man</a></li>
+                            {{-- <li class="side-item"><a href="{{route('chat', ['type' => 'delivery-man'])}}">Chat with delivery-man</a></li> --}}
                             <li class="side-item"><a href="{{ route('account-tickets') }}">Support Ticket</a></li>
 
                 </ul>
@@ -147,7 +147,7 @@
                 </h4>
                 <ul>
                     <li><a href="#">My Return</a></li>
-                    <li><a href="#">My Cancellation</a></li>
+                    <li><a href="CanceledOrders">My Cancellation</a></li>
                 </ul>
 
                 <h4 class="order-h4">

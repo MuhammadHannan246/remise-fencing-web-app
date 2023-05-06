@@ -32,6 +32,7 @@
 @endpush
 
 @section('content')
+
     <!-- Page Content-->
     <div class="container rtl py-5" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
         <div class="__max-w-620 mx-auto">

@@ -146,8 +146,8 @@
                             class="d-inline-block  align-middle mt-1 {{ Session::get('direction') === 'rtl' ? 'ml-md-2 ml-sm-0 pl-2' : 'mr-md-2 mr-sm-0 pr-2' }} __color-FE961C"
                             style="font-size: 20px;">{{ $overallRating[0] }}</span> --}}
                         <span
-                            class="d-inline-block  align-middle mt-1 {{ Session::get('direction') === 'rtl' ? 'ml-md-2 ml-sm-0 pl-2' : 'mr-md-2 mr-sm-0 pr-2' }} __color-FE961C"
-                            style="font-size: 20px;">{{ number_format($avgRating,1) }}</span>
+                            class="d-inline-block  align-middle mt-1 {{ Session::get('direction') === 'rtl' ? 'ml-md-2 ml-sm-0 pl-2' : 'mr-md-2 mr-sm-0 pr-2' }}"
+                            style="font-size: 25px; color:#FF061E;  font-family: 'BURBANKBIGCONDENSED-BOLD' !important;">{{ number_format($avgRating,1) }}</span>
                         <div class="star-rating">
                             {{-- @for ($inc = 0; $inc < 5; $inc++)
                                 @if ($inc < $overallRating[0])

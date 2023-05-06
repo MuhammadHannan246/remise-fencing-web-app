@@ -653,9 +653,9 @@
                                         aria-expanded="false">
                                         All Categories
                                     </button>
-                                    
+
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        @foreach ($categories as $category)
+                                        @foreach (App\Model\Category::orderBy('name')->get() as $category)
                                             <a class="dropdown-item" href="#">{{ $category->name }}</a>
                                         @endforeach
                                     </div>

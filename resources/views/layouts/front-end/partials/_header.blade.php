@@ -480,21 +480,21 @@
     </div>
 
 
-  
+
     <div class="navbar-sticky bg-light mobile-head">
 
         <div class="divIn newDIV">
             <div class="modalOuter" style="display: flex;
             align-items: center;">
                 <div class="modalDiv">
-    
+
                     <button style="border: 1px solid; margin-top:10px; margin-right:5px;" type="button" class="btn btnModal" data-toggle="modal" data-target="#navModal">
-                      
+
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000" class="bi bi-list" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                           </svg>
                     </button>
-                
+
                     <!-- Modal -->
                     <div class="modal fade" id="navModal" tabindex="-1" role="dialog" aria-labelledby="navModalLabel"
                         aria-hidden="true">
@@ -593,14 +593,14 @@
                                     @endif
                                 </ul>
                                 </div>
-                
+
                             </div>
                         </div>
                                     </div>
                 </div>
             <div>
-                  
-             
+
+
                 </div>
             </div>
     </div>
@@ -653,10 +653,11 @@
                                         aria-expanded="false">
                                         All Categories
                                     </button>
+                                    
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
+                                        @foreach ($categories as $category)
+                                            <a class="dropdown-item" href="#">{{ $category->name }}</a>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <button class="input-group-append-overlay search_button searchBTN" type="submit"

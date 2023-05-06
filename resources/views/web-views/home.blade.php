@@ -15,9 +15,9 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
         <link rel="stylesheet" href="style.css">
-       
 
-       
+
+
 
          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
@@ -324,7 +324,7 @@
                                     url({{ asset('storage/app/public/banner') }}/{{ $main_banner[0]['photo'] }});  background-size: cover;
         background-repeat: no-repeat;
         background-position: top center;">
-                                       
+
                                         <div class="innerBody">
                                             <div class="heading">
                                                 <h1>Forem ipsum dolor sit</h1>
@@ -353,7 +353,7 @@
                                 background-size: cover;
                                 background-repeat: no-repeat;
                                 background-position: top center;">
-                                       
+
 
                                         <div class="innerBody2">
 
@@ -377,7 +377,7 @@
                                 background-size: cover;
                                 background-repeat: no-repeat;
                                 background-position: top center;">
-                                        
+
                                         <div class="innerBody3">
 
                                             <div class="heading3">
@@ -403,7 +403,7 @@
                             @elseif(count($main_banner) >1)
                             <div class="col col-lg-7 col-md-12 col-sm-12 col-12 bann1">
                                 {{-- @foreach ($main_banner as $banner) --}}
-                            
+
                                     <div class="img1 " style="position:relative;  background-image:
 linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                     url({{ asset('storage/app/public/banner') }}/{{ $main_banner[0]['photo'] }});  background-size: cover;
@@ -436,7 +436,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                 background-size: cover;
                                 background-repeat: no-repeat;
                                 background-position: top center;">
-                                      
+
 
                                         <div class="innerBody25">
 
@@ -454,15 +454,15 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                         </div>
 
                                     </div>
-                              
+
 
                                 </div>
-                            </div> 
+                            </div>
 
                             @elseif(count($main_banner) >0)
                             <div class="col col-lg-12 col-md-12 col-sm-12 col-12 bann1">
                                 {{-- @foreach ($main_banner as $banner) --}}
-                            
+
                                     <div class="imgOne" style="position:relative;  background-image:
                                    linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                     url({{ asset('storage/app/public/banner') }}/{{ $main_banner[0]['photo'] }});  background-size: cover;
@@ -534,7 +534,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                             <div class="inner1 cardOne">
                                 @foreach ($categories as $key => $category)
                                     @if ($key < 6)
-                                        
+
                                             <a
                                                 href="{{ route('products', ['id' => $category['id'], 'data_from' => 'category', 'page' => 1]) }}">
                                                 <div class="inner2">
@@ -547,7 +547,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                     </div>
                                                 </div>
                                             </a>
-                                       
+
                                     @endif
                                 @endforeach
                             </div>
@@ -574,9 +574,9 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                         <div class="inner1 cardOne">
                             @foreach ($latest_products as $key => $product)
                                 @if ($key < 4)
-                                   
+
                                             <div class="inner122">
-                                        
+
                                                     @if (isset($product))
                                                         @php($overallRating = \App\CPU\ProductManager::get_overall_rating($product->reviews))
                                                         <div class="flash_deal_product rtl"
@@ -630,9 +630,9 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                                         <div class="d-flex" style="width: 27%;">
                                                                             <div>
                                                                                 @if ($product->discount > 0)
-                                                                                    <p 
+                                                                                    <p
 
-    
+
                                                                                         style=" font-size: 18px!important; color: #1E1E1E99; !important; font-weight:700;    text-decoration: line-through;
                                                                                         text-decoration-color: red; text-decoration-thickness:1.5px;
                                                                                         font-family: 'BURBANKBIGCONDENSED-BOLD' !important;">
@@ -641,10 +641,10 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                                                 @endif
                                                                             </div>
                                                                             <div class="flash-product-price">
- 
+
                                                                                 <p style="
     font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
-                                                                                
+
                                                                                 color: red;
                                                                                 font-size: 30px;
                                                                                 font-weight: 800;">
@@ -652,7 +652,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                                             </p>
                                                                             </div>
                                                                         </div>
-                                                                        
+
 
                                                                     </div>
                                                                 </div>
@@ -661,7 +661,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                     @endif
 
                                                 </div>
-                                 
+
                                 @endif
                             @endforeach
                         </div>
@@ -689,7 +689,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                     <p class="redText">Lorem Ipsum</p>
                                     <h1 class="whiteHeading">Sorem ipsum dolor sit amet elit.</h1>
                                     <p class="whiteText">Dorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    <button class="shop"> 
+                                    <button class="shop">
                                         <a href="{{ route('products', ['data_from' => 'latest']) }}">
                                         Shop Now </a></button>
                                 </div>
@@ -711,9 +711,9 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                         <div class="inner1 cardOne">
                             @foreach ($latest_products as $key => $product)
                                 @if ($key < 4)
-                                    
+
                                             <div class="inner122">
-                                           
+
                                                     @if (isset($product))
                                                         @php($overallRating = \App\CPU\ProductManager::get_overall_rating($product->reviews))
                                                         <div class="flash_deal_product rtl"
@@ -739,7 +739,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                                             src="{{ \App\CPU\ProductManager::product_image_path('thumbnail') }}/{{ $product['thumbnail'] }}"
                                                                             onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" />
                                                                         </a>
-                                                                    
+
                                                                         </div>
                                                                 </div>
                                                                 <div
@@ -747,7 +747,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                                     <div class="d-flex mt-4">
                                                                         <div>
                                                                             <span class="flash-product-title" style="
-                                                                            
+
                                                                             font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
 
                                                                             color: #000;
@@ -793,10 +793,10 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                                                     {{ \App\CPU\Helpers::currency_converter($product->unit_price - \App\CPU\Helpers::get_product_discount($product, $product->unit_price)) }}
 
                                                                                 </p>
-    
+
                                                                             </div>
                                                                         </div>
-                                                                        
+
 
                                                                     </div>
                                                                 </div>
@@ -804,7 +804,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                         </div>
                                                     @endif
                                                 </div>
-                                    
+
                                 @endif
                             @endforeach
                         </div>
@@ -843,7 +843,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                 @if(count($todayLeft) > 0)
                                     <div class="leftImg">
                                         <a href="{{ $todayLeft[0]->url }}" class="d-block">
-                                            <img 
+                                            <img
                                                 src="{{ asset('storage/app/public/banner') }}/{{ $todayLeft[0]['photo'] }}">
                                         </a>
                                     </div>
@@ -887,13 +887,13 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                             @if(count($todayRight) > 1)
                             <div class="topImg" style="background: linear-gradient(to bottom, rgb(42 42 42 / 52%), rgba(0, 0, 0, 0.5)), url({{ asset('storage/app/public/banner') }}/{{ $todayRight[0]['photo'] }});  background-position: center;
                             background-size: cover;">
-                                
+
                                 <h2 class="imageText">Vorem ipsum dolor
                                     sit amet, consectetur</h2>
                             </div>
                             <div class="bottomImg" style="background: linear-gradient(to bottom, rgb(42 42 42 / 52%), rgba(0, 0, 0, 0.5)), url({{ asset('storage/app/public/banner') }}/{{ $todayRight[1]['photo'] }});  background-position: center;
                             background-size: cover;">
-                                
+
                                 <h2 class="imageText">Vorem ipsum dolor
                                     sit amet, consectetur</h2>
                             </div>
@@ -917,9 +917,9 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                         <div class="inner1 cardOne forYOU">
                             @foreach ($latest_products as $key => $product)
                                 @if ($key < 12)
-                                    
+
                                             <div class="inner122">
-                                        
+
                                                     @if (isset($product))
                                                         @php($overallRating = \App\CPU\ProductManager::get_overall_rating($product->reviews))
                                                         <div class="flash_deal_product rtl"
@@ -942,7 +942,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                                         <img class="__img-125px"
                                                                             src="{{ \App\CPU\ProductManager::product_image_path('thumbnail') }}/{{ $product['thumbnail'] }}"
                                                                             onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" />
-                                                                   
+
                                                                         </a>
                                                                         </div>
                                                                 </div>
@@ -952,7 +952,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                                         <div>
                                                                             <div>
                                                                                 <span class="flash-product-title"
-                                                                                
+
                                                                                 style="
                                                                                 font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
                                                                                 color: #000;
@@ -964,14 +964,14 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                                             <div class="flash-product-review">
 
 
-                                                                                
+
 
                                                                                 @for ($inc = 0; $inc < 5; $inc++)
                                                                                     @if ($inc < $overallRating[0])
                                                                                         <i
                                                                                             class="sr-star czi-star-filled active"></i>
                                                                                     @else
-                                                                                    
+
 
                                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#1E1E1E33" class="bi bi-star-fill" viewBox="0 0 16 16">
                                                                                         <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
@@ -982,9 +982,9 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                                                     ( {{ $product->reviews->count() }} )
                                                                                 </label>
                                                                             </div>
-    
+
                                                                         </div>
-                                                                        
+
                                                                         <div class="d-flex" style="width: 27%;">
                                                                             <div>
                                                                                 @if ($product->discount > 0)
@@ -1008,10 +1008,10 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                                                     {{ \App\CPU\Helpers::currency_converter($product->unit_price - \App\CPU\Helpers::get_product_discount($product, $product->unit_price)) }}
 
                                                                                 </p>
-    
+
                                                                             </div>
                                                                         </div>
-                                                                        
+
 
                                                                     </div>
                                                                 </div>
@@ -1020,7 +1020,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                     @endif
 
                                                 </div>
-                                          
+
                                 @endif
                             @endforeach
                         </div>
@@ -1051,7 +1051,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
         <br><br>
         </div>
 
-      
+
     @endsection
 </body>
 
@@ -1059,26 +1059,26 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
 
 <style>
     .NAVFONTHOVER:hover{
-       
+
         color: #FF061E !important;
         opacity: 1 !important;
 
-    
+
     }
     @font-face {
     font-family: 'BURBANKBIGCONDENSED-BOLD';
     src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
-  
+
 }
 @font-face {
     font-family: 'BURBANKBIGCONDENSED-BLACK';
     src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
-  
+
 }
 .fontt{
     font-family: 'BURBANKBIGCONDENSED-BOLD' !important;
     font-style: normal;
-    color: #000 !important;  
+    color: #000 !important;
 font-weight: 600 !important;
 font-size: 23.2274px !important;
 }
@@ -1541,7 +1541,7 @@ letter-spacing: 1px;
 
     .rightSide .innerBody2 .priceBody2 .btnShopBan ,     .rightSide .innerBody3 .priceBody3 .btnShopBan{
 
-        background: #FF061E; 
+        background: #FF061E;
         color: #fff;
         padding: 5px 10px;
         font-size: 12px;
@@ -1551,7 +1551,7 @@ letter-spacing: 1px;
 }
 .rightSide .innerBody25 .priceBody2 .btnShopBan {
 
-background: #FF061E; 
+background: #FF061E;
 color: #fff;
 padding: 5px 10px;
 font-size: 12px;
@@ -1910,7 +1910,7 @@ text-decoration: none;
 
         width: 1250px;
         height: 375px;
-     
+
         border-radius: 15px;
 
     }
@@ -1986,7 +1986,7 @@ text-decoration: none;
     }
 
     .topImg {
-        
+
         width: 430px;
         height: 414px;
 
@@ -1998,7 +1998,7 @@ text-decoration: none;
     .bottomImg {
         width: 430px;
         height: 414px;
-       
+
         border-radius: 15px;
         margin-top: 20px;
         position: relative;
@@ -2159,7 +2159,7 @@ text-decoration: none;
             display: none;
         }
 
-      
+
 
         .socialIcons {
             display: flex;
@@ -2173,7 +2173,7 @@ text-decoration: none;
     }
 
     @media screen and (max-width: 825px) {
-       
+
 
         .innerArea7 .img22 .innText {
             margin-top: 135px !important;
@@ -2190,14 +2190,14 @@ text-decoration: none;
             font-size: 8px;
         }
 
-         
+
     }
-    
 
 
 
 
-   
+
+
 
 
     .mainDiv {
@@ -3329,7 +3329,7 @@ text-decoration: none;
 
         .shopHeading {
             font-size: 15px;
-           
+
         }
 
         .innea5 .viewBtn {
@@ -3366,7 +3366,7 @@ text-decoration: none;
         }
 
         .flash_deal_product{
-            
+
         }
         .innerArea7 .img22 .innText .redText {
 
@@ -3422,7 +3422,7 @@ text-decoration: none;
         .hideMobe {
             display: none;
         }
-     
+
     }
 </style>
 

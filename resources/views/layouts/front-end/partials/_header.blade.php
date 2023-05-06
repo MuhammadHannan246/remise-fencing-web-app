@@ -726,6 +726,37 @@
                                             href="{{ route('customer.auth.logout') }}">{{ \App\CPU\translate('logout') }}</a>
                                     </div>
                                 </div>
+                            @elseif (auth('seller')->check())
+                                <div class="dropdown">
+                                    <a class="navbar-tool ml-3" type="button" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <div class="navbar-tool-icon-box bg-secondary">
+                                            <div class="navbar-tool-icon-box bg-secondary">
+                                                <img src="{{ asset('storage/app/public/profile/' . auth('seller')->user()->image) }}"
+                                                    onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
+                                                    class="img-profile rounded-circle __inline-14">
+
+
+                                            </div>
+                                        </div>
+                                        <div class="navbar-tool-text">
+                                            <small>{{ \App\CPU\translate('Hello') }},
+                                                {{ auth('seller')->user()->f_name }}</small>
+                                            {{ \App\CPU\translate('dashboard') }}
+                                        </div>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        {{-- <a class="dropdown-item" href="{{ route('account-oder') }}">
+                                            {{ \App\CPU\translate('my_order') }} </a> --}}
+                                        <a class="dropdown-item" href="{{ route('seller-profile') }}">
+                                            {{ \App\CPU\translate('seller_profile') }}</a>
+                                        <a class="dropdown-item" href="{{ route('home') }}">
+                                            {{ \App\CPU\translate('Dashboard') }}</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item"
+                                            href="{{ route('seller.auth.logout') }}">{{ \App\CPU\translate('logout') }}</a>
+                                    </div>
+                                </div>
                             @else
                                 <div class="dropdown">
                                     <a class="navbar-tool fontt {{ Session::get('direction') === 'rtl' ? 'mr-md-0' : 'ml-md-0' }} navAccount"

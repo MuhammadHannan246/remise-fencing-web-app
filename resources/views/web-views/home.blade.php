@@ -297,6 +297,7 @@
                                                     <div class="dropdown-menu __dropdown-menu-3 __min-w-165px"
                                                         aria-labelledby="dropdownMenuButton"
                                                         style="text-align: {{ Session::get('direction') === 'rtl' ? 'right' : 'left' }};">
+                                                        @if(!auth()->guard('seller')->check())
                                                         <a class="dropdown-item" href="{{ route('shop.apply') }}">
                                                             {{ \App\CPU\translate('Become a') }}
                                                             {{ \App\CPU\translate('Seller') }}
@@ -306,6 +307,11 @@
                                                             {{ \App\CPU\translate('Seller') }}
                                                             {{ \App\CPU\translate('login') }}
                                                         </a>
+                                                        @else
+                                                            <a class="dropdown-item" href="{{ url('seller/dashboard') }}">
+                                                                {{ \App\CPU\translate('Dashboard') }}
+                                                            </a>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </li>

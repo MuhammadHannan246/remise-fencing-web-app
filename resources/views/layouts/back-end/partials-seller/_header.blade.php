@@ -50,6 +50,7 @@
                 <ul class="navbar-nav align-items-center flex-row">
 
                     <li class="nav-item d-none d-md-inline-block">
+                        <a href="{{ route('home') }}" class="btn btn-primary mr-2">Home</a>
                         <div class="hs-unfold">
                             <div>
                                 @php( $local = session()->has('local')?session('local'):'en')
@@ -194,7 +195,7 @@
                                      "type": "css-animation"
                                    }'>
                                 <div class="d-none d-md-block media-body text-right">
-                                   <h5 class="profile-name mb-0">{{auth('seller')->user()->name}}</h5>
+                                   <h5 class="profile-name mb-0">{{auth('seller')->user()->f_name}}</h5>
                                    <span class="fz-12">{{ \Illuminate\Support\Str::limit($shop->name, 20) }}</span>
                                 </div>
                                 <div class="avatar avatar-sm avatar-circle">

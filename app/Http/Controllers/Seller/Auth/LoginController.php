@@ -96,6 +96,7 @@ class LoginController extends Controller
                     'updated_at' => now(),
                 ]);
             }
+            auth()->guard('customer')->logout();
             return redirect()->route('seller.dashboard.index');
         } elseif (isset($se) && $se['status'] == 'pending') {
             return redirect()->back()->withInput($request->only('email', 'remember'))

@@ -577,15 +577,16 @@
                                                     <div class="dropdown-menu __dropdown-menu-3 __min-w-165px"
                                                         aria-labelledby="dropdownMenuButton"
                                                         style="text-align: {{ Session::get('direction') === 'rtl' ? 'right' : 'left' }};">
-                                                        <a class="dropdown-item" href="{{ route('shop.apply') }}">
-                                                            {{ \App\CPU\translate('Become a') }}
-                                                            {{ \App\CPU\translate('Seller') }}
-                                                        </a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" href="{{ route('seller.auth.login') }}">
-                                                            {{ \App\CPU\translate('Seller') }}
-                                                            {{ \App\CPU\translate('login') }}
-                                                        </a>
+                                                            <a class="dropdown-item" href="{{ route('shop.apply') }}">
+                                                                {{ \App\CPU\translate('Become a') }}
+                                                                {{ \App\CPU\translate('Seller') }}
+                                                            </a>
+                                                            <div class="dropdown-divider"></div>
+                                                            <a class="dropdown-item" href="{{ route('seller.auth.login') }}">
+                                                                {{ \App\CPU\translate('Seller') }}
+                                                                {{ \App\CPU\translate('login') }}
+                                                            </a>
+                                                        
                                                     </div>
                                                 </div>
                                             </li>
@@ -735,8 +736,6 @@
                                                 <img src="{{ asset('storage/app/public/profile/' . auth('seller')->user()->image) }}"
                                                     onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
                                                     class="img-profile rounded-circle __inline-14">
-
-
                                             </div>
                                         </div>
                                         <div class="navbar-tool-text">
@@ -746,11 +745,10 @@
                                         </div>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        {{-- <a class="dropdown-item" href="{{ route('account-oder') }}">
-                                            {{ \App\CPU\translate('my_order') }} </a> --}}
-                                        <a class="dropdown-item" href="{{ route('seller-profile') }}">
-                                            {{ \App\CPU\translate('seller_profile') }}</a>
-                                        <a class="dropdown-item" href="{{ route('home') }}">
+                                        
+                                        {{-- <a class="dropdown-item" href="{{ route('seller-profile') }}">
+                                            {{ \App\CPU\translate('seller_profile') }}</a> --}}
+                                        <a class="dropdown-item" href="{{ url('seller/dashboard') }}">
                                             {{ \App\CPU\translate('Dashboard') }}</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item"

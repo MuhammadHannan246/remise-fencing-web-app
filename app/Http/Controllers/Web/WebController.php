@@ -77,15 +77,28 @@ class WebController extends Controller
             ->withCount(['orders'])->orderBy('orders_count', 'DESC')->take(12)->get();
         //end
 
-        //feature products finding based on selling
-        $featured_products = Product::with(['reviews'])->active()
-            ->where('featured', 1)
-            ->withCount(['order_details'])->orderBy('order_details_count', 'DESC')
-            ->take(12)
-            ->get();
-        //end
+        if(auth('seller')->check()){
+            //feature products finding based on selling
+            $featured_products = Product::with(['reviews'])->active()
+                ->where('featured', 1)
+                ->withCount(['order_details'])->orderBy('order_details_count', 'DESC')
+                ->where('user_id','!=',auth('seller')->user()->id)
+                ->take(12)
+                ->get();
+            //end
 
-        $latest_products = Product::with(['reviews'])->active()->orderBy('id', 'desc')->take(8)->get();
+            $latest_products = Product::with(['reviews'])->active()->where('user_id','!=',auth('seller')->user()->id)->orderBy('id', 'desc')->take(8)->get();
+        } else{
+                //feature products finding based on selling
+                $featured_products = Product::with(['reviews'])->active()
+                ->where('featured', 1)
+                ->withCount(['order_details'])->orderBy('order_details_count', 'DESC')
+                ->take(12)
+                ->get();
+            //end
+
+            $latest_products = Product::with(['reviews'])->active()->orderBy('id', 'desc')->take(8)->get();
+        }
         $categories = Category::where(['position'=> 0])->priority()->take(11)->get();
         $brands = Brand::active()->take(15)->get();
         //best sell product
@@ -480,6 +493,9 @@ class WebController extends Controller
         if (auth('customer')->check() && Cart::where(['customer_id' => auth('customer')->id()])->count() > 0) {
             return view('web-views.shop-cart');
         }
+        else if(auth('seller')->check()){
+            return view('web-views.shop-cart');
+        }
         Toastr::info(translate('no_items_in_basket'));
         return redirect('/');
     }
@@ -711,7 +727,11 @@ class WebController extends Controller
     {
         $request['sort_by'] == null ? $request['sort_by'] == 'latest' : $request['sort_by'];
 
-        $porduct_data = Product::active()->where('user_id','!=',auth('seller')->user()->id)->with(['reviews']);
+        if(auth('seller')->check()){
+            $porduct_data = Product::active()->where('user_id','!=',auth('seller')->user()->id)->with(['reviews']);
+        } else{
+            $porduct_data = Product::active()->with(['reviews']);
+        }
 
         if ($request['data_from'] == 'category') {
             $products = $porduct_data->get();
@@ -1215,6 +1235,7 @@ class WebController extends Controller
 
     public function order_note(Request $request)
     {
+        // return 'text';
         if ($request->has('order_note')) {
             session::put('order_note', $request->order_note);
         }

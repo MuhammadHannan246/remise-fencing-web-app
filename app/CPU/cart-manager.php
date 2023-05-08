@@ -240,7 +240,7 @@ class CartManager
 
         $user = Helpers::get_customer($request);
         $product = Product::find($request->id);
-
+        $type_id = 'customer_id';
         //check the color enabled or disabled for the product
         if ($request->has('color')) {
             $str = Color::where('code', $request['color'])->first()->name;
@@ -277,7 +277,7 @@ class CartManager
                 session()->put('offline_cart', $cart);
             }
         } else {
-            $cart = Cart::where(['product_id' => $request->id, 'customer_id' => $user->id, 'variant' => $str])->first();
+            $cart = Cart::where(['product_id' => $request->id, $type_id => $user->id, 'variant' => $str])->first();
             if (isset($cart) == false) {
                 $cart = new Cart();
             } else {

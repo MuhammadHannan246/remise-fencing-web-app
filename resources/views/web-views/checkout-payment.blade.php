@@ -7,12 +7,12 @@
          @font-face {
     font-family: 'BURBANKBIGCONDENSED-BOLD';
     src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
-  
+
 }
 @font-face {
     font-family: 'BURBANKBIGCONDENSED-BLACK';
     src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
-  
+
 }
         .stripe-button-el {
             display: none !important;
@@ -452,7 +452,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        @php($customer_balance = auth('customer')->user()->wallet_balance)
+        @php($customer_balance = auth()->guard('customer')->check() ? auth()->guard('customer')->user()->wallet_balance : auth()->guard('seller')->user()->wallet_balance)
         @php($remain_balance = $customer_balance - $amount)
         <form action="{{route('checkout-complete-wallet')}}" method="get" class="needs-validation">
             @csrf

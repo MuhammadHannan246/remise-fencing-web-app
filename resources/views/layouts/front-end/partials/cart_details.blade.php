@@ -23,8 +23,19 @@
     <span style="font-size: 33.23px; font-weight:600;font-family: 'BURBANKBIGCONDENSED-BOLD' !important;text-transform: capitalize;">Order Summary</span>
 </div>
 
-@php($shippingMethod=\App\CPU\Helpers::get_business_settings('shipping_method'))
-@php($cart=\App\Model\Cart::where(['customer_id' => auth('customer')->id()])->get()->groupBy('cart_group_id'))
+
+
+@php
+    $shippingMethod=\App\CPU\Helpers::get_business_settings('shipping_method');
+    if(auth('customer')->check()) {
+        $type_id='customer_id';
+        $auth = auth('customer')->id();
+    } elseif (auth('seller')->check()) {
+        $type_id='seller_id';
+        $auth = auth('seller')->id();
+    }
+    $cart=\App\Model\Cart::where('customer_id', $auth)->get()->groupBy('cart_group_id');
+@endphp
 
 <div class="row g-3">
     <!-- List of items-->
@@ -145,7 +156,7 @@
                                 <td>
                                     <div>
                                         @php($minimum_order=\App\Model\Product::select('minimum_order_qty')->find($cartItem['product_id']))
-                                        
+
                                         <input class="__cart-input" type="number" name="quantity[{{ $cartItem['id'] }}]" id="cartQuantity{{$cartItem['id']}}"
                                         onchange="updateCartQuantity('{{ $minimum_order->minimum_order_qty }}', '{{$cartItem['id']}}')" min="{{ $minimum_order->minimum_order_qty ?? 1 }}" value="{{$cartItem['quantity']}}">
                                     </div>
@@ -325,6 +336,7 @@
                 $('#loading').show();
             },
             success: function (data) {
+                console.log(data);
                 let url = "{{ route('checkout-details') }}";
                 location.href = url;
 

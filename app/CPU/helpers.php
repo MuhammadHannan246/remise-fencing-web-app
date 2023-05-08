@@ -65,7 +65,12 @@ class Helpers
     {
         $user = null;
         if (auth('customer')->check()) {
+            $type_id = 'customer_id';
             $user = auth('customer')->user(); // for web
+        }
+        else if (auth('seller')->check()) {
+            $type_id = 'seller_id';
+            $user = auth('seller')->user(); // for web
         } elseif ($request != null && $request->user() != null) {
             $user = $request->user(); //for api
         } elseif (session()->has('customer_id')) {

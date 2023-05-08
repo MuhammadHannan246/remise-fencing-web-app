@@ -29,7 +29,7 @@
             <div class="col-md-10 col-lg-10">
                 <div class="card" style="    border: 1px solid #7777;
                 border-radius: 15px;">
-                    @if(auth('customer')->check())
+                    @if(auth('customer')->check() || auth('seller')->check())
                         <div class=" p-5">
                             <div class="row">
                                 <div class="col-md-6">
@@ -46,7 +46,7 @@
                                 </div>
                             </div>
 
-                            <span class="font-weight-bold d-block mt-4 __text-17px">{{\App\CPU\translate('Hello')}}, {{auth('customer')->user()->f_name}}</span>
+                            <span class="font-weight-bold d-block mt-4 __text-17px">{{\App\CPU\translate('Hello')}}, {{auth('customer')->user()->f_name ?? auth('seller')->user()->f_name}}</span>
                             <span>{{\App\CPU\translate('You order has been confirmed and will be shipped according to the method you selected!')}}</span>
 
                             <div class="row mt-4">

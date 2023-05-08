@@ -85,7 +85,7 @@ class StripePaymentController extends Controller
             array_push($order_ids, $order_id);
         }
         CartManager::cart_clean();
-        if (auth('customer')->check()) {
+        if (auth('customer')->check() || auth('seller')->check()) {
             Toastr::success('Payment success.');
             return view('web-views.checkout-complete');
         }

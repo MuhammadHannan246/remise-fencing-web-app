@@ -26,17 +26,17 @@ Route::group(['namespace' => 'Web','middleware'=>['maintenance_mode']], function
     Route::get('quick-view', 'WebController@quick_view')->name('quick-view');
     Route::get('searched-products', 'WebController@searched_products')->name('searched-products');
 
+    Route::get('shop-cart', 'WebController@shop_cart')->name('shop-cart');
+    Route::post('order_note', 'WebController@order_note')->name('order_note');
+    Route::get('checkout-details', 'WebController@checkout_details')->name('checkout-details');
+    Route::get('checkout-shipping', 'WebController@checkout_shipping')->name('checkout-shipping');
+    Route::get('checkout-payment', 'WebController@checkout_payment')->name('checkout-payment');
+    Route::get('checkout-review', 'WebController@checkout_review')->name('checkout-review');
+    Route::get('checkout-complete', 'WebController@checkout_complete')->name('checkout-complete');
+    Route::get('order-placed', 'WebController@order_placed')->name('order-placed');
+Route::post('offline-payment-checkout-complete', 'WebController@offline_payment_checkout_complete')->name('offline-payment-checkout-complete');
     Route::group(['middleware'=>['customer']], function () {
-        Route::get('checkout-details', 'WebController@checkout_details')->name('checkout-details');
-        Route::get('checkout-shipping', 'WebController@checkout_shipping')->name('checkout-shipping')->middleware('customer');
-        Route::get('checkout-payment', 'WebController@checkout_payment')->name('checkout-payment')->middleware('customer');
-        Route::get('checkout-review', 'WebController@checkout_review')->name('checkout-review')->middleware('customer');
-        Route::get('checkout-complete', 'WebController@checkout_complete')->name('checkout-complete')->middleware('customer');
-        Route::post('offline-payment-checkout-complete', 'WebController@offline_payment_checkout_complete')->name('offline-payment-checkout-complete')->middleware('customer');
-        Route::get('order-placed', 'WebController@order_placed')->name('order-placed')->middleware('customer');
-        Route::get('shop-cart', 'WebController@shop_cart')->name('shop-cart');
 
-        Route::post('order_note', 'WebController@order_note')->name('order_note');
         Route::get('digital-product-download/{id}', 'WebController@digital_product_download')->name('digital-product-download')->middleware('customer');
         Route::get('submit-review/{id}','UserProfileController@submit_review')->name('submit-review');
         Route::post('review', 'ReviewController@store')->name('review.store');

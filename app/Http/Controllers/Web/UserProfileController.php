@@ -271,12 +271,19 @@ class UserProfileController extends Controller
 
     public function account_oder()
     {
-        $orders = Order::where('customer_id', auth('customer')->id())->orderBy('id','DESC')->paginate(15);
-        foreach($orders as $data){
-            $data->totalQTY = DB::table('order_details')->where(['order_id' => $data->id])->count();
+        if(auth('customer')->check()){
+            $orders = Order::where('customer_id', auth('customer')->id())->orderBy('id','DESC')->paginate(15);
+            foreach($orders as $data){
+                $data->totalQTY = DB::table('order_details')->where(['order_id' => $data->id])->count();
+            }
+            $custname = DB::table('users')->where('id', auth('customer')->id())->get();
+        } else {
+            $orders = Order::where('customer_id', auth('seller')->id())->orderBy('id','DESC')->paginate(15);
+            foreach($orders as $data){
+                $data->totalQTY = DB::table('order_details')->where(['order_id' => $data->id])->count();
+            }
+            $custname = DB::table('users')->where('id', auth('seller')->id())->get();
         }
-        $custname = DB::table('users')->where('id', auth('customer')->id())->get();
-        // return $custname;
         return view('web-views.users-profile.account-orders', compact('orders'), ['custname'=>$custname]);
     }
 

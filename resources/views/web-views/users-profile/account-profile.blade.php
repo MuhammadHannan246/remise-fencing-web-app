@@ -1,6 +1,6 @@
 @extends('layouts.front-end.app')
 
-@section('title',auth('customer')->user()->f_name.' '.auth('customer')->user()->l_name)
+@section('title',(auth('customer')->check() ? auth('customer')->user()->f_name : auth('seller')->user()->f_name).' '.(auth('customer')->check() ? auth('customer')->user()->l_name : auth('seller')->user()->l_name))
 
 <!DOCTYPE html>
 <html lang="en">
@@ -57,12 +57,12 @@
             <div class="modalDiv">
 
                 <button style="border: 1px solid; margin-top:10px; margin-right:5px;" type="button" class="btn btnModal" data-toggle="modal" data-target="#exampleModal">
-                  
+
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000" class="bi bi-list" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                       </svg>
                 </button>
-            
+
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
@@ -74,7 +74,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                           
+
                             <div class="modal-body">
                                 <div class="myAccountBar">
                                     <h4 class="myAccHeading">My Account</h4>
@@ -86,7 +86,7 @@
                             {{-- <li class="side-item"><a href="{{route('chat', ['type' => 'delivery-man'])}}">Chat with delivery-man</a></li> --}}
                             <li class="side-item"><a href="{{ route('account-tickets') }}">Support Ticket</a></li>
 
-            
+
                                     </ul>
                                     <h4 class="myAccHeading">My Orders</h4>
                                     <ul class="side">
@@ -94,10 +94,10 @@
                                         <li class="side-item"><a href="CanceledOrders">My Cancellation</a></li>
                                     </ul>
                                     <h4 class="myAccHeading">Sell on Remise</h4>
-            
+
                                 </div>
                             </div>
-            
+
                         </div>
                     </div>
                 </div>
@@ -107,7 +107,7 @@
 
             </div>
         </div>
-        
+
         <br><br>
 
         <div class="divInner2">
@@ -124,7 +124,7 @@
 
 
     </div>
- 
+
 
     <div class="divIn">
         <div class="divInner2">
@@ -209,12 +209,12 @@
                                         <br><br>
                                         <br class="mobile">
                                         <br class="mobile">
-    
+
                                         <div class="form2">
                                             <input type="text" class="form__input2" type="text" id="phone"
                                             name="phone"
                                             value="{{$customerDetail['phone']}}" required>
-                                            
+
                                                 <label for="phone" class="form__label2">{{\App\CPU\translate('phone_number')}}
                                             </label>
                                         </div>
@@ -226,7 +226,7 @@
                                                     <input class="form__input2" name="password" type="password"
                                                            id="password">
 
-                                                           
+
                                                            <label
                                                            class="password-toggle-btn btnPass" style="width:60px;" >
                                                            <input class="custom-control-input" type="checkbox">
@@ -237,11 +237,11 @@
                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#00000099" class="bi bi-eye-fill" viewBox="0 0 16 16">
                                                                             <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                                                                             <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                                                                          </svg>            
+                                                                          </svg>
                                                            <span class="sr-only">{{ \App\CPU\translate('Show') }}
                                                                {{ \App\CPU\translate('password') }} </span>
                                                        </label>
-                                                       
+
                                                            {{-- <label class="password-toggle-btn">
                                                         <input class="custom-control-input" type="checkbox"
                                                                >
@@ -257,7 +257,7 @@
 
                                         <br><br><br><br>
                                         <!-- <div class="mainDiv"> -->
-                                            
+
 
                                             <div class="form2">
                                                 <div class="password-toggle">
@@ -267,7 +267,7 @@
 
 
                                                         <label class="password-toggle-btn btnPass" style="width:60px;">
-                                                             
+
                                                         <input class="custom-control-input" type="checkbox"
                                                             style="text-align: {{ Session::get('direction') === 'rtl' ? 'right' : 'left' }};">
                                                         {{-- <i class="fa-solid fa-eye fa-flip-horizontal fa-sm"
@@ -278,7 +278,7 @@
                                                                                 <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                                                                                 <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                                                                             </svg>
-                        
+
                                                         <span class="sr-only">{{ \App\CPU\translate('Show') }}
                                                             {{ \App\CPU\translate('password') }} </span>
                                                     </label>
@@ -298,14 +298,14 @@
                                         <!-- </div> -->
 
                                     </div>
-                                    
-                               
+
+
                                     <div id='message'></div>
-                                        
-                    
+
+
 
                                     <button type="submit" class="btn--update">{{\App\CPU\translate('update')}}   </button>
-                                 
+
                                 </div>
 
                             </div>
@@ -327,11 +327,11 @@
 
 
     <script>
-      
+
     </script>
 
     <script>
-      
+
       $(document).ready(function() {
             $("#show_hide_password a").on('click', function(event) {
                 event.preventDefault();
@@ -346,7 +346,7 @@
                 }
             });
         });
-    
+
         $(document).ready(function() {
             $("#show_hide_password2 a").on('click', function(event) {
                 event.preventDefault();
@@ -376,17 +376,17 @@
 <style>
             @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
-        
+
 
             @font-face {
     font-family: 'BURBANKBIGCONDENSED-BOLD';
     src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
-  
+
 }
 @font-face {
     font-family: 'BURBANKBIGCONDENSED-BLACK';
     src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
-  
+
 }
 
 

@@ -36,6 +36,9 @@ class UserProfileController extends Controller
         if (auth('customer')->check()) {
             $customerDetail = User::where('id', auth('customer')->id())->first();
             return view('web-views.users-profile.account-profile', compact('customerDetail'));
+        }elseif (auth('seller')->check()) {
+            $customerDetail = User::where('id', auth('seller')->id())->first();
+            return view('web-views.users-profile.account-profile', compact('customerDetail'));
         } else {
             return redirect()->route('home');
         }

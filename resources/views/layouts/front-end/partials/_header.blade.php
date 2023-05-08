@@ -702,7 +702,8 @@
                                         aria-haspopup="true" aria-expanded="false">
                                         <div class="navbar-tool-icon-box bg-secondary">
                                             <div class="navbar-tool-icon-box bg-secondary">
-                                                <img src="{{ asset('storage/app/public/profile/' . auth('customer')->user()->image) }}"
+
+                                                <img src="{{ asset('storage/app/public/profile/' .auth('customer')->user()->image) }}"
                                                     onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
                                                     class="img-profile rounded-circle __inline-14">
 
@@ -738,6 +739,7 @@
                                                     class="img-profile rounded-circle __inline-14">
                                             </div>
                                         </div>
+
                                         <div class="navbar-tool-text">
                                             <small>{{ \App\CPU\translate('Hello') }},
                                                 {{ auth('seller')->user()->f_name }}</small>
@@ -745,9 +747,12 @@
                                         </div>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-                                        {{-- <a class="dropdown-item" href="{{ route('seller-profile') }}">
-                                            {{ \App\CPU\translate('seller_profile') }}</a> --}}
+                                        <a class="dropdown-item" href="{{ route('account-oder') }}">
+                                            {{ \App\CPU\translate('my_order') }} </a>
+                                            <a class="dropdown-item" href="{{ route('user-account') }}">
+                                                {{ \App\CPU\translate('my_profile') }}</a>
+                                        <a class="dropdown-item" href="{{ route('home') }}">
+                                            {{ \App\CPU\translate('Home') }}</a>
                                         <a class="dropdown-item" href="{{ url('seller/dashboard') }}">
                                             {{ \App\CPU\translate('Dashboard') }}</a>
                                         <div class="dropdown-divider"></div>

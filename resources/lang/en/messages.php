@@ -3045,4 +3045,5 @@
   'Company Vehicle' => 'Company Vehicle',
   'File type: jpg  jpeg  png. Maximum size: 2MB' => 'File type: jpg  jpeg  png. Maximum size: 2MB',
   'Invalid order!' => 'Invalid order!',
+  'name_not_found' => 'Name not found',
 );

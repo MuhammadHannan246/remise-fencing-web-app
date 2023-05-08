@@ -202,7 +202,7 @@ class SellerController extends Controller
 
     public function order_details($order_id, $seller_id)
     {
-        $order = Order::with('shipping')->where(['id' => $order_id])->first();
+        $order = Order::with('customerAsSeller','shipping')->where(['id' => $order_id])->first();
         $shipping_method = Helpers::get_business_settings('shipping_method');
         $delivery_men = DeliveryMan::where('is_active', 1)->when($order->seller_is == 'admin', function ($query) {
             $query->where(['seller_id' => 0]);

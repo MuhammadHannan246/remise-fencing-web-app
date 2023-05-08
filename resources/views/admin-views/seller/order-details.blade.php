@@ -383,15 +383,28 @@
                         <div class="card-body" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
                             <div class="media align-items-center" href="javascript:">
                                 <div class="avatar avatar-circle {{Session::get('direction') === "rtl" ? 'ml-3' : 'mr-3'}}">
-                                    <img
-                                        class="avatar-img"
-                                        onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-                                        src="{{asset('storage/app/public/profile/'.$order->customer->image)}}"
-                                        alt="Image Description">
+                                    @if ($order->customer_type == 'customer')
+                                        <img
+                                            class="avatar-img"
+                                            onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
+                                            src="{{asset('storage/app/public/profile/'.$order->customer->image)}}"
+                                            alt="Image Description">
+                                    @else
+                                        <img
+                                            class="avatar-img"
+                                            onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
+                                            src="{{asset('storage/app/public/profile/'.$order->customerAsSeller->image)}}"
+                                            alt="Image Description">
+                                    @endif
                                 </div>
                                 <div class="media-body">
-                            <span
-                                class="text-body text-hover-primary">{{$order->customer['f_name'].' '.$order->customer['l_name']}}</span>
+                            @if ($order->customer_type == 'customer')
+                                <span
+                                    class="text-body text-hover-primary">{{$order->customer['f_name'].' '.$order->customer['l_name']}}</span>
+                            @else
+                                <span
+                                class="text-body text-hover-primary">{{$order->customerAsSeller['f_name'].' '.$order->customerAsSeller['l_name']}}</span>
+                            @endif
                                 </div>
                                 <div class="media-body text-right">
                                     {{--<i class="tio-chevron-right text-body"></i>--}}
@@ -419,11 +432,23 @@
 
                             <div class="flex-start">
                                 <div><i class="tio-online {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i></div>
-                                <div class="mx-1"><a class="text-dark" href = "mailto: {{$order->customer['email']}}">{{$order->customer['email']}}</a></div>
+                                <div class="mx-1">
+                                    @if ($order->customer_type == 'customer')
+                                        <a class="text-dark" href = "mailto: {{$order->customer['email']}}">{{$order->customer['email']}}</a>
+                                    @else
+                                        <a class="text-dark" href = "mailto: {{$order->customerAsSeller['email']}}">{{$order->customerAsSeller['email']}}</a>
+                                    @endif
+                                </div>
                             </div>
                             <div class="flex-start">
                                 <div><i class="tio-android-phone-vs {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i></div>
-                                <div class="mx-1"><a class="text-dark" href="tel:{{$order->customer['phone']}}">{{$order->customer['phone']}}</a></div>
+                                <div class="mx-1">
+                                    @if ($order->customer_type == 'customer')
+                                        <a class="text-dark" href="tel:{{$order->customer['phone']}}">{{$order->customer['phone']}}</a>
+                                    @else
+                                        <a class="text-dark" href="tel:{{$order->customerAsSeller['phone']}}">{{$order->customerAsSeller['phone']}}</a>
+                                    @endif
+                                </div>
                             </div>
 
                             <hr>

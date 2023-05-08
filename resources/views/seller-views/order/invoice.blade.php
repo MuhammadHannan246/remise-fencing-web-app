@@ -263,21 +263,38 @@
                                 @if ($order->shippingAddress)
                                     <span class="h2" style="margin: 0px;">{{\App\CPU\translate('shipping_to')}} </span>
                                     <div class="h4 montserrat-normal-600">
+                                        @if ($order->customer_type == 'customer')
                                         <p style=" margin-top: 6px; margin-bottom:0px;">{{$order->customer !=null? $order->customer['f_name'].' '.$order->customer['l_name']:\App\CPU\translate('name_not_found')}}</p>
                                         <p style=" margin-top: 6px; margin-bottom:0px;">{{$order->customer !=null? $order->customer['email']:\App\CPU\translate('email_not_found')}}</p>
                                         <p style=" margin-top: 6px; margin-bottom:0px;">{{$order->customer !=null? $order->customer['phone']:\App\CPU\translate('phone_not_found')}}</p>
+                                        @else
+                                        <p style=" margin-top: 6px; margin-bottom:0px;">{{$order->customerAsSeller !=null? $order->customerAsSeller['f_name'].' '.$order->customerAsSeller['l_name']:\App\CPU\translate('name_not_found')}}</p>
+                                        <p style=" margin-top: 6px; margin-bottom:0px;">{{$order->customerAsSeller !=null? $order->customerAsSeller['email']:\App\CPU\translate('email_not_found')}}</p>
+                                        <p style=" margin-top: 6px; margin-bottom:0px;">{{$order->customerAsSeller !=null? $order->customerAsSeller['phone']:\App\CPU\translate('phone_not_found')}}</p>
+                                        @endif
+
                                         <p style=" margin-top: 6px; margin-bottom:0px;">{{$order->shippingAddress ? $order->shippingAddress['address'] : ""}}</p>
                                         <p style=" margin-top: 6px; margin-bottom:0px;">{{$order->shippingAddress ? $order->shippingAddress['city'] : ""}} {{$order->shippingAddress ? $order->shippingAddress['zip'] : ""}}</p>
                                     </div>
                                 @else
                                     <span class="h2" style="margin: 0px;">{{\App\CPU\translate('customer_info')}} </span>
+                                    @if ($order->customer_type == 'customer')
+                                        <div class="h4 montserrat-normal-600">
+                                            <p style=" margin-top: 6px; margin-bottom:0px;">{{$order->customer !=null? $order->customer['f_name'].' '.$order->customer['l_name']:\App\CPU\translate('name_not_found')}}</p>
+                                            @if (isset($order->customer) && $order->customer['id']!=0)
+                                                <p style=" margin-top: 6px; margin-bottom:0px;">{{$order->customer !=null? $order->customer['email']:\App\CPU\translate('email_not_found')}}</p>
+                                                <p style=" margin-top: 6px; margin-bottom:0px;">{{$order->customer !=null? $order->customer['phone']:\App\CPU\translate('phone_not_found')}}</p>
+                                            @endif
+                                        </div>
+                                    @else
                                     <div class="h4 montserrat-normal-600">
-                                        <p style=" margin-top: 6px; margin-bottom:0px;">{{$order->customer !=null? $order->customer['f_name'].' '.$order->customer['l_name']:\App\CPU\translate('name_not_found')}}</p>
-                                        @if (isset($order->customer) && $order->customer['id']!=0)
-                                            <p style=" margin-top: 6px; margin-bottom:0px;">{{$order->customer !=null? $order->customer['email']:\App\CPU\translate('email_not_found')}}</p>
-                                            <p style=" margin-top: 6px; margin-bottom:0px;">{{$order->customer !=null? $order->customer['phone']:\App\CPU\translate('phone_not_found')}}</p>
+                                        <p style=" margin-top: 6px; margin-bottom:0px;">{{$order->customerAsSeller !=null? $order->customerAsSeller['f_name'].' '.$order->customerAsSeller['l_name']:\App\CPU\translate('name_not_found')}}</p>
+                                        @if (isset($order->customerAsSeller) && $order->customerAsSeller['id']!=0)
+                                            <p style=" margin-top: 6px; margin-bottom:0px;">{{$order->customerAsSeller !=null? $order->customerAsSeller['email']:\App\CPU\translate('email_not_found')}}</p>
+                                            <p style=" margin-top: 6px; margin-bottom:0px;">{{$order->customerAsSeller !=null? $order->customerAsSeller['phone']:\App\CPU\translate('phone_not_found')}}</p>
                                         @endif
                                     </div>
+                                    @endif
                                     @endif
                                     </p>
                             </td>

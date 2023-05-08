@@ -388,23 +388,44 @@
                                 <img src="{{asset('/public/assets/back-end/img/seller-information.png')}}" alt="">
                                 {{\App\CPU\translate('Customer_information')}}
                             </h4>
-                            <div class="media">
-                                <div class="mr-3">
-                                    <img class="avatar rounded-circle avatar-70"
-                                        onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-                                        src="{{asset('storage/app/public/profile/'.$order->customer->image)}}"
-                                        alt="Image">
+                            @if ($order->customer_type == 'customer')
+                                <div class="media">
+                                    <div class="mr-3">
+                                        <img class="avatar rounded-circle avatar-70"
+                                            onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
+                                            src="{{asset('storage/app/public/profile/'.$order->customer->image)}}"
+                                            alt="Image">
+                                    </div>
+                                    <div class="media-body d-flex flex-column gap-1">
+                                        <span class="title-color"><strong>{{$order->customer['f_name'].' '.$order->customer['l_name']}}</strong></span>
+                                        <span class="title-color">
+                                            <strong>{{\App\Model\Order::where('customer_id',$order['customer_id'])->count()}} </strong>
+                                            {{\App\CPU\translate('orders')}}
+                                        </span>
+                                        <span class="title-color break-all"><strong>{{$order->customer['phone']}}</strong></span>
+                                        <span class="title-color break-all">{{$order->customer['email']}}</span>
+                                    </div>
                                 </div>
-                                <div class="media-body d-flex flex-column gap-1">
-                                    <span class="title-color"><strong>{{$order->customer['f_name'].' '.$order->customer['l_name']}}</strong></span>
-                                    <span class="title-color">
-                                        <strong>{{\App\Model\Order::where('customer_id',$order['customer_id'])->count()}} </strong>
-                                        {{\App\CPU\translate('orders')}}
-                                    </span>
-                                    <span class="title-color break-all"><strong>{{$order->customer['phone']}}</strong></span>
-                                    <span class="title-color break-all">{{$order->customer['email']}}</span>
+                            @else
+                                <div class="media">
+                                    <div class="mr-3">
+                                        <img class="avatar rounded-circle avatar-70"
+                                            onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
+                                            src="{{asset('storage/app/public/profile/'.$order->customerAsSeller->image)}}"
+                                            alt="Image">
+                                    </div>
+                                    <div class="media-body d-flex flex-column gap-1">
+                                        <span class="title-color"><strong>{{$order->customerAsSeller['f_name'].' '.$order->customerAsSeller['l_name']}}</strong></span>
+                                        <span class="title-color">
+                                            <strong>{{\App\Model\Order::where('customer_id',$order['customer_id'])->count()}} </strong>
+                                            {{\App\CPU\translate('orders')}}
+                                        </span>
+                                        <span class="title-color break-all"><strong>{{$order->customerAsSeller['phone']}}</strong></span>
+                                        <span class="title-color break-all">{{$order->customerAsSeller['email']}}</span>
+                                    </div>
                                 </div>
-                            </div>
+
+                            @endif
                         </div>
                     @else
                         <div class="card-body">

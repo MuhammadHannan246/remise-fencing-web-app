@@ -153,7 +153,7 @@ class OrderController extends Controller
     public function details($id)
     {
         $sellerId = auth('seller')->id();
-        $order = Order::with(['details' => function ($query) use ($sellerId) {
+        $order = Order::with(['customerAsSeller','details' => function ($query) use ($sellerId) {
             $query->where('seller_id', $sellerId);
         }])->with('customer', 'shipping')
             ->where('id', $id)->first();
@@ -254,7 +254,7 @@ class OrderController extends Controller
         $sellerId = auth('seller')->id();
         $seller = Seller::find($sellerId)->gst;
 
-        $order = Order::with(['details' => function ($query) use ($sellerId) {
+        $order = Order::with(['customerAsSeller','details' => function ($query) use ($sellerId) {
             $query->where('seller_id', $sellerId);
         }])->with('customer', 'shipping')
             ->with('seller')

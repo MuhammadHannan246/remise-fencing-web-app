@@ -41,7 +41,7 @@ class OrderController extends Controller
 
         Order::where(['checked' => 0])->update(['checked' => 1]);
 
-        $orders = Order::with(['customer', 'seller.shop'])
+        $orders = Order::with(['customer', 'customerAsSeller','seller.shop'])
             ->when($status != 'all', function ($q) use($status){
                 $q->where(function ($query) use ($status) {
                     $query->orWhere('order_status', $status);

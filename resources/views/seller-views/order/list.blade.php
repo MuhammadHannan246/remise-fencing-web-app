@@ -249,8 +249,13 @@
                                     @if($order->customer_id == 0)
                                         <strong class="title-name">Walking customer</strong>
                                     @else
-                                        <div>{{$order->customer ? $order->customer['f_name'].' '.$order->customer['l_name'] : 'Customer Data not found'}}</div>
-                                        <a class="d-block title-color" href="tel:{{ $order->customer ? $order->customer->phone : '' }}">{{ $order->customer ? $order->customer->phone : '' }}</a>
+                                        @if ($order->customer_type == 'customer')
+                                            <div>{{$order->customer ? $order->customer['f_name'].' '.$order->customer['l_name'] : 'Customer Data not found'}}</div>
+                                            <a class="d-block title-color" href="tel:{{ $order->customer ? $order->customer->phone : '' }}">{{ $order->customer ? $order->customer->phone : '' }}</a>
+                                        @else
+                                        <div>{{$order->customerAsSeller ? $order->customerAsSeller['f_name'].' '.$order->customerAsSeller['l_name'] : 'Customer Data not found'}}</div>
+                                        <a class="d-block title-color" href="tel:{{ $order->customerAsSeller ? $order->customerAsSeller->phone : '' }}">{{ $order->customerAsSeller ? $order->customerAsSeller->phone : '' }}</a>
+                                        @endif
                                     @endif
                                 </td>
                                 <td>

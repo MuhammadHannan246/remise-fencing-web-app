@@ -11,6 +11,7 @@ class SystemController extends Controller
 {
     public function order_data()
     {
+        
         $sellerId = auth('seller')->id();
 
         $new_order = DB::table('orders')->where(['seller_is' => 'seller'])

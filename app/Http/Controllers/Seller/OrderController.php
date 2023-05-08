@@ -51,7 +51,7 @@ class OrderController extends Controller
         $key = $request['search'] ? explode(' ', $request['search']) : '';
         $delivery_man_id = $request['delivery_man_id'];
 
-        $orders = Order::with(['customer','shipping','shippingAddress','delivery_man','billingAddress'])
+        $orders = Order::with(['customer','customerAsSeller','shipping','shippingAddress','delivery_man','billingAddress'])
             ->where('seller_is','seller')
             ->where(['seller_id'=>$sellerId])
             ->when($filter == 'POS', function ($q){
@@ -289,6 +289,7 @@ class OrderController extends Controller
 
     public function status(Request $request)
     {
+        return "asdf";
         $order = Order::find($request->id);
 
         if(!isset($order->customer))

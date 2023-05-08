@@ -266,10 +266,18 @@
                                             <strong class="title-name">{{\App\CPU\translate('walking_customer')}}</strong>
                                         @else
                                             @if($order->customer)
-                                                <a class="text-body text-capitalize" href="{{route('admin.orders.details',['id'=>$order['id']])}}">
-                                                    <strong class="title-name">{{$order->customer['f_name'].' '.$order->customer['l_name']}}</strong>
-                                                </a>
-                                                <a class="d-block title-color" href="tel:{{ $order->customer['phone'] }}">{{ $order->customer['phone'] }}</a>
+                                                @if ($order->customer_type == 'customer')
+                                                    <a class="text-body text-capitalize" href="{{route('admin.orders.details',['id'=>$order['id']])}}">
+                                                        <strong class="title-name">{{$order->customer['f_name'] ?? ''.' '.$order->customer['l_name']}}</strong>
+                                                    </a>
+                                                    <a class="d-block title-color" href="tel:{{ $order->customer['phone'] }}">{{ $order->customer['phone'] }}</a>
+                                                @elseif($order->customer_type == 'seller')
+                                                    <a class="text-body text-capitalize" href="{{route('admin.orders.details',['id'=>$order['id']])}}">
+                                                        
+                                                        <strong class="title-name">{{$order->customerAsSeller->f_name .' '.$order->customerAsSeller['l_name']}}</strong>
+                                                    </a>
+                                                    <a class="d-block title-color" href="tel:{{ $order->customerAsSeller['phone'] }}">{{ $order->customerAsSeller['phone'] }}</a>
+                                                @endif
                                             @else
                                                 <label class="badge badge-danger fz-12">{{\App\CPU\translate('invalid_customer_data')}}</label>
                                             @endif

@@ -52,7 +52,11 @@
                                     </td>
                                     <td>
                                         @if($order->customer != null)
-                                            {{ $order->customer['f_name'] }} {{ $order->customer['l_name'] }}
+                                            @if ($order->customer_type == 'customer')
+                                                {{ $order->customer['f_name'] }} {{ $order->customer['l_name'] }}
+                                            @elseif($order->customer_type == 'seller')
+                                                {{ $order->customerAsSeller['f_name'] }} {{ $order->customerAsSeller['l_name'] }}
+                                            @endif
                                         @else
                                             <label class='badge badge-warning'>{{\App\CPU\translate('Customer not available')}}</label>
                                         @endif

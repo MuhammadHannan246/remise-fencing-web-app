@@ -42,6 +42,11 @@ class Order extends Model
         return $this->belongsTo(User::class, 'customer_id');
     }
 
+    public function customerAsSeller()
+    {
+        return $this->belongsTo(Seller::class,'customer_id');
+    }
+
     public function shipping()
     {
         return $this->belongsTo(ShippingMethod::class, 'shipping_method_id');

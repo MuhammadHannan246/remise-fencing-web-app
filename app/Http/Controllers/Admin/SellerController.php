@@ -185,7 +185,7 @@ class SellerController extends Controller
 
     public function order_list($seller_id)
     {
-        $orders = Order::where(['seller_id'=> $seller_id, 'seller_is'=> 'seller'])
+        $orders = Order::with('customerAsSeller')->where(['seller_id'=> $seller_id, 'seller_is'=> 'seller'])
                 ->latest()
                 ->paginate(Helpers::pagination_limit());
 

@@ -6,6 +6,7 @@
 @endpush
 
 @section('content')
+
     <!-- Page Heading -->
     <div class="content container-fluid">
         <!-- Page Title -->
@@ -13,6 +14,7 @@
             <h2 class="h1 mb-0 text-capitalize d-flex align-items-center gap-2">
                 <img src="{{asset('/public/assets/back-end/img/all-orders.png')}}" alt="">
                 {{\App\CPU\translate('order_details')}}
+
             </h2>
         </div>
         <!-- End Page Title -->

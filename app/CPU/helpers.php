@@ -65,12 +65,12 @@ class Helpers
     {
         $user = null;
         if (auth('customer')->check()) {
-            $type_id = 'customer_id';
-            $user = auth('customer')->user(); // for web
+            $user = auth('customer')->user();
+            $user->type = 'customer';
         }
         else if (auth('seller')->check()) {
-            $type_id = 'seller_id';
-            $user = auth('seller')->user(); // for web
+            $user = auth('seller')->user();
+            $user->type = 'seller';
         } elseif ($request != null && $request->user() != null) {
             $user = $request->user(); //for api
         } elseif (session()->has('customer_id')) {
@@ -80,7 +80,7 @@ class Helpers
         if ($user == null) {
             $user = 'offline';
         }
-
+        // return array($user,$type);
         return $user;
     }
 

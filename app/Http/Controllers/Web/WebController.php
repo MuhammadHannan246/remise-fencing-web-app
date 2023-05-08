@@ -711,7 +711,7 @@ class WebController extends Controller
     {
         $request['sort_by'] == null ? $request['sort_by'] == 'latest' : $request['sort_by'];
 
-        $porduct_data = Product::active()->with(['reviews']);
+        $porduct_data = Product::active()->where('user_id','!=',auth('seller')->user()->id)->with(['reviews']);
 
         if ($request['data_from'] == 'category') {
             $products = $porduct_data->get();

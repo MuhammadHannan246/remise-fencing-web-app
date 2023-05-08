@@ -1,4 +1,4 @@
-<style>
+    <style>
     @font-face {
         font-family: 'BURBANKBIGCONDENSED-BOLD';
         src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf') }});
@@ -586,7 +586,7 @@
                                                                 {{ \App\CPU\translate('Seller') }}
                                                                 {{ \App\CPU\translate('login') }}
                                                             </a>
-                                                        
+
                                                     </div>
                                                 </div>
                                             </li>
@@ -745,7 +745,7 @@
                                         </div>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        
+
                                         {{-- <a class="dropdown-item" href="{{ route('seller-profile') }}">
                                             {{ \App\CPU\translate('seller_profile') }}</a> --}}
                                         <a class="dropdown-item" href="{{ url('seller/dashboard') }}">

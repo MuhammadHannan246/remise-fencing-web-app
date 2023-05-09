@@ -1,3 +1,17 @@
+<style>  @font-face {
+    font-family: 'BURBANKBIGCONDENSED-BOLD';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
+  
+}
+@font-face {
+    font-family: 'BURBANKBIGCONDENSED-BLACK';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
+  
+    .__card .card-body p img{
+        border-radius: 10px !important;
+    }
+}</style>
+
 @extends('layouts.front-end.app')
 
 @section('title',\App\CPU\translate('Privacy policy'))
@@ -17,7 +31,7 @@
 
 @section('content')
     <div class="container py-5 rtl" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
-        <h2 class="text-center mb-3 headerTitle">{{\App\CPU\translate('privacy_policy')}}</h2>
+        <h2 class="text-center mb-3 headerTitle" style="font-family: 'BURBANKBIGCONDENSED-BOLD'; font-size:33.23px;">{{\App\CPU\translate('privacy_policy')}}</h2>
         <div class="card __card">
             <div class="card-body">
                 {!! $privacy_policy['value'] !!}

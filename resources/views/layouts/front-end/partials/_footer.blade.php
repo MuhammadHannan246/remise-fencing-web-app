@@ -306,7 +306,7 @@
                             <div class="company comp4">
                                 <h4 class="companyName">Company</h4>
                                 <ul class="menuList">
-                                    <li class="menuItem">About Us</li>
+                                    <li class="menuItem"><a href="">About Us</a> </li>
                                     <li class="menuItem">Careers</li>
                                     <li class="menuItem">Contact Us</li>
                                     <li class="menuItem">Help Center</li>

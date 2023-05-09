@@ -1,3 +1,14 @@
+<style>  @font-face {
+    font-family: 'BURBANKBIGCONDENSED-BOLD';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
+  
+}
+@font-face {
+    font-family: 'BURBANKBIGCONDENSED-BLACK';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
+  
+}</style>
+
 @extends('layouts.front-end.app')
 
 @section('title',\App\CPU\translate('About Us'))
@@ -17,7 +28,7 @@
 
 @section('content')
     <div class="container for-container rtl __inlini-51">
-        <h2 class="text-center mt-3 headerTitle">{{\App\CPU\translate('About Our Company')}}</h2>
+        <h2 class="text-center mt-3 headerTitle" style="font-family: 'BURBANKBIGCONDENSED-BOLD'; font-size:33.23px;">{{\App\CPU\translate('Who We Are')}}</h2>
         <div class="for-padding">
             {!! $about_us['value'] !!}
         </div>

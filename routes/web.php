@@ -34,6 +34,7 @@ Route::group(['namespace' => 'Web','middleware'=>['maintenance_mode']], function
     Route::get('checkout-review', 'WebController@checkout_review')->name('checkout-review');
     Route::get('checkout-complete', 'WebController@checkout_complete')->name('checkout-complete');
     Route::get('order-placed', 'WebController@order_placed')->name('order-placed');
+    Route::get('account-address', 'UserProfileController@account_address')->name('account-address');
 Route::post('offline-payment-checkout-complete', 'WebController@offline_payment_checkout_complete')->name('offline-payment-checkout-complete');
     Route::group(['middleware'=>['customer']], function () {
 
@@ -87,7 +88,7 @@ Route::post('offline-payment-checkout-complete', 'WebController@offline_payment_
     Route::get('user-account', 'UserProfileController@user_account')->name('user-account');
     Route::post('user-account-update', 'UserProfileController@user_update')->name('user-update');
     Route::post('user-account-picture', 'UserProfileController@user_picture')->name('user-picture');
-    Route::get('account-address', 'UserProfileController@account_address')->name('account-address');
+
     Route::post('account-address-store', 'UserProfileController@address_store')->name('address-store');
     Route::get('account-address-delete', 'UserProfileController@address_delete')->name('address-delete');
     ROute::get('account-address-edit/{id}','UserProfileController@address_edit')->name('address-edit');

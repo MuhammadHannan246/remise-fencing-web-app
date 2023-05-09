@@ -280,6 +280,12 @@ class UserProfileController extends Controller
                 $data->totalQTY = DB::table('order_details')->where(['order_id' => $data->id])->count();
             }
             $custname = DB::table('users')->where('id', auth('customer')->id())->get();
+        } elseif(auth('seller')->check()){
+            $orders = Order::where('customer_id', auth('seller')->id())->orderBy('id','DESC')->paginate(15);
+            foreach($orders as $data){
+                $data->totalQTY = DB::table('order_details')->where(['order_id' => $data->id])->count();
+            }
+            $custname = DB::table('users')->where('id', auth('seller')->id())->get();
         } else {
             $orders = Order::where('customer_id', auth('seller')->id())->orderBy('id','DESC')->paginate(15);
             foreach($orders as $data){
@@ -296,8 +302,11 @@ class UserProfileController extends Controller
         foreach($orders as $data){
             $data->totalQTY = DB::table('order_details')->where(['order_id' => $data->id])->count();
         }
-        $custname = DB::table('users')->where('id', auth('customer')->id())->get();
-        // return $custname;
+        if(auth('customer')->check()){
+            $custname = DB::table('users')->where('id', auth('customer')->id())->get();
+        }else{
+            $custname = DB::table('users')->where('id', auth('seller')->id())->get();
+        }
         return view('web-views.users-profile.account-orders-all', compact('orders'), ['custname'=>$custname]);
     }
 
@@ -307,8 +316,11 @@ class UserProfileController extends Controller
         foreach($orders as $data){
             $data->totalQTY = DB::table('order_details')->where(['order_id' => $data->id])->count();
         }
-        $custname = DB::table('users')->where('id', auth('customer')->id())->get();
-        // return $custname;
+        if(auth('customer')->check()){
+            $custname = DB::table('users')->where('id', auth('customer')->id())->get();
+        }else{
+            $custname = DB::table('users')->where('id', auth('seller')->id())->get();
+        }
         return view('web-views.users-profile.account-orders-pending', compact('orders'), ['custname'=>$custname]);
     }
 
@@ -318,8 +330,11 @@ class UserProfileController extends Controller
         foreach($orders as $data){
             $data->totalQTY = DB::table('order_details')->where(['order_id' => $data->id])->count();
         }
-        $custname = DB::table('users')->where('id', auth('customer')->id())->get();
-        // return $custname;
+        if(auth('customer')->check()){
+            $custname = DB::table('users')->where('id', auth('customer')->id())->get();
+        }else{
+            $custname = DB::table('users')->where('id', auth('seller')->id())->get();
+        }
         return view('web-views.users-profile.account-orders-canceled', compact('orders'), ['custname'=>$custname]);
     }
 
@@ -329,8 +344,11 @@ class UserProfileController extends Controller
         foreach($orders as $data){
             $data->totalQTY = DB::table('order_details')->where(['order_id' => $data->id])->count();
         }
-        $custname = DB::table('users')->where('id', auth('customer')->id())->get();
-        // return $custname;
+        if(auth('customer')->check()){
+            $custname = DB::table('users')->where('id', auth('customer')->id())->get();
+        }else{
+            $custname = DB::table('users')->where('id', auth('seller')->id())->get();
+        }
         return view('web-views.users-profile.account-orders-confirmed', compact('orders'), ['custname'=>$custname]);
     }
 
@@ -340,8 +358,11 @@ class UserProfileController extends Controller
         foreach($orders as $data){
             $data->totalQTY = DB::table('order_details')->where(['order_id' => $data->id])->count();
         }
-        $custname = DB::table('users')->where('id', auth('customer')->id())->get();
-        // return $custname;
+        if(auth('customer')->check()){
+            $custname = DB::table('users')->where('id', auth('customer')->id())->get();
+        }else{
+            $custname = DB::table('users')->where('id', auth('seller')->id())->get();
+        }
         return view('web-views.users-profile.account-orders-delivered', compact('orders'), ['custname'=>$custname]);
     }
 

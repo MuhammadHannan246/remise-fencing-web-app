@@ -2,12 +2,12 @@
      @font-face {
     font-family: 'BURBANKBIGCONDENSED-BOLD';
     src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
-  
+
 }
 @font-face {
     font-family: 'BURBANKBIGCONDENSED-BLACK';
     src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
-  
+
 }
 </style>
 @extends('layouts.front-end.app')

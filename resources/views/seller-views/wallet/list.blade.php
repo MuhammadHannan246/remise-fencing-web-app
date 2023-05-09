@@ -125,9 +125,7 @@
             <div class="card-header text-capitalize">
                 <h4 class="mb-0">
                     {{\App\CPU\translate('transactions')}}
-                    <span class="badge badge-soft-dark radius-50 fz-12 ml-1">
-                        {{ $transactions ? $transactions->count() : ''}}
-                    </span>
+                    <span class="badge badge-soft-dark radius-50 fz-12 ml-1">{{$transactions->count()}}</span>
                 </h4>
             </div>
             <!-- End Header -->
@@ -150,31 +148,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if (isset($transactions))
-                            @foreach($transactions as $k=>$wt)
-                                <tr scope="row">
-                                    <td >{{$k+$transactions->firstItem()}}</td>
-                                    <td>{{$wt->transaction_id}}</td>
-                                    <td><a href="{{route('admin.customer.view',['user_id'=>$wt->user_id])}}" class="title-color hover-c1">{{Str::limit($wt->user?$wt->user->f_name.' '.$wt->user->l_name:\App\CPU\translate('not_found'),20,'...')}}</a></td>
-                                    <td>{{$wt->credit}}</td>
-                                    <td>{{$wt->debit}}</td>
-                                    <td>{{$wt->balance}}</td>
-                                    <td>
-                                        <span class="badge badge-soft-{{$wt->transaction_type=='order_refund'
-                                            ?'danger'
-                                            :($wt->transaction_type=='loyalty_point'?'warning'
-                                                :($wt->transaction_type=='order_place'
-                                                    ?'info'
-                                                    :'success'))
-                                            }}">
-                                            {{\App\CPU\translate($wt->transaction_type)}}
-                                        </span>
-                                    </td>
-                                    <td>{{$wt->reference}}</td>
-                                    <td class="text-center">{{date('Y/m/d '.config('timeformat'), strtotime($wt->created_at))}}</td>
-                                </tr>
-                            @endforeach
-                        @endif
+                    @foreach($transactions as $k=>$wt)
+                        <tr scope="row">
+                            <td >{{$k+$transactions->firstItem()}}</td>
+                            <td>{{$wt->transaction_id}}</td>
+                            <td><a href="{{route('admin.customer.view',['user_id'=>$wt->user_id])}}" class="title-color hover-c1">{{Str::limit($wt->user?$wt->user->f_name.' '.$wt->user->l_name:\App\CPU\translate('not_found'),20,'...')}}</a></td>
+                            <td>{{$wt->credit}}</td>
+                            <td>{{$wt->debit}}</td>
+                            <td>{{$wt->balance}}</td>
+                            <td>
+                                <span class="badge badge-soft-{{$wt->transaction_type=='order_refund'
+                                    ?'danger'
+                                    :($wt->transaction_type=='loyalty_point'?'warning'
+                                        :($wt->transaction_type=='order_place'
+                                            ?'info'
+                                            :'success'))
+                                    }}">
+                                    {{\App\CPU\translate($wt->transaction_type)}}
+                                </span>
+                            </td>
+                            <td>{{$wt->reference}}</td>
+                            <td class="text-center">{{date('Y/m/d '.config('timeformat'), strtotime($wt->created_at))}}</td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
@@ -183,12 +179,12 @@
             <div class="table-responsive mt-4">
                 <div class="px-4 d-flex justify-content-lg-end">
                     <!-- Pagination -->
-                    {!! $transactions ? $transactions->links() : '' !!}
+                    {!!$transactions->links()!!}
                 </div>
             </div>
 
             <!-- End Body -->
-            @if(isset($transactions) && count($transactions)==0)
+            @if(count($transactions)==0)
                 <div class="text-center p-4">
                     <img class="mb-3 w-160" src="{{asset('public/assets/back-end')}}/svg/illustrations/sorry.svg" alt="Image Description">
                     <p class="mb-0">{{ \App\CPU\translate('No_data_to_show')}}</p>

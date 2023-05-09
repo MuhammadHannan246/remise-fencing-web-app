@@ -3046,5 +3046,10 @@
   'File type: jpg  jpeg  png. Maximum size: 2MB' => 'File type: jpg  jpeg  png. Maximum size: 2MB',
   'Invalid order!' => 'Invalid order!',
   'name_not_found' => 'Name not found',
+<<<<<<< Updated upstream
   'Who We Are' => 'Who We Are',
+=======
+  'Invalid Order Id or Phone Number' => 'Invalid Order Id or Phone Number',
+  'This account has been deleted  you can not modify the status!!' => 'This account has been deleted  you can not modify the status!!',
+>>>>>>> Stashed changes
 );

@@ -486,7 +486,7 @@ class UserProfileController extends Controller
 
     public function track_order_result(Request $request)
     {
-        $user =  auth('customer')->user();
+        $user =  auth('customer')->user() ?? auth('seller')->user();
         if(!isset($user)){
             $user_id = User::where('phone',$request->phone_number)->first()->id;
             $orderDetails = Order::where('id',$request['order_id'])->whereHas('details',function ($query) use($user_id){
@@ -571,7 +571,8 @@ class UserProfileController extends Controller
 
         ]);
         $order_details = OrderDetail::find($request->order_details_id);
-        $user = auth('customer')->user();
+        $user = auth('customer')->user() ?? auth('seller')->user();
+        // dd($user);
 
 
         $loyalty_point_status = Helpers::get_business_settings('loyalty_point_status');
@@ -587,7 +588,12 @@ class UserProfileController extends Controller
         }
         $refund_request = new RefundRequest;
         $refund_request->order_details_id = $request->order_details_id;
-        $refund_request->customer_id = auth('customer')->id();
+        $refund_request->customer_id = $user->id;
+        if(auth('customer')->check()){
+            $refund_request->customer_type = 'customer';
+        } elseif(auth('seller')->check()){
+            $refund_request->customer_type = 'seller';
+        }
         $refund_request->status = 'pending';
         $refund_request->amount = $request->amount;
         $refund_request->product_id = $order_details->product_id;
@@ -622,17 +628,29 @@ class UserProfileController extends Controller
     {
         $order_details = OrderDetail::find($id);
 
-        $refund = RefundRequest::where('customer_id',auth('customer')->id())
-                                ->where('order_details_id',$order_details->id )->first();
-
+        if(auth('customer')->check()){
+            $refund = RefundRequest::where('customer_id',auth('customer')->id())
+                ->where('order_details_id',$order_details->id )->first();
+        }
+        elseif(auth('seller')->check()) {
+            $refund = RefundRequest::where('customer_id',auth('seller')->id())
+                ->where('order_details_id',$order_details->id+1 )->first();
+        }
+        // dd($refund);
         return view('web-views.users-profile.refund-details',compact('order_details','refund'));
     }
 
     public function submit_review(Request $request,$id)
     {
-        $order_details = OrderDetail::where(['id'=>$id])->whereHas('order', function($q){
-            $q->where(['customer_id'=>auth('customer')->id(),'payment_status'=>'paid']);
-        })->first();
+        if(auth('customer')->check()){
+            $order_details = OrderDetail::where(['id'=>$id])->whereHas('order', function($q){
+                $q->where(['customer_id'=>auth('customer')->id(),'payment_status'=>'paid']);
+            })->first();
+        } else {
+            $order_details = OrderDetail::where(['id'=>$id])->whereHas('order', function($q){
+                $q->where(['customer_id'=>auth('seller')->id(),'payment_status'=>'paid']);
+            })->first();
+        }
 
         if(!$order_details){
             Toastr::error(translate('Invalid order!'));

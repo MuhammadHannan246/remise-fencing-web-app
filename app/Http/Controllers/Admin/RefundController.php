@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Brian2694\Toastr\Facades\Toastr;
-use function App\CPU\translate;
-use App\Model\RefundRequest;
-use App\Model\Order;
-use App\Model\AdminWallet;
-use App\Model\SellerWallet;
-use App\Model\RefundTransaction;
-use App\CPU\Helpers;
-use App\Model\OrderDetail;
-Use App\Model\RefundStatus;
-use App\CPU\CustomerManager;
 use App\User;
 use App\CPU\Convert;
+use App\CPU\Helpers;
+use App\Model\Order;
+use App\Model\Seller;
+use App\Model\AdminWallet;
+use App\Model\OrderDetail;
+use App\Model\SellerWallet;
+use App\CPU\CustomerManager;
+use App\Model\RefundRequest;
+use Illuminate\Http\Request;
+use function App\CPU\translate;
+Use App\Model\RefundStatus;
+use App\Model\RefundTransaction;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 
 class RefundController extends Controller
 {
@@ -56,8 +57,11 @@ class RefundController extends Controller
     public function refund_status_update(Request $request)
     {
         $refund = RefundRequest::find($request->id);
-        $user = User::find($refund->customer_id);
-
+        if($refund->customer_type == 'customer'){
+            $user = User::find($refund->customer_id);
+        } elseif($refund->customer_type == 'seller'){
+            $user = Seller::find($refund->customer_id);
+        }
         if(!isset($user))
         {
             Toastr::warning(translate('This account has been deleted, you can not modify the status!!'));

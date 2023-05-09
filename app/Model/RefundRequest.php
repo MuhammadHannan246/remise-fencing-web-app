@@ -13,6 +13,7 @@ class RefundRequest extends Model
     protected $casts = [
         'order_details_id' => 'integer',
         'customer_id' => 'integer',
+        'customer_type' => 'string',
         'status'=>'string',
         'amount' => 'float',
         'product_id' => 'integer',

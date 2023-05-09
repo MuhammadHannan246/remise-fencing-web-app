@@ -254,6 +254,14 @@ Route::group(['namespace' => 'Seller', 'prefix' => 'seller', 'as' => 'seller.'],
 
             Route::get('rating/{id}', 'DeliveryManController@rating')->name('rating');
         });
+
+        Route::group(['prefix' => 'wallet', 'as' => 'wallet.'], function () {
+            // Route::post('add-fund', 'CustomerWalletController@add_fund')->name('add-fund');
+            Route::get('report', 'RefundController@report')->name('report');
+        });
+        // Route::group(['prefix' => 'loyalty', 'as' => 'loyalty.'], function () {
+        //     Route::get('report', 'RefundController@report')->name('report');
+        // });
     });
 
 });

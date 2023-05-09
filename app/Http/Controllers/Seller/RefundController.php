@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers\Seller;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Brian2694\Toastr\Facades\Toastr;
-use function App\CPU\translate;
-use App\Model\RefundRequest;
+use App\User;
+use App\CPU\Helpers;
 use App\Model\Order;
 use App\Model\AdminWallet;
-use App\Model\SellerWallet;
-use App\Model\RefundTransaction;
-use App\CPU\Helpers;
 use App\Model\OrderDetail;
-Use App\Model\RefundStatus;
-use App\User;
+use App\Model\SellerWallet;
 use App\CPU\CustomerManager;
+use App\Model\RefundRequest;
+use Illuminate\Http\Request;
+use function App\CPU\translate;
+use App\Model\RefundTransaction;
+Use App\Model\RefundStatus;
+use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
+use App\Model\LoyaltyPointTransaction;
 
 class RefundController extends Controller
 {
@@ -36,7 +37,7 @@ class RefundController extends Controller
             $query_param = ['search' => $request['search']];
         }
         $refund_list = $refund_list->where('status',$status)->latest()->paginate(Helpers::pagination_limit());
-        
+
         return view('seller-views.refund.list',compact('refund_list','search'));
     }
     public function details($id)
@@ -54,7 +55,7 @@ class RefundController extends Controller
                 })->find($request->id);
 
         $user = User::find($refund->customer_id);
-        
+
         if(!isset($user))
         {
             Toastr::warning(translate('This account has been deleted, you can not modify the status!!'));
@@ -63,11 +64,11 @@ class RefundController extends Controller
 
         $wallet_status = Helpers::get_business_settings('wallet_status');
         $loyalty_point_status = Helpers::get_business_settings('loyalty_point_status');
-        
+
         if($loyalty_point_status == 1)
         {
             $loyalty_point = CustomerManager::count_loyalty_point_for_amount($refund->order_details_id);
-    
+
             if($user->loyalty_point < $loyalty_point && $request->refund_status == 'approved')
             {
                 Toastr::warning(translate('Customer has not sufficient loyalty point to take refund for this order!!'));
@@ -113,7 +114,7 @@ class RefundController extends Controller
                 $order_details->refund_request = 4;
             }
             $order_details->save();
-            
+
             $refund->status = $request->refund_status;
             $refund->change_by = 'seller';
             $refund->save();
@@ -124,7 +125,39 @@ class RefundController extends Controller
         }else{
             Toastr::warning(translate('refunded status can not be changed!!'));
             return back();
-        }   
-        
+        }
+
+    }
+
+    public function report(Request $request)
+    {
+        // $data = LoyaltyPointTransaction::selectRaw('sum(credit) as total_credit, sum(debit) as total_debit')
+        // ->when(($request->from && $request->to),function($query)use($request){
+        //     $query->whereBetween('created_at', [$request->from.' 00:00:00', $request->to.' 23:59:59']);
+        // })
+        // ->when($request->transaction_type, function($query)use($request){
+        //     $query->where('transaction_type',$request->transaction_type);
+        // })
+        // ->when($request->customer_id, function($query)use($request){
+        //     $query->where('user_id',$request->customer_id);
+        // })
+        // ->get();
+
+        // $transactions = LoyaltyPointTransaction::
+        // when(($request->from && $request->to),function($query)use($request){
+        //     $query->whereBetween('created_at', [$request->from.' 00:00:00', $request->to.' 23:59:59']);
+        // })
+        // ->when($request->transaction_type, function($query)use($request){
+        //     $query->where('transaction_type',$request->transaction_type);
+        // })
+        // ->when($request->customer_id, function($query)use($request){
+        //     $query->where('user_id',$request->customer_id);
+        // })
+        // ->latest()
+        // ->paginate(Helpers::pagination_limit());
+        $data = null;
+        $transactions = null;
+
+        return view('admin-views.customer.loyalty.report', compact('data','transactions'));
     }
 }

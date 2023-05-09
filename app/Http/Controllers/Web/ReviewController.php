@@ -26,11 +26,11 @@ class ReviewController extends Controller
         Review::updateOrCreate(
             [
                 'delivery_man_id' => null,
-                'customer_id' => auth('customer')->id(),
+                'customer_id' => auth('customer')->id() ?? auth('seller')->id(),
                 'product_id' => $request->product_id
             ],
             [
-                'customer_id' => auth('customer')->id(),
+                'customer_id' => auth('customer')->id() ?? auth('seller')->id(),
                 'product_id' => $request->product_id,
                 'comment' => $request->comment,
                 'rating' => $request->rating,

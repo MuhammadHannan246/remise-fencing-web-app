@@ -1,4 +1,4 @@
-<style>
+    <style>
     .cart_title {
         font-weight: 400 !important;
         font-size: 16px;
@@ -94,6 +94,6 @@
                 </span>
             </div>
         </div>
- 
+
     </div>
 </aside>

@@ -96,7 +96,11 @@ class CartController extends Controller
             session()->put('offline_cart', $new_collection);
             return response()->json($new_collection);
         } else {
-            Cart::where(['id' => $request->key, 'customer_id' => auth('customer')->id()])->delete();
+            if(auth('customer')->check()){
+                Cart::where(['id' => $request->key, 'customer_id' => auth('customer')->id()])->delete();
+            } else if(auth('seller')->check()){
+                Cart::where(['id' => $request->key, 'customer_id' => auth('seller')->id()])->delete();
+            }
         }
 
         session()->forget('coupon_code');

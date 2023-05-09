@@ -493,7 +493,7 @@ class WebController extends Controller
         if (auth('customer')->check() && Cart::where(['customer_id' => auth('customer')->id()])->count() > 0) {
             return view('web-views.shop-cart');
         }
-        else if(auth('seller')->check()){
+        else if(auth('seller')->check() && Cart::where(['customer_id' => auth('seller')->id()])->count() > 0){
             return view('web-views.shop-cart');
         }
         Toastr::info(translate('no_items_in_basket'));

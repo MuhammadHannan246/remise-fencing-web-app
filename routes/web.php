@@ -35,12 +35,17 @@ Route::group(['namespace' => 'Web','middleware'=>['maintenance_mode']], function
     Route::get('checkout-complete', 'WebController@checkout_complete')->name('checkout-complete');
     Route::get('order-placed', 'WebController@order_placed')->name('order-placed');
     Route::get('account-address', 'UserProfileController@account_address')->name('account-address');
+    Route::get('submit-review/{id}','UserProfileController@submit_review')->name('submit-review');
+    Route::post('review', 'ReviewController@store')->name('review.store');
+
+    Route::get('account-order-details', 'UserProfileController@account_order_details')->name('account-order-details');
+    Route::post('refund-store','UserProfileController@store_refund')->name('refund-store');
+
+
 Route::post('offline-payment-checkout-complete', 'WebController@offline_payment_checkout_complete')->name('offline-payment-checkout-complete');
     Route::group(['middleware'=>['customer']], function () {
 
         Route::get('digital-product-download/{id}', 'WebController@digital_product_download')->name('digital-product-download')->middleware('customer');
-        Route::get('submit-review/{id}','UserProfileController@submit_review')->name('submit-review');
-        Route::post('review', 'ReviewController@store')->name('review.store');
         Route::get('deliveryman-review/{id}','ReviewController@delivery_man_review')->name('deliveryman-review');
         Route::post('submit-deliveryman-review','ReviewController@delivery_man_submit')->name('submit-deliveryman-review');
     });
@@ -103,12 +108,10 @@ Route::post('offline-payment-checkout-complete', 'WebController@offline_payment_
     Route::get('DeliveredOrders', 'UserProfileController@Deliveredaccount_oder')->name('');
 
 
-    Route::get('account-order-details', 'UserProfileController@account_order_details')->name('account-order-details')->middleware('customer');
     Route::get('generate-invoice/{id}', 'UserProfileController@generate_invoice')->name('generate-invoice');
     Route::get('account-wishlist', 'UserProfileController@account_wishlist')->name('account-wishlist'); //add to card not work
     Route::get('refund-request/{id}','UserProfileController@refund_request')->name('refund-request');
     Route::get('refund-details/{id}','UserProfileController@refund_details')->name('refund-details');
-    Route::post('refund-store','UserProfileController@store_refund')->name('refund-store');
     Route::get('account-tickets', 'UserProfileController@account_tickets')->name('account-tickets');
     Route::get('order-cancel/{id}', 'UserProfileController@order_cancel')->name('order-cancel');
     Route::post('ticket-submit', 'UserProfileController@ticket_submit')->name('ticket-submit');

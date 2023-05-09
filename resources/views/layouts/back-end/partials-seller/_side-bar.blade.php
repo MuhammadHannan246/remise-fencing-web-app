@@ -450,6 +450,17 @@
                             </a>
                         </li>
 
+                        <li class="navbar-vertical-aside-has-menu {{Request::is('seller/business-settings/withdraw*')?'active':''}}">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link"
+                               href="{{route('seller.wallet.report')}}">
+                                <i class="tio-wallet-outlined nav-icon"></i>
+                                <span
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate text-capitalize">
+                                        {{\App\CPU\translate('Wallet')}}
+                                    </span>
+                            </a>
+                        </li>
+
                         <li class="navbar-vertical-aside-has-menu {{Request::is('seller/profile*')?'active':''}}">
                             <a class="js-navbar-vertical-aside-menu-link nav-link"
                                href="{{route('seller.profile.view')}}">

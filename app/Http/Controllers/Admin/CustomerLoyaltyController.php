@@ -22,7 +22,7 @@ class CustomerLoyaltyController extends Controller
             $query->where('user_id',$request->customer_id);
         })
         ->get();
-        
+
         $transactions = LoyaltyPointTransaction::
         when(($request->from && $request->to),function($query)use($request){
             $query->whereBetween('created_at', [$request->from.' 00:00:00', $request->to.' 23:59:59']);

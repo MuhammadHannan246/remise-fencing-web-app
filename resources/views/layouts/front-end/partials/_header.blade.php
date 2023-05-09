@@ -461,7 +461,7 @@
 
                 <div class="shoppy">
 
-                    <p><a href="#">Shop Now</a></p>
+                    <p><a href="{{ route('products', ['data_from' => 'latest']) }}">Shop Now</a></p>
 
                 </div>
 

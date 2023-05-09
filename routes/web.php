@@ -135,8 +135,7 @@ Route::post('offline-payment-checkout-complete', 'WebController@offline_payment_
     Route::post('loyalty-exchange-currency','UserLoyaltyController@loyalty_exchange_currency')->name('loyalty-exchange-currency');
 
     Route::group(['prefix' => 'track-order', 'as' => 'track-order.'], function () {
-        Route::get('', 'UserProfileController@
-        ')->name('index');
+        Route::get('', 'UserProfileController@track_order')->name('index');
         Route::get('result-view', 'UserProfileController@track_order_result')->name('result-view');
         Route::get('last', 'UserProfileController@track_last_order')->name('last');
         Route::any('result', 'UserProfileController@track_order_result')->name('result');

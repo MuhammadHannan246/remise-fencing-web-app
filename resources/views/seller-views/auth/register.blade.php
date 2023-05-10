@@ -255,13 +255,27 @@
                                     <input type="checkbox" class="mr-1" name="remember" id="inputCheckd">
                                 </strong>
                                 <span class="d-block w-0 flex-grow pl-1">
-                                    <span style="font-size: 14px;">{{\App\CPU\translate('i_agree_to_Your_terms')}}</span>
+                                    <span style="font-size: 14px;">{{\App\CPU\translate('i_agree_to_your_terms')}}</span>
                                     <a class="font-size-sm" style="font-size: 14px !important;" target="_blank" href="{{route('terms')}}">
                                         {{\App\CPU\translate('terms_and_condition')}}
                                     </a>
                                 </span>
                             </label>
                         </div>
+                        <div class="form-group mb-0 d-flex flex-wrap justify-content-between">
+                            <label class="form-group mb-1 d-flex align-items-center">
+                                <strong>
+                                    <input type="checkbox" class="mr-1" name="remember" id="inputCheckd2">
+                                </strong>
+                                <span class="d-block w-0 flex-grow pl-1">
+                                    <span style="font-size: 14px;">I Have read the hint for selling carefully</span>
+                                    <a class="font-size-sm" style="font-size: 14px !important;" target="_blank" href="{{ route('hint-for-sell') }}">
+                                        Hint For Selling
+                                    </a>
+                                </span>
+                            </label>
+                        </div>
+                        
                         <input type="hidden" name="from_submit" value="seller">
                         <button type="submit" class="btn ship-sub-btn btn-user btn-block" id="apply" disabled>{{\App\CPU\translate('Apply')}} {{\App\CPU\translate('Shop')}} </button>
                         <br>
@@ -3721,15 +3735,32 @@
 {{-- recaptcha scripts end --}}
 
 <script>
-    $('#inputCheckd').change(function () {
-            // console.log('jell');
-            if ($(this).is(':checked')) {
-                $('#apply').removeAttr('disabled');
-            } else {
-                $('#apply').attr('disabled', 'disabled');
-            }
+    const inputCheckd = document.querySelector("#inputCheckd");
+    const inputCheckd2 = document.querySelector("#inputCheckd2");
+    const apply = document.querySelector("#apply");
+    
+    inputCheckd.addEventListener('change', toggleSubmitButton);
+    inputCheckd2.addEventListener('change', toggleSubmitButton);
+    
+    function toggleSubmitButton(){
+        if(inputCheckd.checked && inputCheckd2.checked){
+            apply.disabled = false;
+        }
+        else{
+            apply.disabled = true;
 
-        });
+        }
+    }
+
+    // $('#inputCheckd').change(function () {
+    //         // console.log('jell');
+    //         if ($(this).is(':checked')) {
+    //             $('#apply').removeAttr('disabled');
+    //         } else {
+    //             $('#apply').attr('disabled', 'disabled');
+    //         }
+
+    //     });
 
     $('#exampleInputPassword ,#exampleRepeatPassword').on('keyup',function () {
         var pass = $("#exampleInputPassword").val();

@@ -42,7 +42,7 @@
     @php($product = App\Model\Product::find($order_details->product_id))
     @php($order = App\Model\Order::find($order_details->order_id))
         <section class="col-lg-9 mt-2 col-md-9">
-            <div class="card mt-0" style="border:1px solid #7777; padding:10px; border-radius:10px !important;">
+            <div class="card mt-0" >
                 <div class="">
                     <div class="card">
                         <div class="card-body">

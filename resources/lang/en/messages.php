@@ -3057,4 +3057,10 @@
   'my-wallet' => 'My-wallet',
   'my wallet' => 'My wallet',
   'access_denied!' => 'Access denied!',
+  'customer_settings_updated_successfully' => 'Customer settings updated successfully',
+  'transaction_history' => 'Transaction history',
+  'no_transaction_found' => 'No transaction found',
+  'hint of selling' => 'Hint of selling',
+  'hint for selling' => 'Hint for selling',
+  'i_agree_to_your_terms' => 'I agree to your terms',
 );

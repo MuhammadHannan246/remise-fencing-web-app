@@ -49,8 +49,8 @@
     <!-- Page Content-->
     <div class="container pb-5 mb-2 mb-md-4 mt-3 rtl">
         <div class="row">   <!-- Sidebar-->
-            <div class="col-lg-2"></div>
-            <section class="col-lg-10 mt-3">
+
+            <section class="col-lg-12 mt-3">
                 <section class="container pt-4 pb-5 ">
                     <div class="row pt-4">
                         <div class="col-sm-6">
@@ -61,7 +61,7 @@
                                     <div id="accordion">
                                         <div class="row mb-0 text-black">
                                             <div class="col-1 mt-3">
-                                                <i class="czi-book text-muted mr-2"></i>
+                                                <i class="czi-book text-muted mr-2" style="font-size: 20px;"></i>
                                             </div>
                                             <div class="col-11">
                                                 <button class="btnF btn-link collapsed" data-toggle="collapse"
@@ -89,7 +89,7 @@
                                     <div id="accordion">
                                         <div class="row mb-0 text-black">
                                             <div class="col-1 mt-3">
-                                                <i class="czi-book text-muted mr-2"></i>
+                                                <i class="czi-book text-muted mr-2" style="font-size: 20px;"></i>
                                             </div>
                                             <div class="col-11">
                                                 <button class="btnF btn-link collapsed" data-toggle="collapse"

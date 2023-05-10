@@ -328,7 +328,6 @@
                                     <li class="menuItem"><a href="{{ route('home') }}">Home</a> </li>
                                     <li class="menuItem"><a href="{{ route('about-us') }}">About Us</a> </li>
                                     <li class="menuItem">Contact Us</li>
-                  
                                     <li class="menuItem"><a href="{{ route('helpTopic') }}">FAQ</a> </li>
                                     
                                 </ul>
@@ -369,7 +368,7 @@
                             <div class="company comp2">
                                 <h4 class="companyName">Legal</h4>
                                 <ul class="menuList">
-                                    <a href="{{ route('terms') }}" class="menuItemTerm">
+                                    <a href="{{ route('terms') }}" class="widget-list-link menuItemTerm">
                                      Terms & Conditions
                                      
                                     </a>
@@ -378,20 +377,14 @@
 
                                     </a>
                                     
-                                    <a href="{{ route('refund-policy') }}" class="menuItemTerm">
-                        
-                                        
+                                    <a href="{{ route('refund-policy') }}" class="widget-list-link menuItemTerm">                
                                        {{ \App\CPU\translate('refund_policy') }}
                                     </a>
-                                    <a href="{{ route('return-policy') }}" class="menuItemTerm">
+                                    <a href="{{ route('return-policy') }}" class="widget-list-link menuItemTerm">
                                         {{ \App\CPU\translate('return_policy') }}
-                                 
-                                        {{-- Return Policy --}}
                                     </a>
-                                    <a href="{{ route('cancellation-policy') }}" class="menuItemTerm">
-                                       {{-- Cancellation Policy --}}
+                                    <a href="{{ route('cancellation-policy') }}" class="widget-list-link menuItemTerm">
                                        {{ \App\CPU\translate('cancellation_policy') }}
-
                                     </a>
                                 </ul>
 
@@ -411,6 +404,11 @@
 
                                 </ul>
 
+                                <h4 class="companyName">Support</h4>
+                                <ul class="menuList menuOffice">
+                                    <li class="menuItem"><a href="{{ route('hint-for-sell') }}">Hint for Selling</a> </li>
+                                    
+                                </ul>
                             </div>
                         </div>
 

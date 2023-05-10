@@ -1105,6 +1105,10 @@ class WebController extends Controller
         $privacy_policy = BusinessSetting::where('type', 'privacy_policy')->first();
         return view('web-views.privacy-policy', compact('privacy_policy'));
     }
+    public function hint_for_selling()
+    {
+        return view('web-views.hint-for-sell');
+    }
 
     public function refund_policy()
     {

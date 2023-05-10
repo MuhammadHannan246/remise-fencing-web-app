@@ -572,6 +572,11 @@ class UserProfileController extends Controller
         ]);
         $order_details = OrderDetail::find($request->order_details_id);
         $user = auth('customer')->user() ?? auth('seller')->user();
+        if(auth('customer')->check()){
+            $user_type = 'customer';
+        } elseif(auth('seller')->check()){
+            $user_type = 'seller';
+        }
         // dd($user);
 
 
@@ -589,11 +594,7 @@ class UserProfileController extends Controller
         $refund_request = new RefundRequest;
         $refund_request->order_details_id = $request->order_details_id;
         $refund_request->customer_id = $user->id;
-        if(auth('customer')->check()){
-            $refund_request->customer_type = 'customer';
-        } elseif(auth('seller')->check()){
-            $refund_request->customer_type = 'seller';
-        }
+        $refund_request->customer_type = $user_type;
         $refund_request->status = 'pending';
         $refund_request->amount = $request->amount;
         $refund_request->product_id = $order_details->product_id;

@@ -450,7 +450,7 @@
                             </a>
                         </li>
 
-                        <li class="navbar-vertical-aside-has-menu {{Request::is('seller/business-settings/withdraw*')?'active':''}}">
+                        <li class="navbar-vertical-aside-has-menu {{Request::is('seller/wallet/report')?'active':''}}">
                             <a class="js-navbar-vertical-aside-menu-link nav-link"
                                href="{{route('seller.wallet.report')}}">
                                 <i class="tio-wallet-outlined nav-icon"></i>

@@ -1,10 +1,7 @@
-@extends('layouts.back-end.app')
+@extends('layouts.back-end.app-seller')
+@section('title',\App\CPU\translate('seller').' '.\App\CPU\translate('wallet'))
 
-@section('title',\App\CPU\translate('customer_loyalty_point').' '.\App\CPU\translate('report'))
 
-@push('css_or_js')
-
-@endpush
 
 @section('content')
     <div class="content container-fluid">
@@ -12,12 +9,12 @@
         <div class="mb-3">
             <h2 class="h1 mb-0 text-capitalize d-flex align-items-center gap-2">
                 <img width="20" src="{{asset('/public/assets/back-end/img/loyalty_point.png')}}" alt="">
-                {{\App\CPU\translate('customer_loyalty_point_report')}}
+                {{\App\CPU\translate('seller')}} {{\App\CPU\translate('wallet')}}
             </h2>
         </div>
         <!-- End Page Title -->
 
-        <div class="card">
+        {{-- <div class="card">
             <div class="card-header text-capitalize">
                 <h4 class="mb-0">{{\App\CPU\translate('filter')}} {{\App\CPU\translate('options')}}</h4>
             </div>
@@ -67,14 +64,14 @@
                 </div>
             </div>
 
-        </div>
+        </div> --}}
         <div class="card mt-3">
             <div class="card-header text-capitalize">
                 <h4 class="mb-0">{{\App\CPU\translate('summary')}}</h4>
             </div>
             <div class="card-body">
                 <div class="d-flex flex-wrap gap-3">
-                    @php
+                    {{-- @php
                         $credit = $data[0]->total_credit??0;
                         $debit = $data[0]->total_debit??0;
                         $balance = $credit - $debit;
@@ -101,17 +98,41 @@
                         <span class="order-stats__title fz-14 text-warning">
                             {{$credit}}
                         </span>
-                    </div>
+                    </div> --}}
                     <!--credit earned end-->
 
                     <!--balance earned-->
+                    @php
+                        $totalEarning = App\Model\SellerWallet::where('seller_id',auth('seller')->id())->first();
+                    @endphp
+                    <div class="order-stats flex-grow-1">
+                        <div class="order-stats__content">
+                            <i class="tio-wallet"></i>
+                            <h6 class="order-stats__subtitle">{{\App\CPU\translate('withdrawn')}}</h6>
+                        </div>
+                        <span class="order-stats__title fz-14 text-success">
+                            {{-- {{$balance}} --}}
+                            $ {{$totalEarning->withdrawn }}
+                        </span>
+                    </div>
+                    <div class="order-stats flex-grow-1">
+                        <div class="order-stats__content">
+                            <i class="tio-wallet"></i>
+                            <h6 class="order-stats__subtitle">{{\App\CPU\translate('dending_withdraw')}}</h6>
+                        </div>
+                        <span class="order-stats__title fz-14 text-success">
+                            {{-- {{$balance}} --}}
+                            $ {{$totalEarning->pending_withdraw }}
+                        </span>
+                    </div>
                     <div class="order-stats flex-grow-1">
                         <div class="order-stats__content">
                             <i class="tio-wallet"></i>
                             <h6 class="order-stats__subtitle">{{\App\CPU\translate('balance')}}</h6>
                         </div>
                         <span class="order-stats__title fz-14 text-success">
-                            {{$balance}}
+                            {{-- {{$balance}} --}}
+                            $ {{$totalEarning->total_earning }}
                         </span>
                     </div>
                     <!--balance earned end-->
@@ -125,7 +146,9 @@
             <div class="card-header text-capitalize">
                 <h4 class="mb-0">
                     {{\App\CPU\translate('transactions')}}
-                    <span class="badge badge-soft-dark radius-50 fz-12 ml-1">{{$transactions->count()}}</span>
+                    <span class="badge badge-soft-dark radius-50 fz-12 ml-1">
+                        {{ $transactions ? $transactions->count() : ''}}
+                    </span>
                 </h4>
             </div>
             <!-- End Header -->
@@ -136,41 +159,52 @@
                     class="table table-hover table-borderless table-thead-bordered table-nowrap table-align-middle card-table {{Session::get('direction') === "rtl" ? 'text-right' : 'text-left'}}">
                     <thead class="thead-light thead-50 text-capitalize">
                         <tr>
-                            <th>{{\App\CPU\translate('SL')}}</th>
-                            <th>{{\App\CPU\translate('transaction')}} {{\App\CPU\translate('id')}}</th>
+                            {{-- <th>{{\App\CPU\translate('SL')}}</th> --}}
+                            <th>#</th>
+                            {{-- <th>{{\App\CPU\translate('transaction')}} {{\App\CPU\translate('id')}}</th> --}}
                             <th>{{\App\CPU\translate('Customer')}}</th>
-                            <th>{{\App\CPU\translate('credit')}}</th>
+                            <th>{{\App\CPU\translate('order_id')}}</th>
+                            <th>{{\App\CPU\translate('amount')}}</th>
+                            {{-- <th>{{\App\CPU\translate('credit')}}</th>
                             <th>{{\App\CPU\translate('debit')}}</th>
-                            <th>{{\App\CPU\translate('balance')}}</th>
+                            <th>{{\App\CPU\translate('balance')}}</th> --}}
                             <th>{{\App\CPU\translate('transaction_type')}}</th>
-                            <th>{{\App\CPU\translate('reference')}}</th>
+                            {{-- <th>{{\App\CPU\translate('reference')}}</th> --}}
                             <th class="text-center">{{\App\CPU\translate('created_at')}}</th>
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($transactions as $k=>$wt)
-                        <tr scope="row">
-                            <td >{{$k+$transactions->firstItem()}}</td>
-                            <td>{{$wt->transaction_id}}</td>
-                            <td><a href="{{route('admin.customer.view',['user_id'=>$wt->user_id])}}" class="title-color hover-c1">{{Str::limit($wt->user?$wt->user->f_name.' '.$wt->user->l_name:\App\CPU\translate('not_found'),20,'...')}}</a></td>
-                            <td>{{$wt->credit}}</td>
-                            <td>{{$wt->debit}}</td>
-                            <td>{{$wt->balance}}</td>
-                            <td>
-                                <span class="badge badge-soft-{{$wt->transaction_type=='order_refund'
-                                    ?'danger'
-                                    :($wt->transaction_type=='loyalty_point'?'warning'
-                                        :($wt->transaction_type=='order_place'
-                                            ?'info'
-                                            :'success'))
-                                    }}">
-                                    {{\App\CPU\translate($wt->transaction_type)}}
-                                </span>
-                            </td>
-                            <td>{{$wt->reference}}</td>
-                            <td class="text-center">{{date('Y/m/d '.config('timeformat'), strtotime($wt->created_at))}}</td>
-                        </tr>
-                    @endforeach
+                        @if (isset($transactions))
+                            @foreach($transactions as $transaction)
+                                <tr scope="row">
+                                    <td >{{ $loop->iteration }}</td>
+                                    {{-- <td>{{$transaction->transaction_id}}</td> --}}
+                                    <td>{{ Str::limit($transaction->order->customer->f_name.' '.$transaction->order->customer->l_name,20)}}</a></td>
+                                    <td>
+                                        <a href="{{ route('seller.orders.details',$transaction->order_id) }}">{{ $transaction->order_id }}</a>
+                                    </td>
+                                    <td>$ {{ $transaction->amount }}</td>
+                                    {{-- <td><a href="#" class="title-color hover-c1">{{Str::limit($wt->user?$wt->user->f_name.' '.$wt->user->l_name:\App\CPU\translate('not_found'),20,'...')}}</a></td> --}}
+                                    {{-- <td>{{$transaction->credit}}</td>
+                                    <td>{{$transaction->debit}}</td>
+                                    <td>{{$transaction->balance}}</td> --}}
+                                    <td>
+                                        {{-- <span class="badge badge-soft-{{$transaction->payment=='order_refund'
+                                            ?'danger'
+                                            :($transaction->payment=='loyalty_point'?'warning'
+                                                :($transaction->payment=='order_place'
+                                                    ?'info'
+                                                    :'success'))
+                                            }}">
+                                            {{\App\CPU\translate($transaction->transaction_type)}}
+                                        </span> --}}
+                                        {{ \App\CPU\translate($transaction->payment) }}
+                                    </td>
+                                    {{-- <td>{{$transaction->reference}}</td> --}}
+                                    <td class="text-center">{{date('Y/m/d '.config('timeformat'), strtotime($transaction->created_at))}}</td>
+                                </tr>
+                            @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>
@@ -179,12 +213,12 @@
             <div class="table-responsive mt-4">
                 <div class="px-4 d-flex justify-content-lg-end">
                     <!-- Pagination -->
-                    {!!$transactions->links()!!}
+                    {!! $transactions ? $transactions->links() : '' !!}
                 </div>
             </div>
 
             <!-- End Body -->
-            @if(count($transactions)==0)
+            @if(isset($transactions) && count($transactions)==0)
                 <div class="text-center p-4">
                     <img class="mb-3 w-160" src="{{asset('public/assets/back-end')}}/svg/illustrations/sorry.svg" alt="Image Description">
                     <p class="mb-0">{{ \App\CPU\translate('No_data_to_show')}}</p>
@@ -196,9 +230,6 @@
     </div>
 @endsection
 
-@push('script')
-
-@endpush
 
 @push('script_2')
     <script>

@@ -166,6 +166,7 @@ class OrderManager
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
+            
         }
 
         if($order->coupon_code && $order->coupon_code != '0' && $order->seller_is == 'seller' && $order->discount_type == 'coupon_discount'){
@@ -284,6 +285,16 @@ class OrderManager
                 $wallet->save();
             }
         }
+
+        DB::table('seller_wallet_histories')->insert([
+            'seller_id' => $order['seller_id'],
+            'amount' => $order_amount - $commission,
+            'order_id' => $order->id,
+            'product_id' => $order->details->first()->product_id,
+            'payment' => $order['payment_method'],
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 
     public static function coupon_process($data, $coupon){

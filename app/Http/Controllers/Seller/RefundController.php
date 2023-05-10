@@ -17,6 +17,7 @@ Use App\Model\RefundStatus;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Model\LoyaltyPointTransaction;
+use App\Model\SellerWalletHistory;
 
 class RefundController extends Controller
 {
@@ -156,8 +157,8 @@ class RefundController extends Controller
         // ->latest()
         // ->paginate(Helpers::pagination_limit());
         $data = null;
-        $transactions = null;
+        $transactions = SellerWalletHistory::with('order.customer')->where('seller_id',auth('seller')->id())->paginate(10);
 
-        return view('admin-views.customer.loyalty.report', compact('data','transactions'));
+        return view('seller-views.wallet.list', compact('data','transactions'));
     }
 }

@@ -3046,10 +3046,10 @@
   'File type: jpg  jpeg  png. Maximum size: 2MB' => 'File type: jpg  jpeg  png. Maximum size: 2MB',
   'Invalid order!' => 'Invalid order!',
   'name_not_found' => 'Name not found',
-<<<<<<< Updated upstream
   'Who We Are' => 'Who We Are',
-=======
   'Invalid Order Id or Phone Number' => 'Invalid Order Id or Phone Number',
   'This account has been deleted  you can not modify the status!!' => 'This account has been deleted  you can not modify the status!!',
->>>>>>> Stashed changes
+  'Fill_all_required_fields_of_shipping/billing_address' => 'Fill all required fields of shipping/billing address',
+  'dending_withdrawn' => 'Dending withdrawn',
+  'dending_withdraw' => 'Dending withdraw',
 );

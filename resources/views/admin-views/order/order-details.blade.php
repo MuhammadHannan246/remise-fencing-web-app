@@ -160,7 +160,6 @@
                                 @php($discount=0)
                                 @php($tax=0)
                                 @php($row=0)
-
                                 @foreach($order->details as $key=>$detail)
                                     @if($detail->product_all_status)
                                         <tr>
@@ -714,7 +713,7 @@
                         method: 'POST',
                         data: {
                             "id": '{{$order['id']}}',
-                            "order_status": status
+                            "order_status": status,
                         },
                         success: function (data) {
 

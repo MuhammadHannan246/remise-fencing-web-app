@@ -2,31 +2,32 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\CPU\CustomerManager;
+use App\User;
+use Carbon\Carbon;
+use App\CPU\Convert;
 use App\CPU\Helpers;
+use App\Model\Order;
+use App\Model\Seller;
+use App\Model\Wishlist;
 use App\CPU\ImageManager;
 use App\CPU\OrderManager;
-use App\Http\Controllers\Controller;
-use App\Model\DeliveryCountryCode;
-use App\Model\DeliveryZipCode;
-use App\Model\Order;
 use App\Model\OrderDetail;
-use App\Model\ShippingAddress;
-use App\Model\SupportTicket;
-use App\Model\Wishlist;
-use App\Model\RefundRequest;
 use App\Traits\CommonTrait;
-use App\User;
-use Barryvdh\DomPDF\Facade as PDF;
-use Brian2694\Toastr\Facades\Toastr;
-use Carbon\Carbon;
+use App\CPU\CustomerManager;
+use App\Model\RefundRequest;
+use App\Model\SupportTicket;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
+use App\Model\DeliveryZipCode;
+use App\Model\ShippingAddress;
 use function App\CPU\translate;
-use App\CPU\Convert;
 use function React\Promise\all;
+use App\Model\DeliveryCountryCode;
+use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class UserProfileController extends Controller
 {
@@ -37,7 +38,7 @@ class UserProfileController extends Controller
             $customerDetail = User::where('id', auth('customer')->id())->first();
             return view('web-views.users-profile.account-profile', compact('customerDetail'));
         }elseif (auth('seller')->check()) {
-            $customerDetail = User::where('id', auth('seller')->id())->first();
+            $customerDetail = Seller::where('id', auth('seller')->id())->first();
             return view('web-views.users-profile.account-profile', compact('customerDetail'));
         } else {
             return redirect()->route('home');
@@ -61,27 +62,41 @@ class UserProfileController extends Controller
 
         $image = $request->file('image');
 
+        $user = auth('customer')->check() ? auth('customer')->user() : auth('seller')->user();
+
         if ($image != null) {
-            $imageName = ImageManager::update('profile/', auth('customer')->user()->image, 'png', $request->file('image'));
+                $imageName = ImageManager::update('profile/', $user->image, 'png', $request->file('image'));
         } else {
-            $imageName = auth('customer')->user()->image;
+            $imageName = $user->image;
         }
 
-        User::where('id', auth('customer')->id())->update([
-            'image' => $imageName,
-        ]);
+        if(auth('customer')->check()){
+            User::where('id', $user->id)->update([
+                'image' => $imageName,
+            ]);
+        } else {
+            Seller::where('id', $user->id)->update([
+                'image' => $imageName,
+            ]);
+        }
 
         $userDetails = [
             'f_name' => $request->f_name,
             'l_name' => $request->l_name,
             'phone' => $request->phone,
-            'password' => strlen($request->password) > 5 ? bcrypt($request->password) : auth('customer')->user()->password,
+            'password' => strlen($request->password) > 5 ? bcrypt($request->password) : $user->password,
         ];
         if (auth('customer')->check()) {
-            User::where(['id' => auth('customer')->id()])->update($userDetails);
+            User::where(['id' => $user->id])->update($userDetails);
             Toastr::info(translate('updated_successfully'));
             return redirect()->back();
-        } else {
+        }
+        else if (auth('seller')->check()) {
+            Seller::where(['id' => $user->id])->update($userDetails);
+            Toastr::info(translate('updated_successfully'));
+            return redirect()->back();
+        }
+        else {
             return redirect()->back();
         }
     }
@@ -124,7 +139,12 @@ class UserProfileController extends Controller
         if (auth('customer')->check()) {
             $shippingAddresses = \App\Model\ShippingAddress::where('customer_id', auth('customer')->id())->get();
             return view('web-views.users-profile.account-address', compact('shippingAddresses', 'country_restrict_status', 'zip_restrict_status', 'data', 'zip_codes'));
-        } else {
+        }
+        elseif (auth('seller')->check()) {
+            $shippingAddresses = \App\Model\ShippingAddress::where('customer_id', auth('seller')->id())->get();
+            return view('web-views.users-profile.account-address', compact('shippingAddresses', 'country_restrict_status', 'zip_restrict_status', 'data', 'zip_codes'));
+        }
+        else {
             return redirect()->route('home');
         }
     }
@@ -285,7 +305,7 @@ class UserProfileController extends Controller
             foreach($orders as $data){
                 $data->totalQTY = DB::table('order_details')->where(['order_id' => $data->id])->count();
             }
-            $custname = DB::table('users')->where('id', auth('seller')->id())->get();
+            $custname = DB::table('sellers')->where('id', auth('seller')->id())->get();
         } else {
             $orders = Order::where('customer_id', auth('seller')->id())->orderBy('id','DESC')->paginate(15);
             foreach($orders as $data){
@@ -298,70 +318,76 @@ class UserProfileController extends Controller
 
     public function Allaccount_oder()
     {
-        $orders = Order::where('customer_id', auth('customer')->id())->orderBy('id','DESC')->paginate(15);
+        $user = auth('customer')->check() ? auth('customer')->user() : auth('seller')->user();
+        $orders = Order::where('customer_id', $user->id)->orderBy('id','DESC')->paginate(15);
         foreach($orders as $data){
             $data->totalQTY = DB::table('order_details')->where(['order_id' => $data->id])->count();
         }
         if(auth('customer')->check()){
             $custname = DB::table('users')->where('id', auth('customer')->id())->get();
-        }else{
-            $custname = DB::table('users')->where('id', auth('seller')->id())->get();
+        }
+        else{
+            $custname = DB::table('sellers')->where('id', auth('seller')->id())->get();
         }
         return view('web-views.users-profile.account-orders-all', compact('orders'), ['custname'=>$custname]);
     }
 
     public function Pendingaccount_oder()
     {
-        $orders = Order::where('customer_id', auth('customer')->id())->orderBy('id','DESC')->paginate(15);
+        $user = auth('customer')->check() ? auth('customer')->user() : auth('seller')->user();
+        $orders = Order::where('customer_id', $user->id)->orderBy('id','DESC')->paginate(15);
         foreach($orders as $data){
             $data->totalQTY = DB::table('order_details')->where(['order_id' => $data->id])->count();
         }
         if(auth('customer')->check()){
             $custname = DB::table('users')->where('id', auth('customer')->id())->get();
         }else{
-            $custname = DB::table('users')->where('id', auth('seller')->id())->get();
+            $custname = DB::table('sellers')->where('id', auth('seller')->id())->get();
         }
         return view('web-views.users-profile.account-orders-pending', compact('orders'), ['custname'=>$custname]);
     }
 
     public function Canceledaccount_oder()
     {
-        $orders = Order::where('customer_id', auth('customer')->id())->orderBy('id','DESC')->paginate(15);
+        $user = auth('customer')->check() ? auth('customer')->user() : auth('seller')->user();
+        $orders = Order::where('customer_id', $user->id)->orderBy('id','DESC')->paginate(15);
         foreach($orders as $data){
             $data->totalQTY = DB::table('order_details')->where(['order_id' => $data->id])->count();
         }
         if(auth('customer')->check()){
             $custname = DB::table('users')->where('id', auth('customer')->id())->get();
         }else{
-            $custname = DB::table('users')->where('id', auth('seller')->id())->get();
+            $custname = DB::table('sellers')->where('id', auth('seller')->id())->get();
         }
         return view('web-views.users-profile.account-orders-canceled', compact('orders'), ['custname'=>$custname]);
     }
 
     public function Confirmedaccount_oder()
     {
-        $orders = Order::where('customer_id', auth('customer')->id())->orderBy('id','DESC')->paginate(15);
+        $user = auth('customer')->check() ? auth('customer')->user() : auth('seller')->user();
+        $orders = Order::where('customer_id', $user->id)->orderBy('id','DESC')->paginate(15);
         foreach($orders as $data){
             $data->totalQTY = DB::table('order_details')->where(['order_id' => $data->id])->count();
         }
         if(auth('customer')->check()){
             $custname = DB::table('users')->where('id', auth('customer')->id())->get();
         }else{
-            $custname = DB::table('users')->where('id', auth('seller')->id())->get();
+            $custname = DB::table('sellers')->where('id', auth('seller')->id())->get();
         }
         return view('web-views.users-profile.account-orders-confirmed', compact('orders'), ['custname'=>$custname]);
     }
 
     public function Deliveredaccount_oder()
     {
-        $orders = Order::where('customer_id', auth('customer')->id())->orderBy('id','DESC')->paginate(15);
+        $user = auth('customer')->check() ? auth('customer')->user() : auth('seller')->user();
+        $orders = Order::where('customer_id', $user->id)->orderBy('id','DESC')->paginate(15);
         foreach($orders as $data){
             $data->totalQTY = DB::table('order_details')->where(['order_id' => $data->id])->count();
         }
         if(auth('customer')->check()){
             $custname = DB::table('users')->where('id', auth('customer')->id())->get();
         }else{
-            $custname = DB::table('users')->where('id', auth('seller')->id())->get();
+            $custname = DB::table('sellers')->where('id', auth('seller')->id())->get();
         }
         return view('web-views.users-profile.account-orders-delivered', compact('orders'), ['custname'=>$custname]);
     }
@@ -389,7 +415,12 @@ class UserProfileController extends Controller
         if (auth('customer')->check()) {
             $supportTickets = SupportTicket::where('customer_id', auth('customer')->id())->get();
             return view('web-views.users-profile.account-tickets', compact('supportTickets'));
-        } else {
+        }
+        elseif (auth('seller')->check()) {
+            $supportTickets = SupportTicket::where('customer_id', auth('seller')->id())->get();
+            return view('web-views.users-profile.account-tickets', compact('supportTickets'));
+        }
+        else {
             return redirect()->route('home');
         }
     }
@@ -399,7 +430,7 @@ class UserProfileController extends Controller
         $ticket = [
             'subject' => $request['ticket_subject'],
             'type' => $request['ticket_type'],
-            'customer_id' => auth('customer')->check() ? auth('customer')->id() : null,
+            'customer_id' => auth('customer')->check() ? auth('customer')->id() : auth('seller')->id(),
             'priority' => $request['ticket_priority'],
             'description' => $request['ticket_description'],
             'created_at' => now(),

@@ -4748,8 +4748,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.085);
-    border-radius: .4375rem
+    /* border-radius: .4375rem */
 }
 
 .card > hr {

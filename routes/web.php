@@ -66,6 +66,7 @@ Route::post('offline-payment-checkout-complete', 'WebController@offline_payment_
     Route::get('flash-deals/{id}', 'WebController@flash_deals')->name('flash-deals');
     Route::get('terms', 'WebController@termsandCondition')->name('terms');
     Route::get('privacy-policy', 'WebController@privacy_policy')->name('privacy-policy');
+    // Route::get('terms', 'WebController@termsandCondition')->name('terms_condition');
     Route::get('refund-policy', 'WebController@refund_policy')->name('refund-policy');
     Route::get('return-policy', 'WebController@return_policy')->name('return-policy');
     Route::get('cancellation-policy', 'WebController@cancellation_policy')->name('cancellation-policy');

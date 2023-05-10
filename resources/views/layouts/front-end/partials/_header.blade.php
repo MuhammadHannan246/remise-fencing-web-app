@@ -723,6 +723,8 @@
                                             {{ \App\CPU\translate('my_profile') }}</a>
                                         <a class="dropdown-item" href="{{ route('home') }}">
                                             {{ \App\CPU\translate('Home') }}</a>
+                                            <a class="dropdown-item" href="{{ route('wallet') }}">
+                                                {{ \App\CPU\translate('wallet') }}</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item"
                                             href="{{ route('customer.auth.logout') }}">{{ \App\CPU\translate('logout') }}</a>
@@ -753,6 +755,8 @@
                                                 {{ \App\CPU\translate('my_profile') }}</a>
                                         <a class="dropdown-item" href="{{ route('home') }}">
                                             {{ \App\CPU\translate('Home') }}</a>
+                                            <a class="dropdown-item" href="{{ route('wallet') }}">
+                                                {{ \App\CPU\translate('wallet') }}</a>
                                         <a class="dropdown-item" href="{{ url('seller/dashboard') }}">
                                             {{ \App\CPU\translate('Dashboard') }}</a>
                                         <div class="dropdown-divider"></div>

@@ -17,212 +17,229 @@
     <title>Remise Fencing</title>
 
     <link rel="stylesheet" href="style.css">
-    
 
-    
-    
+
+
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <style>
         /* footer CSS */
-.footer {
-    /* background: #000; */
-    background: #151515;
+        .footer {
+            /* background: #000; */
+            background: #151515;
 
-    padding-top: 100px;
-}
+            padding-top: 100px;
+        }
 
-.headingFoot {
-    color: #fff;
-}
+        .headingFoot {
+            color: #fff;
+        }
 
-.textFoot {
-    color: #FFF;
-    line-height: 0;
-}
+        .textFoot {
+            color: #FFF;
+            line-height: 0;
+        }
 
 
-.footLogo {
-    width: 180px;
-}
+        .footLogo {
+            width: 180px;
+        }
 
-.footText2 {
-    color: #fff;
-    font-size: 13px;
-    font-weight: 300;
-    text-align: justify;
-}
+        .footText2 {
+            color: #fff;
+            font-size: 13px;
+            font-weight: 300;
+            text-align: justify;
+        }
 
-.footRight {
-    display: flex;
-    justify-content: center;
+        .footRight {
+            display: flex;
+            justify-content: center;
 
-}
+        }
 
-.footMenu {
-    margin-top: 32px !important;
-}
+        .footMenu {
+            margin-top: 32px !important;
+        }
 
-.company {
-    justify-content: center;
-    align-items: center;
-    /* margin: 24px 0px 24px 24px;
+        .company {
+            justify-content: center;
+            align-items: center;
+            /* margin: 24px 0px 24px 24px;
     margin-right: 0px; */
-}
+        }
 
 
-.comp3 {
-    margin-left: 20px;
-}
+        .comp3 {
+            margin-left: 20px;
+        }
 
-.comp2 {
-    margin-left: 30px;
-}
+        .comp2 {
+            margin-left: 30px;
+        }
 
-/* .comp1 {
+        /* .comp1 {
     margin-left: 50px;
 } */
 
-.companyName {
-    color: #fff;
-    font-size: 17px;
-    margin-left: 40px;
-    /* text-align: center; */
-    font-weight: 600;
-}
-.socialIcons{
-    float: right;
-}
-.iconSocial {
-        color: #FFF;
-        float: right;
-        margin: 0 0 0 35px !important;
-        font-size: 20px;
-    }
-.menuList a{
-    line-height: 2;
-    font-size: 14px;
-    list-style: none;
-    color: #FFF;
-    text-decoration: none;
-
-}
-.searchMarketing {
-        color: #fff;
-        font-size: 16px;
-    }
-    .menuList {
-        line-height: 2;
-        font-size: 14px;
-        list-style: none;
-        color: #FFF;
-        /* justify-content: center; */
-        padding-left: 40px;
-    }
-
-    .menuList .menuItem:hover {
-        cursor: pointer;
-        color: #FF061E;
-    }
-
-.menuList a:hover{
-    color: #FF061E;
-}
-.mobileDivide{
-    display: none;
-}
-@media screen and (max-width: 825px) {
-    .searchMarketing {
-        text-align: center;
-    }
-
-    .mobileDivide{
-    display: block;
-}
-    .socialIcons {
-        display: flex;
-        justify-content: center;
-        margin: 10px;
-    }
-
-    .textFoot {
-        font-size: 8px;
-    }
-
-    .comp4{
-        margin-left: 25px;
-
-    }
-    .socialIcons{
-        float: none;
-    }
- 
- .comp2, .comp3, .comp4 {
-    display: grid;
-    justify-content: left;
-}
-.comp1{
-    display: grid;
-    justify-items: left;
-}
-.logFooter{
-    display: grid;
-    
-    justify-items: center;
-}
-.comp1{
-            margin-left: 20px;
+        .companyName {
+            color: #fff;
+            font-size: 17px;
+            margin-left: 40px;
+            /* text-align: center; */
+            font-weight: 600;
         }
-}
 
-@media screen and (max-width:480px) {
-    .comp3 {
-        margin-left: 0px;
-    }
+        .socialIcons {
+            float: right;
+        }
 
-    .comp2 {
-        margin-left: 0px;
-    }
+        .iconSocial {
+            color: #FFF;
+            float: right;
+            margin: 0 0 0 35px !important;
+            font-size: 20px;
+        }
 
-    .comp1 {
-        margin-left: 10px;
-        justify-items: center;
-    }
+        .menuList a {
+            line-height: 2;
+            font-size: 12px;
+            list-style: none;
+            color: #FFF;
+            text-decoration: none;
 
-    .companyName {
-        margin-left: 30px;
-        text-align: center;
-    }
-    .menuItemTerm{
-        text-align: center;
-    }
+        }
 
-    .searchMarketing {
-        text-align: center;
-    }
-    .comp2, .comp3, .comp4 {
-        justify-content: center;
-    }
+        .searchMarketing {
+            color: #fff;
+            font-size: 16px;
+        }
 
-    .socialIcons {
-        display: flex;
-        justify-content: center;
-        margin: 10px;
-    }
+        .menuList {
+            line-height: 2;
+            font-size: 12px;
+            list-style: none;
+            color: #FFF;
+            /* justify-content: center; */
+            padding-left: 40px;
+        }
 
-    .textFoot {
-        font-size: 12px;
-    }
-    .menuOffice{
-        /* margin-left: 25px; */
-        text-align: center;
-    }
+        .menuList .menuItem:hover {
+            cursor: pointer;
+            color: #FF061E;
+        }
 
-}
+        .menuList a:hover {
+            color: #FF061E;
+        }
 
+        .mobileDivide {
+            display: none;
+        }
 
+        @media screen and (max-width: 825px) {
+            .searchMarketing {
+                text-align: center;
+            }
+
+            .mobileDivide {
+                display: block;
+            }
+
+            .socialIcons {
+                display: flex;
+                justify-content: center;
+                margin: 10px;
+            }
+
+            .textFoot {
+                font-size: 8px;
+            }
+
+            .comp4 {
+                margin-left: 25px;
+
+            }
+
+            .socialIcons {
+                float: none;
+            }
+
+            .comp2,
+            .comp3,
+            .comp4 {
+                display: grid;
+                justify-content: left;
+            }
+
+            .comp1 {
+                display: grid;
+                justify-items: left;
+            }
+
+            .logFooter {
+                display: grid;
+
+                justify-items: center;
+            }
+
+            .comp1 {
+                margin-left: 20px;
+            }
+        }
+
+        @media screen and (max-width:480px) {
+            .comp3 {
+                margin-left: 0px;
+            }
+
+            .comp2 {
+                margin-left: 0px;
+            }
+
+            .comp1 {
+                margin-left: 10px;
+                justify-items: center;
+            }
+
+            .companyName {
+                margin-left: 30px;
+                text-align: center;
+            }
+
+            .menuItemTerm {
+                text-align: center;
+            }
+
+            .searchMarketing {
+                text-align: center;
+            }
+
+            .comp2,
+            .comp3,
+            .comp4 {
+                justify-content: center;
+            }
+
+            .socialIcons {
+                display: flex;
+                justify-content: center;
+                margin: 10px;
+            }
+
+            .textFoot {
+                font-size: 12px;
+            }
+
+            .menuOffice {
+                /* margin-left: 25px; */
+                text-align: center;
+            }
+
+        }
     </style>
 </head>
 
@@ -241,8 +258,10 @@
                     <p class="textFoot">Norem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 </div>
                 <div class="col-lg-6 col-md-8 col-sm-8 ">
-                    
-                    <form action="{{ route('subscription') }}" method="post" style="width: 100%;border: 1px solid #97A3AE;border-radius: 10px;display: flex;flex-direction: row; ; font-family:poppins;padding:2px;height:65px" class="example" action="action_page.php">
+
+                    <form action="{{ route('subscription') }}" method="post"
+                        style="width: 100%;border: 1px solid #97A3AE;border-radius: 10px;display: flex;flex-direction: row; ; font-family:poppins;padding:2px;height:65px"
+                        class="example" action="action_page.php">
                         @csrf
                         <input
                             style="padding: 29px 10px !important;
@@ -306,11 +325,12 @@
                             <div class="company comp4">
                                 <h4 class="companyName">Company</h4>
                                 <ul class="menuList">
-                                    <li class="menuItem"><a href="">About Us</a> </li>
-                                    <li class="menuItem">Careers</li>
+                                    <li class="menuItem"><a href="{{ route('home') }}">Home</a> </li>
+                                    <li class="menuItem"><a href="{{ route('about-us') }}">About Us</a> </li>
                                     <li class="menuItem">Contact Us</li>
-                                    <li class="menuItem">Help Center</li>
-                                    <li class="menuItem">Support</li>
+                  
+                                    <li class="menuItem"><a href="{{ route('helpTopic') }}">FAQ</a> </li>
+                                    
                                 </ul>
 
                             </div>
@@ -322,21 +342,21 @@
                             <div class="company comp3">
                                 <h4 class="companyName">Socials</h4>
                                 <ul class="menuList">
-                                    
-                                        <li class="menuItem"><a href="https://www.twitter.com/">Twitter</a></li>
-                                    
 
-                                        <li class="menuItem"><a href="https://www.facebook.com/">Facebook</a></li>
-                                    
-                                    
-                                        <li class="menuItem"><a href="https://www.instagram.com/">Instagram</a></li>
-                                    
-                                    
-                                        <li class="menuItem"><a href="https://www.linkedin.com/">LinkedIn</a></li>
-                                    
-                                    
-                                        <li class="menuItem"><a href="https://www.pinterest.com/">Pinterest</a></li>
-                                    
+                                    <li class="menuItem"><a href="https://www.twitter.com/">Twitter</a></li>
+
+
+                                    <li class="menuItem"><a href="https://www.facebook.com/">Facebook</a></li>
+
+
+                                    <li class="menuItem"><a href="https://www.instagram.com/">Instagram</a></li>
+
+
+                                    <li class="menuItem"><a href="https://www.linkedin.com/">LinkedIn</a></li>
+
+
+                                    <li class="menuItem"><a href="https://www.pinterest.com/">Pinterest</a></li>
+
                                 </ul>
 
                             </div>
@@ -349,13 +369,30 @@
                             <div class="company comp2">
                                 <h4 class="companyName">Legal</h4>
                                 <ul class="menuList">
-                                    <a href="{{ \App\CPU\translate('terms_&_conditions') }}">
-                                    <li class="menuItemTerm">Terms & Conditions</li>
-                                            </a>
-                                    <a class="widget-list-link menuItemTerm" href="{{route('privacy-policy')}}">
-                                        {{\App\CPU\translate('privacy_policy')}}
+                                    <a href="{{ route('terms') }}" class="menuItemTerm">
+                                     Terms & Conditions
+                                     
+                                    </a>
+                                    <a class="widget-list-link menuItemTerm" href="{{ route('privacy-policy') }}">
+                                        {{ \App\CPU\translate('privacy_policy') }}
+
+                                    </a>
                                     
-                                </a>
+                                    <a href="{{ route('refund-policy') }}" class="menuItemTerm">
+                        
+                                        
+                                       {{ \App\CPU\translate('refund_policy') }}
+                                    </a>
+                                    <a href="{{ route('return-policy') }}" class="menuItemTerm">
+                                        {{ \App\CPU\translate('return_policy') }}
+                                 
+                                        {{-- Return Policy --}}
+                                    </a>
+                                    <a href="{{ route('cancellation-policy') }}" class="menuItemTerm">
+                                       {{-- Cancellation Policy --}}
+                                       {{ \App\CPU\translate('cancellation_policy') }}
+
+                                    </a>
                                 </ul>
 
                             </div>
@@ -407,27 +444,28 @@
                         <a href="https://www.facebook.com/">
                             {{-- <i class="fab fa-facebook-f iconSocial"></i> --}}
                             {{-- <i class="fa-brands fa-facebook-f iconSocial"></i> --}}
-                            <img src="{{asset('public/assets/Images/fb.png')}}" alt="" class="iconSocial">
+                            <img src="{{ asset('public/assets/Images/fb.png') }}" alt="" class="iconSocial">
                         </a>
                         <a href="https://www.instagram.com/">
                             {{-- <i class="fab fa-instagram iconSocial"></i> --}}
-                            <img src="{{asset('public/assets/Images/insta.png')}}" alt="" class="iconSocial">
+                            <img src="{{ asset('public/assets/Images/insta.png') }}" alt="" class="iconSocial">
 
                         </a>
                         <a href="https://www.twitter.com/">
                             {{-- <i class="fab fa-twitter iconSocial"></i> --}}
-                            <img src="{{asset('public/assets/Images/t.png')}}" alt="" class="iconSocial">
+                            <img src="{{ asset('public/assets/Images/t.png') }}" alt="" class="iconSocial">
 
                         </a>
 
                         <a href="https://www.linkedin.com/">
                             {{-- <i class="fab fa-linkedin-in iconSocial"></i> --}}
-                            <img src="{{asset('public/assets/Images/link.png')}}" alt="" class="iconSocial">
+                            <img src="{{ asset('public/assets/Images/link.png') }}" alt=""
+                                class="iconSocial">
 
                         </a>
                         <a href="https://www.pinterest.com/">
                             {{-- <i class="fab fa-pinterest iconSocial"></i> --}}
-                            <img src="{{asset('public/assets/Images/p.png')}}" alt="" class="iconSocial">
+                            <img src="{{ asset('public/assets/Images/p.png') }}" alt="" class="iconSocial">
 
                         </a>
                     </div>

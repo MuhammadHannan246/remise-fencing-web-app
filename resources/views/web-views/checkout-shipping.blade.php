@@ -222,6 +222,7 @@
                                                                     <select name="country" id="" class="form-control selectpicker" data-live-search="true" required >
                                                                         @forelse($countries as $country)
                                                                             <option value="{{ $country['name'] }}">{{ $country['name'] }}</option>
+
                                                                         @empty
                                                                             <option value="">{{ \App\CPU\translate('No_country_to_deliver') }}</option>
                                                                         @endforelse
@@ -282,7 +283,7 @@
                                 <input type="checkbox" id="same_as_shipping_address" onclick="hide_billingAddress()"
                                     name="same_as_shipping_address" class="form-check-input" {{$billing_input_by_customer==1?'':'checked'}}>
                                 <label class="form-check-label" for="same_as_shipping_address"
-                                    style="padding-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 1.09rem">
+                                    style="padding-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 2.09rem">
                                     {{ \App\CPU\translate('same_as_shipping_address')}}
                                 </label>
                             </div>

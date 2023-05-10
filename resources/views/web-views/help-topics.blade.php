@@ -1,3 +1,14 @@
+<style>
+     @font-face {
+    font-family: 'BURBANKBIGCONDENSED-BOLD';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
+  
+}
+@font-face {
+    font-family: 'BURBANKBIGCONDENSED-BLACK';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
+</style>
+
 @extends('layouts.front-end.app')
 
 @section('title',\App\CPU\translate('FAQ'))
@@ -29,7 +40,7 @@
     <div class="container rtl">
         <div class="row">
             <div class="col-md-12 sidebar_heading text-center mb-2">
-                <h1 class="h3  mb-0 folot-left headerTitle">{{\App\CPU\translate('frequently_asked_question')}}</h1>
+                <h1 class="h3  mb-0 folot-left headerTitle" style="font-family: 'BURBANKBIGCONDENSED-BOLD'; font-size:33.23px;">{{\App\CPU\translate('frequently_asked_question')}}</h1>
             </div>
         </div>
         <hr>

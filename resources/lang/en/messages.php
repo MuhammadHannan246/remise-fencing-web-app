@@ -3052,4 +3052,9 @@
   'Fill_all_required_fields_of_shipping/billing_address' => 'Fill all required fields of shipping/billing address',
   'dending_withdrawn' => 'Dending withdrawn',
   'dending_withdraw' => 'Dending withdraw',
+  'about-us' => 'About-us',
+  'terms' => 'Terms',
+  'my-wallet' => 'My-wallet',
+  'my wallet' => 'My wallet',
+  'access_denied!' => 'Access denied!',
 );

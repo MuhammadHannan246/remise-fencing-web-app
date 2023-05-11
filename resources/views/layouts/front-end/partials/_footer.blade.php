@@ -327,7 +327,9 @@
                                 <ul class="menuList">
                                     <li class="menuItem"><a href="{{ route('home') }}">Home</a> </li>
                                     <li class="menuItem"><a href="{{ route('about-us') }}">About Us</a> </li>
-                                    <li class="menuItem">Contact Us</li>
+                                    <li class="menuItem">
+                                        <a href="{{route('contacts')}}">
+                                        Contact Us </a></li>
                                     <li class="menuItem"><a href="{{ route('helpTopic') }}">FAQ</a> </li>
                                     
                                 </ul>

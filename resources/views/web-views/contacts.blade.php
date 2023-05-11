@@ -14,9 +14,19 @@
     <meta property="twitter:description" content="{!! substr($web_config['about']->value,0,100) !!}">
 
     <style>
+         @font-face {
+    font-family: 'BURBANKBIGCONDENSED-BOLD';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
+  
+}
+@font-face {
+    font-family: 'BURBANKBIGCONDENSED-BLACK';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
+}
         @media (max-width: 600px) {
-            .sidebar_heading {
-                background: {{$web_config['primary_color']}}
+            .sidebar_heading .headerTitle{
+                /* background: {{$web_config['primary_color']}}; */
+                color: #151515 !important; 
             }
         }
     </style>
@@ -26,7 +36,7 @@
     <div class="container rtl">
         <div class="row">
             <div class="col-md-12 sidebar_heading text-center mb-2">
-                <h1 class="h3  mb-0 folot-left headerTitle">{{\App\CPU\translate('contact_us')}}</h1>
+                <h1 class="h3  mb-0 folot-left headerTitle" style="font-family: 'BURBANKBIGCONDENSED-BOLD'; font-size:33.23px;">{{\App\CPU\translate('contact_us')}}</h1>
             </div>
         </div>
     </div>
@@ -40,7 +50,7 @@
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-body for-send-message">
-                        <h2 class="h4 mb-4 text-center font-semibold text-black">{{\App\CPU\translate('send_us_a_message')}}</h2>
+                        <h2 class="h3 mb-4 text-center font-semibold text-black">{{\App\CPU\translate('send_us_a_message')}}</h2>
                         <form action="{{route('contact.store')}}" method="POST" id="getResponse">
                             @csrf
                             <div class="row">
@@ -104,7 +114,9 @@
                                 </div>
                             @endif
                             <div class=" ">
-                                <button class="btn btn--primary" type="submit" >{{\App\CPU\translate('send')}}</button>
+                                <button class="btn btn--primary" style="    width: 100%;
+                                height: 50px;
+                                font-size: 16px;" type="submit" >{{\App\CPU\translate('send Message')}}</button>
                             </div>
                         </form>
                     </div>

@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Model\CustomerWalletHistory;
 use Brian2694\Toastr\Facades\Toastr;
+use App\Model\OrderTransaction;
 
 class RefundController extends Controller
 {

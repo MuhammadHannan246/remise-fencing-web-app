@@ -166,7 +166,7 @@ class OrderManager
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
-            
+
         }
 
         if($order->coupon_code && $order->coupon_code != '0' && $order->seller_is == 'seller' && $order->discount_type == 'coupon_discount'){
@@ -292,6 +292,16 @@ class OrderManager
             'order_id' => $order->id,
             'product_id' => $order->details->first()->product_id,
             'payment' => $order['payment_method'],
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('admin_wallet_histories')->insert([
+            'admin_id' => 1,
+            'amount' => $commission,
+            'order_id' => $order->id,
+            'product_id' => $order->details->first()->product_id,
+            'payment' => $order['payment_method'],
+            'payment_type' => $commission ? 'commission' : 'in-house',
             'created_at' => now(),
             'updated_at' => now(),
         ]);

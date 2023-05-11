@@ -12,7 +12,8 @@
     .cart_total_value {
         font-weight: 700 !important;
         font-size: 25px !important;
-        color: {{$web_config['primary_color']}}     !important;
+        /* color: {{$web_config['primary_color']}}     !important; */
+        color: red     !important;
     }
 </style>
 

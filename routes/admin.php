@@ -221,6 +221,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
             Route::get('status/{id}/{status}', 'ReviewsController@status')->name('status');
         });
 
+        Route::get('wallet', 'CustomerWalletController@index')->name('wallet.index');
         Route::group(['prefix' => 'customer', 'as' => 'customer.','middleware'=>['module:user_section']], function () {
             Route::get('list', 'CustomerController@customer_list')->name('list');
             Route::post('status-update', 'CustomerController@status_update')->name('status-update');

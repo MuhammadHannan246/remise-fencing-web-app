@@ -2,18 +2,50 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\CPU\Helpers;
+use App\CPU\CustomerManager;
 use Illuminate\Http\Request;
 use App\Model\BusinessSetting;
-use Illuminate\Support\Facades\Validator;
-use App\CPU\CustomerManager;
-use Brian2694\Toastr\Facades\Toastr;
-use App\CPU\Helpers;
-use Illuminate\Support\Facades\Mail;
 use App\Model\WalletTransaction;
+use App\Model\AdminWalletHistory;
+use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class CustomerWalletController extends Controller
 {
+    public function index(Request $request) {
+        $customer_status = BusinessSetting::where('type','wallet_status')->first()->value; //customer disable check
+
+        $data = WalletTransaction::selectRaw('sum(credit) as total_credit, sum(debit) as total_debit')
+        ->when(($request->from && $request->to),function($query)use($request){
+            $query->whereBetween('created_at', [$request->from.' 00:00:00', $request->to.' 23:59:59']);
+        })
+        ->when($request->transaction_type, function($query)use($request){
+            $query->where('transaction_type',$request->transaction_type);
+        })
+        ->when($request->customer_id, function($query)use($request){
+            $query->where('user_id',$request->customer_id);
+        })
+        ->get();
+
+        // $transactions = WalletTransaction::
+        // when(($request->from && $request->to),function($query)use($request){
+        //     $query->whereBetween('created_at', [$request->from.' 00:00:00', $request->to.' 23:59:59']);
+        // })
+        // ->when($request->transaction_type, function($query)use($request){
+        //     $query->where('transaction_type',$request->transaction_type);
+        // })
+        // ->when($request->customer_id, function($query)use($request){
+        //     $query->where('user_id',$request->customer_id);
+        // })
+        // ->latest()
+        // ->paginate(Helpers::pagination_limit());
+        $transactions = AdminWalletHistory::with(['order.customer','product'])->where('id',1)->latest()->paginate(10);
+        $credit = AdminWalletHistory::with(['order.customer','product'])->where('id',1)->sum('amount');
+        return view('admin-views.wallet.index', compact('data','transactions', 'customer_status','credit'));
+    }
 
     public function add_fund(Request $request)
     {

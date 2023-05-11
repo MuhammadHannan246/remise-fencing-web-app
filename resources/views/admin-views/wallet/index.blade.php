@@ -1,27 +1,82 @@
-@extends('layouts.back-end.app-seller')
-@section('title',\App\CPU\translate('seller').' '.\App\CPU\translate('wallet'))
+@extends('layouts.back-end.app')
 
+@section('title',\App\CPU\translate('customer_wallet'))
 
+@push('css_or_js')
+
+@endpush
 
 @section('content')
     <div class="content container-fluid">
         <!-- Page Title -->
-        <div class="mb-3">
+        <div class="mb-3 d-flex justify-content-between flex-wrap gap-3">
             <h2 class="h1 mb-0 text-capitalize d-flex align-items-center gap-2">
-                <img width="20" src="{{asset('/public/assets/back-end/img/loyalty_point.png')}}" alt="">
-                {{\App\CPU\translate('seller')}} {{\App\CPU\translate('wallet')}}
+                <img width="20" src="{{asset('/public/assets/back-end/img/admin-wallet.png')}}" alt="">
+                {{\App\CPU\translate('wallet')}}
             </h2>
+            {{-- @if($customer_status == 1)
+                <button type="button" class="btn btn--primary" data-toggle="modal" data-target="#addFundModal">
+                    {{\App\CPU\translate('Add_Fund')}}
+                </button>
+            @endif --}}
         </div>
         <!-- End Page Title -->
 
-        {{-- <div class="card">
+        {{-- <div class="modal fade" id="addFundModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header d-flex justify-content-between">
+                        <h5 class="modal-title" id="exampleModalLongTitle">{{\App\CPU\translate('Add_Fund')}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{route('admin.customer.wallet.add-fund')}}" method="post" enctype="multipart/form-data" id="add_fund">
+                            @csrf
+                            <div class="row">
+                                <div class="col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="input-label d-flex" for="customer">{{\App\CPU\translate('customer')}}</label>
+                                        <select id='form-customer' name="customer_id" data-placeholder="{{\App\CPU\translate('select_customer')}}" class="js-data-example-ajax form-control w-100" required>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="input-label d-flex" for="amount">{{\App\CPU\translate('amount')}}</label>
+
+                                        <input type="number" class="form-control" name="amount" id="amount" step=".01" placeholder="Ex: 500" required>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="input-label d-flex align-items-center gap-1" for="referance">{{\App\CPU\translate('reference')}} <small>({{\App\CPU\translate('optional')}})</small></label>
+
+                                        <input type="text" class="form-control" name="referance" placeholder="Ex: abc990" id="referance">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end gap-3">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{\App\CPU\translate('close')}}</button>
+                                <button type="submit" id="submit" class="btn btn--primary px-4">{{\App\CPU\translate('submit')}}</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div> --}}
+
+        {{-- <div class="card  mt-3">
             <div class="card-header text-capitalize">
                 <h4 class="mb-0">{{\App\CPU\translate('filter')}} {{\App\CPU\translate('options')}}</h4>
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-12 pt-3">
-                        <form action="{{route('admin.customer.loyalty.report')}}" method="get">
+                        <form action="{{route('admin.customer.wallet.report')}}" method="get">
                             <div class="row">
                                 <div class="col-sm-6 col-12">
                                     <div class="mb-3">
@@ -39,10 +94,12 @@
                                         $transaction_status=request()->get('transaction_type');
                                         @endphp
                                         <select name="transaction_type" id="" class="form-control" title="{{\App\CPU\translate('select')}} {{\App\CPU\translate('transaction_type')}}">
-                                            <option value="">{{ \App\CPU\translate('all')}}</option>
-                                            <option value="point_to_wallet" {{isset($transaction_status) && $transaction_status=='point_to_wallet'?'selected':''}}>{{ \App\CPU\translate('point_to_wallet')}}</option>
-                                            <option value="order_place" {{isset($transaction_status) && $transaction_status=='order_place'?'selected':''}}>{{ \App\CPU\translate('order_place')}}</option>
-                                            <option value="refund_order" {{isset($transaction_status) && $transaction_status=='refund_order'?'selected':''}}>{{ \App\CPU\translate('refund_order')}}</option>
+                                            <option value="">{{\App\CPU\translate('all')}}</option>
+                                            <option value="add_fund_by_admin" {{isset($transaction_status) && $transaction_status=='add_fund_by_admin'?'selected':''}} >{{\App\CPU\translate('add_fund_by_admin')}}</option>
+                                            <!-- <option value="add_fund" {{isset($transaction_status) && $transaction_status=='add_fund'?'selected':''}}>{{\App\CPU\translate('add_fund_by_customer')}}</option> -->
+                                            <option value="order_refund" {{isset($transaction_status) && $transaction_status=='order_refund'?'selected':''}}>{{\App\CPU\translate('refund_order')}}</option>
+                                            <option value="loyalty_point" {{isset($transaction_status) && $transaction_status=='loyalty_point'?'selected':''}}>{{\App\CPU\translate('customer_loyalty_point')}}</option>
+                                            <option value="order_place" {{isset($transaction_status) && $transaction_status=='order_place'?'selected':''}}>{{\App\CPU\translate('order_place')}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -56,7 +113,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div>
+                            <div class="d-flex justify-content-end">
                                 <button type="submit" class="btn btn--primary px-4"><i class="tio-filter-list mr-1"></i>{{\App\CPU\translate('filter')}}</button>
                             </div>
                         </form>
@@ -71,12 +128,11 @@
             </div>
             <div class="card-body">
                 <div class="d-flex flex-wrap gap-3">
-                    {{-- @php
-                        $credit = $data[0]->total_credit??0;
-                        $debit = $data[0]->total_debit??0;
+                    @php
+                        // $credit = $data[0]->total_credit;
+                        $debit = $data[0]->total_debit;
                         $balance = $credit - $debit;
                     @endphp
-
                     <!--Debit earned-->
                     <div class="order-stats flex-grow-1">
                         <div class="order-stats__content">
@@ -84,7 +140,7 @@
                             <h6 class="order-stats__subtitle">{{\App\CPU\translate('debit')}}</h6>
                         </div>
                         <span class="order-stats__title fz-14 text--primary">
-                            {{$debit}}
+                            {{\App\CPU\Helpers::currency_converter($debit)}}
                         </span>
                     </div>
                     <!--Debit earned End-->
@@ -96,129 +152,106 @@
                             <h6 class="order-stats__subtitle">{{\App\CPU\translate('credit')}}</h6>
                         </div>
                         <span class="order-stats__title fz-14 text-warning">
-                            {{$credit}}
+                        {{\App\CPU\Helpers::currency_converter($credit)}}
                         </span>
-                    </div> --}}
+                    </div>
                     <!--credit earned end-->
 
                     <!--balance earned-->
-                    @php
-                        $totalEarning = App\Model\SellerWallet::where('seller_id',auth('seller')->id())->first();
-                    @endphp
-                    <div class="order-stats flex-grow-1">
-                        <div class="order-stats__content">
-                            <i class="tio-wallet"></i>
-                            <h6 class="order-stats__subtitle">{{\App\CPU\translate('withdraw')}}</h6>
-                        </div>
-                        <span class="order-stats__title fz-14 text-success">
-                            {{-- {{$balance}} --}}
-                            $ {{$totalEarning->withdrawn }}
-                        </span>
-                    </div>
-                    <div class="order-stats flex-grow-1">
-                        <div class="order-stats__content">
-                            <i class="tio-wallet"></i>
-                            <h6 class="order-stats__subtitle">{{\App\CPU\translate('pending_withdraw')}}</h6>
-                        </div>
-                        <span class="order-stats__title fz-14 text-success">
-                            {{-- {{$balance}} --}}
-                            $ {{$totalEarning->pending_withdraw }}
-                        </span>
-                    </div>
                     <div class="order-stats flex-grow-1">
                         <div class="order-stats__content">
                             <i class="tio-wallet"></i>
                             <h6 class="order-stats__subtitle">{{\App\CPU\translate('balance')}}</h6>
                         </div>
                         <span class="order-stats__title fz-14 text-success">
-                            {{-- {{$balance}} --}}
-                            $ {{$totalEarning->total_earning - $totalEarning->total_tax_collected }}
+                            {{-- {{\App\CPU\Helpers::currency_converter($balance)}} --}}
+                            $ {{ $balance }}
                         </span>
                     </div>
                     <!--balance earned end-->
                 </div>
             </div>
+
         </div>
 
+        <!-- End Stats -->
         <!-- Card -->
         <div class="card mt-3">
             <!-- Header -->
             <div class="card-header text-capitalize">
                 <h4 class="mb-0">
                     {{\App\CPU\translate('transactions')}}
-                    <span class="badge badge-soft-dark radius-50 fz-12 ml-1">
-                        {{ $transactions ? $transactions->count() : ''}}
-                    </span>
+                    <span class="badge badge-soft-dark radius-50 fz-12 ml-1">{{$transactions->count()}}</span>
                 </h4>
             </div>
             <!-- End Header -->
 
-            <!-- Body -->
+            <!-- Table -->
             <div class="table-responsive">
                 <table id="datatable"
                     class="table table-hover table-borderless table-thead-bordered table-nowrap table-align-middle card-table {{Session::get('direction') === "rtl" ? 'text-right' : 'text-left'}}">
                     <thead class="thead-light thead-50 text-capitalize">
                         <tr>
-                            {{-- <th>{{\App\CPU\translate('SL')}}</th> --}}
-                            <th>#</th>
+                            <th>{{\App\CPU\translate('sl')}}</th>
                             {{-- <th>{{\App\CPU\translate('transaction')}} {{\App\CPU\translate('id')}}</th> --}}
                             <th>{{\App\CPU\translate('Customer')}}</th>
-                            <th>{{\App\CPU\translate('order_id')}}</th>
-                            <th>{{\App\CPU\translate('amount')}}</th>
+                            <th>{{\App\CPU\translate('Order_id')}}</th>
                             {{-- <th>{{\App\CPU\translate('credit')}}</th>
-                            <th>{{\App\CPU\translate('debit')}}</th>
-                            <th>{{\App\CPU\translate('balance')}}</th> --}}
+                            <th>{{\App\CPU\translate('debit')}}</th> --}}
+                            {{-- <th>{{\App\CPU\translate('balance')}}</th> --}}
+                            <th>{{\App\CPU\translate('amount')}}</th>
                             <th>{{\App\CPU\translate('transaction_type')}}</th>
                             {{-- <th>{{\App\CPU\translate('reference')}}</th> --}}
                             <th class="text-center">{{\App\CPU\translate('created_at')}}</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if (isset($transactions))
-                            @foreach($transactions as $transaction)
-                                <tr scope="row">
-                                    <td >{{ $loop->iteration }}</td>
-                                    {{-- <td>{{$transaction->transaction_id}}</td> --}}
-                                    <td>{{ Str::limit($transaction->order->customer->f_name.' '.$transaction->order->customer->l_name,20)}}</a></td>
-                                    <td>
-                                        <a href="{{ route('seller.orders.details',$transaction->order_id) }}">{{ $transaction->order_id }}</a>
-                                    </td>
-                                    <td>$ {{ $transaction->amount }}</td>
-                                    {{-- <td><a href="#" class="title-color hover-c1">{{Str::limit($wt->user?$wt->user->f_name.' '.$wt->user->l_name:\App\CPU\translate('not_found'),20,'...')}}</a></td> --}}
-                                    {{-- <td>{{$transaction->credit}}</td>
-                                    <td>{{$transaction->debit}}</td>
-                                    <td>{{$transaction->balance}}</td> --}}
-                                    <td>
-                                        {{-- <span class="badge badge-soft-{{$transaction->payment=='order_refund'
-                                            ?'danger'
-                                            :($transaction->payment=='loyalty_point'?'warning'
-                                                :($transaction->payment=='order_place'
-                                                    ?'info'
-                                                    :'success'))
-                                            }}">
-                                            {{\App\CPU\translate($transaction->transaction_type)}}
-                                        </span> --}}
-                                        {{ \App\CPU\translate($transaction->payment) }}
-                                    </td>
-                                    {{-- <td>{{$transaction->reference}}</td> --}}
-                                    <td class="text-center">{{date('Y/m/d '.config('timeformat'), strtotime($transaction->created_at))}}</td>
-                                </tr>
-                            @endforeach
-                        @endif
+                    @foreach($transactions as $k=>$wt)
+                        <tr>
+                            {{-- <td >{{$k+$transactions->firstItem()}}</td> --}}
+                            <td >{{$loop->iteration}}</td>
+                            {{-- <td>{{$wt->transaction_id}}</td> --}}
+                            <td>
+                                <a href="{{route('admin.customer.view',['user_id'=>$wt->order->customer_id])}}" class="title-color hover-c1">
+                                    {{Str::limit($wt->order?$wt->order->customer->f_name.' '.$wt->order->customer->l_name:\App\CPU\translate('not_found'),20,'...')}}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ route('admin.orders.details',$wt->order_id) }}">{{ $wt->order_id }}</a>
+                            </td>
+                            {{-- <td>{{\App\CPU\Helpers::currency_converter($wt->credit)}}</td>
+                            <td>{{\App\CPU\Helpers::currency_converter($wt->debit)}}</td> --}}
+                            {{-- <td>{{\App\CPU\Helpers::currency_converter($wt->amount)}}</td> --}}
+                            <td>$ {{$wt->amount}}</td>
+                            {{-- <td>
+                                <span class="badge badge-soft-{{$wt->transaction_type=='order_refund'
+                                    ?'danger'
+                                    :($wt->transaction_type=='loyalty_point'?'warning'
+                                        :($wt->transaction_type=='order_place'
+                                            ?'info'
+                                            :'success'))
+                                    }}">
+                                    {{\App\CPU\translate($wt->transaction_type)}}
+                                </span>
+                            </td> --}}
+                            <td>{{ $wt->payment_type }}</td>
+                            {{-- <td>{{ str_replace('_',' ',$wt->reference) }}</td> --}}
+                            <td class="text-center">{{date('Y/m/d '.config('timeformat'), strtotime($wt->created_at))}}</td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
-
+            <!-- End Body -->
 
             <div class="table-responsive mt-4">
                 <div class="px-4 d-flex justify-content-lg-end">
                     <!-- Pagination -->
-                    {!! $transactions ? $transactions->links() : '' !!}
+                    {!!$transactions->links()!!}
                 </div>
             </div>
 
-            <!-- End Body -->
-            @if(isset($transactions) && count($transactions)==0)
+            @if(count($transactions)==0)
                 <div class="text-center p-4">
                     <img class="mb-3 w-160" src="{{asset('public/assets/back-end')}}/svg/illustrations/sorry.svg" alt="Image Description">
                     <p class="mb-0">{{ \App\CPU\translate('No_data_to_show')}}</p>
@@ -230,6 +263,9 @@
     </div>
 @endsection
 
+@push('script')
+
+@endpush
 
 @push('script_2')
     <script>
@@ -459,5 +495,81 @@
             }
 
         })
+    </script>
+
+    <script>
+        $('#add_fund').on('submit', function (e) {
+
+            e.preventDefault();
+            var formData = new FormData(this);
+
+            Swal.fire({
+                title: '{{\App\CPU\translate('are_you_sure')}}',
+                text: '{{\App\CPU\translate('you_want_to_add_fund')}}'+$('#amount').val()+' {{\App\CPU\Helpers::currency_code().' '.\App\CPU\translate('to')}} '+$('#form-customer option:selected').text()+'{{\App\CPU\translate('to_wallet')}}',
+                type: 'info',
+                showCancelButton: true,
+                cancelButtonColor: 'default',
+                confirmButtonColor: 'primary',
+                cancelButtonText: '{{\App\CPU\translate('no')}}',
+                confirmButtonText: '{{\App\CPU\translate('add')}}',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.post({
+                        url: '{{route('admin.customer.wallet.add-fund')}}',
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function (data) {
+                            if (data.errors) {
+                                for (var i = 0; i < data.errors.length; i++) {
+                                    toastr.error(data.errors[i].message, {
+                                        CloseButton: true,
+                                        ProgressBar: true
+                                    });
+                                }
+                            } else {
+                                toastr.success('{{\App\CPU\translate("fund_added_successfully")}}', {
+                                    CloseButton: true,
+                                    ProgressBar: true
+                                });
+                                location.reload();
+                            }
+                        }
+                    });
+                }
+            })
+        })
+
+        $('.js-data-example-ajax').select2({
+            ajax: {
+                url: '{{route('admin.customer.customer-list-search')}}',
+                data: function (params) {
+                    return {
+                        q: params.term, // search term
+                        page: params.page
+                    };
+                },
+                processResults: function (data) {
+                    return {
+                        results: data
+                    };
+                },
+                __port: function (params, success, failure) {
+                    var $request = $.ajax(params);
+
+                    $request.then(success);
+                    $request.fail(failure);
+
+                    return $request;
+                }
+            }
+        });
     </script>
 @endpush

@@ -846,6 +846,14 @@
                         </li>
 
                         <li class="navbar-vertical-aside-has-menu {{(Request::is('admin/business-settings/mail') || Request::is('admin/business-settings/sms-module') || Request::is('admin/business-settings/captcha') || Request::is('admin/social-login/view') || Request::is('admin/social-media-chat/view') || Request::is('admin/business-settings/map-api') || Request::is('admin/business-settings/payment-method') || Request::is('admin/business-settings/fcm-index'))?'active':''}}">
+                            <a class="nav-link " href="{{route('admin.wallet.index')}}"
+                               title="{{\App\CPU\translate('Wallet')}}">
+                                <span class="tio-wallet-outlined nav-icon"></span>
+                                <span class="text-truncate">{{\App\CPU\translate('Wallet')}}</span>
+                            </a>
+                        </li>
+
+                        <li class="navbar-vertical-aside-has-menu {{(Request::is('admin/business-settings/mail') || Request::is('admin/business-settings/sms-module') || Request::is('admin/business-settings/captcha') || Request::is('admin/social-login/view') || Request::is('admin/social-media-chat/view') || Request::is('admin/business-settings/map-api') || Request::is('admin/business-settings/payment-method') || Request::is('admin/business-settings/fcm-index'))?'active':''}}">
                             <a class="nav-link " href="{{route('admin.business-settings.sms-module')}}"
                                title="{{\App\CPU\translate('3rd_party')}}">
                                 <span class="tio-key nav-icon"></span>

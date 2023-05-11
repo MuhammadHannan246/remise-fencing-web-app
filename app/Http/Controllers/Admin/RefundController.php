@@ -13,11 +13,13 @@ use App\Model\SellerWallet;
 use App\CPU\CustomerManager;
 use App\Model\RefundRequest;
 use Illuminate\Http\Request;
-use function App\CPU\translate;
+use App\Model\CustomerWallet;
 Use App\Model\RefundStatus;
+use function App\CPU\translate;
 use App\Model\RefundTransaction;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Model\CustomerWalletHistory;
 use Brian2694\Toastr\Facades\Toastr;
 
 class RefundController extends Controller
@@ -107,8 +109,10 @@ class RefundController extends Controller
                 $transaction->save();
 
             }else{
+                $admin_commission = OrderTransaction::where('order_id',$order->id)->pluck('tax')->first();
                 $seller_wallet = SellerWallet::where('seller_id',$order->seller_id)->first();
                 $seller_wallet->total_earning = $seller_wallet->total_earning - $refund->amount;
+                $seller_wallet->total_earning = $seller_wallet->total_tax_collected - $admin_commission;
                 $seller_wallet->save();
 
                 $transaction = new RefundTransaction;
@@ -125,6 +129,19 @@ class RefundController extends Controller
                 $transaction->order_details_id = $refund->order_details_id;
                 $transaction->refund_id = $refund->id;
                 $transaction->save();
+
+                $customerWallet = CustomerWallet::create([
+                    'customer_id' => $refund->customer_id,
+                    'balance' => $refund->amount,
+                    'royality_points' => 0,
+                ]);
+                CustomerWalletHistory::create([
+                    'customer_id' => $refund->customer_id,
+                    'transaction_amount' => $refund->amount,
+                    'transaction_type' => $transaction->type,
+                    'transaction_method' => $transaction->payment_method,
+                    'transaction_id' => $transaction->id,
+                ]);
             }
 
 

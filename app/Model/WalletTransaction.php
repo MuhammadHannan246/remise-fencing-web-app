@@ -17,7 +17,7 @@ class WalletTransaction extends Model
         'admin_bonus'=>'float',
         'balance'=>'float',
         'reference'=>'string',
-        'created_at'=>'string'
+        'created_at'=>'datetime'
     ];
 
     public function user()

@@ -126,4 +126,10 @@ class Convert
 
         return $value;
     }
+
+    public static function currencyToPoint($amount)
+    {
+        $points = BusinessSetting::where('type','loyalty_point_exchange_rate')->pluck('value')->first();
+        return $amount * $points;
+    }
 }

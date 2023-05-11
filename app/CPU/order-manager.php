@@ -485,7 +485,7 @@ class OrderManager
             'order_note' => $order_note
         ];
 
-//        confirmed
+        //        confirmed
         DB::table('orders')->insertGetId($or);
         self::add_order_status_history($order_id, auth('customer')->id(), $data['payment_status']=='paid'?'confirmed':'pending', 'customer');
 

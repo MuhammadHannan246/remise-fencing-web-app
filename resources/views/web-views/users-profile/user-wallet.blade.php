@@ -27,7 +27,7 @@
                             </div>
                             <div>
                                 <span>
-                                    {{\App\CPU\translate('wallet_amount')}} : {{\App\CPU\Helpers::currency_converter($total_wallet_balance)}}
+                                    {{\App\CPU\translate('wallet_points')}} : {{\App\CPU\convert::currencyToPoint($total_wallet_balance)}}
                                 </span>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                                         <td class="bodytr"><span class="">{{\App\CPU\Helpers::currency_converter($item['credit'])}}</span></td>
                                         <td class="bodytr"><span class="">{{\App\CPU\Helpers::currency_converter($item['debit'])}}</span></td>
                                         <td class="bodytr"><span class="">{{\App\CPU\Helpers::currency_converter($item['credit'] - $item['debit'])}}</span></td>
-                                        <td class="bodytr"><span class="">{{$item['created_at']}}</span></td>
+                                        <td class="bodytr"><span class="">{{$item['created_at']->format('d M Y')}}</span></td>
 
                                     </tr>
                                 @endforeach

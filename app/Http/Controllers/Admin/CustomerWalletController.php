@@ -42,8 +42,9 @@ class CustomerWalletController extends Controller
         // })
         // ->latest()
         // ->paginate(Helpers::pagination_limit());
-        $transactions = AdminWalletHistory::with(['order.customer','product'])->where('id',1)->latest()->paginate(10);
-        $credit = AdminWalletHistory::with(['order.customer','product'])->where('id',1)->sum('amount');
+        $transactions = AdminWalletHistory::with(['order.customer','product'])->where('admin_id',1)->latest()->paginate(10);
+        $credit = AdminWalletHistory::with(['order.customer','product'])->where('admin_id',1)->sum('amount');
+        // dd($credit);
         return view('admin-views.wallet.index', compact('data','transactions', 'customer_status','credit'));
     }
 

@@ -112,7 +112,7 @@
                         </div>
                         <span class="order-stats__title fz-14 text-success">
                             {{-- {{$balance}} --}}
-                            $ {{$totalEarning->withdrawn }}
+                            {{\App\CPU\Helpers::currency_converter($totalEarning->withdrawn)}}
                         </span>
                     </div>
                     <div class="order-stats flex-grow-1">
@@ -122,7 +122,7 @@
                         </div>
                         <span class="order-stats__title fz-14 text-success">
                             {{-- {{$balance}} --}}
-                            $ {{$totalEarning->pending_withdraw }}
+                            {{\App\CPU\Helpers::currency_converter($totalEarning->pending_withdraw)}}
                         </span>
                     </div>
                     <div class="order-stats flex-grow-1">
@@ -132,7 +132,7 @@
                         </div>
                         <span class="order-stats__title fz-14 text-success">
                             {{-- {{$balance}} --}}
-                            $ {{$totalEarning->total_earning - $totalEarning->total_tax_collected }}
+                            {{\App\CPU\Helpers::currency_converter($totalEarning->total_earning - $totalEarning->total_tax_collected)}}
                         </span>
                     </div>
                     <!--balance earned end-->
@@ -183,7 +183,7 @@
                                     <td>
                                         <a href="{{ route('seller.orders.details',$transaction->order_id) }}">{{ $transaction->order_id }}</a>
                                     </td>
-                                    <td>$ {{ $transaction->amount }}</td>
+                                    <td>{{\App\CPU\Helpers::currency_converter($transaction->amount)}}</td>
                                     {{-- <td><a href="#" class="title-color hover-c1">{{Str::limit($wt->user?$wt->user->f_name.' '.$wt->user->l_name:\App\CPU\translate('not_found'),20,'...')}}</a></td> --}}
                                     {{-- <td>{{$transaction->credit}}</td>
                                     <td>{{$transaction->debit}}</td>

@@ -3066,4 +3066,5 @@
   'order_refund' => 'Order refund',
   'Order_id' => 'Order id',
   'send Message' => 'Send Message',
+  'wallet_points' => 'Wallet points',
 );

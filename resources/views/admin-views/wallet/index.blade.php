@@ -164,8 +164,8 @@
                             <h6 class="order-stats__subtitle">{{\App\CPU\translate('balance')}}</h6>
                         </div>
                         <span class="order-stats__title fz-14 text-success">
-                            {{-- {{\App\CPU\Helpers::currency_converter($balance)}} --}}
-                            $ {{ $balance }}
+                            {{\App\CPU\Helpers::currency_converter($balance)}}
+                            {{-- $ {{ $balance }} --}}
                         </span>
                     </div>
                     <!--balance earned end-->
@@ -222,7 +222,7 @@
                             {{-- <td>{{\App\CPU\Helpers::currency_converter($wt->credit)}}</td>
                             <td>{{\App\CPU\Helpers::currency_converter($wt->debit)}}</td> --}}
                             {{-- <td>{{\App\CPU\Helpers::currency_converter($wt->amount)}}</td> --}}
-                            <td>$ {{$wt->amount}}</td>
+                            <td>{{\App\CPU\Helpers::currency_converter($wt->amount)}}</td>
                             {{-- <td>
                                 <span class="badge badge-soft-{{$wt->transaction_type=='order_refund'
                                     ?'danger'

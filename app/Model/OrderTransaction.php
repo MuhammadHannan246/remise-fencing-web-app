@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderTransaction extends Model
 {
+    protected $casts = [
+        'created_at'    => 'datetime',
+        'updated_at'    => 'datetime',
+    ];
+    
     public function seller()
     {
         return $this->belongsTo(Seller::class, 'seller_id');

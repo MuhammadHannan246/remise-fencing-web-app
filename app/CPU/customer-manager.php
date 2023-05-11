@@ -107,13 +107,13 @@ class CustomerManager
         $credit = 0;
         $debit = 0;
         $user = User::find($user_id);
-        
+
         $loyalty_point_transaction = new LoyaltyPointTransaction();
         $loyalty_point_transaction->user_id = $user->id;
         $loyalty_point_transaction->transaction_id = \Str::uuid();
         $loyalty_point_transaction->reference = $referance;
         $loyalty_point_transaction->transaction_type = $transaction_type;
-        
+
         if($transaction_type=='order_place')
         {
             $credit = (int)($amount * $settings['loyalty_point_item_purchase_point']/100);
@@ -125,15 +125,15 @@ class CustomerManager
         {
             $debit = $amount;
         }
-        
+
         $current_balance = $user->loyalty_point + $credit - $debit;
         $loyalty_point_transaction->balance = $current_balance;
-        $loyalty_point_transaction->credit = $credit;
+        $loyalty_point_transaction->credit = $current_balance;
         $loyalty_point_transaction->debit = $debit;
         $loyalty_point_transaction->created_at = now();
         $loyalty_point_transaction->updated_at = now();
         $user->loyalty_point = $current_balance;
-        
+
         try{
             DB::beginTransaction();
             $user->save();
@@ -159,9 +159,9 @@ class CustomerManager
         {
             $loyalty_point_item_purchase_point = Helpers::get_business_settings('loyalty_point_item_purchase_point');
             $subtotal = ($order_details->price * $order_details->qty) - $order_details->discount + $order_details->tax;
-            
+
             $loyalty_point = (int)(Convert::default($subtotal) * $loyalty_point_item_purchase_point /100);
-            
+
             return $loyalty_point;
         }
         return $loyalty_point;

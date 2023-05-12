@@ -112,10 +112,10 @@ class RefundController extends Controller
                 $transaction->save();
 
             }else{
-                $admin_commission = OrderTransaction::where('order_id',$order->id)->pluck('admin_commission')->first();
+                $orderTransaction = OrderTransaction::where('order_id',$order->id)->first();
                 $seller_wallet = SellerWallet::where('seller_id',$order->seller_id)->first();
-                $seller_wallet->total_earning = $seller_wallet->total_earning - $refund->amount;
-                $seller_wallet->total_earning = $seller_wallet->total_tax_collected - $admin_commission;
+                $seller_wallet->total_earning = $seller_wallet->total_earning - $orderTransaction->seller_amount;
+                $seller_wallet->total_tax_collected = $seller_wallet->total_tax_collected - $refund->order_details->tax;
                 $seller_wallet->save();
 
                 $transaction = new RefundTransaction;
@@ -147,13 +147,13 @@ class RefundController extends Controller
                 ]);
                 AdminWalletHistory::create([
                     'admin_id' => auth('admin')->id(),
-                    'amount' => -$admin_commission,
+                    'amount' => -$orderTransaction->admin_commission,
                     'order_id' => $refund->order_id,
                     'product_id' => $transaction->order->product_id,
                     'payment' => $request->payment_method,
                     'payment_type' => 'Refund',
                 ]);
-                $sellerAmount = $refund->amount - $admin_commission;
+                $sellerAmount = $refund->amount - $orderTransaction->admin_commission;
                 SellerWalletHistory::create([
                     'seller_id' => $order->seller_id,
                     'amount' => -$sellerAmount,

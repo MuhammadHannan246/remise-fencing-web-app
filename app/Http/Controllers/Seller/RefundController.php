@@ -159,6 +159,7 @@ class RefundController extends Controller
         $data = null;
         $transactions = SellerWalletHistory::with('order.customer')->where('seller_id',auth('seller')->id())->latest()->paginate(10);
         $balance = SellerWalletHistory::where('seller_id',auth('seller')->id())->sum('amount');
+        // dd($balance);
         return view('seller-views.wallet.list', compact('data','transactions','balance'));
     }
 }

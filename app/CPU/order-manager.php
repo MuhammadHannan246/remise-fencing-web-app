@@ -207,8 +207,8 @@ class OrderManager
                 'seller_id' => $order['seller_id'],
                 'seller_is' => $order['seller_is'],
                 'order_id' => $order['id'],
-                'order_amount' => $order_amount,
-                'seller_amount' => $order_amount - $commission,
+                'order_amount' => $order->order_amount,
+                'seller_amount' => $order->order_amount - $order->admin_commission - $order->shipping_cost,
                 'admin_commission' => $commission,
                 'received_by' => $received_by,
                 'status' => 'disburse',
@@ -288,7 +288,7 @@ class OrderManager
 
         DB::table('seller_wallet_histories')->insert([
             'seller_id' => $order['seller_id'],
-            'amount' => $order_amount - $commission,
+            'amount' => $order->order_amount - $order->admin_commission - $order->shipping_cost,
             'order_id' => $order->id,
             'product_id' => $order->details->first()->product_id,
             'payment' => $order['payment_method'],

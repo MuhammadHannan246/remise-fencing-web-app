@@ -14,16 +14,16 @@
             <path d="M10.3529 22C11.7823 22 12.9411 20.8412 12.9411 19.4118C12.9411 17.9823 11.7823 16.8235 10.3529 16.8235C8.92344 16.8235 7.76465 17.9823 7.76465 19.4118C7.76465 20.8412 8.92344 22 10.3529 22Z" fill="#1E1E1E"/>
             <path d="M18.7645 22C20.1939 22 21.3527 20.8412 21.3527 19.4118C21.3527 17.9823 20.1939 16.8235 18.7645 16.8235C17.3351 16.8235 16.1763 17.9823 16.1763 19.4118C16.1763 20.8412 17.3351 22 18.7645 22Z" fill="#1E1E1E"/>
             </svg>
-            
 
-    Cart
+
+    {{ App\CPU\translate('Cart') }}
 </a>
 
     {{-- <a class="navbar-tool-text {{Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'}}" href="{{route('shop-cart')}}"><small style="font-size: 16px;
         font-weight: 700; color:black !important;">Cart</small>
     </a> --}}
     <!-- Cart dropdown-->
-   
+
     {{-- <div class="dropdown-menu dropdown-menu-{{Session::get('direction') === "rtl" ? 'left' : 'right'}} __w-20rem ">
         <div class="widget widget-cart px-3 pt-2 pb-3">
             @if($cart->count() > 0)

@@ -342,7 +342,7 @@
                                             </div>
                                             <div class="btnBody">
                                                 <a href="{{ route('products', ['data_from' => 'latest']) }}"><button
-                                                        class="btnShop">Shop Now</button></a>
+                                                        class="btnShop">{{ App\CPU\translate('Shop Now') }}</button></a>
 
                                             </div>
                                         </div>
@@ -371,7 +371,7 @@
                                             </div>
                                             <div class="priceBody2">
                                                 {{-- <p>$200 <span>$200</span></p> --}}
-                                                <a href="{{ route('products', ['data_from' => 'latest']) }}" class="btnShopBan">Shop Now</a>
+                                                <a href="{{ route('products', ['data_from' => 'latest']) }}" class="btnShopBan">{{ App\CPU\translate('Shop Now') }}</a>
 
                                             </div>
                                         </div>
@@ -395,7 +395,7 @@
                                             <div class="priceBody3">
                                                 {{-- <p>$200 <span>$200</span></p> --}}
 
-                                                <a href="{{ route('products', ['data_from' => 'latest']) }}" class="btnShopBan">Shop Now</a>
+                                                <a href="{{ route('products', ['data_from' => 'latest']) }}" class="btnShopBan">{{ App\CPU\translate('Shop Now') }}</a>
 
                                             </div>
                                         </div>
@@ -427,7 +427,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                             </div>
                                             <div class="btnBody">
                                                 <a href="{{ route('products', ['data_from' => 'latest']) }}"><button
-                                                        class="btnShop">Shop Now</button></a>
+                                                        class="btnShop">{{ App\CPU\translate('Shop Now') }}</button></a>
 
                                             </div>
                                         </div>
@@ -454,7 +454,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                             </div>
                                             <div class="priceBody2">
                                                 {{-- <p>$200 <span>$200</span></p> --}}
-                                                <a href="{{ route('products', ['data_from' => 'latest']) }}" class="btnShopBan">Shop Now</a>
+                                                <a href="{{ route('products', ['data_from' => 'latest']) }}" class="btnShopBan">{{ App\CPU\translate('Shop Now') }}</a>
 
                                             </div>
                                         </div>
@@ -485,7 +485,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                             </div>
                                             <div class="btnBody">
                                                 <a href="{{ route('products', ['data_from' => 'latest']) }}"><button
-                                                        class="btnShop">Shop Now</button></a>
+                                                        class="btnShop">{{ App\CPU\translate('Shop Now') }}</button></a>
 
                                             </div>
                                         </div>
@@ -516,11 +516,11 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
             <div class="row mx-auto">
 
                 <div class="col-9 px-0">
-                    <h1 class="shopHeading">Shop Our Top Categories</h1>
+                    <h1 class="shopHeading">{{ \App\CPU\translate('Shop Our Top Categories') }}</h1>
                 </div>
                 <div class="col-3 px-0">
                     <div class="innea5">
-                        <a class=" viewBtn" href="{{ route('products', ['data_from' => 'latest']) }}">View All ></i></a>
+                        <a class=" viewBtn" href="{{ route('products', ['data_from' => 'latest']) }}">{{ \App\CPU\translate('View All') }} ></i></a>
 
                     </div>
 
@@ -574,7 +574,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
         <div class="container px-auto">
             <div class="row mx-auto">
                 <div class="col-12">
-                    <h1 class="shopHeading">Flash Sales</h1>
+                    <h1 class="shopHeading">{{ \App\CPU\translate('Flash Sales') }}</h1>
                     {{-- <br> --}}
                     <div class="innerArea6">
                         <div class="inner1 cardOne">
@@ -697,7 +697,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                     <p class="whiteText">Dorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                                     <button class="shop">
                                         <a href="{{ route('products', ['data_from' => 'latest']) }}">
-                                        Shop Now </a></button>
+                                            {{ App\CPU\translate('Shop Now') }} </a></button>
                                 </div>
                             </div>
                         @endif
@@ -711,7 +711,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
         <div class="container px-auto">
             <div class="row mx-auto">
                 <div class="col-12">
-                    <h1 class="shopHeading">Trending Products</h1>
+                    <h1 class="shopHeading">{{ \App\CPU\translate('Trending Products') }}</h1>
                     {{-- <br> --}}
                     <div class="innerArea6">
                         <div class="inner1 cardOne">
@@ -827,7 +827,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
             <div class="row">
                 <div class="col-12">
                     <div class="innerArea5">
-                        <h1 class="shopHeading">Today’s Deals</h1>
+                        <h1 class="shopHeading">{{ App\CPU\translate('Today’s Deals') }}</h1>
                     </div>
                 </div>
             </div>
@@ -918,7 +918,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
         <div class="container px-auto mx-auto">
             <div class="row mx-auto">
                 <div class="col-12">
-                    <h1 class="shopHeading">For You</h1>
+                    <h1 class="shopHeading">{{ App\CPU\Translate('For You') }}</h1>
                     <div class="innerArea6">
                         <div class="inner1 cardOne forYOU">
                             @foreach ($latest_products as $key => $product)

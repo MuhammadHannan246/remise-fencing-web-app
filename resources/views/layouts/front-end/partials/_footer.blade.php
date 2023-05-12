@@ -254,7 +254,7 @@
 
             <div class="row ml-0">
                 <div class="col col-lg-6 col-md-4 col-sm-4 ">
-                    <h2 class="headingFoot">Join Our News Letter</h2>
+                    <h2 class="headingFoot">{{ App\CPU\translate('Join Our Newsletter') }}</h2>
                     <p class="textFoot">Norem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 </div>
                 <div class="col-lg-6 col-md-8 col-sm-8 ">
@@ -292,7 +292,7 @@
         margin: 2px;
         cursor: pointer;
         font-family: 'poppins';"
-                            type="submit">Subscribe</button>
+                            type="submit">{{ App\CPU\translate('Subscribe') }}</button>
                     </form>
                 </div>
             </div>
@@ -323,15 +323,15 @@
 
                         <div class="col col-lg-2 col-md-6 col-sm-12 col-12">
                             <div class="company comp4">
-                                <h4 class="companyName">Company</h4>
+                                <h4 class="companyName">{{ App\CPU\translate('Company') }}</h4>
                                 <ul class="menuList">
-                                    <li class="menuItem"><a href="{{ route('home') }}">Home</a> </li>
-                                    <li class="menuItem"><a href="{{ route('about-us') }}">About Us</a> </li>
+                                    <li class="menuItem"><a href="{{ route('home') }}">{{ App\CPU\translate('Home') }}</a> </li>
+                                    <li class="menuItem"><a href="{{ route('about-us') }}">{{ App\CPU\translate('About Us') }}</a> </li>
                                     <li class="menuItem">
                                         <a href="{{route('contacts')}}">
-                                        Contact Us </a></li>
-                                    <li class="menuItem"><a href="{{ route('helpTopic') }}">FAQ</a> </li>
-                                    
+                                            {{ App\CPU\translate('Contact Us') }} </a></li>
+                                    <li class="menuItem"><a href="{{ route('helpTopic') }}">{{ App\CPU\translate('FAQ') }}</a> </li>
+
                                 </ul>
 
                             </div>
@@ -341,7 +341,7 @@
 
                         <div class="col col-lg-2 col-md-6 col-sm-12 col-12">
                             <div class="company comp3">
-                                <h4 class="companyName">Socials</h4>
+                                <h4 class="companyName">{{ App\CPU\translate('Socials') }}</h4>
                                 <ul class="menuList">
 
                                     <li class="menuItem"><a href="https://www.twitter.com/">Twitter</a></li>
@@ -368,18 +368,18 @@
 
                         <div class="col col-lg-3 col-md-6 col-sm-12 col-12">
                             <div class="company comp2">
-                                <h4 class="companyName">Legal</h4>
+                                <h4 class="companyName">{{ App\CPU\translate('Legal') }}</h4>
                                 <ul class="menuList">
                                     <a href="{{ route('terms') }}" class="widget-list-link menuItemTerm">
                                      Terms & Conditions
-                                     
+
                                     </a>
                                     <a class="widget-list-link menuItemTerm" href="{{ route('privacy-policy') }}">
                                         {{ \App\CPU\translate('privacy_policy') }}
 
                                     </a>
-                                    
-                                    <a href="{{ route('refund-policy') }}" class="widget-list-link menuItemTerm">                
+
+                                    <a href="{{ route('refund-policy') }}" class="widget-list-link menuItemTerm">
                                        {{ \App\CPU\translate('refund_policy') }}
                                     </a>
                                     <a href="{{ route('return-policy') }}" class="widget-list-link menuItemTerm">
@@ -397,7 +397,7 @@
 
                         <div class="col col-lg-5 col-md-6 col-sm-12 col-12">
                             <div class="company comp1">
-                                <h4 class="companyName">Offices</h4>
+                                <h4 class="companyName">{{ App\CPU\translate('Offices') }}</h4>
                                 <ul class="menuList menuOffice">
                                     <li class="menuItem officeBranch">Branch Office:
                                         {{ \App\CPU\Helpers::get_business_settings('shop_address') }}</li>
@@ -406,10 +406,10 @@
 
                                 </ul>
 
-                                <h4 class="companyName">Support</h4>
+                                <h4 class="companyName">{{ App\CPU\translate('Support') }}</h4>
                                 <ul class="menuList menuOffice">
-                                    <li class="menuItem"><a href="{{ route('hint-for-sell') }}">Hint for Selling</a> </li>
-                                    
+                                    <li class="menuItem"><a href="{{ route('hint-for-sell') }}">{{ App\CPU\translate('Hint For Selling') }}</a> </li>
+
                                 </ul>
                             </div>
                         </div>

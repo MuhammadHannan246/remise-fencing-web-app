@@ -13,7 +13,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
-
+use Illuminate\Http\Request;
 
 
 //for maintenance mode
@@ -22,7 +22,15 @@ Route::get('maintenance-mode', 'Web\WebController@maintenance_mode')->name('main
 
 Route::group(['namespace' => 'Web','middleware'=>['maintenance_mode']], function () {
     Route::get('/', 'WebController@home')->name('home');
-
+    Route::get('session-clean', function(){
+        session()->flush();
+        echo 'session cleaned!';
+    });
+    Route::post('/update-language', function (Request $request) {
+        $name = $request->input('local');
+        session(['local' => $name]);
+        return response()->json(['status' => 'success'], 200);
+    });
     Route::get('quick-view', 'WebController@quick_view')->name('quick-view');
     Route::get('searched-products', 'WebController@searched_products')->name('searched-products');
 

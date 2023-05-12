@@ -450,7 +450,7 @@
                 </div>
                 <div class="discount50">
 
-                    <h4>Get 50% Off on Selected items</h4>
+                    <h4>{{ App\CPU\translate('Get 50% Off on Selected items') }}</h4>
 
                 </div>
             </div>
@@ -461,7 +461,7 @@
 
                 <div class="shoppy">
 
-                    <p><a href="{{ route('products', ['data_from' => 'latest']) }}">Shop Now</a></p>
+                    <p><a href="{{ route('products', ['data_from' => 'latest']) }}">{{ \App\CPU\translate('Shop Now') }}</a></p>
 
                 </div>
 
@@ -471,7 +471,9 @@
                 @php($local = \App\CPU\Helpers::default_lang())
 
                 <div class="saleLocation">
-                    <h4>Sell On Remise</h4>
+                    <h4>
+                        {{ \App\CPU\translate('Sell On Remise') }}
+                    </h4>
 
                 </div>
 
@@ -641,8 +643,8 @@
 
                     <!-- Search-->
 
-
                     <div class="col-6">
+
                         <div class="input-group-overlay d-none d-md-block mt-4" style="text-align: -webkit-auto;">
                             <form action="{{ route('products') }}" type="submit" class="search_form searchBar">
                                 <input class="form-control appended-form-control search-bar-input" type="text"
@@ -652,7 +654,7 @@
                                     <button class="btn btn-secondary dropdown-toggle searchCate" type="button"
                                         id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false">
-                                        All Categories
+                                        {{ \App\CPU\translate('All Categories') }}
                                     </button>
 
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -677,6 +679,83 @@
 
 
                     <div class="col-3">
+                        <!-- Translate -->
+                            {{-- <div class="hs-unfold">
+                                <div>
+                                    @php( $local = session()->has('local')?session('local'):'en')
+                                    @php($lang = \App\Model\BusinessSetting::where('type', 'language')->first())
+                                    <div
+                                        class="topbar-text dropdown disable-autohide {{Session::get('direction') === "rtl" ? 'ml-3' : 'm-1'}} text-capitalize">
+                                        <a class="topbar-link dropdown-toggle text-black d-flex align-items-center title-color" href="#" data-toggle="dropdown"
+                                        >
+                                            @foreach(json_decode($lang['value'],true) as $data)
+                                                @if($data['code']==$local)
+                                                    <img class="{{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"
+                                                        width="20"
+                                                        src="{{asset('public/assets/front-end')}}/img/flags/{{$data['code']}}.png"
+                                                        alt="Eng">
+                                                    {{$data['name']}}
+                                                @endif
+                                            @endforeach
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            @foreach(json_decode($lang['value'],true) as $key =>$data)
+                                                @if($data['status']==1)
+                                                    <li>
+                                                        <a class="dropdown-item pb-1"
+                                                        onclick="changeLang('{{$data['code']}}')"
+                                                        href="{{route('lang',[$data['code']])}}">
+                                                            <img
+                                                                class="{{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"
+                                                                width="20"
+                                                                src="{{asset('public/assets/front-end')}}/img/flags/{{$data['code']}}.png"
+                                                                alt="{{$data['name']}}"/>
+                                                            <span class="text-capitalize">{{$data['name']}}</span>
+                                                        </a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div> --}}
+                            @php( $local = session()->has('local')?session('local'):'en')
+                            @php($lang = \App\Model\BusinessSetting::where('type', 'language')->first())
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        @foreach(json_decode($lang['value'],true) as $data)
+                                            @if($data['code']==$local)
+                                                <a class="dropdown-item" href="#">{{$data['name']}}</a>
+                                            @endif
+                                        @endforeach
+                                        </button>
+                                <div class="dropdown-menu" aria-labelledby="triggerId">
+                                    @foreach(json_decode($lang['value'],true) as $data)
+                                            <a onclick="changeLang('{{$data['code']}}')" class="dropdown-item" href="#">{{$data['name']}}</a>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <script>
+                                function changeLang(name) {
+                                    fetch('update-language', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                        },
+                                        body: JSON.stringify({
+                                            local: name
+                                        })
+                                    })
+                                    .then(response => {
+                                        if (response.ok) {
+                                            location.reload();
+                                        }
+                                    });
+                                };
+                            </script>
+                        <!-- Translate -->
                         <!-- Toolbar-->
                         <div
                             class="navbar-toolbar cartAcc d-flex justify-content-end flex-shrink-0 align-items-center mt-3">
@@ -787,8 +866,7 @@
 
                                             </div>
                                         </div>
-                                        Account
-
+                                        {{ \App\CPU\translate('Account') }}
 
                                     </a>
                                     <div class="dropdown-menu __auth-dropdown dropdown-menu-{{ Session::get('direction') === 'rtl' ? 'right' : 'left' }}"

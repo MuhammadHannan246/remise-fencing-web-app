@@ -122,7 +122,7 @@
                         </div>
                         <span class="order-stats__title fz-14 text-success">
                             {{-- {{$balance}} --}}
-                            {{\App\CPU\Helpers::currency_converter($totalEarning->pending_withdraw)}}
+                            {{\App\CPU\Helpers::currency_converter(($totalEarning->total_earning - $totalEarning->total_tax_collected) -$totalEarning->withdraw)}}
                         </span>
                     </div>
                     <div class="order-stats flex-grow-1">

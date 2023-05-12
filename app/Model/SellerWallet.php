@@ -18,6 +18,8 @@ class SellerWallet extends Model
         'updated_at' => 'datetime',
     ];
 
+    
+
     public function seller()
     {
         return $this->belongsTo(Seller::class);

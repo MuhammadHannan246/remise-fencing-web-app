@@ -15,13 +15,15 @@ use App\Model\RefundRequest;
 use Illuminate\Http\Request;
 use App\Model\CustomerWallet;
 Use App\Model\RefundStatus;
+use App\Model\OrderTransaction;
 use function App\CPU\translate;
 use App\Model\RefundTransaction;
+use App\Model\AdminWalletHistory;
+use App\Model\SellerWalletHistory;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Model\CustomerWalletHistory;
 use Brian2694\Toastr\Facades\Toastr;
-use App\Model\OrderTransaction;
 
 class RefundController extends Controller
 {
@@ -110,7 +112,7 @@ class RefundController extends Controller
                 $transaction->save();
 
             }else{
-                $admin_commission = OrderTransaction::where('order_id',$order->id)->pluck('tax')->first();
+                $admin_commission = OrderTransaction::where('order_id',$order->id)->pluck('admin_commission')->first();
                 $seller_wallet = SellerWallet::where('seller_id',$order->seller_id)->first();
                 $seller_wallet->total_earning = $seller_wallet->total_earning - $refund->amount;
                 $seller_wallet->total_earning = $seller_wallet->total_tax_collected - $admin_commission;
@@ -142,6 +144,22 @@ class RefundController extends Controller
                     'transaction_type' => $transaction->type,
                     'transaction_method' => $transaction->payment_method,
                     'transaction_id' => $transaction->id,
+                ]);
+                AdminWalletHistory::create([
+                    'admin_id' => auth('admin')->id(),
+                    'amount' => -$admin_commission,
+                    'order_id' => $refund->order_id,
+                    'product_id' => $transaction->order->product_id,
+                    'payment' => $request->payment_method,
+                    'payment_type' => 'Refund',
+                ]);
+                $sellerAmount = $refund->amount - $admin_commission;
+                SellerWalletHistory::create([
+                    'seller_id' => $order->seller_id,
+                    'amount' => -$sellerAmount,
+                    'order_id' => $refund->order_id,
+                    'product_id' => $transaction->order->product_id,
+                    'payment' => 'Refund',
                 ]);
             }
 

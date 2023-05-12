@@ -50,7 +50,7 @@
                 <ul class="navbar-nav align-items-center flex-row">
 
                     <li class="nav-item d-none d-md-inline-block">
-                        <a href="{{ route('home') }}" class="btn btn-primary mr-2">Home</a>
+                        {{-- <a href="{{ route('home') }}" class="btn btn-primary mr-2">Home</a> --}}
                         <div class="hs-unfold">
                             <div>
                                 @php( $local = session()->has('local')?session('local'):'en')

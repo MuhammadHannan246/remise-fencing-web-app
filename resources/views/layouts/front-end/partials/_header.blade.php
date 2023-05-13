@@ -471,9 +471,46 @@
                 @php($local = \App\CPU\Helpers::default_lang())
 
                 <div class="saleLocation">
-                    <h4>
+                    <h4 class="w-100">
                         {{ \App\CPU\translate('Sell On Remise') }}
                     </h4>
+                    @php( $local = session()->has('local')?session('local'):'en')
+                            @php($lang = \App\Model\BusinessSetting::where('type', 'language')->first())
+                            <div class="dropdown w-100">
+                                <button class="btn btn-secondary dropdown-toggle w-100 h-48 p-0" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        @foreach(json_decode($lang['value'],true) as $data)
+                                            @if($data['code']==$local)
+                                                <a class="dropdown-item" href="#">{{$data['name']}}</a>
+                                            @endif
+                                        @endforeach
+                                        </button>
+                                <div class="dropdown-menu" aria-labelledby="triggerId">
+                                    @foreach(json_decode($lang['value'],true) as $data)
+                                            <a onclick="changeLang('{{$data['code']}}')" class="dropdown-item" href="#">{{$data['name']}}</a>
+                                    @endforeach
+                                </div>
+                            </div>
+
+                            <script>
+                                function changeLang(name) {
+                                    fetch('update-language', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                        },
+                                        body: JSON.stringify({
+                                            local: name
+                                        })
+                                    })
+                                    .then(response => {
+                                        if (response.ok) {
+                                            location.reload();
+                                        }
+                                    });
+                                };
+                            </script>
 
                 </div>
 
@@ -679,7 +716,7 @@
 
 
                     <div class="col-3">
-                        <!-- Translate -->
+                        <!-- Translate
                             {{-- <div class="hs-unfold">
                                 <div>
                                     @php( $local = session()->has('local')?session('local'):'en')
@@ -718,43 +755,9 @@
                                         </ul>
                                     </div>
                                 </div>
-                            </div> --}}
-                            @php( $local = session()->has('local')?session('local'):'en')
-                            @php($lang = \App\Model\BusinessSetting::where('type', 'language')->first())
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        @foreach(json_decode($lang['value'],true) as $data)
-                                            @if($data['code']==$local)
-                                                <a class="dropdown-item" href="#">{{$data['name']}}</a>
-                                            @endif
-                                        @endforeach
-                                        </button>
-                                <div class="dropdown-menu" aria-labelledby="triggerId">
-                                    @foreach(json_decode($lang['value'],true) as $data)
-                                            <a onclick="changeLang('{{$data['code']}}')" class="dropdown-item" href="#">{{$data['name']}}</a>
-                                    @endforeach
-                                </div>
-                            </div>
-                            <script>
-                                function changeLang(name) {
-                                    fetch('update-language', {
-                                        method: 'POST',
-                                        headers: {
-                                            'Content-Type': 'application/json',
-                                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                                        },
-                                        body: JSON.stringify({
-                                            local: name
-                                        })
-                                    })
-                                    .then(response => {
-                                        if (response.ok) {
-                                            location.reload();
-                                        }
-                                    });
-                                };
-                            </script>
+                            </div> --}} -->
+
+                           
                         <!-- Translate -->
                         <!-- Toolbar-->
                         <div
@@ -848,8 +851,8 @@
                                     <a class="navbar-tool fontt {{ Session::get('direction') === 'rtl' ? 'mr-md-0' : 'ml-md-0' }} navAccount"
                                         type="button" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false">
-                                        <div class="navbar-tool-icon-box bg-secondary">
-                                            <div class="navbar-tool-icon-box bg-secondary accountSVG">
+                                        <div class="navbar-tool-icon-box">
+                                            <div class="navbar-tool-icon-box  accountSVG">
                                                 <svg width="23" height="22" viewBox="0 0 23 22"
                                                     fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -901,6 +904,8 @@
     </div>
 </header>
 @push('script')
+
+
     <script>
         function myFunction() {
             $('#anouncement').slideUp(300)

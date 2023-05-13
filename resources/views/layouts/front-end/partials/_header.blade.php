@@ -545,7 +545,9 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <div class="modal-body">
+                                <div class="modal-body" style="    display: flex;
+    justify-content: center;
+    text-align: center;">
                                     <ul  class="navbar-nav nav_float"
                                     style="{{ Session::get('direction') === 'rtl' ? 'padding-right: 0px ' : '' }}">
                                     <li class="nav-item dropdown {{ request()->is('/') ? 'active' : '' }}">

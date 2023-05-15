@@ -44,6 +44,29 @@
         src="{{ asset('public/assets/back-end') }}/vendor/hs-navbar-vertical-aside/hs-navbar-vertical-aside-mini-cache.js">
     </script>
     <link rel="stylesheet" href="{{ asset('public/assets/back-end') }}/css/toastr.css">
+    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+   <script>
+        // Pusher.logToConsole = true;
+
+        var pusher = new Pusher('9cbaed47a381e7fe7463', {
+            cluster: 'ap1'
+        });
+
+        var channel = pusher.subscribe('seller-channel');
+        channel.bind('seller-event', function(data) {
+            if(data.user == "{{ auth('seller')->id() }}"){
+                $(".msg_history").prepend(`
+                    <div class="incoming_msg" id="incoming_msg">
+                    <div class="received_msg">
+                        <div class="received_withd_msg">
+                        <p class="bg-chat rounded px-3 py-2 mb-1" id="receive_msg">${data.message}</p>
+                        <span class="time_date fz-12"> ${data.time}    |    ${data.date}</span></div>
+                    </div>
+                    </div>`
+                )
+            }
+        });
+   </script>
 </head>
 
 <body class="footer-offset">

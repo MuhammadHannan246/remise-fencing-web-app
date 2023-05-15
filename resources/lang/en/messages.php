@@ -3083,4 +3083,6 @@
   'Offices' => 'Offices',
   'Support' => 'Support',
   'Hint For Selling' => 'Hint For Selling',
+  'Push notification successfully!' => 'Push notification successfully!',
+  'others' => 'Others',
 );

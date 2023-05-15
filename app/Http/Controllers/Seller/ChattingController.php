@@ -2,24 +2,26 @@
 
 namespace App\Http\Controllers\Seller;
 
+use App\User;
+use App\Model\Shop;
 use App\CPU\Helpers;
-use App\Http\Controllers\Controller;
+use App\Model\Order;
+use App\Model\Seller;
 use App\Model\Chatting;
 use App\Model\DeliveryMan;
-use App\Model\Seller;
-use App\Model\Shop;
-use App\User;
-use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use function App\CPU\translate;
+use Illuminate\Support\Facades\DB;
+use App\Events\CustomerMessageEvent;
+use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 
 class ChattingController extends Controller
 {
     /**
      * chatting list
      */
-    public function chat(Request $request, $type)
+    public function chat(Request $request, $type,$id=null)
     {
         $shop = Shop::where('seller_id', auth('seller')->id())->first();
         $shop_id = $shop->id;
@@ -63,21 +65,27 @@ class ChattingController extends Controller
                     'seen_by_seller' => 1
                 ]);
 
-                $chattings = Chatting::join('users', 'users.id', '=', 'chattings.user_id')
+                // dd($id);
+                $chattings = Chatting::where('user_id',$id)->join('users', 'users.id', '=', 'chattings.user_id')
                     ->select('chattings.*', 'users.f_name', 'users.l_name', 'users.image')
                     ->where('chattings.shop_id', $shop_id)
-                    ->where('user_id', $last_chat->user_id)
+                    ->where('user_id', $id)
                     ->orderBy('chattings.created_at', 'desc')
                     ->get();
 
-                $chattings_user = Chatting::join('users', 'users.id', '=', 'chattings.user_id')
-                    ->select('chattings.*', 'users.f_name', 'users.l_name', 'users.image', 'users.phone')
-                    ->where('chattings.shop_id', $shop_id)
-                    ->orderBy('chattings.created_at', 'desc')
-                    ->get()
-                    ->unique('user_id');
-
+                // $chattings_user = Chatting::join('users', 'users.id', '=', 'chattings.user_id')
+                //     ->select('chattings.*', 'users.f_name', 'users.l_name', 'users.image', 'users.phone')
+                //     ->where('chattings.shop_id', $shop_id)
+                //     ->orderBy('chattings.created_at', 'desc')
+                //     ->get()
+                //     ->unique('user_id');
+                $users_id = Order::where('seller_id',auth('seller')->id())->pluck('customer_id');
+                $chattings_user = User::whereIn('id',$users_id)->get();
                 return view('seller-views.chatting.chat', compact('chattings', 'chattings_user', 'last_chat', 'shop'));
+            } else{
+                $users_id = Order::where('seller_id',auth('seller')->id())->pluck('customer_id');
+                $chattings_user = User::whereIn('id',$users_id)->get();
+                return view('seller-views.chatting.chat', compact('chattings_user'));
             }
         }
 
@@ -182,6 +190,7 @@ class ChattingController extends Controller
                 Helpers::send_push_notif_to_device($dm->cm_firebase_token, $data);
             }
         }
+        event(new CustomerMessageEvent($request->message,$request->user_id,date('H:m A'),date('M d')));
 
         return response()->json(['message' => $message, 'time' => $time]);
     }

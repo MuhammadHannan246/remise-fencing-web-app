@@ -19,14 +19,14 @@
                 </div>
             </div>
         @endif
-        @if ($loyalty_point_status == 1)
+        {{-- @if ($loyalty_point_status == 1)
             <div>
                 <!-- Filter by price-->
                 <div class="widget-title">
                     <a class="{{Request::is('loyalty')?'active-menu':''}}" href="{{route('loyalty') }} ">{{\App\CPU\translate('my_loyalty_point')}}</a>
                 </div>
             </div>
-        @endif
+        @endif --}}
         <div>
             <!-- Filter by price-->
             <div class="widget-title">
@@ -35,7 +35,7 @@
         </div>
         <div>
             <!-- Filter by price-->
-          
+
         </div>
 
         {{--to do--}}
@@ -47,11 +47,11 @@
                     <a class="{{Request::is('chat/seller')?'active-menu':''}}" href="{{route('chat', ['type' => 'seller'])}}">{{\App\CPU\translate('chat_with_seller')}}</a>
                 </div>
             </div>
-            <div>
+            {{-- <div>
                 <div class="widget-title">
                     <a class="{{Request::is('chat/delivery-man')?'active-menu':''}}" href="{{route('chat', ['type' => 'delivery-man'])}}">{{\App\CPU\translate('chat_with_delivery-man')}}</a>
                 </div>
-            </div>
+            </div> --}}
         @endif
 
         <div>

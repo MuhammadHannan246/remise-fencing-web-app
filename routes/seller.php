@@ -166,7 +166,7 @@ Route::group(['namespace' => 'Seller', 'prefix' => 'seller', 'as' => 'seller.'],
 
         // Messaging
         Route::group(['prefix' => 'messages', 'as' => 'messages.'], function () {
-            Route::get('/chat/{type}', 'ChattingController@chat')->name('chat');
+            Route::get('/chat/{type}/{id?}', 'ChattingController@chat')->name('chat');
             Route::get('/ajax-message-by-user', 'ChattingController@ajax_message_by_user')->name('ajax-message-by-user');
             Route::post('/ajax-seller-message-store', 'ChattingController@ajax_seller_message_store')->name('ajax-seller-message-store');
         });

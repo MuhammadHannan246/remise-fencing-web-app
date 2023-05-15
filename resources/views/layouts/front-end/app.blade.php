@@ -229,6 +229,32 @@
             </noscript>
         <!-- End Facebook Pixel Code -->
     @endif
+    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+   <script>
+        // Pusher.logToConsole = true;
+
+        var pusher = new Pusher('9cbaed47a381e7fe7463', {
+            cluster: 'ap1'
+        });
+
+        var channel = pusher.subscribe('customer-channel');
+        channel.bind('customer-event', function(data) {
+            if(data.user == "{{ auth('customer')->id() }}"){
+                $(".msg_history").append(`
+                <div class="incoming_msg d-flex" id="incoming_msg">
+                    <div class="received_msg">
+                    <div class="received_withd_msg">
+                        <p id="receive_msg">${data.message}</p>
+                    <span class="time_date">${data.time}    |    ${data.date}</span></div>
+                    </div>
+                </div>`
+                );
+                $(".msg_history").animate({
+                    scrollTop: $(document).height() - $(window).height()
+                }, 1000);
+            }
+        });
+   </script>
 </head>
 <!-- Body-->
 <body class="toolbar-enabled">

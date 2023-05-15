@@ -770,13 +770,13 @@
                                         <span class="text-truncate">{{\App\CPU\translate('List')}}</span>
                                     </a>
                                 </li>
-                                <li class="nav-item {{Request::is('admin/delivery-man/chat')?'active':''}}">
+                                {{-- <li class="nav-item {{Request::is('admin/delivery-man/chat')?'active':''}}">
                                     <a class="nav-link" href="{{route('admin.delivery-man.chat')}}"
                                        title="{{\App\CPU\translate('Chat')}}">
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span class="text-truncate">{{\App\CPU\translate('chat')}}</span>
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li class="nav-item {{Request::is('admin/delivery-man/withdraw-list') || Request::is('admin/delivery-man/withdraw-view*')?'active':''}}">
                                     <a class="nav-link " href="{{route('admin.delivery-man.withdraw-list')}}"
                                        title="{{\App\CPU\translate('withdraws')}}">

@@ -5,7 +5,7 @@
 @endsection
 
 @push('css_or_js')
-    <style>
+    {{-- <style>
 
         .headind_srch {
             padding: {{Session::get('direction') === "rtl" ? '10px 20px 10px 29px' : '10px 29px 10px 20px'}};
@@ -34,7 +34,7 @@
             }
         }
 
-    </style>
+    </style> --}}
 
 @endpush
 
@@ -103,10 +103,10 @@
                                             @foreach($chattings as $key => $chat)
                                                 @if ($chat->sent_by_seller? $chat->sent_by_seller : $chat->sent_by_delivery_man)
                                                     <div class="incoming_msg">
-                                                        <div class="incoming_msg_img"><img
+                                                        {{-- <div class="incoming_msg_img"><img
                                                                 src="@if($chat->image == 'def.png'){{asset('storage/app/public/'.$chat->image)}} @else {{ $shop->delivery_man_id ?asset('storage/app/public/delivery-man/'.$last_chat->delivery_man->image) : asset('storage/app/public/shop/'.$last_chat->shop->image)}}
                                                                 @endif"
-                                                                alt="sunil"></div>
+                                                                alt="sunil"></div> --}}
                                                         <div class="received_msg">
                                                             <div class="received_withd_msg">
                                                                 <p>

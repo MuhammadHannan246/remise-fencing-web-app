@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Web;
 
+use Auth;
 use App\CPU\Helpers;
-use App\Http\Controllers\Controller;
+use App\Model\Seller;
 use App\Model\Chatting;
 use App\Model\DeliveryMan;
-use App\Model\Seller;
-use Auth;
-use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use function App\CPU\translate;
+use App\Events\SenderMessageEvent;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 
 class ChattingController extends Controller
 {
@@ -127,7 +128,7 @@ class ChattingController extends Controller
 
             $seller = Seller::find($request->seller_id);
             $fcm_token = $seller->cm_firebase_token;
-
+            event(new SenderMessageEvent($request->message,$request->seller_id,date('H:m A'),date('M d')));
         }
 
         elseif ($request->has('delivery_man_id'))
@@ -155,7 +156,6 @@ class ChattingController extends Controller
             ];
             Helpers::send_push_notif_to_device($fcm_token, $data);
         }
-
         return response()->json($message);
     }
 

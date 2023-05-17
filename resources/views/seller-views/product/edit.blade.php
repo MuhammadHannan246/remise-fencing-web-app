@@ -165,6 +165,14 @@
                                             class="form-control" value="{{ $product->code ? $product->code : '' }}"
                                             placeholder="{{ \App\CPU\translate('code') }}" required>
                                     </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="code" class="title-color">{{ \App\CPU\translate('product_hs_code') }}
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="number" name="hs_code"
+                                            class="form-control" value="{{ $product->hs_code }}"
+                                            placeholder="{{ \App\CPU\translate('product hs code') }}" required>
+                                    </div>
                                     @if($brand_setting)
                                     <div class="col-md-4 mb-3">
                                         <label for="name" class="title-color">{{\App\CPU\translate('Brand')}}</label>
@@ -180,7 +188,7 @@
                                     </div>
                                     @endif
 
-                                    <div class="col-md-4 mb-3 physical_product_show">
+                                    <div class="col-md-6 mb-3 physical_product_show">
                                         <label for="name" class="title-color">{{\App\CPU\translate('Unit')}}</label>
                                         <select
                                             class="js-example-basic-multiple js-states js-example-responsive form-control"
@@ -191,6 +199,32 @@
                                             @endforeach
                                         </select>
                                     </div>
+
+                                    <div class="col-md-3 mb-3 physical_product_show">
+                                        <label for="weight" class="title-color">{{\App\CPU\translate('Weight')}}</label>
+                                        <input type="number" placeholder="Product weight" value="{{ $product->weight }}" name="weight" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-3 mb-3 physical_product_show">
+                                        <label for="weight_unit" class="title-color">{{\App\CPU\translate('Weight unit')}}</label>
+                                        <input type="text" placeholder="Product weight unit" value="{{ $product->weight_unit }}" name="weight_unit" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-3 mb-3 physical_product_show">
+                                        <label for="width" class="title-color">{{\App\CPU\translate('Width')}}</label>
+                                        <input type="number" placeholder="Product width" value="{{ $product->width }}" name="width" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-3 mb-3 physical_product_show">
+                                        <label for="height" class="title-color">{{\App\CPU\translate('height')}}</label>
+                                        <input type="number" placeholder="Product height" value="{{ $product->height }}" name="height" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-3 mb-3 physical_product_show">
+                                        <label for="depth" class="title-color">{{\App\CPU\translate('depth')}}</label>
+                                        <input type="number" placeholder="Product depth" value="{{ $product->depth }}" name="depth" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-3 mb-3 physical_product_show">
+                                        <label for="dimention_unit" class="title-color">{{\App\CPU\translate('Dimention unit')}}</label>
+                                        <input type="text" placeholder="Product unit" value="{{ $product->dimention_unit }}" name="dimention_unit" class="form-control" required>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

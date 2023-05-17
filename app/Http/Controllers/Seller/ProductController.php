@@ -573,6 +573,13 @@ class ProductController extends Controller
             'purchase_price'        => 'required|numeric|gt:0',
             'discount'              => 'required|gt:-1',
             'shipping_cost'         => 'required_if:product_type,==,physical|gt:-1',
+            'weight'                =>  'required|numeric',
+            'weight_unit'           =>  'required',
+            'width'                =>  'required|numeric',
+            'height'                =>  'required|numeric',
+            'depth'                =>  'required|numeric',
+            'dimention_unit'       =>  'required',
+            'hs_code'              =>  'required',
             'code'                  => 'required|numeric|min:1|digits_between:6,20|unique:products,code,'.$product->id,
             'minimum_order_qty'     => 'required|numeric|min:1',
         ], [
@@ -785,6 +792,13 @@ class ProductController extends Controller
         $product->tax               = $request->tax;
         $product->tax_model         = $request->tax_model;
         $product->code              = $request->code;
+        $product->weight            = $request->weight;
+        $product->weight_unit            = $request->weight_unit;
+        $product->hs_code            = $request->hs_code;
+        $product->width             = $request->width;
+        $product->height            = $request->height;
+        $product->depth             = $request->depth;
+        $product->dimention_unit    = $request->dimention_unit;
         $product->minimum_order_qty = $request->minimum_order_qty;
         $product->tax_type          = $request->tax_type;
         $product->discount          = $request->discount_type == 'flat' ? Convert::usd($request->discount) : $request->discount;

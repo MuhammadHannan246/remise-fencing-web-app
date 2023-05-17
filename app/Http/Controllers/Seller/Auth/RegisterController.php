@@ -35,7 +35,11 @@ class RegisterController extends Controller
             'logo'          => 'required|mimes: jpg,jpeg,png,gif',
             'banner'        => 'required|mimes: jpg,jpeg,png,gif',
             'email'         => 'required|unique:sellers',
-            'shop_address'  => 'required',
+            'shop_country'  => 'required',
+            'shop_state'  => 'required',
+            'shop_city'  => 'required',
+            'shop_street'  => 'required',
+            'shop_postal_code'  => 'required',
             'f_name'        => 'required',
             'l_name'        => 'required',
             'shop_name'     => 'required',
@@ -86,7 +90,11 @@ class RegisterController extends Controller
             $shop = new Shop();
             $shop->seller_id = $seller->id;
             $shop->name = $request->shop_name;
-            $shop->address = $request->shop_address;
+            $shop->country = $request->shop_country;
+            $shop->state = $request->shop_state;
+            $shop->city = $request->shop_city;
+            $shop->street = $request->shop_street;
+            $shop->postal_code = $request->shop_postal_code;
             $shop->contact = $request->phone;
             $shop->image = ImageManager::upload('shop/', 'png', $request->file('logo'));
             $shop->banner = ImageManager::upload('shop/banner/', 'png', $request->file('banner'));

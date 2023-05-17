@@ -49,13 +49,13 @@
     text-align: center;
         }
         .lblClr .phoneTxt{
-            font-size:10px !important; 
+            font-size:10px !important;
             color:#1E1E1EB2 !important;
         }
         @media screen and (max-width: 480px){
             .lblClr .phoneTxt{
-            font-size: 7px !important;    
-        }   
+            font-size: 7px !important;
+        }
         }
     </style>
 </head>
@@ -126,11 +126,11 @@
                                         <div class="password-toggle">
                                             <input type="password" class="form-control ship-control form-control-user" minlength="6" id="exampleInputPassword" name="password" required>
                                             <label class="password-toggle-btn btnPass"style="">
-                                                <input class="custom-control-input" type="checkbox"> 
-                                                
+                                                <input class="custom-control-input" type="checkbox">
+
                                                 {{-- <i class="fa-solid fa-eye fa-flip-horizontal fa-sm" style="color: #00000099;
                                                 font-size: 16px;"></i> --}}
-                                                
+
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#00000099" class="bi bi-eye-fill" viewBox="0 0 16 16">
                                                     <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                                                     <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
@@ -148,12 +148,12 @@
 
                                             <label class="password-toggle-btn btnPass">
                                                 <input class="custom-control-input" type="checkbox"
-                                                       style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};"> 
+                                                       style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#00000099" class="bi bi-eye-fill" viewBox="0 0 16 16">
                                                         <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                                                         <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                                                       </svg>
-    
+
                                                        <span
                                                     class="sr-only">{{\App\CPU\translate('Show')}} {{\App\CPU\translate('password')}} </span>
                                             </label>
@@ -189,9 +189,46 @@
                                             <input type="text" class="form-control ship-control form-control-user" id="shop_name" name="shop_name"  value="{{old('shop_name')}}"required>
                                         </div>
 
-                                        <div class="form-group ship-form">
-                                            <label class="lblClr" for="reg-ln">{{\App\CPU\translate('Shop_Address')}}</label>
-                                            <input name="shop_address" class="form-control ship-control" id="shop_address"rows="1" >{{old('shop_address')}}</div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <div class="form-group ship-form">
+                                                    <label class="lblClr" for="reg-ln">{{\App\CPU\translate('Country Code')}}</label>
+                                                    <input name="shop_country" class="form-control ship-control" id="shop_country"rows="1" max="3" >
+                                                    {{old('shop_country')}}
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="form-group ship-form">
+                                                    <label class="lblClr" for="reg-ln">{{\App\CPU\translate('State')}}</label>
+                                                    <input name="shop_state" class="form-control ship-control" id="shop_state"rows="1" >
+                                                    {{old('shop_state')}}
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="form-group ship-form">
+                                                    <label class="lblClr" for="reg-ln">{{\App\CPU\translate('City')}}</label>
+                                                    <input name="shop_city" class="form-control ship-control" id="shop_city"rows="1" >
+                                                    {{old('shop_city')}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="form-group ship-form">
+                                                    <label class="lblClr" for="reg-ln">{{\App\CPU\translate('Street')}}</label>
+                                                    <input name="shop_street" class="form-control ship-control" id="shop_street"rows="1" >
+                                                    {{old('shop_street')}}
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-group ship-form">
+                                                    <label class="lblClr" for="reg-ln">{{\App\CPU\translate('Postal_code')}}</label>
+                                                    <input name="shop_postal_code" class="form-control ship-control" id="shop_postal_code"rows="1" >
+                                                    {{old('shop_postal_code')}}
+                                                </div>
+                                            </div>
+                                        </div>
 
                                         <div class="col-sm-6" text-center>
                                             <br><br>
@@ -275,7 +312,7 @@
                                 </span>
                             </label>
                         </div>
-                        
+
                         <input type="hidden" name="from_submit" value="seller">
                         <button type="submit" class="btn ship-sub-btn btn-user btn-block" id="apply" disabled>{{\App\CPU\translate('Apply')}} {{\App\CPU\translate('Shop')}} </button>
                         <br>
@@ -1234,7 +1271,7 @@
     /* footer CSS */
 
 
-    
+
 
     .footLogo {
         width: 180px;
@@ -3738,10 +3775,10 @@
     const inputCheckd = document.querySelector("#inputCheckd");
     const inputCheckd2 = document.querySelector("#inputCheckd2");
     const apply = document.querySelector("#apply");
-    
+
     inputCheckd.addEventListener('change', toggleSubmitButton);
     inputCheckd2.addEventListener('change', toggleSubmitButton);
-    
+
     function toggleSubmitButton(){
         if(inputCheckd.checked && inputCheckd2.checked){
             apply.disabled = false;

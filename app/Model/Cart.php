@@ -16,13 +16,26 @@ class Cart extends Model
         'shipping_cost'=>'float'
     ];
 
-    public function cart_shipping(){
+    protected $fillable = [
+        'shipping_cost'
+    ];
+
+    public function cart_shipping()
+    {
         return $this->hasOne(CartShipping::class,'cart_group_id','cart_group_id');
     }
-
     public function product()
     {
         return $this->belongsTo(Product::class)->where('status', 1);
     }
-    
+    public function seller()
+    {
+        return $this->belongsTo(Seller::class);
+    }
+    public function shop()
+    {
+        return $this->belongsTo(Shop::class,'seller_id','seller_id');
+    }
+
+
 }

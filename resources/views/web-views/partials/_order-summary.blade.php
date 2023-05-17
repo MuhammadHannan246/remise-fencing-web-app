@@ -53,10 +53,22 @@
                 </span>
             </div>
             <div class="d-flex justify-content-between">
+                @if (isset($cost))
                 <span class="cart_title">{{\App\CPU\translate('shipping')}}</span>
                 <span class="cart_value">
-                    {{\App\CPU\Helpers::currency_converter($total_shipping_cost)}}
-                </span>
+                        {{ \App\CPU\Helpers::currency_converter($cost) }}
+                        {{-- {{\App\CPU\Helpers::currency_converter($total_shipping_cost)}} --}}
+                    </span>
+                @endif
+            </div>
+            <div class="d-flex justify-content-between">
+                @if (isset($delivery_date))
+                <span class="cart_title">{{\App\CPU\translate('shipping').' '.\App\CPU\translate('date')}}</span>
+                <span class="cart_value">
+                        {{ Carbon\Carbon::parse($delivery_date)->format('d M Y') }}
+                        {{-- {{\App\CPU\Helpers::currency_converter($total_shipping_cost)}} --}}
+                    </span>
+                @endif
             </div>
             <div class="d-flex justify-content-between">
                 <span class="cart_title">{{\App\CPU\translate('discount_on_product')}}</span>

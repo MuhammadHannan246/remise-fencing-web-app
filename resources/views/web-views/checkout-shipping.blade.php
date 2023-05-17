@@ -9,12 +9,12 @@
          @font-face {
     font-family: 'BURBANKBIGCONDENSED-BOLD';
     src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
-  
+
 }
 @font-face {
     font-family: 'BURBANKBIGCONDENSED-BLACK';
     src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
-  
+
 }
 
         .btn-outline {
@@ -213,22 +213,33 @@
                                                         @endif
                                                     </div>
 
+                                                    {{-- <div class="form-group">
+                                                        <label for="exampleInputEmail1">
+                                                            {{ \App\CPU\translate('Country')}}
+                                                            <span style="color: red">*</span>
+                                                        </label>
+                                                        <div class="abc">
+                                                            <select name="country" id="" class="form-control selectpicker" data-live-search="true" required >
+                                                                <option value="" selected>Select Country</option>
+                                                                @forelse($countries as $country)
+                                                                    <option value="{{ $country['name'] }}">{{ $country['name'] }}</option>
+
+                                                                @empty
+                                                                    <option value="">{{ \App\CPU\translate('No_country_to_deliver') }}</option>
+                                                                @endforelse
+                                                            </select>
+                                                        </div>
+                                                    </div> --}}
                                                     <div class="form-group">
                                                         <label
-                                                            for="exampleInputEmail1">{{ \App\CPU\translate('Country')}}
-                                                            <span
-                                                                style="color: red">*</span></label>
-                                                                <div class="abc">
-                                                                    <select name="country" id="" class="form-control selectpicker" data-live-search="true" required >
-                                                                        @forelse($countries as $country)
-                                                                            <option value="{{ $country['name'] }}">{{ $country['name'] }}</option>
-
-                                                                        @empty
-                                                                            <option value="">{{ \App\CPU\translate('No_country_to_deliver') }}</option>
-                                                                        @endforelse
-                                                                    </select>
-                                                                </div>
-                                                        
+                                                            for="country">{{ \App\CPU\translate('Country')}}</label>
+                                                        <select class="form-control" name="country" style="padding:0px !important; height: 50px !important;">
+                                                            @forelse($countries as $country)
+                                                                    <option value="{{ $country['name'] }}">{{ $country['name'] }}</option>
+                                                            @empty
+                                                                <option value="">{{ \App\CPU\translate('No_country_to_deliver') }}</option>
+                                                            @endforelse
+                                                        </select>
                                                     </div>
 
                                                     <div class="form-group">
@@ -391,7 +402,7 @@
                                                         <select name="billing_country"  id="" class="form-control selectpicker" style="padding: 0px !important; height: 50px !important;" data-live-search="true">
                                                             @foreach($countries as $country)
                                                                 <option value="{{ $country['name'] }}">{{ $country['name'] }}</option>
-                                                                
+
                                                             @endforeach
                                                         </select>
                                                     </div>

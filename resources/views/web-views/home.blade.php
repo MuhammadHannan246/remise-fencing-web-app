@@ -1048,7 +1048,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                 <div class="col-12">
                     <div class="innerArea9">
                         <a href="{{ route('products', ['data_from' => 'latest']) }}"><button class="loadMore">
-                                Load More
+                                {{ App\CPU\translate('Load More') }}
                             </button></a>
                     </div>
 

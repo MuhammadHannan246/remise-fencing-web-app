@@ -33,11 +33,11 @@
                         </a>
                     </li>
 
-                    <li class="list-inline-item">
+                    {{-- <li class="list-inline-item">
                         <label class="badge badge-soft-version text-capitalize">
                             {{\App\CPU\translate('Software version')}} {{ env('SOFTWARE_VERSION') }}
                         </label>
-                    </li>
+                    </li> --}}
                 </ul>
                 <!-- End List Dot -->
             </div>

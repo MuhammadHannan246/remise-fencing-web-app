@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Remise</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
@@ -37,7 +37,7 @@
 
     @section('content')
 
-  
+
 
 
     <br><br><br>
@@ -50,12 +50,12 @@
             onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
             alt="{{$web_config['name']->value}}" class=" logoImg1" width="10%">
             <div class="col-12 text_area1">
-                <h2 class="top-text">Welcome To Remise</h2>
-                <span class="span_text"> <small> SignIn as a Seller /
+                <h2 class="top-text">{{ \App\CPU\translate("Welcome To") }} Remise</h2>
+                <span class="span_text"> <small> {{ \App\CPU\translate('SignIn as a Seller') }} /
                     <a href="{{route('customer.auth.login')}}" style="font-size: 15px;
                     color: #000;
                     text-decoration: none;
-                    font-weight:500;">SignIn As a Customer</a></small></span><br>
+                    font-weight:500;">{{ \App\CPU\translate('SignIn as a Customer') }}</a></small></span><br>
 
             </div>
 
@@ -80,8 +80,8 @@
 
                         <div class="form-group INPSeller">
                             <div class="password-toggle">
-                                        
-                                        
+
+
                                         <input class="form-control ship-control" name="password" type="password" id="si-password"
                                         style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};"
                                         required>
@@ -135,7 +135,9 @@
                         <button class="button form__button"
                                 type="submit">{{\App\CPU\translate('sign_in')}}</button>
                     </form>
-            <p class="text-center pt-5 already-acc">Do you have an Account ? <a class="btn btn-outline-primary regBtn" href="{{route('shop.apply')}}">
+            <p class="text-center pt-5 already-acc">
+                 {{ App\CPU\translate('Do you have an Account') }} ?
+                  <a class="btn btn-outline-primary regBtn" href="{{route('shop.apply')}}">
                  {{\App\CPU\translate('Register')}}
             </a></p>
 
@@ -146,7 +148,7 @@
 
 <!-- Footer -->
 
- 
+
     <body>
 
 

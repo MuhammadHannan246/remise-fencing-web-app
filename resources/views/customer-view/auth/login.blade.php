@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Remise</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
@@ -44,7 +44,7 @@
 <body>
 @section('content')
 
- 
+
 
 
 
@@ -59,9 +59,9 @@
             onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
             alt="{{$web_config['name']->value}}" class=" logoImg1" width="10%">
             <div class="col-12 text_area1">
-                <h2 class="top-text">Welcome To Remise</h2>
-                <span class="span_text"> <small> SignIn as a Customer /
-                    <a  href="{{route('seller.auth.login')}}" style="font-size:15px; color: #000; text-decoration: none; font-weight:500;">SignIn As a Seller</a></small></span><br>
+                <h2 class="top-text">{{ \App\CPU\translate('Welcome To') }} Remise</h2>
+                <span class="span_text"> <small> {{ \App\CPU\translate('SignIn as a Customer') }} /
+                    <a  href="{{route('seller.auth.login')}}" style="font-size:15px; color: #000; text-decoration: none; font-weight:500;">{{ \App\CPU\translate('SignIn as a Seller') }}</a></small></span><br>
 
             </div>
 
@@ -104,7 +104,7 @@
                                         <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                                         <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                                       </svg>
-                                   
+
                                     <span
                                         class="sr-only">{{\App\CPU\translate('Show')}} {{\App\CPU\translate('password')}} </span>
                                 </label>
@@ -114,7 +114,7 @@
                         <button class="button form__button btnSIGN"
                                 type="submit">{{\App\CPU\translate('sign_in')}}</button>
                     </form>
-            <p class="text-center pt-5 already-acc">Do you have an Account ? <a class="btn btn-outline-primary registerBTN" href="{{route('customer.auth.sign-up')}}">
+            <p class="text-center pt-5 already-acc">{{ \App\CPU\translate('Do you have an Account') }} ? <a class="btn btn-outline-primary registerBTN" href="{{route('customer.auth.sign-up')}}">
                  {{\App\CPU\translate('Register')}}
             </a></p>
 

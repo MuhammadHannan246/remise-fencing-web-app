@@ -3032,7 +3032,12 @@
   'Socials' => 'Réseaux sociaux',
   'Legal' => 'Légal',
   'Offices' => 'Bureaux',
-  'Support' => 'Support',
+  'Support' => 'Soutien',
   'Hint For Selling' => 'Conseil pour la vente',
   'Get 50% Off on Selected items' => 'Obtenez 50 % de réduction sur les articles sélectionnés',
+  'SignIn as a Customer' => 'Se connecter en tant que client',
+  'SignIn as a Seller' => 'Se connecter en tant que vendeur',
+  'Do you have an Account' => 'Avez-vous un compte',
+  'All Rights Reserved By' => 'Tous droits réservés par',
+  'Load More' => 'Charger plus',
 );

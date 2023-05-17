@@ -432,7 +432,7 @@
 
             <div class="row ml-0">
                 <div class="col col-lg-6 col-md-12 col-sm-12 col-12">
-                    <p class="searchMarketing">© 2023. All Rights Reserved By Search Marketing Services</p>
+                    <p class="searchMarketing">© 2023. {{ App\CPU\translate('All Rights Reserved By') }} {{ config('app.name') }}</p>
                 </div>
                 <div class="col col-lg-6 col-md-12 col-sm-12 col-12">
                     <div class="socialIcons">

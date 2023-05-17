@@ -30,7 +30,7 @@ Route::group(['namespace' => 'Web','middleware'=>['maintenance_mode']], function
         $name = $request->input('local');
         session(['local' => $name]);
         return response()->json(['status' => 'success'], 200);
-    });
+    })->name('update-language');
     Route::get('quick-view', 'WebController@quick_view')->name('quick-view');
     Route::get('searched-products', 'WebController@searched_products')->name('searched-products');
 

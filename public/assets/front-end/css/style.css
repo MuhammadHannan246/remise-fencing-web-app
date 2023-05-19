@@ -4929,9 +4929,9 @@ a {
 @media (max-width: 767px) {
     .navbar-light .navbar-brand {
         -webkit-margin-end: auto !important;
-        margin-inline-end: auto !important;
+        margin-inline-end: 0 !important;
         -webkit-margin-start: 16px;
-        margin-inline-start: 16px;
+        margin-inline-start: 0px;
     }
     .footer-web-logo a img {
         -o-object-position: center center;

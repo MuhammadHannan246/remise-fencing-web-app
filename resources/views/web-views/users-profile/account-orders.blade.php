@@ -117,7 +117,7 @@
                 </div>
                 {{-- <div class="col sort col-xl-3 col-lg-3 col-md-12">
                 <p>
-                    Sort:
+                  Sort:
                 </p>
                 <select class="form-control order-sort">
                     <option>Default</option>

@@ -81,7 +81,7 @@ class ChattingController extends Controller
                 //     ->unique('user_id');
                 $users_id = Order::where('seller_id',auth('seller')->id())->pluck('customer_id');
                 $chattings_user = User::whereIn('id',$users_id)->get();
-                return view('seller-views.chwebatting.chat', compact('chattings', 'chattings_user', 'last_chat', 'shop'));
+                return view('seller-views.chatting.chat', compact('chattings', 'chattings_user', 'last_chat', 'shop'));
             } else{
                 $users_id = Order::where('seller_id',auth('seller')->id())->pluck('customer_id');
                 $chattings_user = User::whereIn('id',$users_id)->get();

@@ -38,7 +38,16 @@
             {{\App\CPU\translate('Shipping')}} {{$billing_input_by_customer==1?\App\CPU\translate('and').' '. \App\CPU\translate('billing'):' '}}
         </div>
     </a>
-    <a class="step-item {{$step>=3?'active':''}} {{$step==3?'current':''}}" href="{{route('checkout-payment')}}">
+    <a class="step-item {{$step>=3?'active':''}} {{$step==3?'current':''}}" href="{{route('checkout-courier')}}">
+        <div class="step-progress">
+            <span class="step-count"><i class="czi-package"></i></span>
+        </div>
+        @php($billing_input_by_customer=\App\CPU\Helpers::get_business_settings('billing_input_by_customer'))
+        <div class="step-label">
+            {{\App\CPU\translate('Courier Service')}}
+        </div>
+    </a>
+    <a class="step-item {{$step>=4?'active':''}} {{$step==4?'current':''}}" href="{{route('checkout-payment')}}">
         <div class="step-progress">
             <span class="step-count"><i class="czi-card"></i></span>
         </div>

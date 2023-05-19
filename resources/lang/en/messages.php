@@ -3103,4 +3103,6 @@
   'SignIn as a Customer' => 'SignIn as a Customer',
   'Do you have an Account' => 'Do you have an Account',
   'All Rights Reserved By' => 'All Rights Reserved By',
+  'Load More' => 'Load More',
+  'Courier Service' => 'Courier Service',
 );

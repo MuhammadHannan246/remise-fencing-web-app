@@ -38,6 +38,7 @@ Route::group(['namespace' => 'Web','middleware'=>['maintenance_mode']], function
     Route::post('order_note', 'WebController@order_note')->name('order_note');
     Route::get('checkout-details', 'WebController@checkout_details')->name('checkout-details');
     Route::get('checkout-shipping', 'WebController@checkout_shipping')->name('checkout-shipping');
+    Route::get('checkout-courier', 'WebController@checkout_courier')->name('checkout-courier');
     Route::get('checkout-payment', 'WebController@checkout_payment')->name('checkout-payment');
     Route::get('checkout-review', 'WebController@checkout_review')->name('checkout-review');
     Route::get('checkout-complete', 'WebController@checkout_complete')->name('checkout-complete');

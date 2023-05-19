@@ -53,12 +53,14 @@
                                                  id="{{$chatting->user_id? $chatting->user_id : $chatting->delivery_man_id}}" data-name="{{$chatting->f_name}} {{$chatting->l_name}}" data-phone="{{ $chatting->phone }}">
                                                 <div class="chat_people media gap-10" id="chat_people">
                                                     <div class="chat_img avatar avatar-sm avatar-circle">
+                                                        {{-- {{ dd($chatting) }} --}}
                                                         <img
-                                                            @if (Request::is('seller/messages/chat/customer'))
-                                                                src="{{ asset('storage/app/public/profile/'.$chatting->image) }}"
-                                                            @else
+                                                            {{-- @if (Request::is('seller/messages/chat/customer/')) --}}
+                                                                {{-- src="{{  asset('storage/app/public/profile/'.$chatting->image) }}" --}}
+                                                                src="{{  Storage::url('profile/'.$chatting->image) }}"
+                                                            {{-- @else
                                                                 src="{{ asset('storage/app/public/delivery-man/'.$chatting->image) }}"
-                                                            @endif
+                                                            @endif --}}
                                                             id="{{$chatting->user_id? $chatting->user_id : $chatting->delivery_man_id}}" onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'" class="avatar-img avatar-circle">
                                                         <span class="avatar-satatus avatar-sm-status avatar-status-success"></span>
                                                     </div>
@@ -86,13 +88,14 @@
                 <section class="col-xl-9 col-lg-8 mt-4 mt-lg-0">
                     <div class="card card-body card-chat justify-content-between Chat">
                         <!-- Inbox Message Header -->
+                        @php
+                            $currentUser = $chattings_user->where('id',request()->id)->first();
+                        @endphp
+                        @if (isset($currentUser))
                         <div class="inbox_msg_header d-flex flex-wrap gap-3 justify-content-between align-items-center border px-3 py-2 rounded mb-4">
                             <!-- Profile -->
                             <div class="media align-items-center gap-3">
                                 <div class="avatar avatar-sm avatar-circle">
-                                    @php
-                                        $currentUser = $chattings_user->where('id',request()->id)->first();
-                                    @endphp
                                     <img class="avatar-img" id="profile_image"
                                          @if (Request::is('seller/messages/chat/customer'))
                                          src="{{ asset('storage/app/public/profile/'.$currentUser->image) }}"
@@ -103,13 +106,12 @@
                                     <span class="avatar-status avatar-sm-status avatar-status-success"></span>
                                 </div>
                                 <div class="media-body">
-
                                     <h5 class="profile-name mb-1" id="profile_name">{{ $currentUser->f_name.' '.$currentUser->l_name }}</h5>
                                     <span class="fz-12" id="profile_phone">{{ $currentUser->phone }}</span>
                                 </div>
                             </div>
                             <!-- End Profile -->
-
+                            @endif
                         </div>
                         <!-- End Inbox Message Header -->
 

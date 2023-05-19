@@ -787,7 +787,7 @@
                             });
                         }
                     } else {
-                        location.href = '{{route('checkout-payment')}}';
+                        location.href = '{{route('checkout-courier')}}';
                     }
                 },
                 complete: function () {

@@ -58,7 +58,7 @@
                 <div class="checkout_details mt-2" style="    border: 1px solid #7777;
                 padding: 25px;
                 border-radius: 10px;">
-                @include('web-views.partials._checkout-steps',['step'=>3])
+                @include('web-views.partials._checkout-steps',['step'=>4])
                 <!-- Payment methods accordion-->
                     <h2 class="h6 pb-3 mb-2 mt-5">{{\App\CPU\translate('choose_payment')}}</h2>
 
@@ -149,8 +149,6 @@
                                     </div>
                                 </div>
                             @endif
-
-
 
                             @php($config=\App\CPU\Helpers::get_business_settings('stripe'))
                             @if($config['status'])

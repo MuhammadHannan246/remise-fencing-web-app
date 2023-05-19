@@ -3105,4 +3105,7 @@
   'All Rights Reserved By' => 'All Rights Reserved By',
   'Load More' => 'Load More',
   'Courier Service' => 'Courier Service',
+  'Choose Courier Service' => 'Choose Courier Service',
+  'courier_service' => 'Courier service',
+  'choose_courier_service' => 'Choose courier service',
 );

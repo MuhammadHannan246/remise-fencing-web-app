@@ -335,147 +335,117 @@ class WebController extends Controller
                     $physical_product = true;
                     $shippingAddress = ShippingAddress::find(session('address_id'));
                     //Shipping Api
-                        $response = Http::withHeaders([
-                            'Content-Type' => 'application/json',
-                            'as-api-key' => 'asat_1812d8cb63514d82ab903b1b8499bf30',
-                            ])->post('https://sandbox-api.aftership.com/postmen/v3/rates', [
-                                "shipper_accounts" => [
+                    $services = Http::withHeaders([
+                        'Content-Type' => 'application/json',
+                        'as-api-key' => 'asat_1812d8cb63514d82ab903b1b8499bf30',
+                        ])->post('https://sandbox-api.aftership.com/postmen/v3/rates', [
+                            "shipper_accounts" => [
+                                [
+                                    "id" => "3ba41ff5-59a7-4ff0-8333-64a4375c7f21"
+                                ]
+                            ],
+                            "shipment" => [
+                                "ship_from" => [
+                                    "contact_name" => $cart->seller->f_name.' '.$cart->seller->l_name,
+                                    "company_name" => $cart->shop->name,
+                                    "country" => $cart->shop->country,
+                                    "state" => $cart->shop->state,
+                                    "city" => $cart->shop->city,
+                                    "street1" => $cart->shop->street,
+                                    "postal_code" => $cart->shop->postal_code,
+                                    "phone" => $cart->seller->phone,
+                                    "email" => $cart->seller->email
+                                ],
+                                "ship_to" => [
+                                    "contact_name" => $shippingAddress->contact_person_name,
+                                    "company_name" => "Customer",
+                                    "street1" => "street",
+                                    "city" => $shippingAddress->city,
+                                    "state" => "UT",
+                                    "postal_code" => $shippingAddress->zip,
+                                    "country" => $shippingAddress->country,
+                                    "phone" => $shippingAddress->phone,
+                                    "email" => auth('customer')->user()->email
+                                ],
+                                "parcels" => [
                                     [
-                                        "id" => "3ba41ff5-59a7-4ff0-8333-64a4375c7f21"
+                                        "box_type" => "custom",
+                                        "dimension" => [
+                                            "width" => 10,
+                                            "height" => 10,
+                                            "depth" => 10,
+                                            "unit" => "cm"
+                                        ],
+                                        "items" => [
+                                            [
+                                                "description" => $cart->product->details,
+                                                "quantity" => $cart->quantity,
+                                                "price" => [
+                                                    "currency" => "USD",
+                                                    "amount" => $cart->price
+                                                ],
+                                                "item_id" => "1234567",
+                                                "origin_country" => "CHN",
+                                                "weight" => [
+                                                    "unit" => "kg",
+                                                    "value" => 10
+                                                ],
+                                                "sku" => json_decode($cart->product->variation)[0]->sku ?? 'none',
+                                                "hs_code" => $cart->product->hs_code
+                                            ]
+                                        ],
+                                        "description" => "Food XS",
+                                        "weight" => [
+                                            "unit" => "kg",
+                                            "value" => 10
+                                        ]
                                     ]
                                 ],
-                                "shipment" => [
-                                    "ship_from" => [
-                                        "contact_name" => $cart->seller->f_name.' '.$cart->seller->l_name,
-                                        "company_name" => $cart->shop->name,
-                                        "country" => $cart->shop->country,
-                                        "state" => $cart->shop->state,
-                                        "city" => $cart->shop->city,
-                                        "street1" => $cart->shop->street,
-                                        "postal_code" => $cart->shop->postal_code,
-                                        "phone" => $cart->seller->phone,
-                                        "email" => $cart->seller->email
-                                    ],
-                                    "ship_to" => [
-                                        "contact_name" => $shippingAddress->contact_person_name,
-                                        "company_name" => "Customer",
-                                        "street1" => "street",
-                                        "city" => $shippingAddress->city,
-                                        "state" => "UT",
-                                        "postal_code" => $shippingAddress->zip,
-                                        "country" => $shippingAddress->country,
-                                        "phone" => $shippingAddress->phone,
-                                        "email" => auth('customer')->user()->email
-                                    ],
-                                    "parcels" => [
-                                        [
-                                            "box_type" => "custom",
-                                            "dimension" => [
-                                                "width" => 10,
-                                                "height" => 10,
-                                                "depth" => 10,
-                                                "unit" => "cm"
-                                            ],
-                                            "items" => [
-                                                [
-                                                    "description" => $cart->product->details,
-                                                    "quantity" => $cart->quantity,
-                                                    "price" => [
-                                                        "currency" => "USD",
-                                                        "amount" => $cart->price
-                                                    ],
-                                                    "item_id" => "1234567",
-                                                    "origin_country" => "CHN",
-                                                    "weight" => [
-                                                        "unit" => "kg",
-                                                        "value" => 10
-                                                    ],
-                                                    "sku" => json_decode($cart->product->variation)[0]->sku ?? 'none',
-                                                    "hs_code" => $cart->product->hs_code
-                                                ]
-                                            ],
-                                            "description" => "Food XS",
-                                            "weight" => [
-                                                "unit" => "kg",
-                                                "value" => 10
-                                            ]
-                                        ]
-                                    ],
-                                    "return_to" => [
-                                        "contact_name" => $cart->seller->f_name.' '.$cart->seller->l_name,
-                                        "street1" => $cart->shop->street,
-                                        "country" => $cart->shop->country,
-                                        "state" => $cart->shop->state,
-                                        "city" => $cart->shop->city,
-                                        "postal_code" => $cart->shop->postal_code,
-                                        "phone" => $cart->seller->phone,
-                                        "email" => $cart->seller->email,
-                                        "type" => "residential",
-                                    ],
-                                    "delivery_instructions" => "handle with care"
-                                ]
-                        ]);
+                                "return_to" => [
+                                    "contact_name" => $cart->seller->f_name.' '.$cart->seller->l_name,
+                                    "street1" => $cart->shop->street,
+                                    "country" => $cart->shop->country,
+                                    "state" => $cart->shop->state,
+                                    "city" => $cart->shop->city,
+                                    "postal_code" => $cart->shop->postal_code,
+                                    "phone" => $cart->seller->phone,
+                                    "email" => $cart->seller->email,
+                                    "type" => "residential",
+                                ],
+                                "delivery_instructions" => "handle with care"
+                            ]
+                    ]);
 
-                        $response = $response->json();
-                        // dd($response);
-                        $delivery_date = $response['data']['rates'][0]['delivery_date'];
-                        $cost = $response['data']['rates'][0]['total_charge']['amount'];
+                    $services = $services->json();
+                    // dd($services);
                     //Shipping Api
-                    $cart->update([
-                        'shipping_cost' => $cost,
-                    ]);
-                    CartShipping::where('cart_group_id',$group_id)->update([
-                        'shipping_cost' => $cost,
-                    ]);
                 }
             }
-            $physical_products[] = $physical_product;
         }
-        unset($physical_products[0]);
+        return view('web-views.checkout-courier', compact('services'));
+    }
 
-        $cod_not_show = in_array(false, $physical_products);
-
+    public function courier_update(Request $request)
+    {
+        $cart_group_ids = CartManager::get_cart_group_ids();
+        $shippingMethod = Helpers::get_business_settings('shipping_method');
+        $service = json_decode($request->service);
+        // dd($service->service_type);
         foreach($cart_group_ids as $group_id) {
-            $carts = Cart::where('cart_group_id', $group_id)->get();
-
+            $carts = Cart::with(['seller','shop','product'])->where('cart_group_id', $group_id)->get();
             $physical_product = false;
             foreach ($carts as $cart) {
-                if ($cart->product_type == 'physical') {
-                    $physical_product = true;
-                }
-            }
-
-            if($physical_product) {
-                foreach ($carts as $cart) {
-                    if ($shippingMethod == 'inhouse_shipping') {
-                        $admin_shipping = ShippingType::where('seller_id', 0)->first();
-                        $shipping_type = isset($admin_shipping) == true ? $admin_shipping->shipping_type : 'order_wise';
-                    } else {
-                        if ($cart->seller_is == 'admin') {
-                            $admin_shipping = ShippingType::where('seller_id', 0)->first();
-                            $shipping_type = isset($admin_shipping) == true ? $admin_shipping->shipping_type : 'order_wise';
-                        } else {
-                            $seller_shipping = ShippingType::where('seller_id', $cart->seller_id)->first();
-                            $shipping_type = isset($seller_shipping) == true ? $seller_shipping->shipping_type : 'order_wise';
-                        }
-                    }
-                    if ($shipping_type == 'order_wise') {
-                        $cart_shipping = CartShipping::where('cart_group_id', $cart->cart_group_id)->first();
-                        if (!isset($cart_shipping)) {
-                            Toastr::info(translate('select_shipping_method_first'));
-                            return redirect('shop-cart');
-                        }
-                    }
-                }
+                $cart->update([
+                    'shipping_cost' => $service->total_charge->amount,
+                    'delivery_date' => $service->delivery_date,
+                    'shipping_type' => $service->service_type,
+                ]);
+                CartShipping::where('cart_group_id',$group_id)->update([
+                    'shipping_cost' => $service->total_charge->amount,
+                ]);
             }
         }
-        if (session()->has('address_id') && count($cart_group_ids) > 0) {
-
-            return view('web-views.checkout-courier', compact('cod_not_show','response','delivery_date','cost'));
-        }
-
-        Toastr::error(translate('incomplete_info'));
-        return back();
+        return response(200);
     }
 
     public function checkout_payment()
@@ -493,99 +463,102 @@ class WebController extends Controller
                 if ($cart->product_type == 'physical') {
                     $physical_product = true;
                     $shippingAddress = ShippingAddress::find(session('address_id'));
-                    //Shipping Api
-                        $response = Http::withHeaders([
-                            'Content-Type' => 'application/json',
-                            'as-api-key' => 'asat_1812d8cb63514d82ab903b1b8499bf30',
-                            ])->post('https://sandbox-api.aftership.com/postmen/v3/rates', [
-                                "shipper_accounts" => [
-                                    [
-                                        "id" => "3ba41ff5-59a7-4ff0-8333-64a4375c7f21"
-                                    ]
-                                ],
-                                "shipment" => [
-                                    "ship_from" => [
-                                        "contact_name" => $cart->seller->f_name.' '.$cart->seller->l_name,
-                                        "company_name" => $cart->shop->name,
-                                        "country" => $cart->shop->country,
-                                        "state" => $cart->shop->state,
-                                        "city" => $cart->shop->city,
-                                        "street1" => $cart->shop->street,
-                                        "postal_code" => $cart->shop->postal_code,
-                                        "phone" => $cart->seller->phone,
-                                        "email" => $cart->seller->email
-                                    ],
-                                    "ship_to" => [
-                                        "contact_name" => $shippingAddress->contact_person_name,
-                                        "company_name" => "Customer",
-                                        "street1" => "street",
-                                        "city" => $shippingAddress->city,
-                                        "state" => "UT",
-                                        "postal_code" => $shippingAddress->zip,
-                                        "country" => $shippingAddress->country,
-                                        "phone" => $shippingAddress->phone,
-                                        "email" => auth('customer')->user()->email
-                                    ],
-                                    "parcels" => [
-                                        [
-                                            "box_type" => "custom",
-                                            "dimension" => [
-                                                "width" => 10,
-                                                "height" => 10,
-                                                "depth" => 10,
-                                                "unit" => "cm"
-                                            ],
-                                            "items" => [
-                                                [
-                                                    "description" => $cart->product->details,
-                                                    "quantity" => $cart->quantity,
-                                                    "price" => [
-                                                        "currency" => "USD",
-                                                        "amount" => $cart->price
-                                                    ],
-                                                    "item_id" => "1234567",
-                                                    "origin_country" => "CHN",
-                                                    "weight" => [
-                                                        "unit" => "kg",
-                                                        "value" => 10
-                                                    ],
-                                                    "sku" => json_decode($cart->product->variation)[0]->sku ?? 'none',
-                                                    "hs_code" => $cart->product->hs_code
-                                                ]
-                                            ],
-                                            "description" => "Food XS",
-                                            "weight" => [
-                                                "unit" => "kg",
-                                                "value" => 10
-                                            ]
-                                        ]
-                                    ],
-                                    "return_to" => [
-                                        "contact_name" => $cart->seller->f_name.' '.$cart->seller->l_name,
-                                        "street1" => $cart->shop->street,
-                                        "country" => $cart->shop->country,
-                                        "state" => $cart->shop->state,
-                                        "city" => $cart->shop->city,
-                                        "postal_code" => $cart->shop->postal_code,
-                                        "phone" => $cart->seller->phone,
-                                        "email" => $cart->seller->email,
-                                        "type" => "residential",
-                                    ],
-                                    "delivery_instructions" => "handle with care"
-                                ]
-                        ]);
+                    // //Shipping Api
+                    //     $response = Http::withHeaders([
+                    //         'Content-Type' => 'application/json',
+                    //         'as-api-key' => 'asat_1812d8cb63514d82ab903b1b8499bf30',
+                    //         ])->post('https://sandbox-api.aftership.com/postmen/v3/rates', [
+                    //             "shipper_accounts" => [
+                    //                 [
+                    //                     "id" => "3ba41ff5-59a7-4ff0-8333-64a4375c7f21"
+                    //                 ]
+                    //             ],
+                    //             "shipment" => [
+                    //                 "ship_from" => [
+                    //                     "contact_name" => $cart->seller->f_name.' '.$cart->seller->l_name,
+                    //                     "company_name" => $cart->shop->name,
+                    //                     "country" => $cart->shop->country,
+                    //                     "state" => $cart->shop->state,
+                    //                     "city" => $cart->shop->city,
+                    //                     "street1" => $cart->shop->street,
+                    //                     "postal_code" => $cart->shop->postal_code,
+                    //                     "phone" => $cart->seller->phone,
+                    //                     "email" => $cart->seller->email
+                    //                 ],
+                    //                 "ship_to" => [
+                    //                     "contact_name" => $shippingAddress->contact_person_name,
+                    //                     "company_name" => "Customer",
+                    //                     "street1" => "street",
+                    //                     "city" => $shippingAddress->city,
+                    //                     "state" => "UT",
+                    //                     "postal_code" => $shippingAddress->zip,
+                    //                     "country" => $shippingAddress->country,
+                    //                     "phone" => $shippingAddress->phone,
+                    //                     "email" => auth('customer')->user()->email
+                    //                 ],
+                    //                 "parcels" => [
+                    //                     [
+                    //                         "box_type" => "custom",
+                    //                         "dimension" => [
+                    //                             "width" => 10,
+                    //                             "height" => 10,
+                    //                             "depth" => 10,
+                    //                             "unit" => "cm"
+                    //                         ],
+                    //                         "items" => [
+                    //                             [
+                    //                                 "description" => $cart->product->details,
+                    //                                 "quantity" => $cart->quantity,
+                    //                                 "price" => [
+                    //                                     "currency" => "USD",
+                    //                                     "amount" => $cart->price
+                    //                                 ],
+                    //                                 "item_id" => "1234567",
+                    //                                 "origin_country" => "CHN",
+                    //                                 "weight" => [
+                    //                                     "unit" => "kg",
+                    //                                     "value" => 10
+                    //                                 ],
+                    //                                 "sku" => json_decode($cart->product->variation)[0]->sku ?? 'none',
+                    //                                 "hs_code" => $cart->product->hs_code
+                    //                             ]
+                    //                         ],
+                    //                         "description" => "Food XS",
+                    //                         "weight" => [
+                    //                             "unit" => "kg",
+                    //                             "value" => 10
+                    //                         ]
+                    //                     ]
+                    //                 ],
+                    //                 "return_to" => [
+                    //                     "contact_name" => $cart->seller->f_name.' '.$cart->seller->l_name,
+                    //                     "street1" => $cart->shop->street,
+                    //                     "country" => $cart->shop->country,
+                    //                     "state" => $cart->shop->state,
+                    //                     "city" => $cart->shop->city,
+                    //                     "postal_code" => $cart->shop->postal_code,
+                    //                     "phone" => $cart->seller->phone,
+                    //                     "email" => $cart->seller->email,
+                    //                     "type" => "residential",
+                    //                 ],
+                    //                 "delivery_instructions" => "handle with care"
+                    //             ]
+                    //     ]);
 
-                        $response = $response->json();
-                        // dd($response);
-                        $delivery_date = $response['data']['rates'][0]['delivery_date'];
-                        $cost = $response['data']['rates'][0]['total_charge']['amount'];
-                    //Shipping Api
-                    $cart->update([
-                        'shipping_cost' => $cost,
-                    ]);
-                    CartShipping::where('cart_group_id',$group_id)->update([
-                        'shipping_cost' => $cost,
-                    ]);
+                    //     $response = $response->json();
+                    //     // dd($response);
+                    //     $delivery_date = $response['data']['rates'][0]['delivery_date'];
+                    //     $cost = $response['data']['rates'][0]['total_charge']['amount'];
+                    // //Shipping Api
+                    // $cart->update([
+                    //     'shipping_cost' => $cost,
+                    // ]);
+                    // CartShipping::where('cart_group_id',$group_id)->update([
+                    //     'shipping_cost' => $cost,
+                    // ]);
+                    // dd($cart);
+                    $cost = $cart->shipping_cost;
+                    $delivery_date = $cart->delivery_date;
                 }
             }
             $physical_products[] = $physical_product;
@@ -629,8 +602,7 @@ class WebController extends Controller
             }
         }
         if (session()->has('address_id') && count($cart_group_ids) > 0) {
-
-            return view('web-views.checkout-payment', compact('cod_not_show','response','delivery_date','cost'));
+            return view('web-views.checkout-payment', compact('cod_not_show','delivery_date','cost'));
         }
 
         Toastr::error(translate('incomplete_info'));

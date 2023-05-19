@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\CPU\CartManager;
-use App\CPU\Helpers;
-use App\CPU\OrderManager;
-use App\Model\BusinessSetting;
-use App\Model\Currency;
-use App\Model\Order;
-use App\Model\Product;
-use Brian2694\Toastr\Facades\Toastr;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
-use PHPUnit\Exception;
 use Stripe\Charge;
 use Stripe\Stripe;
+use App\CPU\Helpers;
+use App\Model\Order;
+use App\Model\Product;
+use PHPUnit\Exception;
+use App\Model\Currency;
+use App\CPU\CartManager;
+use App\CPU\OrderManager;
+use App\CPU\BackEndHelper;
+use Illuminate\Support\Str;
+use App\Model\BusinessSetting;
+use Illuminate\Support\Facades\DB;
+use Brian2694\Toastr\Facades\Toastr;
 
 class StripePaymentController extends Controller
 {
@@ -84,8 +85,11 @@ class StripePaymentController extends Controller
             $order_id = OrderManager::generate_order($data);
             array_push($order_ids, $order_id);
         }
+        $helper = new \App\CPU\BackEndHelper();
+        $result = $helper->afterShip();
         CartManager::cart_clean();
         if (auth('customer')->check() || auth('seller')->check()) {
+
             Toastr::success('Payment success.');
             return view('web-views.checkout-complete');
         }

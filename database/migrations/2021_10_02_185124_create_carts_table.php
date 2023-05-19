@@ -31,6 +31,7 @@ class CreateCartsTable extends Migration
             $table->string('thumbnail')->nullable();
             $table->bigInteger('seller_id')->nullable();
             $table->string('seller_is')->default('admin');
+            $table->string('delivery_date')->nullable();
             $table->timestamps();
         });
     }

@@ -2,12 +2,17 @@
 
 namespace App\CPU;
 
-use App\Model\BusinessSetting;
-use App\Model\Currency;
+use App\Model\Cart;
 use App\Model\Order;
-use App\Model\OrderTransaction;
+use App\Model\Currency;
+use App\CPU\CartManager;
+use App\CPU\OrderManager;
+use App\Model\BusinessSetting;
+use App\Model\ShippingAddress;
 use Illuminate\Support\Carbon;
+use App\Model\OrderTransaction;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class BackEndHelper
 {
@@ -164,5 +169,119 @@ class BackEndHelper
         }
 
         return $formatted_value;
+    }
+
+    public function afterShip()
+    {
+        $unique_id = OrderManager::gen_unique_id();
+        $order_ids = [];
+        $cart_group_ids = CartManager::get_cart_group_ids();
+        $carts = Cart::whereIn('cart_group_id', $cart_group_ids)->get();
+
+        $physical_product = false;
+        foreach($carts as $cart){
+            if($cart->product_type == 'physical'){
+                $physical_product = true;
+            }
+        }
+        if($physical_product) {
+            foreach ($cart_group_ids as $group_id) {
+                $data = [
+                    'payment_method' => 'cash_on_delivery',
+                    'order_status' => 'pending',
+                    'payment_status' => 'unpaid',
+                    'transaction_ref' => '',
+                    'order_group_id' => $unique_id,
+                    'cart_group_id' => $group_id
+                ];
+                $order_id = OrderManager::generate_order($data);
+                array_push($order_ids, $order_id);
+            }
+            $shippingAddress = ShippingAddress::find(session('address_id'));
+            //Shipping Api
+            $response = Http::withHeaders([
+                'Content-Type' => 'application/json',
+                'as-api-key' => 'asat_1812d8cb63514d82ab903b1b8499bf30',
+            ])->post('https://sandbox-api.aftership.com/postmen/v3/labels', [
+                "return_shipment" => false,
+                "is_document" => true,
+                "service_type" => $cart->shipping_type,
+                "paper_size" => "4x6",
+                "shipper_account" => [
+                    "id" => "3ba41ff5-59a7-4ff0-8333-64a4375c7f21"
+                ],
+                "references" => [
+                    strval($order_id)
+                ],
+                "billing" => [
+                    "paid_by" => "recipient",
+
+                ],
+                "shipment" => [
+                    "ship_from" => [
+                        "contact_name" => $cart->seller->f_name.' '.$cart->seller->l_name,
+                        "company_name" => $cart->shop->name,
+                        "country" => $cart->shop->country,
+                        "state" => $cart->shop->state,
+                        "city" => $cart->shop->city,
+                        "street1" => $cart->shop->street,
+                        "postal_code" => $cart->shop->postal_code,
+                        "phone" => $cart->seller->phone,
+                        "email" => $cart->seller->email
+                    ],
+                    "ship_to" => [
+                        "contact_name" => $shippingAddress->contact_person_name,
+                        "company_name" => "Customer",
+                        "street1" => $shippingAddress->address,
+                        "city" => $shippingAddress->city,
+                        "state" => "UT",
+                        "postal_code" => $shippingAddress->zip,
+                        "country" => $shippingAddress->country,
+                        "phone" => $shippingAddress->phone,
+                        "email" => auth('customer')->user()->email
+                    ],
+                    "parcels" => [
+                        [
+                            "box_type" => "custom",
+                            "dimension" => [
+                                "width" => $cart->product->width,
+                                "height" => $cart->product->height,
+                                "depth" => $cart->product->depth,
+                                "unit" => $cart->product->dimention_unit
+                            ],
+                            "items" => [
+                                [
+                                    "description" => strip_tags($cart->product->details),
+                                    "quantity" => $cart->quantity,
+                                    "price" => [
+                                        "currency" => session('currency_code'),
+                                        "amount" => $cart->price
+                                    ],
+                                    "item_id" => "1234567",
+                                    "origin_country" => "CHN",
+                                    "weight" => [
+                                        "unit" => $cart->product->weight_unit,
+                                        "value" => $cart->product->weight
+                                    ],
+                                    "sku" => json_decode($cart->product->variation)[0]->sku ?? 'none',
+                                    "hs_code" => $cart->product->hs_code
+                                ]
+                            ],
+                            "description" => "Remise Order",
+                            "weight" => [
+                                "unit" => $cart->product->weight_unit,
+                                "value" => $cart->product->weight
+                            ]
+                        ]
+                    ],
+                    'delivery_instructions' => session('order_note')
+                ]
+            ]);
+
+            $response = $response->json();
+            // dd($response);
+            //Shipping Api
+        }
+        return 'success';
     }
 }

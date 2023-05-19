@@ -13,11 +13,14 @@ class Cart extends Model
         'tax' => 'float',
         'seller_id' => 'integer',
         'quantity' => 'integer',
-        'shipping_cost'=>'float'
+        'shipping_cost'=>'float',
+        'delivery_date'=>'string'
     ];
 
     protected $fillable = [
-        'shipping_cost'
+        'shipping_cost',
+        'delivery_date',
+        'shipping_type',
     ];
 
     public function cart_shipping()

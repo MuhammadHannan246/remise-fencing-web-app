@@ -153,6 +153,9 @@ class PaypalPaymentController extends Controller
             }
 
             if (auth('customer')->check()) {
+                $helper = new \App\CPU\BackEndHelper();
+                $result = $helper->afterShip();
+                dd($result);
                 Toastr::success('Payment success.');
                 return view('web-views.checkout-complete');
             }

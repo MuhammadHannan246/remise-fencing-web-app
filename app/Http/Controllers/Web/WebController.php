@@ -286,10 +286,10 @@ class WebController extends Controller
 
                     if ($physical_product && $shipping_type == 'order_wise') {
                         $cart_shipping = CartShipping::where('cart_group_id', $cart->cart_group_id)->first();
-                        if (!isset($cart_shipping)) {
-                            Toastr::info(translate('select_shipping_method_first'));
-                            return redirect('shop-cart');
-                        }
+                        // if (!isset($cart_shipping)) {
+                        //     Toastr::info(translate('select_shipping_method_first'));
+                        //     return redirect('shop-cart');
+                        // }
                     }
                 }
             }
@@ -460,6 +460,7 @@ class WebController extends Controller
             $carts = Cart::with(['seller','shop','product'])->where('cart_group_id', $group_id)->get();
             $physical_product = false;
             foreach ($carts as $cart) {
+                // dd($cart);
                 if ($cart->product_type == 'physical') {
                     $physical_product = true;
                     $shippingAddress = ShippingAddress::find(session('address_id'));
@@ -593,10 +594,10 @@ class WebController extends Controller
                     }
                     if ($shipping_type == 'order_wise') {
                         $cart_shipping = CartShipping::where('cart_group_id', $cart->cart_group_id)->first();
-                        if (!isset($cart_shipping)) {
-                            Toastr::info(translate('select_shipping_method_first'));
-                            return redirect('shop-cart');
-                        }
+                        // if (!isset($cart_shipping)) {
+                        //     Toastr::info(translate('select_shipping_method_first'));
+                        //     return redirect('shop-cart');
+                        // }
                     }
                 }
             }

@@ -534,44 +534,44 @@ class OrderManager
 
         }
 
-        if ($or['payment_method'] != 'cash_on_delivery' && $or['payment_method'] != 'offline_payment') {
-            $order = Order::find($order_id);
-            $order_summary = OrderManager::order_summary($order);
-            $order_amount = $order_summary['subtotal'] - $order_summary['total_discount_on_product'] - $order['discount'];
+        // if ($or['payment_method'] != 'cash_on_delivery' && $or['payment_method'] != 'offline_payment') {
+        //     $order = Order::find($order_id);
+        //     $order_summary = OrderManager::order_summary($order);
+        //     $order_amount = $order_summary['subtotal'] - $order_summary['total_discount_on_product'] - $order['discount'];
 
-            DB::table('order_transactions')->insert([
-                'transaction_id' => OrderManager::gen_unique_id(),
-                'customer_id' => $order['customer_id'],
-                'seller_id' => $order['seller_id'],
-                'seller_is' => $order['seller_is'],
-                'order_id' => $order_id,
-                'order_amount' => $order_amount,
-                'seller_amount' => $order_amount - $admin_commission,
-                'admin_commission' => $admin_commission,
-                'received_by' => 'admin',
-                'status' => 'hold',
-                'delivery_charge' => $order['shipping_cost'],
-                'tax' => $order_summary['total_tax'],
-                'delivered_by' => 'admin',
-                'payment_method' => $or['payment_method'],
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+        //     DB::table('order_transactions')->insert([
+        //         'transaction_id' => OrderManager::gen_unique_id(),
+        //         'customer_id' => $order['customer_id'],
+        //         'seller_id' => $order['seller_id'],
+        //         'seller_is' => $order['seller_is'],
+        //         'order_id' => $order_id,
+        //         'order_amount' => $order_amount,
+        //         'seller_amount' => $order_amount - $admin_commission,
+        //         'admin_commission' => $admin_commission,
+        //         'received_by' => 'admin',
+        //         'status' => 'hold',
+        //         'delivery_charge' => $order['shipping_cost'],
+        //         'tax' => $order_summary['total_tax'],
+        //         'delivered_by' => 'admin',
+        //         'payment_method' => $or['payment_method'],
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ]);
 
-            if (AdminWallet::where('admin_id', 1)->first() == false) {
-                DB::table('admin_wallets')->insert([
-                    'admin_id' => 1,
-                    'withdrawn' => 0,
-                    'commission_earned' => 0,
-                    'inhouse_earning' => 0,
-                    'delivery_charge_earned' => 0,
-                    'pending_amount' => 0,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]);
-            }
-            DB::table('admin_wallets')->where('admin_id', $order['seller_id'])->increment('pending_amount', $order['order_amount']);
-        }
+        //     if (AdminWallet::where('admin_id', 1)->first() == false) {
+        //         DB::table('admin_wallets')->insert([
+        //             'admin_id' => 1,
+        //             'withdrawn' => 0,
+        //             'commission_earned' => 0,
+        //             'inhouse_earning' => 0,
+        //             'delivery_charge_earned' => 0,
+        //             'pending_amount' => 0,
+        //             'created_at' => now(),
+        //             'updated_at' => now(),
+        //         ]);
+        //     }
+        //     DB::table('admin_wallets')->where('admin_id', $order['seller_id'])->increment('pending_amount', $order['order_amount']);
+        // }
 
         if ($seller_data->seller_is == 'admin') {
             $seller = Admin::find($seller_data->seller_id);

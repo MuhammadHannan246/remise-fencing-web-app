@@ -233,7 +233,7 @@
             </div>
             @endforeach
 
-@if($shippingMethod=='inhouse_shipping')
+{{-- @if($shippingMethod=='inhouse_shipping')
         <?php
             $admin_shipping = \App\Model\ShippingType::where('seller_id', 0)->first();
             $shipping_type = isset($admin_shipping) == true ? $admin_shipping->shipping_type : 'order_wise';
@@ -260,7 +260,7 @@
             </div>
         </div>
     @endif
-@endif
+@endif --}}
 
 @if( $cart->count() == 0)
     <div class="d-flex justify-content-center align-items-center">

@@ -73,6 +73,7 @@ class StripePaymentController extends Controller
     {
         $unique_id = OrderManager::gen_unique_id();
         $order_ids = [];
+        $check = true;
         foreach (CartManager::get_cart_group_ids() as $group_id) {
             $data = [
                 'payment_method' => 'stripe',
@@ -82,12 +83,15 @@ class StripePaymentController extends Controller
                 'order_group_id' => $unique_id,
                 'cart_group_id' => $group_id
             ];
-            $order_id = OrderManager::generate_order($data);
-            array_push($order_ids, $order_id);
+            if($check){
+                $order_id = OrderManager::generate_order($data);
+                $check = false;
+            }
+            // array_push($order_ids, $order_id);
         }
-        $helper = new \App\CPU\BackEndHelper();
-        $result = $helper->afterShip();
-        CartManager::cart_clean();
+        // $helper = new \App\CPU\BackEndHelper();
+        // $result = $helper->afterShip();
+        // CartManager::cart_clean();
         if (auth('customer')->check() || auth('seller')->check()) {
 
             Toastr::success('Payment success.');

@@ -56,13 +56,13 @@
                                                         {{-- {{ dd($chatting) }} --}}
                                                         <img
                                                             {{-- @if (Request::is('seller/messages/chat/customer/')) --}}
-                                                                {{-- src="{{  asset('storage/app/public/profile/'.$chatting->image) }}" --}}
-                                                                src="{{  Storage::url('profile/'.$chatting->image) }}"
+                                                                src="{{  asset('storage/app/public/profile/'.$chatting->image) }}"
+                                                                {{-- src="{{  Storage::url('profile/'.$chatting->image) }}" --}}
                                                             {{-- @else
                                                                 src="{{ asset('storage/app/public/delivery-man/'.$chatting->image) }}"
                                                             @endif --}}
-                                                            id="{{$chatting->user_id? $chatting->user_id : $chatting->delivery_man_id}}" onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'" class="avatar-img avatar-circle">
-                                                        <span class="avatar-satatus avatar-sm-status avatar-status-success"></span>
+                                                            id="{{$chatting->user_id? $chatting->user_id : $chatting->delivery_man_id}}" class="avatar-img avatar-circle">
+                                                            <span class="avatar-satatus avatar-sm-status avatar-status-success"></span>
                                                     </div>
                                                     <div class="chat_ib media-body">
                                                         <h5 class="mb-1 seller @if($chatting->seen_by_seller)active-text @endif"
@@ -97,12 +97,11 @@
                             <div class="media align-items-center gap-3">
                                 <div class="avatar avatar-sm avatar-circle">
                                     <img class="avatar-img" id="profile_image"
-                                         @if (Request::is('seller/messages/chat/customer'))
+                                         {{-- @if (Request::is('seller/messages/chat/customer')) --}}
                                          src="{{ asset('storage/app/public/profile/'.$currentUser->image) }}"
-                                         @else
+                                         {{-- @else
                                          src="{{ asset('storage/app/public/delivery-man/'.$currentUser->image) }}"
-                                         @endif
-                                         onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'" alt="Image Description">
+                                         @endif --}} alt="Image Description">
                                     <span class="avatar-status avatar-sm-status avatar-status-success"></span>
                                 </div>
                                 <div class="media-body">

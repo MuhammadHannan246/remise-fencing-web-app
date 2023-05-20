@@ -419,6 +419,11 @@ class WebController extends Controller
                     $services = $services->json();
                     // dd($services);
                     //Shipping Api
+                    if($services['meta']['code'] == '4104')
+                    {
+                        Toastr::warning($services['meta']['message']);
+                        return back();
+                    }
                 }
             }
         }

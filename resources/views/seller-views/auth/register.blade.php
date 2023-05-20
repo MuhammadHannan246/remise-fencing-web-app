@@ -354,7 +354,7 @@
             top: -33px !important;
             width: 30px;
             background: transparent;
-            left: 525px !important;
+            left: 520px !important;
         }
     .innerArea {
         background: #000;

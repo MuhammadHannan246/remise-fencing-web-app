@@ -633,7 +633,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                                                 ( {{ $product->reviews->count() }} )
                                                                             </label>
                                                                         </div> --}}
-                                                                        <div class="d-flex" style="width: 27%;">
+                                                                        <div class="d-flex" style="width: 50%;">
                                                                             <div>
                                                                                 @if ($product->discount > 0)
                                                                                     <p
@@ -776,7 +776,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
                                                                                 ( {{ $product->reviews->count() }} )
                                                                             </label>
                                                                         </div> --}}
-                                                                        <div class="d-flex" style="width: 27%;">
+                                                                        <div class="d-flex" style="width: 47%;">
                                                                             <div>
                                                                                 @if ($product->discount > 0)
                                                                                     <p
@@ -994,7 +994,7 @@ linear-gradient(90.38deg, rgba(0, 0, 0, 0.6) 2.19%, rgba(0, 0, 0, 0) 82.56%),
 
                                                                         </div>
 
-                                                                        <div class="d-flex" style="width: 27%;">
+                                                                        <div class="d-flex" style="width: 47%;">
                                                                             <div>
                                                                                 @if ($product->discount > 0)
                                                                                     <p

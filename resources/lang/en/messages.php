@@ -3108,4 +3108,5 @@
   'Choose Courier Service' => 'Choose Courier Service',
   'courier_service' => 'Courier service',
   'choose_courier_service' => 'Choose courier service',
+  'Country Code' => 'Country Code',
 );

@@ -3108,5 +3108,6 @@
   'Choose Courier Service' => 'Choose Courier Service',
   'courier_service' => 'Courier service',
   'choose_courier_service' => 'Choose courier service',
+  'no_shipping_method_selected' => 'No shipping method selected',
   'Country Code' => 'Country Code',
 );

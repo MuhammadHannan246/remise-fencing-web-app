@@ -326,7 +326,7 @@ class WebController extends Controller
 
         $physical_products[] = false;
 
-
+        // dd(session('address_id'));
         foreach($cart_group_ids as $group_id) {
             $carts = Cart::with(['seller','shop','product'])->where('cart_group_id', $group_id)->get();
             $physical_product = false;
@@ -418,6 +418,7 @@ class WebController extends Controller
 
                     $services = $services->json();
                     // dd($services);
+
                     //Shipping Api
                     if($services['meta']['code'] == '4104')
                     {

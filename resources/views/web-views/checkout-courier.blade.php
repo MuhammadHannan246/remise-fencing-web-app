@@ -56,7 +56,7 @@
                     <div class="form-group">
                       <label for="">Courier Service</label>
                       {{-- {{ dd($services['data']['rates'][0]) }} --}}
-                      <select class="form-control" name="courier_service" id="courier_service">
+                      <select class="form-control" name="courier_service" id="courier_service" style="padding: 0 !important; height:55px !important;">
                         <option value="" selected>Select Courier Service</option>
                         @foreach ($services['data']['rates'] as $service)
                             <option value="{{ json_encode($service) }}">{{ $service['service_name'] }}  rates( {{ $service['total_charge']['amount'] }}{{ $service['total_charge']['currency'] }} )  delivery date ( {{ $service['delivery_date'] }} )</option>

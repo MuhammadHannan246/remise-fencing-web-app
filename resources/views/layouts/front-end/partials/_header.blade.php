@@ -329,7 +329,7 @@
               .saleLocation {
                   width: 58%;
               }
-           
+
           }
 
           @media (min-width: 768px) {
@@ -468,6 +468,9 @@
               .mobile-container{
                 display: block;
               }
+              .hideTopMOB{
+                display: none;
+              }
 
               /* .rightTop{
                 align-items: flex-end;
@@ -491,7 +494,7 @@
 
   <header class="box-shadow-sm rtl __inline-10">
       <!-- Topbara-->
-      <div class="topbar">
+      <div class="topbar hideTopMOB">
           <div class="container">
 
               <div class="leftDiscount">
@@ -685,8 +688,12 @@
                                       </button>
 
                                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                          @foreach (App\Model\Category::orderBy('name')->get() as $category)
-                                              <a class="dropdown-item" href="#">{{ $category->name }}</a>
+                                          @foreach (App\Model\Category::orderBy('name')->where('position', 0)->priority()->get() as $category)
+                                              <a class="dropdown-item"
+                                                    href="javascript:"
+                                                    onclick="location.href='{{ route('products', ['id' => $category->id, 'data_from' => 'category', 'page' => 1]) }}'">
+                                              {{ $category->name }}
+                                            </a>
                                           @endforeach
                                       </div>
                                   </div>
@@ -900,13 +907,13 @@
                   src="{{ asset('storage/app/public/company') . '/' . $web_config['mob_logo']->value }}"
                   onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
                   alt="{{ $web_config['name']->value }}" />
-                
+
 
 
 
                 </a>
                 <div id="myLinks">
-                    
+
 
                     <ul  class="navbar-nav nav_float"
                     style="flex-direction:column !important; {{ Session::get('direction') === 'rtl' ? 'padding-right: 0px ' : '' }}">
@@ -995,10 +1002,10 @@
                         @endif
                     @endif
                     <li class="pt-3 pb-3">
-                    
+
                     <a href="{{ route('products', ['data_from' => 'latest']) }}">{{ \App\CPU\translate('Shop Now') }}</a>
-                        
-                    </li> 
+
+                    </li>
 
                     <li class="pt-3 pb-3">
                         @php($local = session()->has('local') ? session('local') : 'en')
@@ -1021,12 +1028,12 @@
                                 @endforeach
                             </div>
                         </div>
-                        
+
                     </li>
                     <li>
                         {{-- tele --}}
                          <a class="topbar-link pb-3 pt-3" style="text-align: center;" href="tel: {{ $web_config['phone']->value }}">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff"
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#000"
                               class="bi bi-telephone-fill" viewBox="0 0 16 16">
                               <path fill-rule="evenodd"
                                   d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
@@ -1066,7 +1073,7 @@
             </div>
 
             {{-- <div style="padding-left:16px">
-            
+
             </div> --}}
 
             <!-- End smartphone / tablet look -->

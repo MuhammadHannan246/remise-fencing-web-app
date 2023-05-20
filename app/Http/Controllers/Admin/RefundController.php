@@ -112,7 +112,9 @@ class RefundController extends Controller
                 $transaction->save();
 
             }else{
+                // dd($order->id);
                 $orderTransaction = OrderTransaction::where('order_id',$order->id)->first();
+                // dd($orderTransaction);
                 $seller_wallet = SellerWallet::where('seller_id',$order->seller_id)->first();
                 $seller_wallet->total_earning = $seller_wallet->total_earning - $orderTransaction->seller_amount;
                 $seller_wallet->total_tax_collected = $seller_wallet->total_tax_collected - $refund->order_details->tax;

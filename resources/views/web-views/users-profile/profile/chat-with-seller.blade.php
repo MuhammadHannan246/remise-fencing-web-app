@@ -4,6 +4,8 @@
 {{ Request::is('chat/seller') ? \App\CPU\translate('chat_with_seller') : \App\CPU\translate('chat_with_delivery-man')}}
 @endsection
 
+
+
 @push('css_or_js')
     {{-- <style>
 
@@ -42,7 +44,7 @@
 <div class="__chat-seller">
     <!-- Page Title-->
     <div class="container rtl">
-        <h3 class="text-center py-3 headerTitle m-0">{{ Request::is('chat/seller') ? \App\CPU\translate('chat_with_seller') : \App\CPU\translate('chat_with_delivery-man')}}</h3>
+        <h3 class="text-center py-3 headerTitle m-0" style="font-family: 'BURBANKBIGCONDENSED-BOLD'; font-size:33.23px">{{ Request::is('chat/seller') ? \App\CPU\translate('chat_with_seller') : \App\CPU\translate('chat_with_delivery-man')}}</h3>
     </div>
 
     <!-- Page Content-->
@@ -109,7 +111,7 @@
                                                                 alt="sunil"></div> --}}
                                                         <div class="received_msg">
                                                             <div class="received_withd_msg">
-                                                                <p>
+                                                                <p class="p-3">
                                                                     {{$chat->message}}
                                                                 </p>
                                                                 <span class="time_date"> {{$chat->created_at->format('h:i A')}}    |    {{$chat->created_at->format('M d')}} </span>
@@ -121,7 +123,7 @@
 
                                                     <div class="outgoing_msg">
                                                         <div class="send_msg">
-                                                            <p class="btn--primary">
+                                                            <p class="btn--primary p-3">
                                                                 {{$chat->message}}
                                                             </p>
                                                             <span class="time_date"> {{$chat->created_at->format('h:i A')}}    |    {{$chat->created_at->format('M d')}} </span>
@@ -172,6 +174,8 @@
 </div>
 
 @endsection
+
+
 
 @push('script')
     <script>
@@ -235,7 +239,7 @@
                                           </div>
                                           <div class="received_msg">
                                             <div class="received_withd_msg">
-                                              <p id="receive_msg">${element.message}</p>
+                                              <p id="receive_msg" >${element.message}</p>
                                             <span class="time_date">${time}    |    ${date}</span></div>
                                           </div>
                                         </div>`

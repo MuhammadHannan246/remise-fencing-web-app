@@ -2618,7 +2618,7 @@ textarea.form-control {
 
 .btn:focus, .btn.focus {
     outline: 0;
-    box-shadow: none
+    box-shadow: none !important;
 }
 
 .btn.disabled, .btn:disabled {
@@ -4804,7 +4804,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 .card-header {
     padding: .875rem 1.25rem;
     margin-bottom: 0;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: transparent !important;
     border-bottom: 1px solid rgba(0, 0, 0, 0.085)
 }
 

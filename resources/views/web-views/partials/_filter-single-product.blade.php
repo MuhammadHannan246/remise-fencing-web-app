@@ -52,7 +52,7 @@
 
                 </div>
                 
-                <div class="d-flex align-items-center justify-content-between priceCol" style="width: 35%;">
+                <div class="d-flex align-items-center justify-content-between priceCol" style="width: 66%;">
                     <div>
                         @if ($product->discount > 0)
                             <p

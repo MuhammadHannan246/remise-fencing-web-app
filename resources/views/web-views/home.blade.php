@@ -2981,7 +2981,7 @@ text-decoration: none;
     .innea5 .viewBtn {
         position: absolute;
         top: 45px;
-        left: 220px;
+        left: 205px;
         color: black;
         text-decoration: underline;
     }

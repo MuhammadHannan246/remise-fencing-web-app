@@ -929,9 +929,9 @@
                             <a class="nav-link dropdown-toggle navLink fontt" href="#"
                                 data-toggle="dropdown">{{ \App\CPU\translate("Today's Deals") }}</a>
                             <ul class="dropdown-menu __dropdown-menu-sizing dropdown-menu-{{ Session::get('direction') === 'rtl' ? 'right' : 'left' }} scroll-bar"
-                                style="text-align: {{ Session::get('direction') === 'rtl' ? 'right' : 'left' }};">
+                                style="background: #fff !important; text-align: {{ Session::get('direction') === 'rtl' ? 'right' : 'left' }};">
                                 @foreach (\App\CPU\BrandManager::get_active_brands() as $brand)
-                                    <li class="__inline-17">
+                                    <li class="__inline-17" >
                                         <div>
                                             <a class="dropdown-item"
                                                 href="{{ route('products', ['id' => $brand['id'], 'data_from' => 'brand', 'page' => 1]) }}">
@@ -968,7 +968,7 @@
                     @php($business_mode = \App\CPU\Helpers::get_business_settings('business_mode'))
                     @if ($business_mode == 'multi')
                         <li class="nav-item dropdown pt-3 pb-3 {{ request()->is('/') ? 'active' : '' }}">
-                            <a class="nav-link navLink fontt"
+                            <a class="nav-link navLink fontt" 
                                 href="{{ route('sellers') }}">{{ \App\CPU\translate('Special Offers') }}</a>
                         </li>
 
@@ -985,7 +985,7 @@
                                     </button>
                                     <div class="dropdown-menu __dropdown-menu-3 __min-w-165px"
                                         aria-labelledby="dropdownMenuButton"
-                                        style="text-align: {{ Session::get('direction') === 'rtl' ? 'right' : 'left' }};">
+                                        style="background: #fff !important; text-align: {{ Session::get('direction') === 'rtl' ? 'right' : 'left' }};">
                                             <a class="dropdown-item" href="{{ route('shop.apply') }}">
                                                 {{ \App\CPU\translate('Become a') }}
                                                 {{ \App\CPU\translate('Seller') }}
@@ -1001,11 +1001,6 @@
                             </li>
                         @endif
                     @endif
-                    <li class="pt-3 pb-3">
-
-                    <a href="{{ route('products', ['data_from' => 'latest']) }}">{{ \App\CPU\translate('Shop Now') }}</a>
-
-                    </li>
 
                     <li class="pt-3 pb-3">
                         @php($local = session()->has('local') ? session('local') : 'en')
@@ -1020,19 +1015,27 @@
                                     @endif
                                 @endforeach
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="triggerId1">
+                            <div class="dropdown-menu" aria-labelledby="triggerId1" style="background: #000 !important; transform: translate3d(-100px, 33px, 0px) !important;">
                                 @foreach (json_decode($lang['value'], true) as $data)
                                     <a onclick="changeLang('{{ $data['code'] }}')" class="dropdown-item on-hover"
-                                        style="color: #000 !important; text-transform:capitalize; text-align:center;"
+                                        style="color: #fff !important; text-transform:capitalize; text-align:center;"
                                         href="#">{{ $data['name'] }}</a>
                                 @endforeach
                             </div>
                         </div>
 
                     </li>
+
+                    <li class="pt-3 pb-3">
+
+                    <a  href="{{ route('products', ['data_from' => 'latest']) }}" style="font-size: 18px !important;" >{{ \App\CPU\translate('Shop Now') }}</a>
+
+                    </li>
+
+
                     <li>
                         {{-- tele --}}
-                         <a class="topbar-link pb-3 pt-3" style="text-align: center;" href="tel: {{ $web_config['phone']->value }}">
+                         <a class="topbar-link pb-3 pt-3" style="text-align: center; font-size:16px !important;" href="tel: {{ $web_config['phone']->value }}">
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#000"
                               class="bi bi-telephone-fill" viewBox="0 0 16 16">
                               <path fill-rule="evenodd"
@@ -1042,7 +1045,7 @@
 
                       </a>
                     </li>
-
+                    
                 </ul>
 
                 <script>
@@ -1080,6 +1083,10 @@
         </div>
       </div>
   </header>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   @push('script')
       <script>
           function myFunction() {

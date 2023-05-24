@@ -51,7 +51,7 @@
             top: -33px !important;
             width: 30px;
             background: transparent;
-            left: 525px !important;
+            left: 520px !important;
         }
 
         @media screen and (max-width: 480px) {
@@ -147,7 +147,7 @@
                                     style="color: #00000099;
                                                 font-size: 16px;"></i> --}}
 
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#00000099" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                                <svg onclick="togglePass1()" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#00000099" class="bi bi-eye-fill" viewBox="0 0 16 16">
                                                     <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                                                     <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                                                   </svg>
@@ -162,7 +162,7 @@
                         <div class="password-toggle">
                             <input class="form-control ship-control" name="con_password" type="password"
                                 style="text-align: {{ Session::get('direction') === 'rtl' ? 'right' : 'left' }};"
-                                placeholder="{{ \App\CPU\translate('minimum_8_characters_long') }}" id="si-password"
+                                placeholder="{{ \App\CPU\translate('minimum_8_characters_long') }}" id="si-password1"
                                 required>
                             <label class="password-toggle-btn btnPass"
                                >
@@ -172,7 +172,7 @@
                                     style="color: #00000099;
                                                        font-size: 16px;"></i> --}}
 
-                                                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#00000099" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                                       <svg onclick="togglePass2()" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#00000099" class="bi bi-eye-fill" viewBox="0 0 16 16">
                                                         <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                                                         <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                                                       </svg>
@@ -3659,6 +3659,31 @@
 </style>
 
 <script>
+
+    function togglePass1(){
+
+        var togPass = document.getElementById("si-password");
+
+        if(togPass.type === "password"){
+            togPass.type = "text";
+        }
+        else{
+            togPass.type = "password";
+        }
+
+    }
+    function togglePass2(){
+
+var togPass = document.getElementById("si-password1");
+
+if(togPass.type === "password"){
+    togPass.type = "text";
+}
+else{
+    togPass.type = "password";
+}
+
+}
     $(document).ready(function() {
         $("#show_hide_password a").on('click', function(event) {
             event.preventDefault();

@@ -225,7 +225,7 @@
                                                                style="color: #00000099;
                                                                            font-size: 16px;"></i> --}}
 
-                                                                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#00000099" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                                                           <svg onclick="passWord()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#00000099" class="bi bi-eye-fill" viewBox="0 0 16 16">
                                                                             <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                                                                             <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                                                                           </svg>
@@ -265,7 +265,7 @@
                                                             style="color: #00000099;
                                                                                font-size: 16px;"></i> --}}
 
-                                                                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#00000099" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                                                               <svg onclick="confirmPass()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#00000099" class="bi bi-eye-fill" viewBox="0 0 16 16">
                                                                                 <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                                                                                 <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                                                                             </svg>
@@ -318,6 +318,25 @@
 
 
     <script>
+        function passWord(){
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            }
+            else { 
+                x.type = "password";
+            }
+        }
+        function confirmPass(){
+            var x = document.getElementById("confirm_password");
+            if (x.type === "password") {
+                x.type = "text";
+            }
+            else {
+                x.type = "password";
+            }
+        }
+
 
     </script>
 

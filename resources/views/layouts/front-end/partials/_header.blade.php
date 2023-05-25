@@ -545,7 +545,11 @@
 
                   <div class="saleLocation">
                       <h4 class="w-100">
+                        <a href="{{ route('products', ['data_from' => 'latest']) }}">
+
                           {{ \App\CPU\translate('Sell On Remise') }}
+
+                        </a>
                       </h4>
                       {{-- @php( $local = session()->has('local')?session('local'):'en')
                         @php($lang = \App\Model\BusinessSetting::where('type', 'language')->first())
@@ -630,7 +634,7 @@
 
 
 
-      <div class="navbar-sticky bg-light mobile-head">
+      <div class="navbar-sticky mobile-head" style="background: #FFF;">
 
           <!-- Simulate a smartphone / tablet -->
 
@@ -919,14 +923,14 @@
                     style="flex-direction:column !important; {{ Session::get('direction') === 'rtl' ? 'padding-right: 0px ' : '' }}">
                     <li class="nav-item dropdown pt-3 pb-3
                      {{ request()->is('/') ? 'active' : '' }}">
-                        <a class="nav-link navLink fontt"
+                        <a class="nav-link navLink" style="font-size: 18px;" 
                             href="{{ route('home') }}">{{ \App\CPU\translate('Home') }}</a>
                         {{-- <a class="nav-link" href="{{route('home')}}">{{ \App\CPU\translate('Home')}}</a> --}}
                     </li>
 
                     @if (\App\Model\BusinessSetting::where(['type' => 'product_brand'])->first()->value)
                         <li class="nav-item dropdown pt-3 pb-3">
-                            <a class="nav-link dropdown-toggle navLink fontt" href="#"
+                            <a class="nav-link dropdown-toggle navLink" style="font-size: 18px;" href="#"
                                 data-toggle="dropdown">{{ \App\CPU\translate("Today's Deals") }}</a>
                             <ul class="dropdown-menu __dropdown-menu-sizing dropdown-menu-{{ Session::get('direction') === 'rtl' ? 'right' : 'left' }} scroll-bar"
                                 style="background: #fff !important; text-align: {{ Session::get('direction') === 'rtl' ? 'right' : 'left' }};">
@@ -960,7 +964,7 @@
                     @php($discount_product = App\Model\Product::with(['reviews'])->active()->where('discount', '!=', 0)->count())
                     @if ($discount_product > 0)
                         <li class="nav-item dropdown pt-3 pb-3 {{ request()->is('/') ? 'active' : '' }}">
-                            <a class="nav-link text-capitalize navLink fontt"
+                            <a class="nav-link text-capitalize navLink " style="font-size: 18px;"
                                 href="{{ route('products', ['data_from' => 'discounted', 'page' => 1]) }}">{{ \App\CPU\translate('Trending Products') }}</a>
                         </li>
                     @endif
@@ -968,7 +972,7 @@
                     @php($business_mode = \App\CPU\Helpers::get_business_settings('business_mode'))
                     @if ($business_mode == 'multi')
                         <li class="nav-item dropdown pt-3 pb-3 {{ request()->is('/') ? 'active' : '' }}">
-                            <a class="nav-link navLink fontt" 
+                            <a class="nav-link navLink " style="font-size: 18px;" 
                                 href="{{ route('sellers') }}">{{ \App\CPU\translate('Special Offers') }}</a>
                         </li>
 
@@ -976,7 +980,7 @@
                         @if ($seller_registration)
                             <li class="nav-item  ">
                                 <div class="dropdown">
-                                    <button class="btn dropdown-toggle NAVFONTHOVER fontt " type="button"
+                                    <button class="btn dropdown-toggle NAVFONTHOVER" style="font-size: 18px;" type="button"
                                         id="dropdownMenuButton" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false"
                                         style="padding-{{ Session::get('direction') === 'rtl' ? 'right' : 'left' }}: 0">
@@ -1028,14 +1032,14 @@
 
                     <li class="pt-3 pb-3">
 
-                    <a  href="{{ route('products', ['data_from' => 'latest']) }}" style="font-size: 18px !important;" >{{ \App\CPU\translate('Shop Now') }}</a>
+                    <a  href="{{ route('products', ['data_from' => 'latest']) }}" style="font-size: 18px !important; font-weight:300 !important;" >{{ \App\CPU\translate('Shop Now') }}</a>
 
                     </li>
 
 
                     <li>
                         {{-- tele --}}
-                         <a class="topbar-link pb-3 pt-3" style="text-align: center; font-size:16px !important;" href="tel: {{ $web_config['phone']->value }}">
+                         <a class="topbar-link pb-3 pt-3" style="text-align: center; font-size:16px !important; font-weight:400 !important;" href="tel: {{ $web_config['phone']->value }}">
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#000"
                               class="bi bi-telephone-fill" viewBox="0 0 16 16">
                               <path fill-rule="evenodd"

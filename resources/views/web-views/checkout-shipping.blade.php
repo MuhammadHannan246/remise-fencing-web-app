@@ -724,6 +724,7 @@
         function proceed_to_next() {
             let physical_product = $('#physical_product').val();
 
+
             if(physical_product === 'yes') {
                 var billing_addresss_same_shipping = $('#same_as_shipping_address').is(":checked");
 
@@ -731,18 +732,21 @@
                 document.getElementById("address-form").querySelectorAll("[required]").forEach(function (i) {
                     if (!allAreFilled) return;
                     if (!i.value) allAreFilled = false;
+
                     if (i.type === "radio") {
+                       
                         let radioValueCheck = false;
                         document.getElementById("address-form").querySelectorAll(`[name=${i.name}]`).forEach(function (r) {
                             if (r.checked) radioValueCheck = true;
                         });
                         allAreFilled = radioValueCheck;
+
                     }
+
                 });
 
                 //billing address saved
                 let allAreFilled_shipping = true;
-
                 if (billing_addresss_same_shipping != true) {
 
                     document.getElementById("billing-address-form").querySelectorAll("[required]").forEach(function (i) {
@@ -757,7 +761,10 @@
                         }
                     });
                 }
-            }else {
+            
+            }
+
+            else {
                 var billing_addresss_same_shipping = false;
             }
 
@@ -766,6 +773,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+
             $.post({
                 url: '{{route('customer.choose-shipping-address')}}',
                 data: {
@@ -787,18 +795,21 @@
                             });
                         }
                     } else {
-                        location.href = '{{route('checkout-courier')}}';
+                        //location.href = '{{route('checkout-courier')}}';
                     }
+                    console.log(data);
                 },
                 complete: function () {
                     $('#loading').hide();
                 },
                 error: function (data) {
                     let error_msg = data.responseJSON.errors;
+                    console.log(error_msg);
                     toastr.error(error_msg, {
                         CloseButton: true,
                         ProgressBar: true
                     });
+
                 }
             });
 

@@ -63,6 +63,7 @@ class SystemController extends Controller
 
     public function choose_shipping_address(Request $request)
     {
+        
         $zip_restrict_status = Helpers::get_business_settings('delivery_zip_code_area_restriction');
         $country_restrict_status = Helpers::get_business_settings('delivery_country_restriction');
 
@@ -73,24 +74,27 @@ class SystemController extends Controller
         parse_str($request->billing, $billing);
 
         if (isset($shipping['save_address']) && $shipping['save_address'] == 'on') {
-
+            
             if ($shipping['contact_person_name'] == null || $shipping['address'] == null || $shipping['city'] == null || $shipping['zip'] == null || $shipping['country'] == null ) {
                 return response()->json([
                     'errors' => translate('Fill_all_required_fields_of_shipping_address')
                 ], 403);
+                
             }
             elseif ($country_restrict_status && !self::delivery_country_exist_check($shipping['country'])) {
                 return response()->json([
                     'errors' => translate('Delivery_unavailable_in_this_country.')
                 ], 403);
+                
             }
             elseif ($zip_restrict_status && !self::delivery_zipcode_exist_check($shipping['zip'])) {
                 return response()->json([
                     'errors' => translate('Delivery_unavailable_in_this_zip_code_area')
                 ], 403);
+                
             }
-
-            $address_id = DB::table('shipping_addresses')->insertGetId([
+            
+            $address_id_data = [
                 'customer_id' => auth('customer')->id(),
                 'contact_person_name' => $shipping['contact_person_name'],
                 'address_type' => $shipping['address_type'],
@@ -101,11 +105,16 @@ class SystemController extends Controller
                 'phone' => $shipping['phone'],
                 'latitude' => $shipping['latitude'],
                 'longitude' => $shipping['longitude'],
+                'state' => "hello",
                 'is_billing' => 0,
                 'created_at' => now(),
                 'updated_at' => now(),
-            ]);
-
+            ];
+            return $address_id_data;
+            $address_id = DB::table('shipping_addresses')->insertGetId($address_id_data);
+            
+            
+            return $address_id;
         }
         else if (isset($shipping['shipping_method_id']) && $shipping['shipping_method_id'] == 0) {
 
@@ -140,6 +149,7 @@ class SystemController extends Controller
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
+            
         }
         else {
             if (isset($shipping['shipping_method_id'])) {
@@ -163,8 +173,9 @@ class SystemController extends Controller
             }else{
                 $address_id =  0;
             }
+            
         }
-
+        
         if ($request->billing_addresss_same_shipping == 'false') {
             if (isset($billing['save_address_billing']) && $billing['save_address_billing'] == 'on') {
 

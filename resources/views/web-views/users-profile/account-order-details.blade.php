@@ -224,25 +224,6 @@
                                                 $length = $order_details_date->diffInDays($current);
 
                                                 ?>
-                                            <div class="col-md-2">
-                                                <td>
-                                                    @if($detail->product && $order->payment_status == 'paid' && $detail->product->digital_product_type == 'ready_product')
-                                                        <a href="{{ route('digital-product-download', $detail->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="bottom" title="{{\App\CPU\translate('Download')}}">
-                                                            <i class="fa fa-download"></i>
-                                                        </a>
-                                                    @elseif($detail->product && $order->payment_status == 'paid' && $detail->product->digital_product_type == 'ready_after_sell')
-                                                        @if($detail->digital_file_after_sell)
-                                                            <a href="{{ route('digital-product-download', $detail->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="bottom" title="{{\App\CPU\translate('Download')}}">
-                                                                <i class="fa fa-download"></i>
-                                                            </a>
-                                                        @else
-                                                            <span class="btn btn-success disabled" data-toggle="tooltip" data-placement="bottom" title="{{\App\CPU\translate('Product_not_uploaded_yet')}}">
-                                                                <i class="fa fa-download"></i>
-                                                            </span>
-                                                        @endif
-                                                    @endif
-                                                </td>
-                                            </div>
 
                                             <div class="col-md-2">
                                                 <td>

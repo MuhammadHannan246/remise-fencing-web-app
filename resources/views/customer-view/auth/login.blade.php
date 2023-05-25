@@ -34,9 +34,21 @@
 
 
     <style>
+        @font-face {
+    font-family: 'BURBANKBIGCONDENSED-BOLD';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
+  
+}
+@font-face {
+    font-family: 'BURBANKBIGCONDENSED-BLACK';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
+  
+}
         .btnSIGN{
             height: 60px !important;
         }
+
+
     </style>
 
 </head>
@@ -59,7 +71,7 @@
             onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
             alt="{{$web_config['name']->value}}" class=" logoImg1" width="10%">
             <div class="col-12 text_area1">
-                <h2 class="top-text">{{ \App\CPU\translate('Welcome To') }} Remise</h2>
+                <h1 class="top-text" style="font-family: 'BURBANKBIGCONDENSED-BOLD';">{{ \App\CPU\translate('Welcome To') }} Remise</h1>
                 <span class="span_text"> <small> {{ \App\CPU\translate('SignIn as a Customer') }} /
                     <a  href="{{route('seller.auth.login')}}" style="font-size:15px; color: #000; text-decoration: none; font-weight:500;">{{ \App\CPU\translate('SignIn as a Seller') }}</a></small></span><br>
 

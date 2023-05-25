@@ -63,20 +63,7 @@
                     </div>
                 </div>
                 `);
-                // <div class="media __incoming-msg">
-                //     <img class="rounded-circle" height="40" width="40"
-                //         onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-                //         src="{{asset('storage/app/public/profile')}}/{{auth('customer')->user()->image}}"
-                //         alt="{{auth('customer')->user()->f_name}}"/>
-                //     <div class="media-body">
-                //         <h6 class="font-size-md mb-2">{{auth('customer')->user()->f_name}}</h6>
-                //         <p class="font-size-md mb-1">${data.message}</p>
-                //         <span class="font-size-ms text-muted">
-                //                     <i class="czi-time align-middle {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i>
-                //             {{ now()->format('Y-m-d h:i A') }}
-                //         </span>
-                //     </div>
-                // </div>
+                
             }
         });
    </script>

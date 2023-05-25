@@ -214,8 +214,9 @@
                             @endif
                         </h3>
                         <img src="{{ asset('public/assets/Images/Badge.png') }}" class="pt-1 pl-2">
-                        <img src="{{ asset('public/assets/Images/Message-icon.png') }}" style="float: right;">
-                        <i class="fa-sharp fa-solid fa-messages-question" style="color: #ff061e;"></i>
+                        <a href="#reviewsID" style="float: right;">
+                        <img src="{{ asset('public/assets/Images/Message-icon.png') }}" ></a>
+                        {{-- <i class="fa-sharp fa-solid fa-messages-question" style="color: #ff061e;"></i> --}}
 
                     </div>
 
@@ -264,7 +265,7 @@
                 </div>
                 <div class="col-lg-3 cart p-5 border-left-cart">
                     <div class="col-lg ">
-                        <h3 class="delivery h3-heading"> Delivery </h3>
+                        {{-- <h3 class="delivery h3-heading"> Delivery </h3>
                         <div class="location-select">
                             <i class="fa-solid fa-location-dot"></i>
                             <select class="form-select" aria-label="Default select example">
@@ -273,7 +274,7 @@
                                 <option value="2">Two</option>
                                 <option value="3">Three</option>
                             </select>
-                        </div>
+                        </div> --}}
                         <h3 class="h3-heading">
                             Total Stock: {{ $product->current_stock }}
                         </h3>
@@ -511,7 +512,7 @@
             </div>
         </div>
 
-        <div class="container-fluid reviews">
+        <div class="container-fluid reviews" id="reviewsID">
             <h2 class="h2-heading">Ratings & Reviews</h2>
             <div class="row">
                 <div class="col-sm-3">
@@ -2581,6 +2582,13 @@
         }
     </script>
 
+<script>
+    function scrollToSection() {
+      var section = document.getElementById("reviewsID");
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+  
     {{-- Messaging with shop seller --}}
     <script>
         $('#contact-seller').on('click', function(e) {

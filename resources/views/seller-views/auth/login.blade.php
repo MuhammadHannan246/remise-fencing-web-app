@@ -31,6 +31,18 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="/stript.js"></script>
 
+    <style>
+        @font-face {
+    font-family: 'BURBANKBIGCONDENSED-BOLD';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
+  
+}
+@font-face {
+    font-family: 'BURBANKBIGCONDENSED-BLACK';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
+  
+}
+    </style>
 </head>
 
 <body>
@@ -50,7 +62,8 @@
             onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
             alt="{{$web_config['name']->value}}" class=" logoImg1" width="10%">
             <div class="col-12 text_area1">
-                <h2 class="top-text">{{ \App\CPU\translate("Welcome To") }} Remise</h2>
+                <h1 class="top-text" style="   font-family: 'BURBANKBIGCONDENSED-BOLD' !important;">{{ \App\CPU\translate("Welcome To") }} Remise</h1>
+                <h6 style="font-family:Poppins;">Fencing Gear. Where your used equipment gets a second chance.</h6>
                 <span class="span_text"> <small> {{ \App\CPU\translate('SignIn as a Seller') }} /
                     <a href="{{route('customer.auth.login')}}" style="font-size: 15px;
                     color: #000;

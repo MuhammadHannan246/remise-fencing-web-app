@@ -35,9 +35,9 @@
     @php($product = App\Model\Product::find($order_details->product_id))
     @php($order = App\Model\Order::find($order_details->order_id))
         <section class="col-lg-9 col-md-9">
-            <div class="card box-shadow-sm">
+            <div class="card" style="border:none !important;">
                 <div class="overflow-none">
-                    <div class="card">
+                    <div class="card" style="padding: 10px;">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-6 col-sm-6 col-md-2">
@@ -146,7 +146,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="card box-shadow-sm ">
+                    <div class="card " style="border:none !important;">
                         <div class="overflow-none">
                             <div class="card">
                                 <div class="card-header">

@@ -32,6 +32,17 @@
     <script src="/stript.js"></script>
 
     <style>
+            @font-face {
+    font-family: 'BURBANKBIGCONDENSED-BOLD';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
+  
+}
+@font-face {
+    font-family: 'BURBANKBIGCONDENSED-BLACK';
+    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
+  
+}
+
         .lblClr{
             color: #1E1E1EB2 !important;
         }
@@ -75,7 +86,7 @@
             onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
             alt="{{$web_config['name']->value}}" class=" logoImg1" width="10%">
             <div class="col-12 text_area1">
-                <h2 class="top-text">Welcome To Remise</h2>
+                <h1 class="top-text" style="font-family: 'BURBANKBIGCONDENSED-BOLD';">Welcome To Remise</h1>
                 <span class="span_text"> <small> Register to create your Seller Account /
                     <a href="{{route('customer.auth.sign-up')}}" style="    font-size: 15px;
                     color: #000;

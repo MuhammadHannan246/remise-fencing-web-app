@@ -42,7 +42,7 @@
                             <div class="form-group col-md-6">
                                 <div class="">
                                     <label class="" for="inlineFormCustomSelect">{{\App\CPU\translate('Type')}}</label>
-                                    <select class="custom-select " id="ticket-type" name="ticket_type" required>
+                                    <select class="custom-select " id="ticket-type" name="ticket_type" required style="height: 45px !important;">
                                         <option
                                             value="Website problem">{{\App\CPU\translate('Website')}} {{\App\CPU\translate('problem')}}</option>
                                         <option value="Partner request">{{\App\CPU\translate('partner_request')}}</option>
@@ -56,7 +56,7 @@
                                 <div class="">
                                     <label class="" for="inlineFormCustomSelect">{{\App\CPU\translate('Priority')}}</label>
                                     <select class="form-control custom-select" id="ticket-priority"
-                                            name="ticket_priority" required>
+                                            name="ticket_priority" required style="padding: 0PX 5PX !important; height:45px !important;">
                                         <option value>{{\App\CPU\translate('choose_priority')}}</option>
                                         <option value="Urgent">{{\App\CPU\translate('Urgent')}}</option>
                                         <option value="High">{{\App\CPU\translate('High')}}</option>
@@ -145,7 +145,12 @@
                                             <div class="btn--container flex-nowrap justify-content-center">
                                                 <a class="action-btn btn--primary"
                                                 href="{{route('support-ticket.index',$ticket['id'])}}">
-                                                    <i class="fa fa-eye"></i>
+                                                    {{-- <i class="fa fa-eye" style="color: #000; "></i> --}}
+                                                
+                                                    <svg class="svgIcon" onclick="togglepassword()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#00000099" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                                        <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                                                      </svg>
                                                 </a>
                                                 <a class="action-btn btn--danger" href="javascript:"
                                                 onclick="Swal.fire({

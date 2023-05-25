@@ -7,26 +7,28 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class SenderMessageEvent implements ShouldBroadcast
+class SupportTicketEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $message,$user,$time,$date;
-    public function __construct($message,$user,$time,$date)
+    public $message,$id,$role,$date,$name;
+    public function __construct($message,$id,$role,$date,$name)
     {
         $this->message = $message;
-        $this->user = $user;
-        $this->time = $time;
+        $this->id = $id;
+        $this->role = $role;
+        $this->name = $name;
         $this->date = $date;
     }
 
     public function broadcastOn()
     {
-        return ['seller-channel'];
+        return ['support-channel'];
     }
 
     public function broadcastAs()
     {
-        return 'seller-event';
+        return 'support-event';
     }
+
 }

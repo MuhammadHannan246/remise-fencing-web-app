@@ -49,6 +49,27 @@
     <script
         src="{{asset('public/assets/back-end')}}/vendor/hs-navbar-vertical-aside/hs-navbar-vertical-aside-mini-cache.js"></script>
     <link rel="stylesheet" href="{{asset('public/assets/back-end')}}/css/toastr.css">
+    <!-- pusher integration -->
+    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+    <script>
+        // Pusher.logToConsole = true;
+
+        var pusher = new Pusher('9cbaed47a381e7fe7463', {
+            cluster: 'ap1'
+        });
+
+        var channel = pusher.subscribe('support-channel');
+        channel.bind('support-event', function(data) {
+            if(data.role == "admin"){
+            $("#conversation").append(`
+                <div class="mb-4">
+                    <p class="font-size-md message-box message-box_incoming mb-1">${data.message}</p>
+                    <span class="fz-12 text-muted d-flex">${data.date}</span>
+                </div>
+            `);
+            }
+        });
+   </script>
 </head>
 
 <body class="footer-offset">

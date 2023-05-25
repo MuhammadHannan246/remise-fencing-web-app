@@ -69,51 +69,51 @@
                                 </span>
                             </div>
                         </div>
-                        @foreach($ticket->conversations as $conversation)
-
-                            @if($conversation['customer_message'] == null )
-                                <div class="media __outgoing-msg">
-                                    <div class="media-body">
-                                        @php($admin=\App\Model\Admin::where('id',$conversation['admin_id'])->first())
-                                        <h6 class="font-size-md mb-2">{{$admin['name']}}</h6>
-                                        <p class="font-size-md mb-1">{{$conversation['admin_message']}}</p>
-                                        <span
-                                            class="font-size-ms text-muted"> {{Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$conversation['updated_at'])->format('Y-m-d h:i A')}}</span>
+                        <div id="conversation">
+                            @foreach($ticket->conversations as $conversation)
+                                @if($conversation['customer_message'] == null )
+                                    <div class="media __outgoing-msg">
+                                        <div class="media-body">
+                                            @php($admin=\App\Model\Admin::where('id',$conversation['admin_id'])->first())
+                                            <h6 class="font-size-md mb-2">{{$admin['name']}}</h6>
+                                            <p class="font-size-md mb-1">{{$conversation['admin_message']}}</p>
+                                            <span
+                                                class="font-size-ms text-muted"> {{Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$conversation['updated_at'])->format('Y-m-d h:i A')}}</span>
+                                        </div>
                                     </div>
-                                </div>
-                            @endif
-                            @if($conversation['admin_message'] == null)
-                                <div class="media __incoming-msg">
-                                    <img class="rounded-circle" height="40" width="40"
-                                        onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-                                        src="{{asset('storage/app/public/profile')}}/{{auth('customer')->user()->image}}"
-                                        alt="{{auth('customer')->user()->f_name}}"/>
-                                    <div class="media-body">
-                                        <h6 class="font-size-md mb-2">{{auth('customer')->user()->f_name}}</h6>
-                                        <p class="font-size-md mb-1">{{$conversation['customer_message']}}</p>
-                                        <span class="font-size-ms text-muted">
-                                                    <i class="czi-time align-middle {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i>
-                                            {{Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$conversation['created_at'])->format('Y-m-d h:i A')}}
-                                        </span>
+                                @endif
+                                @if($conversation['admin_message'] == null)
+                                    <div class="media __incoming-msg">
+                                        <img class="rounded-circle" height="40" width="40"
+                                            onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
+                                            src="{{asset('storage/app/public/profile')}}/{{auth('customer')->user()->image}}"
+                                            alt="{{auth('customer')->user()->f_name}}"/>
+                                        <div class="media-body">
+                                            <h6 class="font-size-md mb-2">{{auth('customer')->user()->f_name}}</h6>
+                                            <p class="font-size-md mb-1">{{$conversation['customer_message']}}</p>
+                                            <span class="font-size-ms text-muted">
+                                                        <i class="czi-time align-middle {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i>
+                                                {{Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$conversation['created_at'])->format('Y-m-d h:i A')}}
+                                            </span>
+                                        </div>
                                     </div>
-                                </div>
-                            @endif
-                        @endforeach
+                                @endif
+                            @endforeach
+                        </div>
                     </div>
                     <div class="card-footer border-0">
-                        <form class="needs-validation" href="{{route('support-ticket.comment',[$ticket['id']])}}"
-                            method="post" novalidate>
+                        <form class="needs-validation">
                             @csrf
                             <div class="form-group">
-                                <textarea class="form-control" name="comment" rows="8"
+                                <textarea class="form-control" id="comment" rows="8"
                                         placeholder="{{\App\CPU\translate('Write your message here...')}}" required></textarea>
-                                <div class="invalid-tooltip">{{\App\CPU\translate('Please write the message')}}!</div>
+                                <div class="text-danger" style="display: none" id="message-error">{{\App\CPU\translate('Please write the message')}}!</div>
                             </div>
                             <div class="d-flex flex-wrap justify-content-end align-items-center gap-8">
                                 <div>
                                     <a href="{{route('support-ticket.close',[$ticket['id']])}}" class="btn btn-secondary text-white">{{\App\CPU\translate('close')}}</a>
                                 </div>
-                                <button class="btn btn--primary my-2" type="submit">{{\App\CPU\translate('Submit message')}}</button>
+                                <button class="btn btn--primary my-2" id="support-btn">{{\App\CPU\translate('Submit message')}}</button>
                             </div>
                         </form>
                     </div>
@@ -125,5 +125,42 @@
 @endsection
 
 @push('script')
-
+<script>
+    $("#support-btn").click(function (e) { 
+        e.preventDefault();
+        var comment = $("#comment").val();
+        if(comment != ''){
+            $("#message-error").hide();
+            $.ajax({
+                type: "POST",
+                url: "{{ route('support-ticket.comment', request()->id) }}",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    comment:comment,
+                },
+                success: function (response) {
+                    $("#comment").val("");
+                    $("#conversation").append(`
+                        <div class="media __incoming-msg">
+                            <img class="rounded-circle" height="40" width="40"
+                                onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
+                                src="{{asset('storage/app/public/profile')}}/{{auth('customer')->user()->image}}"
+                                alt="{{auth('customer')->user()->f_name}}"/>
+                            <div class="media-body">
+                                <h6 class="font-size-md mb-2">{{auth('customer')->user()->f_name}}</h6>
+                                <p class="font-size-md mb-1">${comment}</p>
+                                <span class="font-size-ms text-muted">
+                                            <i class="czi-time align-middle {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i>
+                                    {{ now()->format('Y-m-d h:i A') }}
+                                </span>
+                            </div>
+                        </div>
+                    `);
+                }
+            });
+        } else{
+            $("#message-error").show();
+        }
+    });
+</script>
 @endpush

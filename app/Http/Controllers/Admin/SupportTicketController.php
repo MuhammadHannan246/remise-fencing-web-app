@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\CPU\Helpers;
-use App\Http\Controllers\Controller;
-use App\Model\SupportTicket;
-use App\Model\SupportTicketConv;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Model\SupportTicket;
+use Illuminate\Http\Request;
+use App\Model\SupportTicketConv;
+use App\Events\SupportTicketEvent;
+use App\Http\Controllers\Controller;
 
 class SupportTicketController extends Controller
 {
@@ -74,8 +75,9 @@ class SupportTicketController extends Controller
             'created_at' => now(),
             'updated_at' => now()
         ];
-        SupportTicketConv::insert($reply);
-        return redirect()->back();
+        $data = SupportTicketConv::create($reply);
+        event(new SupportTicketEvent($request->replay,$data->load('support')->support->customer_id,'customer',now()->format('Y-m-d H:i A'),auth('admin')->user()->name));
+        return response(200);
     }
 
 }

@@ -19,7 +19,7 @@
         <!-- End Page Title -->
 
         <div class="card">
-            <div class="card-header flex-wrap gap-3">
+            <div class="card-header flex-wrap gap-3" id="chat-room">
             @foreach($supportTicket as $ticket )
                 <?php
                 $userDetails = \App\User::where('id', $ticket['customer_id'])->first();
@@ -48,44 +48,45 @@
                     <p class="font-size-md message-box message-box_incoming mb-1">{{$ticket['description']}}</p>
                     <span class="fz-12 text-muted d-flex">{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$ticket['created_at'])->format('Y-m-d h:i A')}}</span>
                 </div>
-                @foreach($conversations as $conversation)
-                    @if($conversation['admin_message'] ==null )
-                        <div class="mb-4">
-                            <p class="font-size-md message-box message-box_incoming mb-1">{{$conversation['customer_message']}}</p>
-                            <span class="fz-12 text-muted d-flex">{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$conversation['created_at'])->format('Y-m-d h:i A')}}</span>
-                        </div>
-                    @endif
-                    @if($conversation['customer_message'] ==null )
-                        <div class="mb-4 d-flex flex-column align-items-end">
-                            <div>
-                                <p class="font-size-md message-box mb-1">{{$conversation['admin_message']}}</p>
-                                <span class="fz-12 text-muted d-flex"> {{Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$conversation['updated_at'])->format('Y-m-d h:i A')}}</span>
+                <div id="conversation">
+                    @foreach($conversations as $conversation)
+                        @if($conversation['admin_message'] ==null )
+                            <div class="mb-4">
+                                <p class="font-size-md message-box message-box_incoming mb-1">{{$conversation['customer_message']}}</p>
+                                <span class="fz-12 text-muted d-flex">{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$conversation['created_at'])->format('Y-m-d h:i A')}}</span>
                             </div>
-                        </div>
-                    @endif
-                @endforeach
+                        @endif
+                        @if($conversation['customer_message'] ==null)
+                            <div class="mb-4 d-flex flex-column align-items-end">
+                                <div>
+                                    <p class="font-size-md message-box mb-1">{{$conversation['admin_message']}}</p>
+                                    <span class="fz-12 text-muted d-flex"> {{Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$conversation['updated_at'])->format('Y-m-d h:i A')}}</span>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
 
                 @endforeach
                 <!-- Leave message-->
                 <h5 class="pt-4 pb-1 d-flex">{{\App\CPU\translate('Leave_a_Message')}}</h5>
-                @foreach($supportTicket as $reply)
-                    <form class="needs-validation" href="{{route('admin.support-ticket.replay',$reply['id'])}}" method="post"
-                        >
+                {{-- @foreach($supportTicket as $reply) --}}
+                    <form class="needs-validation">
                         @csrf
-                        <input type="hidden" name="id" value="{{$reply['id']}}">
-                        <input type="hidden" name="adminId" value="1">
+                        <input type="hidden" id="id" value="{{ request()->id }}">
+                        <input type="hidden" id="adminId" value="1">
                         <div class="form-group">
-                        <textarea class="form-control" name="replay" rows="8" placeholder="{{\App\CPU\translate('Write_your_message_here')}}..."
+                        <textarea class="form-control" id="replay" rows="8" placeholder="{{\App\CPU\translate('Write_your_message_here')}}..."
                                 required></textarea>
-                            <div class="invalid-tooltip">{{\App\CPU\translate('Please write the message')}}!</div>
+                            <div class="text-danger" style="display: none" id="message-error"> {{\App\CPU\translate('Please write the message')}}!</div>
                         </div>
                         <div class="d-flex flex-wrap justify-content-between align-items-center">
                             <div class="custom-control custom-checkbox d-block">
                             </div>
-                            <button class="btn btn--primary px-4" type="submit">{{\App\CPU\translate('Reply')}}</button>
+                            <button class="btn btn--primary px-4" id="support-btn">{{\App\CPU\translate('Reply')}}</button>
                         </div>
                     </form>
-                @endforeach
+                {{-- @endforeach --}}
             </div>
         </div>
     </div>
@@ -100,4 +101,40 @@
     <script src="{{asset('public/assets/back-end')}}/js/demo/datatables-demo.js"></script>
     <script src="{{asset('public/assets/back-end/js/croppie.js')}}"></script>
 
+    <script>
+        $("#support-btn").click(function (e) { 
+            e.preventDefault();
+            var id = $("#id").val();
+            var adminId = $("#adminId").val();
+            var replay = $("#replay").val();
+            if(replay != ''){
+                $("#message-error").hide();
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('admin.support-ticket.replay', request()->id) }}",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        id:id,
+                        adminId:adminId,
+                        replay:replay,
+                    },
+                    success: function (response) {
+                        $("#chat-room").stop().animate({scrollTop: $('#chat-room').prop("scrollHeight")}, 1000);
+                        $("#replay").val("");
+                        $("#conversation").append(`
+                            <div class="mb-4 d-flex flex-column align-items-end">
+                                <div>
+                                    <p class="font-size-md message-box mb-1">${replay}</p>
+                                    <span class="fz-12 text-muted d-flex"> {{ now()->format('Y-m-d h:i A') }}</span>
+                                </div>
+                            </div>
+                        `);
+                    }
+                });
+            } else{
+                $("#message-error").show();
+            }
+        });
+    </script>
+    
 @endpush

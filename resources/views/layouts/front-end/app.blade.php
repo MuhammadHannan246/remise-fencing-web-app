@@ -43,6 +43,43 @@
     {{--dont touch this--}}
     <!--to make http ajax request to https-->
     <!--<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">-->
+    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+    <script>
+        // Pusher.logToConsole = true;
+
+        var pusher = new Pusher('9cbaed47a381e7fe7463', {
+            cluster: 'ap1'
+        });
+
+        var channel = pusher.subscribe('support-channel');
+        channel.bind('support-event', function(data) {
+            if(data.id == "{{auth('customer')->id()}}" && data.role == 'customer'){
+                $("#conversation").append(`
+                <div class="media __outgoing-msg">
+                    <div class="media-body">
+                        <h6 class="font-size-md mb-2">${data.name}</h6>
+                        <p class="font-size-md mb-1">${data.message}</p>
+                        <span class="font-size-ms text-muted">${data.date}</span>
+                    </div>
+                </div>
+                `);
+                // <div class="media __incoming-msg">
+                //     <img class="rounded-circle" height="40" width="40"
+                //         onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
+                //         src="{{asset('storage/app/public/profile')}}/{{auth('customer')->user()->image}}"
+                //         alt="{{auth('customer')->user()->f_name}}"/>
+                //     <div class="media-body">
+                //         <h6 class="font-size-md mb-2">{{auth('customer')->user()->f_name}}</h6>
+                //         <p class="font-size-md mb-1">${data.message}</p>
+                //         <span class="font-size-ms text-muted">
+                //                     <i class="czi-time align-middle {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i>
+                //             {{ now()->format('Y-m-d h:i A') }}
+                //         </span>
+                //     </div>
+                // </div>
+            }
+        });
+   </script>
     <style>
         .rtl {
             direction: {{ Session::get('direction') }};

@@ -28,6 +28,7 @@ use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use App\Events\SupportTicketEvent;
 
 class UserProfileController extends Controller
 {
@@ -460,7 +461,8 @@ class UserProfileController extends Controller
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-        return back();
+        event(new SupportTicketEvent($request->comment,auth('customer')->id(),'admin',now()->format('Y-m-d H:i A'),auth('customer')->user()->f_name));
+        return response(200);
     }
 
     public function support_ticket_close($id)

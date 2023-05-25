@@ -3110,10 +3110,10 @@
   'choose_courier_service' => 'Choose courier service',
   'no_shipping_method_selected' => 'No shipping method selected',
   'Country Code' => 'Country Code',
-  'seller_not_found' => 'Seller not found',
-  'Website problem' => 'Website problem',
   'Don t Delete' => 'Don t Delete',
   'Leave_a_Message' => 'Leave a Message',
   'Write_your_message_here' => 'Write your message here',
   'Reply' => 'Reply',
+  'seller_not_found' => 'Seller not found',
+  'Website problem' => 'Website problem',
 );

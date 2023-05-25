@@ -7,15 +7,14 @@
 
     <style>
          @font-face {
-    font-family: 'BURBANKBIGCONDENSED-BOLD';
-    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
+            font-family: 'BURBANKBIGCONDENSED-BOLD';
+            src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BOLD.ttf')}});
+        }
+        @font-face {
+            font-family: 'BURBANKBIGCONDENSED-BLACK';
+            src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
 
-}
-@font-face {
-    font-family: 'BURBANKBIGCONDENSED-BLACK';
-    src: url({{ asset('public/assets/front-end/fonts/BURBANKBIGCONDENSED-BLACK.ttf')}});
-
-}
+        }
 
         .btn-outline {
             border-color: {{$web_config['primary_color']}} ;
@@ -61,7 +60,7 @@
         }
         .steps-light .step-item.active .step-count, .steps-light .step-item.active .step-progress{
             color: #fff;
-    background-color: #FF061E !important;
+            background-color: #FF061E !important;
         }
         .step-count{
             height: 15px !important;
@@ -795,9 +794,9 @@
                             });
                         }
                     } else {
-                        //location.href = '{{route('checkout-courier')}}';
+                        location.href = '{{route('checkout-courier')}}';
                     }
-                    console.log(data);
+                    // console.log(data);
                 },
                 complete: function () {
                     $('#loading').hide();

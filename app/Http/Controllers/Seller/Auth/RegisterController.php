@@ -32,8 +32,8 @@ class RegisterController extends Controller
 
         $this->validate($request, [
             'image'         => 'required|mimes: jpg,jpeg,png,gif',
-            'logo'          => 'required|mimes: jpg,jpeg,png,gif',
-            'banner'        => 'required|mimes: jpg,jpeg,png,gif',
+            'logo'          => 'nullable|mimes: jpg,jpeg,png,gif',
+            'banner'        => 'nullable|mimes: jpg,jpeg,png,gif',
             'email'         => 'required|unique:sellers',
             'shop_country'  => 'required',
             'shop_state'  => 'required',

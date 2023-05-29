@@ -335,6 +335,7 @@ class WebController extends Controller
                     $physical_product = true;
                     // dd(session('address_id'));
                     $shippingAddress = ShippingAddress::findOrFail(session('address_id'));
+                    // dd($shippingAddress);
                     //Shipping Api
                     $services = Http::withHeaders([
                         'Content-Type' => 'application/json',
@@ -360,7 +361,7 @@ class WebController extends Controller
                                 "ship_to" => [
                                     "contact_name" => $shippingAddress->contact_person_name,
                                     "company_name" => "Customer",
-                                    "street1" => "street",
+                                    "street1" => "230 W 200 S LBBY",
                                     "city" => $shippingAddress->city,
                                     "state" => "UT",
                                     "postal_code" => $shippingAddress->zip,

@@ -326,16 +326,17 @@ class WebController extends Controller
 
         $physical_products[] = false;
 
-        // dd(session('address_id'));
+        
         foreach($cart_group_ids as $group_id) {
             $carts = Cart::with(['seller','shop','product'])->where('cart_group_id', $group_id)->get();
             $physical_product = false;
             foreach ($carts as $cart) {
+                // dd($cart);
                 if ($cart->product_type == 'physical') {
                     $physical_product = true;
                     // dd(session('address_id'));
                     $shippingAddress = ShippingAddress::findOrFail(session('address_id'));
-                    // dd($shippingAddress);
+                    // dd($cart->seller->f_name);
                     //Shipping Api
                     $services = Http::withHeaders([
                         'Content-Type' => 'application/json',

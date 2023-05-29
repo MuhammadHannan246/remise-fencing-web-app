@@ -115,41 +115,41 @@ class SystemController extends Controller
             
             // return $address_id;
         }
-        else if (isset($shipping['shipping_method_id']) && $shipping['shipping_method_id'] == 0) {
+        // else if (isset($shipping['shipping_method_id']) && $shipping['shipping_method_id'] == 0) {
 
-            if ($shipping['contact_person_name'] == null || $shipping['address'] == null || $shipping['city'] == null || $shipping['zip'] == null || $shipping['country'] == null ) {
-                return response()->json([
-                    'errors' => translate('Fill_all_required_fields_of_shipping/billing_address')
-                ], 403);
-            }
-            elseif ($country_restrict_status && !self::delivery_country_exist_check($shipping['country'])) {
-                return response()->json([
-                    'errors' => translate('Delivery_unavailable_in_this_country')
-                ], 403);
-            }
-            elseif ($zip_restrict_status && !self::delivery_zipcode_exist_check($shipping['zip'])) {
-                return response()->json([
-                    'errors' => translate('Delivery_unavailable_in_this_zip_code_area')
-                ], 403);
-            }
+        //     if ($shipping['contact_person_name'] == null || $shipping['address'] == null || $shipping['city'] == null || $shipping['zip'] == null || $shipping['country'] == null ) {
+        //         return response()->json([
+        //             'errors' => translate('Fill_all_required_fields_of_shipping/billing_address')
+        //         ], 403);
+        //     }
+        //     elseif ($country_restrict_status && !self::delivery_country_exist_check($shipping['country'])) {
+        //         return response()->json([
+        //             'errors' => translate('Delivery_unavailable_in_this_country')
+        //         ], 403);
+        //     }
+        //     elseif ($zip_restrict_status && !self::delivery_zipcode_exist_check($shipping['zip'])) {
+        //         return response()->json([
+        //             'errors' => translate('Delivery_unavailable_in_this_zip_code_area')
+        //         ], 403);
+        //     }
 
-            $address_id = DB::table('shipping_addresses')->insertGetId([
-                'customer_id' => auth('customer')->id(),
-                'contact_person_name' => $shipping['contact_person_name'],
-                'address_type' => $shipping['address_type'],
-                'address' => $shipping['address'],
-                'city' => $shipping['city'],
-                'zip' => $shipping['zip'],
-                'country' => $shipping['country'],
-                'phone' => $shipping['phone'],
-                'latitude' => $shipping['latitude'],
-                'longitude' => $shipping['longitude'],
-                'is_billing' => 0,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+        //     $address_id = DB::table('shipping_addresses')->insertGetId([
+        //         'customer_id' => auth('customer')->id(),
+        //         'contact_person_name' => $shipping['contact_person_name'],
+        //         'address_type' => $shipping['address_type'],
+        //         'address' => $shipping['address'],
+        //         'city' => $shipping['city'],
+        //         'zip' => $shipping['zip'],
+        //         'country' => $shipping['country'],
+        //         'phone' => $shipping['phone'],
+        //         'latitude' => $shipping['latitude'],
+        //         'longitude' => $shipping['longitude'],
+        //         'is_billing' => 0,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ]);
             
-        }
+        // }
         else {
             if (isset($shipping['shipping_method_id'])) {
                 $address = ShippingAddress::find($shipping['shipping_method_id']);

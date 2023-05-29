@@ -207,12 +207,13 @@
                     </thead>
                     <tbody>
                     @foreach($transactions as $k=>$wt)
+                        {{-- {{dd($wt)}} --}}
                         <tr>
                             {{-- <td >{{$k+$transactions->firstItem()}}</td> --}}
                             <td >{{$loop->iteration}}</td>
                             {{-- <td>{{$wt->transaction_id}}</td> --}}
                             <td>
-                                <a href="{{route('admin.customer.view',['user_id'=>$wt->order->customer_id])}}" class="title-color hover-c1">
+                                <a href="{{route('admin.customer.view',$wt->order->customer_id)}}" class="title-color hover-c1">
                                     {{Str::limit($wt->order?$wt->order->customer->f_name.' '.$wt->order->customer->l_name:\App\CPU\translate('not_found'),20,'...')}}
                                 </a>
                             </td>

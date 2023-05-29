@@ -168,6 +168,7 @@
                                            placeholder="{{\App\CPU\translate('Enter new email address')}}" aria-label="Enter new email address" readonly>
                                 </div>
                             </div>
+                            
 
                             <div class="row">
                                 <div class="col-md-3 col-form-label">

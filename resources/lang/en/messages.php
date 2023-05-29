@@ -3116,4 +3116,6 @@
   'Reply' => 'Reply',
   'seller_not_found' => 'Seller not found',
   'Website problem' => 'Website problem',
+  'Postal Code' => 'Postal Code',
+  'Enter postal code' => 'Enter postal code',
 );

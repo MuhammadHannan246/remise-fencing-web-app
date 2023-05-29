@@ -81,7 +81,7 @@
                                     </ul>
                                     <h4 class="myAccHeading">My Orders</h4>
                                     <ul class="side">
-                                        <li class="side-item"><a href="#">My Return</a></li>
+                                        {{-- <li class="side-item"><a href="#">My Return</a></li> --}}
                                         <li class="side-item"><a href="CanceledOrders">My Cancellation</a></li>
                                     </ul>
                                     <h4 class="myAccHeading">Sell on Remise</h4>
@@ -134,7 +134,7 @@
                         </ul>
                         <h4 class="myAccHeading">My Orders</h4>
                         <ul class="side">
-                            <li class="side-item"><a href="#">My Return</a></li>
+                            {{-- <li class="side-item"><a href="#">My Return</a></li> --}}
                             <li class="side-item"><a href="CanceledOrders">My Cancellation</a></li>
                         </ul>
                         <h4 class="myAccHeading">Sell on Remise</h4>
@@ -402,8 +402,8 @@
 
 #message{
     position: absolute;
-    top: 83% !important;
-    left: 72% !important;
+    top: 60% !important;
+    left: 78% !important;
 }
 .innerArea {
     background: #000;

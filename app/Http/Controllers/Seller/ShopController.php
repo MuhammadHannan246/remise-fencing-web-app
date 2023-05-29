@@ -35,6 +35,7 @@ class ShopController extends Controller
     public function edit($id)
     {
         $shop = Shop::where(['seller_id' =>  auth('seller')->id()])->first();
+        // dd($shop);
         return view('seller-views.shop.edit', compact('shop'));
     }
 
@@ -52,7 +53,11 @@ class ShopController extends Controller
 
         $shop = Shop::find($id);
         $shop->name = $request->name;
-        $shop->address = $request->address;
+        $shop->postal_code = $request->postal_code;
+        $shop->city = $request->city;
+        $shop->state = $request->state;
+        $shop->country = $request->country;
+        $shop->street = $request->street;
         $shop->contact = $request->contact;
         if ($request->image) {
             $shop->image = ImageManager::update('shop/', $shop->image, 'png', $request->file('image'));

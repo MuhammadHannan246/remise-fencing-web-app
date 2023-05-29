@@ -45,9 +45,29 @@
                                             required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="address" class="title-color">{{\App\CPU\translate('Address')}} <span class="text-danger">*</span></label>
-                                    <textarea type="text" rows="4" name="address" value="" class="form-control" id="address"
-                                            required>{{$shop->address}}</textarea>
+                                    <label for="postal_code" class="title-color">{{\App\CPU\translate('Postal Code')}}</label>
+                                    <input type="text" name="postal_code" value="{{$shop->postal_code}}" class="form-control" id="postal_code"
+                                            required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="postal_code" class="title-color">{{\App\CPU\translate('City')}}</label>
+                                    <input type="text" name="city" value="{{$shop->city}}" class="form-control" id="city"
+                                            required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="state" class="title-color">{{\App\CPU\translate('State')}}</label>
+                                    <input type="text" name="state" value="{{$shop->state}}" class="form-control" id="state"
+                                            required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="country" class="title-color">{{\App\CPU\translate('Country')}}</label>
+                                    <input type="text" name="country" value="{{$shop->country}}" class="form-control" id="country"
+                                            required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="street" class="title-color">{{\App\CPU\translate('Street')}} <span class="text-danger">*</span></label>
+                                    <textarea type="text" rows="4" name="street" class="form-control" id="street"
+                                            required>{{$shop->street}}</textarea>
                                 </div>
                             </div>
                             <div class="col-md-6">

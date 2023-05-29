@@ -41,7 +41,7 @@ class RegisterController extends Controller
         ], [
             'f_name.required' => 'First name is required',
         ]);
-
+        
         //recaptcha validation
         $recaptcha = Helpers::get_business_settings('recaptcha');
         if (isset($recaptcha) && $recaptcha['status'] == 1) {

@@ -76,7 +76,7 @@
                                             </ul>
                                             <h4 class="myAccHeading">My Orders</h4>
                                             <ul class="side">
-                                                <li class="side-item"><a href="#">My Return</a></li>
+                                                {{-- <li class="side-item"><a href="#">My Return</a></li> --}}
                                                 <li class="side-item"><a href="CanceledOrders">My Cancellation</a></li>
                                             </ul>
                                             <h4 class="myAccHeading">Sell on Remise</h4>
@@ -151,7 +151,7 @@
                         My Orders
                     </h4>
                     <ul>
-                        <li><a href="#">My Return</a></li>
+                        {{-- <li><a href="#">My Return</a></li> --}}
                         <li><a href="CanceledOrders">My Cancellation</a></li>
                     </ul>
 

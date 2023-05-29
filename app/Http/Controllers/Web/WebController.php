@@ -333,7 +333,8 @@ class WebController extends Controller
             foreach ($carts as $cart) {
                 if ($cart->product_type == 'physical') {
                     $physical_product = true;
-                    $shippingAddress = ShippingAddress::find(session('address_id'));
+                    // dd(session('address_id'));
+                    $shippingAddress = ShippingAddress::findOrFail(session('address_id'));
                     //Shipping Api
                     $services = Http::withHeaders([
                         'Content-Type' => 'application/json',
@@ -418,6 +419,7 @@ class WebController extends Controller
 
                     $services = $services->json();
                     // dd($services);
+                    
 
                     //Shipping Api
                     if($services['meta']['code'] == '4104')

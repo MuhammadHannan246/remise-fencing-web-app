@@ -651,93 +651,93 @@ class WebController extends Controller
             }
             $shippingAddress = ShippingAddress::find(session('address_id'));
             //Shipping Api
-            $response = Http::withHeaders([
-                'Content-Type' => 'application/json',
-                'as-api-key' => 'asat_1812d8cb63514d82ab903b1b8499bf30',
-            ])->post('https://sandbox-api.aftership.com/postmen/v3/labels', [
-                "return_shipment" => false,
-                "is_document" => true,
-                // "service_type" => "usps-discounted_priority_mail",
-                "service_type" => "fedex_express_saver",
-                "paper_size" => "4x6",
-                "shipper_account" => [
-                    "id" => "3ba41ff5-59a7-4ff0-8333-64a4375c7f21"
-                ],
-                "references" => [
-                    strval($order_id)
-                ],
-                "billing" => [
-                    "paid_by" => "recipient",
+            // $response = Http::withHeaders([
+            //     'Content-Type' => 'application/json',
+            //     'as-api-key' => 'asat_1812d8cb63514d82ab903b1b8499bf30',
+            // ])->post('https://sandbox-api.aftership.com/postmen/v3/labels', [
+            //     "return_shipment" => false,
+            //     "is_document" => true,
+            //     // "service_type" => "usps-discounted_priority_mail",
+            //     "service_type" => "fedex_express_saver",
+            //     "paper_size" => "4x6",
+            //     "shipper_account" => [
+            //         "id" => "3ba41ff5-59a7-4ff0-8333-64a4375c7f21"
+            //     ],
+            //     "references" => [
+            //         strval($order_id)
+            //     ],
+            //     "billing" => [
+            //         "paid_by" => "recipient",
 
-                ],
-                "shipment" => [
-                    "ship_from" => [
-                        "contact_name" => $cart->seller->f_name.' '.$cart->seller->l_name,
-                        "company_name" => $cart->shop->name,
-                        "country" => $cart->shop->country,
-                        "state" => $cart->shop->state,
-                        "city" => $cart->shop->city,
-                        "street1" => $cart->shop->street,
-                        "postal_code" => $cart->shop->postal_code,
-                        "phone" => $cart->seller->phone,
-                        "email" => $cart->seller->email
-                    ],
-                    "ship_to" => [
-                        "contact_name" => $shippingAddress->contact_person_name,
-                        "company_name" => "Customer",
-                        "street1" => $shippingAddress->address,
-                        "city" => $shippingAddress->city,
-                        "state" => "UT",
-                        "postal_code" => $shippingAddress->zip,
-                        "country" => $shippingAddress->country,
-                        "phone" => $shippingAddress->phone,
-                        "email" => auth('customer')->user()->email
-                    ],
-                    "parcels" => [
-                        [
-                            "box_type" => "custom",
-                            "dimension" => [
-                                "width" => $cart->product->width,
-                                "height" => $cart->product->height,
-                                "depth" => $cart->product->depth,
-                                "unit" => $cart->product->dimention_unit
-                            ],
-                            "items" => [
-                                [
-                                    "description" => strip_tags($cart->product->details),
-                                    "quantity" => $cart->quantity,
-                                    "price" => [
-                                        "currency" => session('currency_code'),
-                                        "amount" => $cart->price
-                                    ],
-                                    "item_id" => "1234567",
-                                    "origin_country" => "CHN",
-                                    "weight" => [
-                                        "unit" => $cart->product->weight_unit,
-                                        "value" => $cart->product->weight
-                                    ],
-                                    "sku" => json_decode($cart->product->variation)[0]->sku ?? 'none',
-                                    "hs_code" => $cart->product->hs_code
-                                ]
-                            ],
-                            "description" => "Remise Order",
-                            "weight" => [
-                                "unit" => $cart->product->weight_unit,
-                                "value" => $cart->product->weight
-                            ]
-                        ]
-                    ],
-                    'delivery_instructions' => session('order_note')
-                ]
-            ]);
+            //     ],
+            //     "shipment" => [
+            //         "ship_from" => [
+            //             "contact_name" => $cart->seller->f_name.' '.$cart->seller->l_name,
+            //             "company_name" => $cart->shop->name,
+            //             "country" => $cart->shop->country,
+            //             "state" => $cart->shop->state,
+            //             "city" => $cart->shop->city,
+            //             "street1" => $cart->shop->street,
+            //             "postal_code" => $cart->shop->postal_code,
+            //             "phone" => $cart->seller->phone,
+            //             "email" => $cart->seller->email
+            //         ],
+            //         "ship_to" => [
+            //             "contact_name" => $shippingAddress->contact_person_name,
+            //             "company_name" => "Customer",
+            //             "street1" => $shippingAddress->address,
+            //             "city" => $shippingAddress->city,
+            //             "state" => "UT",
+            //             "postal_code" => $shippingAddress->zip,
+            //             "country" => $shippingAddress->country,
+            //             "phone" => $shippingAddress->phone,
+            //             "email" => auth('customer')->user()->email
+            //         ],
+            //         "parcels" => [
+            //             [
+            //                 "box_type" => "custom",
+            //                 "dimension" => [
+            //                     "width" => $cart->product->width,
+            //                     "height" => $cart->product->height,
+            //                     "depth" => $cart->product->depth,
+            //                     "unit" => $cart->product->dimention_unit
+            //                 ],
+            //                 "items" => [
+            //                     [
+            //                         "description" => strip_tags($cart->product->details),
+            //                         "quantity" => $cart->quantity,
+            //                         "price" => [
+            //                             "currency" => session('currency_code'),
+            //                             "amount" => $cart->price
+            //                         ],
+            //                         "item_id" => "1234567",
+            //                         "origin_country" => "CHN",
+            //                         "weight" => [
+            //                             "unit" => $cart->product->weight_unit,
+            //                             "value" => $cart->product->weight
+            //                         ],
+            //                         "sku" => json_decode($cart->product->variation)[0]->sku ?? 'none',
+            //                         "hs_code" => $cart->product->hs_code
+            //                     ]
+            //                 ],
+            //                 "description" => "Remise Order",
+            //                 "weight" => [
+            //                     "unit" => $cart->product->weight_unit,
+            //                     "value" => $cart->product->weight
+            //                 ]
+            //             ]
+            //         ],
+            //         'delivery_instructions' => session('order_note')
+            //     ]
+            // ]);
 
-            $response = $response->json();
-            dd($response);
+            // $response = $response->json();
+            // dd($response);
         //Shipping Api
-            if($response->status() == 200){
+            // if($response->status() == 200){
                 CartManager::cart_clean();
                 return view('web-views.checkout-complete');
-            }
+            // }
         }
 
         return back()->with('error', 'Something went wrong!');
